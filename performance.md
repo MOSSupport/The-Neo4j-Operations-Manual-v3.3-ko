@@ -4,7 +4,7 @@
 
 이 장에서 다루는 주제는 다음과 같습니다:
 
-* Memory configuration
+* [메모리 설정](/performance/memory-configuration.md)
    — How to configure memory settings for efficient operations.
 * [Garbage collector](https://neo4j.com/docs/operations-manual/3.3/performance/gc-tuning/)
    — How to configure the Java Virtual Machine’s garbage collector.
