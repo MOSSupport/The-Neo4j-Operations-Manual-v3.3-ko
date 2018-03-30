@@ -8,6 +8,7 @@
 * [Upgrade](upgrade.md)
 * [Backup](backup.md)
 * [Security](security.md)
+  * [Authentication and authorization](security/authentication-and-authorization.md)
 * [Monitoring](monitoring.md)
 * [Performance](performance.md)
   * [memory-configuration](performance/memory-configuration.md)
