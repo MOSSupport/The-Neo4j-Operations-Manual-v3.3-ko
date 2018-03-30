@@ -1,8 +1,8 @@
 ## 7.1. Authentication and authorization
 
-This section describes authentication and authorization in Neo4j.
+> This section describes authentication and authorization in Neo4j.
 
-For user management in Community Edition, refer to [Section A.3, “User management for Community Edition”](https://neo4j.com/docs/operations-manual/3.3/reference/user-management-community-edition/).
+<Icon id="info" /> For user management in Community Edition, refer to [Section A.3, “User management for Community Edition”](https://neo4j.com/docs/operations-manual/3.3/reference/user-management-community-edition/).
 
 The section describes the following:
 
