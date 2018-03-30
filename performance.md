@@ -1,4 +1,4 @@
-# Chapter 9. Performance
+# 9장. 성능
 
 This chapter describes factors that affect operational performance, and how to tune Neo4j for optimal throughput.
 
