@@ -18,6 +18,7 @@
   * [Disks, RAM and other tips](performance/disks-ram-and-other-tips.md)
   * [Statistics gathering](performance/statistics-gathering.md)
 * [Tools](tools.md)
+  * [Neo4j Admin](tools/neo4j-admin.md)
 * [Reference](reference.md)
 * Tutorials
 
