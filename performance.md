@@ -1,6 +1,6 @@
 # 9. 성능
 
-운영 성능에 영향을 미치는 Neo4j의 최적의 에 대한 성능튜닝 방법을 알려드립니다.튜닝 This chapter describes factors that affect operational performance, and how to tune Neo4j for optimal throughput.이 장에서는 운영 성능에 영향을 미치는 요소와 최적 처리량을 위해 Neo4j를 조정하는 방법에 대해 설명합니다.
+운영 성능에 영향을 미치는 각각의 내용들을 살펴보고 Neo4j에서 최적의 성능을 위한 튜닝 방법에 대해 설명합니다.
 
 The topics described in this chapter are:
 
