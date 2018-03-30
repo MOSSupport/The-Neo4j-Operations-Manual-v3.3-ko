@@ -16,7 +16,7 @@ The manual covers the following areas:
 * [Chapter 4,_Clustering_](https://neo4j.com/docs/operations-manual/3.3/clustering/) — Introduction to the clustering solutions available within Neo4j, followed by deployment details.
 * [Chapter 5,_Upgrade_](https://neo4j.com/docs/operations-manual/3.3/upgrade/) — Instructions on upgrading Neo4j.
 * [Chapter 6,_Backup_](https://neo4j.com/docs/operations-manual/3.3/backup/) — Instructions on setting up Neo4j backups.
-* [Chapter 7,_Security_](https://neo4j.com/docs/operations-manual/3.3/security/) — Instructions on user management, role-based access control, and server security.
+* [Chapter 7,_Security_](/security.md) — Instructions on user management, role-based access control, and server security.
 * [Chapter 8,_Monitoring_](https://neo4j.com/docs/operations-manual/3.3/monitoring/) — Instructions on setting up Neo4j monitoring.
 * [Chapter 9,_Performance_](https://neo4j.com/docs/operations-manual/3.3/performance/) — Instructions on how to go about performance tuning for Neo4j.
 * [Chapter 10,_Tools_](https://neo4j.com/docs/operations-manual/3.3/tools/) — Description of Neo4j tools.
