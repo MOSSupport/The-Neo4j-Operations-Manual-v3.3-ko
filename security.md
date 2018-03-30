@@ -1,11 +1,9 @@
 # 7. 보안
 
-| 이번 장은 Neo4j의 보안에 대해서 설명합니다. |
+<i class="fa icon-note" title="note"></i> 이번 장은 Neo4j의 보안에 대해서 설명합니다. 
 
 
-이번 장은 Neo4j의 보안에 대해서 설명합니다.
-
-To protect your data, first ensure your physical data security by following industry best practices with regard to server and network security. Ensure that your Neo4j deployment adheres to your company’s information security guidelines by setting up the appropriate authentication and authorization rules.
+데이터를 보호하려면 먼저 서버 및 네트워크 보안과 관련된 업계 모범 사례에 따라 실제 데이터 보안을 확인하십시오. To protect your data, first ensure your physical data security by following industry best practices with regard to server and network security. Ensure that your Neo4j deployment adheres to your company’s information security guidelines by setting up the appropriate authentication and authorization rules.
 
 This chapter includes the following:
 
