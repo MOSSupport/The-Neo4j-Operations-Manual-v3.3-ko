@@ -12,6 +12,11 @@
 * [Monitoring](monitoring.md)
 * [Performance](performance.md)
   * [memory-configuration](performance/memory-configuration.md)
+  * [Garbage collector](performance/garbage-collector.md)
+  * [Compressed storage](performance/compressed-storage.md)
+  * [Linux file system tuning](performance/linux-file-system-tuning.md)
+  * [Disks, RAM and other tips](performance/disks-ram-and-other-tips.md)
+  * [Statistics gathering](performance/statistics-gathering.md)
 * [Tools](tools.md)
 * [Reference](reference.md)
 * Tutorials
