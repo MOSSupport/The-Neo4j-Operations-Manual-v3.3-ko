@@ -2,7 +2,8 @@
 
 > This section describes authentication and authorization in Neo4j.
 
-<i class="fas fa-info-circle"></i> For user management in Community Edition, refer to [Section A.3, “User management for Community Edition”](https://neo4j.com/docs/operations-manual/3.3/reference/user-management-community-edition/).
+<i class="fas fa-info-circle"></i> 커뮤니티 에디션에서의 사용자 관리는 [섹션 A.3, "커뮤니티 에디션 사용자 관리"](reference/user-management-community-edition.md) 를 참조하세요.
+For user management in Community Edition, refer to [Section A.3, “User management for Community Edition”](https://neo4j.com/docs/operations-manual/3.3/reference/user-management-community-edition/).
 
 The section describes the following:
 
