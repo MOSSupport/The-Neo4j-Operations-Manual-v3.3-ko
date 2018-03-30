@@ -11,7 +11,7 @@ License:[Creative Commons 4.0](https://neo4j.com/docs/license/)
 The manual covers the following areas:
 
 * [Chapter 1,_Introduction_](/introduction.md) — Introduction of Neo4j Community and Enterprise Editions.
-* [Chapter 2,_Installation_](https://neo4j.com/docs/operations-manual/3.3/installation/) — Instructions on how to install Neo4j in different deployment contexts.
+* [Chapter 2,_Installation_](/installation.md) — Instructions on how to install Neo4j in different deployment contexts.
 * [Chapter 3,_Configuration_](https://neo4j.com/docs/operations-manual/3.3/configuration/) — Instructions on how to configure certain parts of the product.
 * [Chapter 4,_Clustering_](https://neo4j.com/docs/operations-manual/3.3/clustering/) — Introduction to the clustering solutions available within Neo4j, followed by deployment details.
 * [Chapter 5,_Upgrade_](https://neo4j.com/docs/operations-manual/3.3/upgrade/) — Instructions on upgrading Neo4j.
