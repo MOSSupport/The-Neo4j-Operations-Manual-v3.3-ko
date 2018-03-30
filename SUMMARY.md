@@ -18,6 +18,15 @@
   * [Disks, RAM and other tips](performance/disks-ram-and-other-tips.md)
   * [Statistics gathering](performance/statistics-gathering.md)
 * [Tools](tools.md)
+  * [Neo4j Admin](tools/neo4j-admin.md)
+  * [Import](tools/import.md)
+    * [Syntax](tools/import/syntax.md)
+    * [CSV header format](tools/import/csv-header-format.md)
+    * [Options](tools/import/options.md)
+  * [Dump and load databases](tools/dump-and-load-databases.md)
+  * [Consistency checker](tools/consistency-checker.md)
+  * [Display store information](tools/display-store-information.md)
+  * [Cypher Shell](tools/cypher-shell.md)
 * [Reference](reference.md)
 * Tutorials
 
