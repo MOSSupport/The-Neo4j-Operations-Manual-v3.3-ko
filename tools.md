@@ -14,6 +14,7 @@ This chapter comprises the following topics:
 * [How to dump and load Neo4j databases using Neo4j Admin](https://neo4j.com/docs/operations-manual/current/tools/dump-load/)
 
 * [How to check the consistency of a Neo4j database using Neo4j Admin](https://neo4j.com/docs/operations-manual/current/tools/consistency-checker/)
+
 * [How to display information about a database store](https://neo4j.com/docs/operations-manual/current/tools/store-info/)
 * [How to use the Cypher Shell](https://neo4j.com/docs/operations-manual/current/tools/cypher-shell/)
 
