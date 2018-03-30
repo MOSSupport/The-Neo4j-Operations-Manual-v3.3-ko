@@ -1,6 +1,6 @@
-# Chapter 10. Tools
+# Chapter 10. Tools
 
-This chapter describes the Neo4j tools_Neo4j Admin_and_Cypher Shell_, and explains how to use commands to_import_data into a new database,_dump and load_an existing database, and how to_check consistency_.
+This chapter describes the Neo4j tools_Neo4j Admin\_and\_Cypher Shell_, and explains how to use commands to_import\_data into a new database,\_dump and load\_an existing database, and how to\_check consistency_.
 
 This chapter comprises the following topics:
 
@@ -12,6 +12,7 @@ This chapter comprises the following topics:
   * [Options](https://neo4j.com/docs/operations-manual/current/tools/import/options/)
 
 * [How to dump and load Neo4j databases using Neo4j Admin](https://neo4j.com/docs/operations-manual/current/tools/dump-load/)
+
 * [How to check the consistency of a Neo4j database using Neo4j Admin](https://neo4j.com/docs/operations-manual/current/tools/consistency-checker/)
 * [How to display information about a database store](https://neo4j.com/docs/operations-manual/current/tools/store-info/)
 * [How to use the Cypher Shell](https://neo4j.com/docs/operations-manual/current/tools/cypher-shell/)

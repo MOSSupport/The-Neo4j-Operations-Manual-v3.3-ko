@@ -19,6 +19,11 @@
   * [Statistics gathering](performance/statistics-gathering.md)
 * [Tools](tools.md)
   * [Neo4j Admin](tools/neo4j-admin.md)
+  * [Import](tools/import.md)
+  * [Dump and load databases](tools/dump-and-load-databases.md)
+  * [Consistency checker](tools/consistency-checker.md)
+  * [Display store information](tools/display-store-information.md)
+  * [Cypher Shell](tools/cypher-shell.md)
 * [Reference](reference.md)
 * Tutorials
 
