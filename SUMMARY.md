@@ -10,6 +10,7 @@
 * [Security](security.md)
 * [Monitoring](monitoring.md)
 * [Performance](performance.md)
+  * memory-configuration
 * [Tools](tools.md)
 * [Reference](reference.md)
 * Tutorials

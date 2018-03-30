@@ -2,9 +2,9 @@
 
 운영 성능에 영향을 미치는 각각의 내용들을 살펴보고 Neo4j에서 최적의 성능을 위한 튜닝 방법에 대해 설명합니다.
 
-The topics described in this chapter are:
+이 장에서 다루는 주제는 다음과 같습니다:
 
-* [Memory configuration](https://neo4j.com/docs/operations-manual/3.3/performance/memory-configuration/)
+* Memory configuration
    — How to configure memory settings for efficient operations.
 * [Garbage collector](https://neo4j.com/docs/operations-manual/3.3/performance/gc-tuning/)
    — How to configure the Java Virtual Machine’s garbage collector.
