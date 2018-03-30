@@ -1,7 +1,7 @@
 # Summary
 
-* [Introduction](README.md)
-  * [Editions](editions.md)
+* [Main](README.md)
+* [Introduction](introduction.md)
 * [Installation](installation.md)
 * [Configuration](configuration.md)
 * [Clustering](clustering.md)
@@ -12,5 +12,5 @@
 * [Performance](performance.md)
 * [Tools](tools.md)
 * [Reference](reference.md)
-* [Tutorials](tutorials.md)
+* Introduction
 
