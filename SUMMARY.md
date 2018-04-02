@@ -10,6 +10,7 @@
 * [Backup](backup.md)
 * [Security](security.md)
   * [Authentication and authorization](security/authentication-and-authorization.md)
+    * [Introduction](security/authentication-authorization/introduction.md)
 * [Monitoring](monitoring.md)
 * [Performance](performance.md)
   * [memory-configuration](performance/memory-configuration.md)
