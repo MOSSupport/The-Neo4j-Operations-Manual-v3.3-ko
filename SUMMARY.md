@@ -5,6 +5,7 @@
 * [Installation](installation.md)
 * [Configuration](configuration.md)
 * [Clustering](clustering.md)
+  * [Introduction to clustering](clustering/introduction-to-clustering.md)
 * [Upgrade](upgrade.md)
 * [Backup](backup.md)
 * [Security](security.md)
