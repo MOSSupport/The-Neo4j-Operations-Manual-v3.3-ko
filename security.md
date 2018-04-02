@@ -22,11 +22,11 @@
 	* [LDAP와의 통합](/security/authentication-authorization/ldap-integration.md)
 	* [하위 그래프 엑세스 제어](/security/authentication-authorization/subgraph-access-control.md)
 
-* [Securing extensions](https://neo4j.com/docs/operations-manual/3.3/security/securing-extensions/)
+* [Securing extensions](/security/securing-extensions.md)
 
-* [Unified SSL framework](https://neo4j.com/docs/operations-manual/3.3/security/ssl-framework/)
-* [Credentials handling in Neo4j Browser](https://neo4j.com/docs/operations-manual/3.3/security/browser/)
-* [Security checklist](https://neo4j.com/docs/operations-manual/3.3/security/checklist/)
+* [Unified SSL framework](/security/ssl-framework.md)
+* [Credentials handling in Neo4j Browser](/security/browser.md)
+* [Security checklist](/security/checklist.md)
 
 Additionally, logs can be useful for continuous analysis, or for specific investigations. Facilities are available for producing[security event logs](https://neo4j.com/docs/operations-manual/3.3/monitoring/logging/security-events-logging/)as well as[query logs](https://neo4j.com/docs/operations-manual/3.3/monitoring/logging/query-logging/)as described in[Chapter 8,_Monitoring_](https://neo4j.com/docs/operations-manual/3.3/monitoring/).
 
