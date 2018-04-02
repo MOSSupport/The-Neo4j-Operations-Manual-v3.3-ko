@@ -22,5 +22,4 @@ Neo4j의 클러스터링 아키텍처는 Neo4j의 지속적인 가용성을 보�
 
 ##### 그림 4.3. 안전성
 ![](./4.3.safety.png)
-In these cases a disaster recovery strategy can define a failover datacenter along with a strategy for bringing services back online. Neo4j clustering can accommodate disaster recovery strategies that require very short-windows of downtime or low tolerances for data loss in disaster scenarios. By deploying a cluster instance to an alternate location, you have an active copy of your database up and available in your designated disaster recovery location that is up to date with the transactions executed against your operational database cluster. 
-이러한 경우 재해 복구 전략은 서비스를 다시 온라인 상태로 만들기위한 전략과 함께 장애 조치 데이터 센터를 정의 할 수 있습니다. Neo4j 클러스터링은 재난 복구 전략을 수용 할 수 있습니다. 재해 복구 전략에는 가동 중지 시간이 매우 짧거나 재난 시나리오에서 데이터 손실에 대한 낮은 허용 오차가 필요합니다. 클러스터 인스턴스를 대체 위치에 배치하면 운영 데이터베이스 클러스터에 대해 실행 된 트랜잭션으로 최신 상태 인 데이터베이스의 활성 복사본을 지정된 재해 복구 위치에서 사용할 수 있습니다.
+이러한 경우 재해 복구 전략은 서비스를 다시 온라인 상태로 전환하는 전략과 함께 장애 조치 데이터 센터를 정의 할 수 있습니다. Neo4j 클러스터링은 다운 타임이 매우 짧아야 하거나 재해 시나리오에서 데이터 손실에 대한 허용 오차가 낮아야 하는 재해 복구 전략을 수용할 수 있습니다. 클러스터 인스턴스를 대체 위치에 배포하면 지정된 재해 복구 위치에 운영 데이터베이스 클러스터에 대해 실행되는 트랜잭션과 함께 최신 상태인 사용할 수 있는 활성 데이터베이스 복사본이 생성됩니다.
