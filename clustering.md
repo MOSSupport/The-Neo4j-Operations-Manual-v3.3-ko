@@ -1,4 +1,4 @@
-# 4. 클러스터링 <font size="5">(Enterprise Edition)</font>
+# 4. 클러스터링 <font size="4">(Enterprise Edition)</font>
 > 이 장에서는 Neo4j 클러스터링 솔루션에 대해 설명합니다; Causal 클러스터링 및 HA 클러스터링.
 
 이 장에서는 클러스터링 기능과 관련된 Neo4j의 아키텍처에 대해 설명합니다.
