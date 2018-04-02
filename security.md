@@ -3,7 +3,8 @@
 > 이번 장은 Neo4j의 보안에 대해서 설명합니다. 
 
 
-데이터를 보호하려면 먼저 서버 및 네트워크 보안과 관련된 업계 모범 사례에 따라 실제 데이터 보안을 확인하십시오. To protect your data, first ensure your physical data security by following industry best practices with regard to server and network security. Ensure that your Neo4j deployment adheres to your company’s information security guidelines by setting up the appropriate authentication and authorization rules.
+데이터를 보호하려면 먼저 서버 및 네트워크 보안과 관련된 업계 모범 사례에 따라 실제 데이터 보안을 확인하십시오. 
+To protect your data, first ensure your physical data security by following industry best practices with regard to server and network security. Ensure that your Neo4j deployment adheres to your company’s information security guidelines by setting up the appropriate authentication and authorization rules.
 
 이번 장은 아래와 같이 구성됩니다.:
 
@@ -22,11 +23,11 @@
 	* [LDAP와의 통합](/security/authentication-authorization/ldap-integration.md)
 	* [하위 그래프 엑세스 제어](/security/authentication-authorization/subgraph-access-control.md)
 
-* [Securing extensions](/security/securing-extensions.md)
+* [확장 기능 보안](/security/securing-extensions.md)
 
-* [Unified SSL framework](/security/ssl-framework.md)
-* [Credentials handling in Neo4j Browser](/security/browser.md)
-* [Security checklist](/security/checklist.md)
+* [통합 SSL framework](/security/ssl-framework.md)
+* [Neo4j 브라우저에서 인증 정보 처리](/security/browser.md)
+* [보안 점검목록](/security/checklist.md)
 
-Additionally, logs can be useful for continuous analysis, or for specific investigations. Facilities are available for producing[security event logs](https://neo4j.com/docs/operations-manual/3.3/monitoring/logging/security-events-logging/)as well as[query logs](https://neo4j.com/docs/operations-manual/3.3/monitoring/logging/query-logging/)as described in[Chapter 8,_Monitoring_](https://neo4j.com/docs/operations-manual/3.3/monitoring/).
+또한, 로그는 지속적인 분석 또는 특정 조사에 유용할 수 있습니다. Additionally, logs can be useful for continuous analysis, or for specific investigations. Facilities are available for producing[security event logs](https://neo4j.com/docs/operations-manual/3.3/monitoring/logging/security-events-logging/)as well as[query logs](https://neo4j.com/docs/operations-manual/3.3/monitoring/logging/query-logging/)as described in[Chapter 8,_Monitoring_](https://neo4j.com/docs/operations-manual/3.3/monitoring/).
 
