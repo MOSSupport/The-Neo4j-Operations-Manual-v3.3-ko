@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Summary
 
 * [Main](README.md)
@@ -32,3 +33,39 @@
 * [Reference](reference.md)
 * Tutorials
 
+=======
+# Summary
+
+* [Main](README.md)
+* [Introduction](introduction.md)
+* [Installation](installation.md)
+* [Configuration](configuration.md)
+* [Clustering](clustering.md)
+  * [Introduction to clustering](clustering/introduction-to-clustering.md)
+* [Upgrade](upgrade.md)
+* [Backup](backup.md)
+* [Security](security.md)
+  * [Authentication and authorization](security/authentication-and-authorization.md)
+    * [Introduction](security/authentication-authorization/introduction.md)
+* [Monitoring](monitoring.md)
+* [Performance](performance.md)
+  * [memory-configuration](performance/memory-configuration.md)
+  * [Garbage collector](performance/garbage-collector.md)
+  * [Compressed storage](performance/compressed-storage.md)
+  * [Linux file system tuning](performance/linux-file-system-tuning.md)
+  * [Disks, RAM and other tips](performance/disks-ram-and-other-tips.md)
+  * [Statistics gathering](performance/statistics-gathering.md)
+* [Tools](tools.md)
+  * [Neo4j Admin](tools/neo4j-admin.md)
+  * [Import](tools/import.md)
+    * [Syntax](tools/import/syntax.md)
+    * [CSV header format](tools/import/csv-header-format.md)
+    * [Options](tools/import/options.md)
+  * [Dump and load databases](tools/dump-and-load-databases.md)
+  * [Consistency checker](tools/consistency-checker.md)
+  * [Display store information](tools/display-store-information.md)
+  * [Cypher Shell](tools/cypher-shell.md)
+* [Reference](reference.md)
+* Tutorials
+
+>>>>>>> 15306b3493298011ecb983449bcb87e4e62535df
