@@ -12,7 +12,7 @@
 1. OS 예약:  
    * [OS 메모리](#os-메모리) — 운영 체제(OS)에 필요한 리소스를 미리 예측하여 예약.
    * [루씬(Lucene) 인덱스 캐시](#루씬-인덱스-캐시) — 루씬(Lucene) 인덱스에 필요한 리소스를 미리 예측하여 예약.
-2. [페이지 캐시](#page-cache) — 페이지 캐시의 크기 결정.
+2. [페이지 캐시](#페이지-캐시) — 페이지 캐시의 크기 결정.
 3. [힙(Heap) 크기](#heap-size) — 힙(Heap)의 크기 결정.
 4. 메모리 설정 확인 - 이용 가능한 RAM이 적절히 설정되었는지 확인합니다.   
 
@@ -25,26 +25,28 @@
 Neo4j만 실행되는 서버라면 1GB는 적절한 값입니다.
 
 예제 9.1. OS 메모리 결정
-
+```
 OS용으로 예약할 메모리 크기를 정합니다. 이 값은 이 절의 마지막 예제에서 사용됩니다.
 OS 예약으로 사용할 메모리의 크기 = 1GB.
+```
+혹은, 실제 서버의 RAM이 크다면, OS용으로 1GB 보다 더 큰 값을 예약합니다.
 
 ### 루씬 인덱스 캐시
 Neo4j는 인덱싱 기능 중 일부에 아파치 루씬(Apache Lucene)을 사용합니다. 인덱스에 적절한 메모리를 할당하여, 인덱스 룩업 성능을 최적화합니다. OS 메모리와 같이, 루씬(Lucene) 인덱스 캐시는 명시적으로 설정할 수 없습니다. 대신 필요한 메모리를 예측하여, 페이지 캐시와 힙(Heap) 공간을 설정하기 전에 필요한 메모리 양을 예약합니다.  
-We determine the total memory needed for the page cache by summing the sizes of all files with the following name patterns:
+다음 패턴과 동일한 모든 파일의 크기를 합산하여, 페이지 캐시에 필요한 총 메모리를 결정합니다:
+* NEO4J_HOME/data/databases/<데이터베이스 명>/index
+* NEO4J_HOME/data/databases/<database-name>/schema/index/\*/\*/lucene\*
 
-NEO4J_HOME/data/databases/<database-name>/index
-NEO4J_HOME/data/databases/<database-name>/schema/index/*/*/lucene*
-Example 9.2. Estimate resources to reserve for Lucene indexes
-Assume that our database is named graph.db. We determine the index sizes by adding up the size of the index and schema/index/lucene directories, respectively.
-
+예제 9.2. 루씬 인덱스에 예약할 자원 측정
+```
+데이터베이스 명은 graph.db로 가정합니다. 인덱스 크기는 인덱스 크기에 schema/index/lucene 디렉토리의 크기를 합산합니다.  
 $neo4j-home> ls data/databases/graph.db/index | du -ch | tail -1
 500M    total
 $neo4j-home> find data/databases/graph.db/schema/index -regex '.*/lucene.*' | du -hc | tail -1
 500M    total
-Amount of memory to reserve for indexes = 500MB + 500MB = 1GB.
-
-### Page cache
+인덱스를 위해 예약될 메모리 용량 = 500MB + 500MB = 1GB.
+```
+### 페이지 캐시
 The page cache is used to cache the Neo4j data as stored on disk. Ensuring that all, or at least most, of the graph data from disk is cached into memory will help avoid costly disk access and result in optimal performance.
 
 Additionally, Neo4j’s native indexes will be cached in the page cache. As mentioned before, it is beneficial for performance to ensure that indexes are cached.
