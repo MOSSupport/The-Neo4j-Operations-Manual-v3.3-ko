@@ -6,6 +6,8 @@
 * [Configuration](configuration.md)
 * [Clustering](clustering.md)
   * [Introduction to clustering](clustering/introduction-to-clustering.md)
+  * [Causal Cluster](clustering/causal-cluster.md)
+  * Highly Available cluster
 * [Upgrade](upgrade.md)
 * [Backup](backup.md)
 * [Security](security.md)
@@ -44,3 +46,4 @@
   * [Cypher Shell](tools/cypher-shell.md)
 * [Reference](reference.md)
 * Tutorials
+
