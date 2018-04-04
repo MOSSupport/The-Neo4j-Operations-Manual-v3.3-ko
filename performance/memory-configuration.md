@@ -25,15 +25,12 @@
 Neo4j만 실행되는 서버라면 1GB는 적절한 값입니다.
 
 예제 9.1. OS 메모리 결정
-```
+
 OS용으로 예약할 메모리 크기를 정합니다. 이 값은 이 절의 마지막 예제에서 사용됩니다.
 OS 예약으로 사용할 메모리의 크기 = 1GB.
-```
-혹은, 실제 서버의 RAM이 크다면, OS용으로 1GB 보다 더 큰 값을 예약합니다.
 
 ### 루씬 인덱스 캐시
-Neo4j uses Apache Lucene for some of its indexing functionality. We should optimize index lookup performance by ensuring that the indexes fit into memory. Similar to the OS memory, the Lucene index cache can not be explicitly configured. Instead we estimate the memory needed, and add this number to the amount of memory reserved before configuring page cache and heap space.
-
+Neo4j는 인덱싱 기능 중 일부에 아파치 루씬(Apache Lucene)을 사용합니다. 인덱스에 적절한 메모리를 할당하여, 인덱스 룩업 성능을 최적화합니다. OS 메모리와 같이, 루씬(Lucene) 인덱스 캐시는 명시적으로 설정할 수 없습니다. 대신 필요한 메모리를 예측하여, 페이지 캐시와 힙(Heap) 공간을 설정하기 전에 필요한 메모리 양을 예약합니다.  
 We determine the total memory needed for the page cache by summing the sizes of all files with the following name patterns:
 
 NEO4J_HOME/data/databases/<database-name>/index
