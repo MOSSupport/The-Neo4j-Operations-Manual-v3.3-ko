@@ -6,8 +6,8 @@
 
 * [메모리 설정](/performance/memory-configuration.md)
   — 최적의 운영을 위한 메모리 설정 방법.
-* [Garbage collector](https://neo4j.com/docs/operations-manual/3.3/performance/gc-tuning/)
-   — How to configure the Java Virtual Machine’s garbage collector.
+* [가비지 컬렉터](https://neo4j.com/docs/operations-manual/3.3/performance/gc-tuning/)
+   — 자바 가상 머신의 가비지 컬렉터 설정 방법.
 * [Compressed storage](https://neo4j.com/docs/operations-manual/3.3/performance/property-compression/)
    — How to configure the compressed storage of properties.
 * [Linux file system tuning](https://neo4j.com/docs/operations-manual/3.3/performance/linux-file-system-tuning/)
@@ -16,6 +16,3 @@
    — Disks, RAM and other tips.
 * [Statistics gathering](https://neo4j.com/docs/operations-manual/3.3/performance/schema-statistics/)
    — How to manage database statistics gathering.
-
-
-
