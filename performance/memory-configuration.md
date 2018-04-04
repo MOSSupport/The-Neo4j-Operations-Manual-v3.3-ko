@@ -27,8 +27,9 @@ Neo4j만 실행되는 서버라면 1GB는 적절한 값입니다.
 예제 9.1. OS 메모리 결정
 ```
 OS용으로 예약할 메모리 크기를 정합니다. 이 값은 이 절의 마지막 예제에서 사용됩니다.
+OS 예약으로 사용할 메모리의 크기 = 1GB.
 ```
-Amount of memory to reserve for the OS = 1GB.
+
 
 There are cases where the amount reserved for the OS is significantly larger than 1GB. For example, on servers with exceptionally large RAM.
 
