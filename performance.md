@@ -8,11 +8,11 @@
   — 최적의 운영을 위한 메모리 설정 방법.
 * [가비지 컬렉터](https://neo4j.com/docs/operations-manual/3.3/performance/gc-tuning/)
    — 자바 가상 머신의 가비지 컬렉터 설정 방법.
-* [Compressed storage](https://neo4j.com/docs/operations-manual/3.3/performance/property-compression/)
-   — How to configure the compressed storage of properties.
-* [Linux file system tuning](https://neo4j.com/docs/operations-manual/3.3/performance/linux-file-system-tuning/)
-   — How to configure the Linux file system.
-* [Disks, RAM and other tips](https://neo4j.com/docs/operations-manual/3.3/performance/disks-ram-and-other-tips/)
-   — Disks, RAM and other tips.
-* [Statistics gathering](https://neo4j.com/docs/operations-manual/3.3/performance/schema-statistics/)
-   — How to manage database statistics gathering.
+* [압축 스토리지](https://neo4j.com/docs/operations-manual/3.3/performance/property-compression/)
+   — 압축 스토리지의 속성 설정 방법.
+* [리눅스 파일 시스템 튜닝](https://neo4j.com/docs/operations-manual/3.3/performance/linux-file-system-tuning/)
+   — 리눅스 파일 시스템 설정 방법.
+* [디스크, RAM과 그 밖의 팁들](https://neo4j.com/docs/operations-manual/3.3/performance/disks-ram-and-other-tips/)
+   — 디스크, RAM과 그 밖의 팁들.
+* [데이터베이스 통계값](https://neo4j.com/docs/operations-manual/3.3/performance/schema-statistics/)
+   — 데이터베이스 통계값 관리 방법.
