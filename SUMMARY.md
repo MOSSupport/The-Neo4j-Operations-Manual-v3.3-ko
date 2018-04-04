@@ -7,7 +7,7 @@
 * [Clustering](clustering.md)
   * [Introduction to clustering](clustering/introduction-to-clustering.md)
   * [Causal Cluster](clustering/causal-cluster.md)
-  * Highly Available cluster
+  * [Highly Available cluster](clustering/highly-available-cluster.md)
 * [Upgrade](upgrade.md)
 * [Backup](backup.md)
 * [Security](security.md)
