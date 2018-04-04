@@ -7,26 +7,27 @@
 ##### 그림 9.1. Neo4j 메모리 관리
 ![](./9_1.png)
 
-메모리 설정을 보통 다음의 순서에 따릅니다:
+메모리 설정은 보통 다음의 단계를 따릅니다:
 
 1. OS 예약:  
    * [OS 메모리](#os-메모리) — 운영 체제(OS)에 필요한 리소스를 미리 예측하여 예약.
    * [루씬(Lucene) 인덱스 캐시](#lucene-index-cache) — 루씬(Lucene) 인덱스에 필요한 리소스를 미리 예측하여 예약.
 2. [페이지 캐시](#page-cache) — 페이지 캐시의 크기 결정.
 3. [힙(Heap) 크기](#heap-size) — 힙(Heap)의 크기 결정.
-4. Verify memory configuration — Verify that the available RAM fits the configured memory.
-We will describe this workflow in further detail in the sections below.
+4. 메모리 설정 확인 - 이용 가능한 RAM이 적절히 설정되었는지 확인합니다.   
 
-The process described here assumes that the server that we are configuring is exclusively reserved for Neo4j. If there are other services running on the same server, you must also account for their memory requirements.
+각각의 단계에 대한 자세한 설명은 아래에서 계속 이어집니다.  
+여기서는 서버에서 Neo4j만 실행한다고 가정합니다. 만약 동일 서버에서 다른 서비스도 실행 중이라면, 해당 메모리 요구 사항도 고려해야 합니다.
 
 ### OS 메모리
-Some memory must be reserved for running the processes of the operating system itself. It is not possible to explicitly configure the amount of RAM that should be reserved for the operating system, as this is what RAM remains available after configuring page cache and heap space. However, if we do not leave enough space for the OS it will start swapping to disk, which will heavily affect performance.
+일부 메모리는 운영 체제(OS)를 실행하기 위해 예약되어야 합니다. 운영 체제(OS) 용으로 RAM의 크기를 명시적으로 설정할 수 없으므로 페이지 캐시와 힙 공간을 설정하면, 나머지 RAM을 OS에서 사용합니다. 그러나 OS용으로 충분한 공간을 두지 않으면, 디스크로 자주 스왑되어 성능이 크게 저하됩니다.
 
-1GB is a good starting point for a server that is dedicated to running Neo4j.
+Neo4j만 실행되는 서버라면 1GB는 적절한 값입니다.
 
-Example 9.1. Determine resources to reserve for the OS
-We simply determine how much to reserve for the OS. This value will be used in the final example of this section.
-
+예제 9.1. OS 메모리 결정
+```
+OS용으로 예약할 메모리 크기를 정합니다. 이 값은 이 절의 마지막 예제에서 사용됩니다.
+```
 Amount of memory to reserve for the OS = 1GB.
 
 There are cases where the amount reserved for the OS is significantly larger than 1GB. For example, on servers with exceptionally large RAM.
