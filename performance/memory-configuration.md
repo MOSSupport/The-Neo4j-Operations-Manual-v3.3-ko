@@ -11,7 +11,7 @@
 
 1. OS 예약:  
    * [OS 메모리](#os-메모리) — 운영 체제(OS)에 필요한 리소스를 미리 예측하여 예약.
-   * [루씬(Lucene) 인덱스 캐시](#lucene-index-cache) — 루씬(Lucene) 인덱스에 필요한 리소스를 미리 예측하여 예약.
+   * [루씬(Lucene) 인덱스 캐시](#루씬-인덱스-캐시) — 루씬(Lucene) 인덱스에 필요한 리소스를 미리 예측하여 예약.
 2. [페이지 캐시](#page-cache) — 페이지 캐시의 크기 결정.
 3. [힙(Heap) 크기](#heap-size) — 힙(Heap)의 크기 결정.
 4. 메모리 설정 확인 - 이용 가능한 RAM이 적절히 설정되었는지 확인합니다.   
@@ -29,11 +29,9 @@ Neo4j만 실행되는 서버라면 1GB는 적절한 값입니다.
 OS용으로 예약할 메모리 크기를 정합니다. 이 값은 이 절의 마지막 예제에서 사용됩니다.
 OS 예약으로 사용할 메모리의 크기 = 1GB.
 ```
+혹은, 실제 서버의 RAM이 크다면, OS용으로 1GB 보다 더 큰 값을 예약합니다.
 
-
-There are cases where the amount reserved for the OS is significantly larger than 1GB. For example, on servers with exceptionally large RAM.
-
-### Lucene index cache
+### 루씬 인덱스 캐시
 Neo4j uses Apache Lucene for some of its indexing functionality. We should optimize index lookup performance by ensuring that the indexes fit into memory. Similar to the OS memory, the Lucene index cache can not be explicitly configured. Instead we estimate the memory needed, and add this number to the amount of memory reserved before configuring page cache and heap space.
 
 We determine the total memory needed for the page cache by summing the sizes of all files with the following name patterns:
