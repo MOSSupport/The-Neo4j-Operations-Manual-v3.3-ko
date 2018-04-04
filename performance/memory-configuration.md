@@ -1,26 +1,26 @@
 ## 9.1. 메모리 설정
 > 이 절에서는 Neo4j 인스턴스를 위한 메모리 설정 방법을 설명합니다.
 
-<span class="glyphicon glyphicon-info-sign" aria-hidden="true"> </span> In this section we will go through some aspects of memory configuration in Neo4j. It is important to keep in mind that different use cases may have very different characteristics in their memory usage. The size of the data set and presence of indexes are other examples of factors that affect memory usage. Therefore, the numbers in the examples provided are only for illustrative purposes. You must take your specific conditions into account when planning your Neo4j installation.
+<span class="glyphicon glyphicon-info-sign" aria-hidden="true"> </span> 이 절에서는 Neo4j의 메모리 설정 값들에 대해 살펴 보겠습니다. 다른 조건인 경우, 이 설정 값들이 달라져야 합니다. 데이터-셋의 크기와 인덱스의 존재는 메모리 사용에 영향을 미칩니다. 여기의 예제는 설명을 위한 것입니다. Neo4j 설치시, 조건에 따라 메모리 설정 숫자 값은 달라져야만 합니다.
 
 Consider the image below. As you can see, the RAM of the Neo4j server has three usage areas, with some sub areas:
 
-Figure 9.1. Neo4j memory management
-neo4j memory management
-The following steps are recommended when configuring memory settings.
+##### 그림 9.1. Neo4j 메모리 관리
+![](./9_1.png)
 
-Plan the OS reserve:
+메모리 설정을 보통 다음의 순서에 따릅니다:
 
-OS memory — Estimate resources to reserve for the operating system.
-Lucene index cache — Estimate resources to reserve for Lucene indexes.
-Plan the page cache — Determine the size of the page cache.
-Plan the heap size — Determine the size of the heap.
-Verify memory configuration — Verify that the available RAM fits the configured memory.
+1. OS 예약:  
+   * [OS 메모리](#os-memory) — 운영 체제(OS)에 필요한 리소스를 미리 예측하여 예약.
+   * 루씬(Lucene) 인덱스 캐시 — 루씬(Lucene) 인덱스에 필요한 리소스를 미리 예측하여 예약.
+2. 페이지 캐시 — 페이지 캐시의 크기 결정.
+3. 힙(Heap) 크기 — 힙(Heap)의 크기 결정.
+4. Verify memory configuration — Verify that the available RAM fits the configured memory.
 We will describe this workflow in further detail in the sections below.
 
 The process described here assumes that the server that we are configuring is exclusively reserved for Neo4j. If there are other services running on the same server, you must also account for their memory requirements.
 
-OS memory
+### OS memory
 Some memory must be reserved for running the processes of the operating system itself. It is not possible to explicitly configure the amount of RAM that should be reserved for the operating system, as this is what RAM remains available after configuring page cache and heap space. However, if we do not leave enough space for the OS it will start swapping to disk, which will heavily affect performance.
 
 1GB is a good starting point for a server that is dedicated to running Neo4j.
