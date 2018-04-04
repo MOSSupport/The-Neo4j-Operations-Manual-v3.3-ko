@@ -1,10 +1,9 @@
 ## 9.1. 메모리 설정
-> 이 절에서는 Neo4j 인스턴스를 위한 메모리 설정 방법을 설명합니다.
+> 이 절에서는 Neo4j 인스턴스를 위한 메모리 설정 방법을 설명합니다.  
 
-<span class="glyphicon glyphicon-info-sign" aria-hidden="true"> </span> 이 절에서는 Neo4j의 메모리 설정 값들에 대해 살펴 보겠습니다. 다른 조건인 경우, 이 설정 값들이 달라져야 합니다. 데이터-셋의 크기와 인덱스의 존재는 메모리 사용에 영향을 미칩니다. 여기의 예제는 설명을 위한 것입니다. Neo4j 설치시, 조건에 따라 메모리 설정 숫자 값은 달라져야만 합니다.
+<span class="glyphicon glyphicon-info-sign" aria-hidden="true"> </span> 이 절에서는 Neo4j의 메모리 설정 값들에 대해 살펴 보겠습니다. 다른 조건인 경우, 이 설정 값들이 달라져야 합니다. 데이터-셋의 크기와 인덱스의 존재는 메모리 사용에 영향을 미칩니다. 여기의 예제는 설명을 위한 것입니다. Neo4j 설치시, 조건에 따라 메모리 설정 숫자 값은 달라져야만 합니다.  
 
-Consider the image below. As you can see, the RAM of the Neo4j server has three usage areas, with some sub areas:
-
+그림 9-1 Neo4j 메모리 관리와 같이, Neo4j 서버의 RAM에는 세가지 영역- OS 예약, 페이지 캐시, 힙(Heap) 공간의 세 개의 사용 영역이 있습니다:  
 ##### 그림 9.1. Neo4j 메모리 관리
 ![](./9_1.png)
 
@@ -12,15 +11,15 @@ Consider the image below. As you can see, the RAM of the Neo4j server has three 
 
 1. OS 예약:  
    * [OS 메모리](#os-memory) — 운영 체제(OS)에 필요한 리소스를 미리 예측하여 예약.
-   * 루씬(Lucene) 인덱스 캐시 — 루씬(Lucene) 인덱스에 필요한 리소스를 미리 예측하여 예약.
-2. 페이지 캐시 — 페이지 캐시의 크기 결정.
-3. 힙(Heap) 크기 — 힙(Heap)의 크기 결정.
+   * [루씬(Lucene) 인덱스 캐시](#lucene-index-cache) — 루씬(Lucene) 인덱스에 필요한 리소스를 미리 예측하여 예약.
+2. [페이지 캐시](#page-cache) — 페이지 캐시의 크기 결정.
+3. [힙(Heap) 크기](#heap-size) — 힙(Heap)의 크기 결정.
 4. Verify memory configuration — Verify that the available RAM fits the configured memory.
 We will describe this workflow in further detail in the sections below.
 
 The process described here assumes that the server that we are configuring is exclusively reserved for Neo4j. If there are other services running on the same server, you must also account for their memory requirements.
 
-### OS memory
+### OS 메모리
 Some memory must be reserved for running the processes of the operating system itself. It is not possible to explicitly configure the amount of RAM that should be reserved for the operating system, as this is what RAM remains available after configuring page cache and heap space. However, if we do not leave enough space for the OS it will start swapping to disk, which will heavily affect performance.
 
 1GB is a good starting point for a server that is dedicated to running Neo4j.
@@ -32,7 +31,7 @@ Amount of memory to reserve for the OS = 1GB.
 
 There are cases where the amount reserved for the OS is significantly larger than 1GB. For example, on servers with exceptionally large RAM.
 
-Lucene index cache
+### Lucene index cache
 Neo4j uses Apache Lucene for some of its indexing functionality. We should optimize index lookup performance by ensuring that the indexes fit into memory. Similar to the OS memory, the Lucene index cache can not be explicitly configured. Instead we estimate the memory needed, and add this number to the amount of memory reserved before configuring page cache and heap space.
 
 We determine the total memory needed for the page cache by summing the sizes of all files with the following name patterns:
@@ -48,7 +47,7 @@ $neo4j-home> find data/databases/graph.db/schema/index -regex '.*/lucene.*' | du
 500M    total
 Amount of memory to reserve for indexes = 500MB + 500MB = 1GB.
 
-Page cache
+### Page cache
 The page cache is used to cache the Neo4j data as stored on disk. Ensuring that all, or at least most, of the graph data from disk is cached into memory will help avoid costly disk access and result in optimal performance.
 
 Additionally, Neo4j’s native indexes will be cached in the page cache. As mentioned before, it is beneficial for performance to ensure that indexes are cached.
@@ -99,7 +98,7 @@ dbms.memory.pagecache.size = 120 * (350 MB) =  42GB
 We configure the page cache by adding the following to neo4j.conf:
 
 dbms.memory.pagecache.size=42G
-Heap size
+### Heap size
 The heap space is used for query execution, transaction state, management of the graph etc. The size needed for the heap is very dependent on the nature of the usage of Neo4j. For example, long-running queries, or queries that are doing cartesian products between large sets of data, may require a larger heap than simpler queries. In case of performance issues we may have to tune our queries and monitor their memory usage in order to determine whether the heap needs to be increased.
 
 The size of the available heap memory is an important aspect for the performance of Neo4j. Generally speaking, we want to configure a large enough heap to sustain concurrent operations. If the heap is sized significantly too small, this may lead to bad behavior.
