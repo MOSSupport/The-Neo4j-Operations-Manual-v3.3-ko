@@ -9,4 +9,4 @@
 * [상태 정보를 위한 엔드포인트]
 * [로드 밸런싱을 위한 HAProxy]
 
-For a hands-on tutorial for setting up a Neo4j HA cluster, see [Section B.2, “Set up a Highly Available cluster”](https://neo4j.com/docs/operations-manual/3.3/tutorial/highly-available-cluster/).
+Neo4j HA 클러스터를 설정하기 위한 실습 안내서는 [Section B.2, “Set up a Highly Available cluster”](https://neo4j.com/docs/operations-manual/3.3/tutorial/highly-available-cluster/)를 참조하세요.
