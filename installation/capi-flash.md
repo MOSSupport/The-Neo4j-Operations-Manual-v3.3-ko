@@ -63,9 +63,34 @@ Neo4j는 CAPI 플래시 장치에 독점 엑세스할 수 있어야하고, 한 �
 다음은, CAPI 플래시 하드웨어 토폴로지(topology)에 대해 알아보겠습니다. ```/dev/sgX``` 장치는 포트라고 알려진 CAPI 플래시 하드웨어에 있습니다. 각 CAPI 플래시 카드는 한 개 이상의 포트와, 설치된 CAPI 플래시 카드보다 많은 시스템을 가질 수 있습니다. 뿐만 아니라 플래시에 붙여진 파이버 채널을 사용할 때, 다른 두가지 포트는 LBA(Logical Block Address:논리 블록 주소)를 참조합니다. [섹션 2.6.1.3,"Neo4j 블록 장치 환경 설정"]("https://neo4j.com/docs/operations-manual/current/installation/capi-flash/#capi-neo4j-block-device-configuration")에서  Neo4j에서 두 개 이상의 장치를 이용하는 방법을 살펴보겠습니다. 이 기능은 CAPI 플래시가 제공하는 높은 동시 I/O 처리량에 크게 기여합니다. 
  
 
+CAPI 플래시를 쓰도록 Neo4j를 설정할 때, ```/dev /sg0200```와  ```dev/sg2```같은 영구 포트 이름을 장치 지정자로 사용하는 것이 중요합니다. 영구 포트는 시스템이 재시작 되더라도, 그 이름을 절대 바꾸지 않습니다. 즉, 모든 참조는 항상 같은 하드웨어 실제 저장소를 가리킵니다. 다른 (일시적인) 포트 이름은 시스템 재시작 사이에 다른 하드웨어 저장소를 가리키므로,다른 설정을 나타냅니다. 이 때 Neo4j는 에러를 로그하고 시작을 거부할 것 입니다. 
  
 
+ 마지막으로, CAPI 플래시 블록 라이브러리가 시스템에 설치되어 Neo4j에서 실행할 수 있어야합니다. 이 파일은 ```libcflsh_block.so```로 불리고, /opt/ibm/capikv/lib  디렉토리에 있습니다. 라이브러리는 Neo4j 유저가 읽고, 실행할 수 있어야합니다. 정확한 최소 사용 권한은 설정에 따라 다르지만, CAPI 장치 또한 권한을 요구하기에 라이브러리를 모두가 읽고/실행할수 있도록 체크하는 것이 안전합니다.  
+
+
+## 2.6.1.2. Neo4j 블록 디바이스 통합 라이브러리 
+
+Neo4j 블록 디바이스 통합 라이브러리는  Neo4j 버전 e.g. 3.1.0 및 숫자 페치 버전으로 구성된  ```neo4j-blockdevice-3.1.0.0.jar```와 같이 ```neo4j-blockdevice-VERSION.jar```파일로 배포되어 있습니다. 페치 버전은 주어진 Neo4j 버전을 둘 이상의 블록 장치 통합 라이브러리 버전으로 출시할 수 있게 합니다. 라이브러리는 주어진 Neo4j 버전에만 호환이 됩니다. 통합 jar 라이브러리 파일은  <neo4j-home>/lib 에 위치하고, 형제 jar 파일과 같은 접근 권한을 가집니다. 이는 라이브러리가 Neo4j 클래스 패스 일부인 것을 보장합니다. 
+
+
+## 2.6.1.3 Neo4j 블록 디바이스 설정
+
+Neo4j 블록 장치 세 가지 변수는 반드시 neo4j.conf에 설정되어야합니다. 
+
+
++ ```dbms.memory.pagecache.swapper=capi```
+
++ ```dbms.memory.pagecache.swapper.capi.lib```    ```libcflsh_block.so```
+
++ ```dbms.memory.pagecache.swapper.capi.device```
+
+
+```neo4j-admin blockdev format```
 
 
 
 
+
+
+```$neo4j-home> bin/neo4j-admin blockdev format```
