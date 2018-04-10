@@ -7,3 +7,4 @@
 첫 번째 부분은 이론적 배경과 아키텍처에 대한 토론으로 시작됩니다. 그런 다음 명시적인 구성 세부 정보와 Causal 클러스터를 구성하고 조작하는 방법에 대한 지시 사항을 제공합니다.
 * [아키텍처](https://neo4j.com/docs/operations-manual/3.3/clustering/causal-clustering/introduction/) - Causal 클러스터링 아키텍처의 개요
 * [라이프사이클](https://neo4j.com/docs/operations-manual/3.3/clustering/causal-clustering/lifecycle/) - 클러스터의 수명 주기에 대한 설명
+* Create a new Causal Cluster — How to create a new Causal Cluster. 
