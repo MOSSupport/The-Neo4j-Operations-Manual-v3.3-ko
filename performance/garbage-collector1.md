@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## 9.2. 가비지 컬렉터
 ```
 이 절에서는 자바 가상 머신의 가비지 컬렉터가 Neo4j 성능에 미치는 영향을 알아봅니다.
@@ -21,3 +22,7 @@ Start the JVM with the -server flag and a good sized heap.
 
 The operating system on a dedicated server can usually make do with 1 to 2 GBs of memory, but the more physical memory the machine has, the more memory the operating system will need.
 Edit the following properties:
+=======
+
+
+>>>>>>> 41e3f0859b72ad3ee76cff290e2c1268cd4fee50
