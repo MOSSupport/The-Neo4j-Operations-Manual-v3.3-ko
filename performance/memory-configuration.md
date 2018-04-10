@@ -13,14 +13,15 @@
    * [OS 메모리](#os-메모리) — 운영 체제(OS)에 필요한 리소스를 미리 예측하여 예약.
    * [루씬(Lucene) 인덱스 캐시](#루씬-인덱스-캐시) — 루씬(Lucene) 인덱스에 필요한 리소스를 미리 예측하여 예약.
 2. [페이지 캐시](#페이지-캐시) — 페이지 캐시의 크기 결정.
-3. [힙(Heap) 크기](#heap-size) — 힙(Heap)의 크기 결정.
-4. 메모리 설정 확인 - 이용 가능한 RAM이 적절히 설정되었는지 확인합니다.   
+3. [힙(Heap) 크기](#힙-크기) — 힙(Heap)의 크기 결정.
+4. [메모리 설정 확인](#메모리-설정-확인) — 이용 가능한 RAM이 적절히 설정되었는지 확인합니다.   
 
-각각의 단계에 대한 자세한 설명은 아래에서 계속 이어집니다.  
+각각의 단계에 대한 자세한 설명은 아래에서 계속 이어집니다.
+
 여기서는 서버에서 Neo4j만 실행한다고 가정합니다. 만약 동일 서버에서 다른 서비스도 실행 중이라면, 해당 메모리 요구 사항도 고려해야 합니다.
 
 ### OS 메모리
-일부 메모리는 운영 체제(OS)를 실행하기 위해 예약되어야 합니다. 운영 체제(OS) 용으로 RAM의 크기를 명시적으로 설정할 수 없으므로 페이지 캐시와 힙 공간을 설정하면, 나머지 RAM을 OS에서 사용합니다. 그러나 OS용으로 충분한 공간을 두지 않으면, 디스크로 자주 스왑되어 성능이 크게 저하됩니다.
+운영 체제(OS)를 실행하기 위해 일부 메모리를 예약합니다. 운영 체제(OS) 용으로 RAM의 크기를 명시적으로 설정할 수 없으므로, 페이지 캐시와 힙 공간을 설정하면, 나머지 RAM을 OS에서 사용합니다. OS용으로 충분한 메모리를 남겨 두지 않으면, Neo4j 실행시 디스크로 자주 스왑되어 성능이 크게 저하됩니다.
 
 Neo4j만 실행되는 서버라면 1GB는 적절한 값입니다.
 
@@ -29,15 +30,16 @@ Neo4j만 실행되는 서버라면 1GB는 적절한 값입니다.
 OS용으로 예약할 메모리 크기를 정합니다. 이 값은 이 절의 마지막 예제에서 사용됩니다.
 OS 예약으로 사용할 메모리의 크기 = 1GB.
 ```
-혹은, 실제 서버의 RAM이 크다면, OS용으로 1GB 보다 더 큰 값을 예약합니다.
+만약, 실제 서버의 RAM이 크다면, OS용으로 1GB 보다 더 큰 값을 예약합니다.
 
 ### 루씬 인덱스 캐시
-Neo4j는 인덱싱 기능 중 일부에 아파치 루씬(Apache Lucene)을 사용합니다. 인덱스에 적절한 메모리를 할당하여, 인덱스 룩업 성능을 최적화합니다. OS 메모리와 같이, 루씬(Lucene) 인덱스 캐시는 명시적으로 설정할 수 없습니다. 대신 필요한 메모리를 예측하여, 페이지 캐시와 힙(Heap) 공간을 설정하기 전에 필요한 메모리 양을 예약합니다.  
-다음 패턴과 동일한 모든 파일의 크기를 합산하여, 페이지 캐시에 필요한 총 메모리를 결정합니다:
+Neo4j는 인덱싱 기능 중 일부에 [아파치 루씬(Apache Lucene)](https://lucene.apache.org/)을 사용합니다. 인덱스에 적절한 메모리를 할당하여, 인덱스 룩업 성능을 최적화합니다. OS 메모리와 같이, 루씬(Lucene) 인덱스 캐시는 명시적으로 설정할 수 없습니다. 대신 필요한 메모리를 예측하여, 페이지 캐시와 힙(Heap) 공간을 설정하기 전에 필요한 메모리 양을 예약합니다.  
+
+다음 패턴과 같은 모든 파일의 크기를 합산하여, 페이지 캐시에 필요한 총 메모리를 결정합니다:
 * NEO4J_HOME/data/databases/<데이터베이스 명>/index
 * NEO4J_HOME/data/databases/<database-name>/schema/index/\*/\*/lucene\*
 
-예제 9.2. 루씬 인덱스에 예약할 자원 측정
+예제 9.2. 루씬 인덱스에 예약할 메모리 측정
 ```
 데이터베이스 명은 graph.db로 가정합니다. 인덱스 크기는 인덱스 크기에 schema/index/lucene 디렉토리의 크기를 합산합니다.  
 $neo4j-home> ls data/databases/graph.db/index | du -ch | tail -1
@@ -47,42 +49,44 @@ $neo4j-home> find data/databases/graph.db/schema/index -regex '.*/lucene.*' | du
 인덱스를 위해 예약될 메모리 용량 = 500MB + 500MB = 1GB.
 ```
 ### 페이지 캐시
-The page cache is used to cache the Neo4j data as stored on disk. Ensuring that all, or at least most, of the graph data from disk is cached into memory will help avoid costly disk access and result in optimal performance.
+페이지 캐시는 디스크에 저장되는 Neo4j 데이터의 캐시에 사용됩니다. 디스크의 모든 그래프 데이터, 또는 적어도 대부분의 그래프 데이터가 메모리에 캐시되면, 값비싼 디스크 액세스를 하지 않아, 최적의 성능을 얻을 수 있습니다.  
 
-Additionally, Neo4j’s native indexes will be cached in the page cache. As mentioned before, it is beneficial for performance to ensure that indexes are cached.
+또한 Neo4j의 네이티브 인덱스는 페이지 캐시에 캐시됩니다. 앞서 언급했듯이 인덱스가 캐시되면 성능이 좋아집니다.  
 
-The parameter for specifying how much memory Neo4j is allowed to use for the page cache is: dbms.memory.pagecache.size.
+Neo4j가 페이지 캐시에 사용할 수 있는 메모리 양을 지정하는 설정 변수는 `dbms.memory.pagecache.size` 입니다:
 
-The following are two methods for estimating the page cache size, depending on whether you are already running in production or planning for a future deployment:
+다음은 프로덕션 환경에서 이미 실행 중인 경우와 향후 배포를 계획 중인지에 따른 페이지 캐시를 계산하는 두 가지 방법입니다.
 
-For an existing production system, add up the file sizes (as described below), then multiply with some factor to allow for growth. For example, multiply by 1.2 to allow for 20% growth.
-For a new Neo4j database it is useful to run an import with a fraction of the data, and then multiply the resulting store size by that fraction plus some percentage for growth. For example, for a total estimate of a database size, including 20% for growth, you could import 1/100th of the data and sum up the sizes of the resulting database files (as described below). You would then multiply that sum by 120 to allow for the 20% growth.
-We determine the total memory needed for the page cache by summing up the sizes of all files with the following name patterns:
+1. 이미 사용 중인 프로덕션 시스템인 경우, 파일 크기(아래 설명 참고)를 합한 다음, 향후 DB 크기 증가를 고려한 값을 곱합니다. 예를 들어, 20% 크기가 증가한다면, 1.2를 곱합니다.
+2. 새로운 Neo4j 데이터베이스의 경우, 데이터의 일부만 가져 오기(import)하여, 임포트 크기의 전체에서의 비율과 향후 DB 크기 증가 비율을 곱하면 유용합니다. 예를 들어, DB 크기 증가율 20%를 포함한 전체 데이터베이스 크기를 구하는 경우, 데이터의 1/100을 가져 왔다면, 전체 데이터베이스 파일의 크기를 대략적으로 구할 수 있습니다(아래 설명 참고). 20%의 증가를 허용하려면, 그 합계에 120(120=1/100x100x1.20)을 곱합니다.
 
-NEO4J_HOME/data/databases/<database-name>/*store.db*
-NEO4J_HOME/data/databases/<database-name>/schema/index/*/*/native*
-See below for examples on how to determine and configure the optimal page cache size for an existing and for a new database, respectively.
+다음 패턴과 같은 모든 파일의 크기를 합산하여, 페이지 캐시에 필요한 총 메모리를 결정합니다::
 
-Example 9.3. Estimate the page cache for an existing Neo4j database
-In this example we assume that the name of the database is the standard name graph.db.
+* NEO4J_HOME/data/databases/<database-name>/\*store.db\*
+* NEO4J_HOME/data/databases/<database-name>/schema/index/\*/\*/native\*
 
-We wish to estimate the total size of the database files. On a posix system we would run the following commands:
+사용 중인 프로덕션 데이터베이스와 새로운 데이터베이스의 최적 페이지 캐시 크기를 결정하고 설정하는 방법의 예제는 아래를 참고합니다.
 
+예제 9.3. 사용 중인 Neo4j 데이터베이스의 페이지 캐시 예측
+```
+이 예제의 데이터베이스 명은 표준 이름인 graph.db라고 가정합니다.
+데이터베이스 파일의 전체 크기를 예측하려고 합니다. Posix 시스템에서 다음 명령을 실행합니다:
 $neo4j-home> ls data/databases/graph.db/*store.db* | du -ch | tail -1
 33G total
 $neo4j-home> find data/databases/graph.db/schema/index -regex '.*/native.*' | du -hc | tail -1
 2G  total
-The sum of the above is: 33G + 2G = 35G. In our specific use case we estimate that 20% will provide sufficient head room for growth. We therefore add up the result of the commands above, and add 20% for growth:
+두 용량의 합은 33G + 2G = 35G 입니다. 이 예제에서는 데이터베이스가 향후 20% 증가할 것을 예상하여 여유 공간을 둡니다. 결과에 다음과 같이 20% 증가분을 포함시킵니다:
 
 dbms.memory.pagecache.size = 1.2 * (35GB) =  42GB
 
-We configure the page cache by adding the following to neo4j.conf:
+We configure the page cache by adding the following to neo4j.conf 파일에 다음을 추가하여 페이지 캐시를 설정합니다:
 
 dbms.memory.pagecache.size=42GB
-Example 9.4. Estimate the page cache for a new Neo4j database
-In this example we assume that the database name is the standard graph.db.
-
-For a new Neo4j database, it is useful to run an import with a fraction (e.g. 1/100th) of the data and then multiply the resulting store-size by that fraction (x 100). It is important to remember to allow for future growth of the database. In this specific use case we estimate that 20% will provide sufficient head room for growth.
+```
+예제 9.4. 새로운 Neo4j 데이터베이스 페이지 캐시 예측
+```
+이 예제의  데이터베이스 명은 표준 이름인 graph.db라고 가정합니다.
+새로운 Neo4j 데이터베이스database, it is useful to run an import with a fraction (예를 들면 1/100 ) of the data and then multiply the resulting store-size by that fraction (x 100). It is important to remember to allow for future growth of the database. In this specific use case we estimate that 20% will provide sufficient head room for growth.
 
 Assume that we have already imported 1/100th of the data into a test database. The next step is to figure out the resulting database size. On a posix system we would run the following commands:
 
@@ -97,8 +101,9 @@ dbms.memory.pagecache.size = 120 * (350 MB) =  42GB
 We configure the page cache by adding the following to neo4j.conf:
 
 dbms.memory.pagecache.size=42G
-### Heap size
-The heap space is used for query execution, transaction state, management of the graph etc. The size needed for the heap is very dependent on the nature of the usage of Neo4j. For example, long-running queries, or queries that are doing cartesian products between large sets of data, may require a larger heap than simpler queries. In case of performance issues we may have to tune our queries and monitor their memory usage in order to determine whether the heap needs to be increased.
+```
+### 힙 크기
+힙(Heap) 공간은 쿼리 실행, 트랜젝션 상태, 그래프 관리 등에 사용됩니다. The size needed for the heap is very dependent on the nature of the usage of Neo4j. For example, long-running queries, or queries that are doing cartesian products between large sets of data, may require a larger heap than simpler queries. In case of performance issues we may have to tune our queries and monitor their memory usage in order to determine whether the heap needs to be increased.
 
 The size of the available heap memory is an important aspect for the performance of Neo4j. Generally speaking, we want to configure a large enough heap to sustain concurrent operations. If the heap is sized significantly too small, this may lead to bad behavior.
 
@@ -111,7 +116,7 @@ For this example, we will set the heap size to 16 gigabytes. We will set the ini
 
 dbms.memory.heap.initial_size=16G
 dbms.memory.heap.max_size=16G
-Verify memory configuration
+### 메모리 설정 확인
 After configuring the parameters for the page cache and the heap as described in the sections above, we should do a control check that there is actually enough memory left for the operating system and index caching. Do the following sanity check:
 
 Actual memory left for the OS = RAM available on the machine - index cache size - page cache - heap size.
