@@ -54,7 +54,6 @@ root:~$
 ```
 
 
-
 이 결과로, 총 두 개에서 각각 SSDs가 두개 설치된 CAPI FlashGT 카드를 확인할 수 있습니다. ```sgX``` 장치는 ```/dev``` 디렉토리를 ```/dev/sgX```로 확인됩니다. ```Mode``` 필드는 ```legacy```나 ```superpipe```가 될수 있고 Neo4j가 장치에서 작동하기 위해서 ```Mode```는 반드시 ```superpipe```로 설정해야 합니다. 마지막 두 컬럼은 "변하지 않는 포트 이름"이고, 이들은 Neo4j 환경 설정 포트로 쓸 것을 권장합니다. 
 
 Neo4j는 CAPI 플래시 장치에 독점 엑세스할 수 있어야하고, 한 번에 하나의 Neo4j 인스턴스 장치만 사용해야 합니다. 뿐만 아니라, Neo4j는 물리적 LUNs(Logical Unit Number논리 단위 넘버)에 엑세스할 수 있어야 됩니다. 즉, 가상 LUNs가 지원되지 않습니다. 
@@ -76,21 +75,56 @@ Neo4j 블록 디바이스 통합 라이브러리는  Neo4j 버전 e.g. 3.1.0 및
 
 ## 2.6.1.3 Neo4j 블록 디바이스 설정
 
-Neo4j 블록 장치 세 가지 변수는 반드시 neo4j.conf에 설정되어야합니다. 
+Neo4j 블록 통합 장치를 작동하려면 세 가지 변수를 반드시 neo4j.conf에 설정되어야합니다. 
 
 
-+ ```dbms.memory.pagecache.swapper=capi```
++ CAPI 플래시 블럭 장치를 통합하기 위해 ```dbms.memory.pagecache.swapper=capi```를 설정해야합니다. 
 
-+ ```dbms.memory.pagecache.swapper.capi.lib```    ```libcflsh_block.so```
++ ```dbms.memory.pagecache.swapper.capi.lib``` 라이브러리를 ```libcflsh_block.so```  경로에 설정하십시오.
 
-+ ```dbms.memory.pagecache.swapper.capi.device```
++ ```dbms.memory.pagecache.swapper.capi.device```를 CAPI 플래시(관련된 불변의) 포트를 참조하고 해당 토플로지를 설명하는 장치
+	 지정자로 설정하십시오. [장치 지정자와 CAPI 플래시 장치 토플로지 섹션]("https://neo4j.com/docs/operations-manual/current/installation/capi-flash/#capi-device-specifier")을 참조하십시오.
 
-
-```neo4j-admin blockdev format```
-
-
-
-
+ 
+모든 설정이 완료되면, CAPI 플래시 장치를 포맷해야 합니다. 이는 ```neo4j-admin blockdev format``` 명령어로 설정합니다.:
 
 
 ```$neo4j-home> bin/neo4j-admin blockdev format```
+
+Neo4j는 데이터를 파일에 저장해서, 블록 장치 통합 라이브러리가 DBFS라고 불리는 임베디드 파일 시스템과 제공될 수 있도록 합니다. 
+장치를 포맷하면 DBFS가 작동하도록 필요한 메타 데이터가 기롭됩니다. 장치를 포맷하면 그 안의 모든 데이터가 제거되는 것을 유의해야 합니다.
+이 작업은 취소할 수 없습니다. 
+
+장치가 포맷된 후, Neo4j는 시작되고 CAPI 플래시를 저장소로 사용합니다. 
+
+
+
+## 장치 지정자와 CAPI 플래시 장치 토플로지
+
+블록 장치 통합 라이브러리는 여러 개의 물리적인 블록 장치로 구성된 가상 블록 장치를 나타냅니다. 이는 neo4j.conf 환경에서 ```dbms.memory.pagecache.swapper.capi.device``` 를 사용하여 설정할 수 있습니다. 가장 쉬운 장치 지정자 구성은 단일 물리적 블록 장치를 기반으로하는 구성입니다.
+
+ In this case, the device specifier is simply the path to that physical device. 
+
+이 경우, 장치 지정자는 단순 실제 장치에 대한 경로입니다. 예를 들면:
+```
+dbms.memory.pagecache.swapper.capi.device=/dev/sg0100
+```
+
+
+만약 두 가지 장치가 다른 물리 주소를 나타낸다면, 다른 LBA-저장소(Logical Block Addressing:논리 블록 주소) 가질 것 입니다. 다른 블록에 있는 LBA 0과 다른 것을 의미합니다. 이 경우 LBA0를 두 개 장치 용량을 가진 하나의 큰 장치로 묶을 수 있습니다. 장치 지정자에서 두 장치의 경로를 연속하는 두 개의경로 구분 문자로 구분해서 제공하여 이 작업을 수행합니다. 경로 구분 문자는 윈도우의 세미클른(;)과 다른 플랫폼의 콜른(:)입니다. 
+
+```sg0100```과 ```sg0200```인 아래의 예는 다른 LBA-공간을 가지고 있고, 이들은 거대한 단일 논리 장치에 결합됩니다. 
+
+```
+dbms.memory.pagecache.swapper.capi.device=/dev/sg0100::/dev/sg0200
+```
+
+논리 장치는 각각의 장치 지정자가 지정한 순서대로 기본장치 별로 16MiB 스트라이프를 인터리빙하여 구성합니다. 이로써 기본 장치에 정의된 RAID-9 프트웨어를 효율적으로 생성합니다. 
+ 
+여러 장치를 결합함으로써 - 필요한 만큼 - 논리 장치는 제공된 개별 장치의 어떤 용량보다도 많은 양의 용량을 생성할 수 있습니다. 구성된 기본 장치는 모두 같은 용량을 가져야함을 기억해야 합니다. 아래는 세 장치가 결합된 예 입니다. 
+
+```dbms.memory.pagecache.swapper.capi.device=/dev/sg0600::/dev/sg0700::/dev/sg0800```
+
+
+일부 장치는 한 개 이상의 포트를 나타냅니다. 이들은 동일한 LBA-저장소를 가지고 있음에도 불구하고, 운영 시스템과는 다른 개별 장치로 보입니다.
+그 예로는 IBMs 섬유 채널로 플래시 가전 장치에 연결된 CAPI 플래시 카드가 있습니다. 이 카드들은 두개의 FC(섬유 채널) 포트 - CAPI 플래시 카드에서 나온 두 개의 물리 캐이블
