@@ -131,4 +131,4 @@ OS에 예약할 최소 메모리  = 1GB
 
 위의 계산에 따르면 OS(운영 체제)에 충분한 메모리가 남아 있으므로 스와핑 위험을 피할 수 있습니다.
 ```
-<span class="glyphicon glyphicon-info-sign" aria-hidden="true"> </span> 시스템을 무리없이 운영하려면 neo4j.conf에서 페이지 캐시와 힙 크기 설정을 하는 것이 좋습니다. 이러한 설정 값이 명시 적으로 정의되지 않으면, 일부 휴리스틱 설정은 이용 가능한 시스템 리소스를 기반으로 시작 시 계산됩니다.
+<span class="glyphicon glyphicon-info-sign" aria-hidden="true"> </span> 시스템을 무리없이 운영하려면 neo4j.conf에서 페이지 캐시와 힙 크기 설정을 하는 것이 좋습니다. 이러한 설정 값이 명시 적으로 정의되지 않으면, 일부 휴리스틱 설정은 이용 가능한 시스템 리소스를 기반으로 시작시 계산됩니다.
