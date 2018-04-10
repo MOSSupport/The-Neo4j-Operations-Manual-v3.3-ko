@@ -6,7 +6,11 @@
 * [Highly Available 클러스터의 아키텍처](./high-availability.html)
 * [Highly Available 클러스터 구성하기](https://neo4j.com/docs/operations-manual/3.3/clustering/high-availability/configuration/)
 * [arbiter 인스턴스 설치하기](https://neo4j.com/docs/operations-manual/3.3/clustering/high-availability/arbiter-instances/)
+<<<<<<< HEAD
 rrr
+=======
+sss
+>>>>>>> 897a957a656543370b7141ee5851c3f5e95f1178
 * [상태 정보를 위한 엔드포인트]
 * [로드 밸런싱을 위한 HAProxy]
 
