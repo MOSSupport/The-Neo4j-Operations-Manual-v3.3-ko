@@ -79,62 +79,56 @@ $neo4j-home> find data/databases/graph.db/schema/index -regex '.*/native.*' | du
 
 dbms.memory.pagecache.size = 1.2 * (35GB) =  42GB
 
-We configure the page cache by adding the following to neo4j.conf 파일에 다음을 추가하여 페이지 캐시를 설정합니다:
+neo4j.conf 파일에 다음을 추가하여 페이지 캐시를 설정합니다:
 
 dbms.memory.pagecache.size=42GB
 ```
 예제 9.4. 새로운 Neo4j 데이터베이스 페이지 캐시 예측
 ```
 이 예제의  데이터베이스 명은 표준 이름인 graph.db라고 가정합니다.
-새로운 Neo4j 데이터베이스database, it is useful to run an import with a fraction (예를 들면 1/100 ) of the data and then multiply the resulting store-size by that fraction (x 100). It is important to remember to allow for future growth of the database. In this specific use case we estimate that 20% will provide sufficient head room for growth.
+새로운 Neo4j 데이터베이스의 경우에는, 데이터 전체 중 일부(예를 들면 1/100 )만 임포트(import)한 뒤, 결과 저장-크기에 해당 배수(x100)를 곱해 줍니다. 향후 데이터베이스가 20% 정도 증가할 것으로 예상하여 20%정도 여유를 둡니다.
 
-Assume that we have already imported 1/100th of the data into a test database. The next step is to figure out the resulting database size. On a posix system we would run the following commands:
+만약 테스트 데이터베이스에 1/100 만큼 임포트했다면, 다음에는 결과되는 데이터베이스 크기를 알아봅니다. 만약 Posix 시스템이면 다음 명령으로 확인합니다:  
 
 $neo4j-home> ls data/databases/graph.db/*store.db* | du -ch | tail -1
 330M total
 $neo4j-home> find data/databases/graph.db/schema/index -regex '.*/native.*' | du -hc | tail -1
 20M total
-The sum of the above is: 330M + 20M = 350M. Then we size up the result and additionally reserve 20% for growth:
+여기에서 합은: 330M + 20M = 350M입니다. 결과값에 20% 증가분을 더 추가해 줍니다:
 
-dbms.memory.pagecache.size = 120 * (350 MB) =  42GB
+dbms.memory.pagecache.size = 120*(350 MB) =  42GB
 
-We configure the page cache by adding the following to neo4j.conf:
+다음과 같이 neo4j.conf에 페이지 캐시를 설정합니다:
 
 dbms.memory.pagecache.size=42G
 ```
 ### 힙 크기
-힙(Heap) 공간은 쿼리 실행, 트랜젝션 상태, 그래프 관리 등에 사용됩니다. The size needed for the heap is very dependent on the nature of the usage of Neo4j. For example, long-running queries, or queries that are doing cartesian products between large sets of data, may require a larger heap than simpler queries. In case of performance issues we may have to tune our queries and monitor their memory usage in order to determine whether the heap needs to be increased.
-
-The size of the available heap memory is an important aspect for the performance of Neo4j. Generally speaking, we want to configure a large enough heap to sustain concurrent operations. If the heap is sized significantly too small, this may lead to bad behavior.
-
-The heap memory size is determined by the parameters dbms.memory.heap.initial_size and dbms.memory.heap.max_size. It is recommended to set these two parameters to the same value to avoid unwanted full garbage collection pauses.
-
-Example 9.5. Configure the heap size
-For many setups, a heap size between 8GB and 16GB is large enough to run Neo4j reliably.
-
-For this example, we will set the heap size to 16 gigabytes. We will set the initial size and max size to the same value to avoid unwanted garbage collections.
-
+힙(Heap) 공간은 쿼리 실행, 트랜잭션 상태, 그래프 관리 등에 사용됩니다. 필요한 힙의 크기는 어떻게 Neo4j를 사용하는지에 따라 크게 달라집니다. 예를 들어 실행 시간이 긴 쿼리나 큰 데이터셋간에 데카르트 곱을 수행하는 쿼리의 경우, 간단한 쿼리보다 큰 힙이 필요합니다. 성능 문제가 발생할 경우 힙을 증가시켜야 할지 여부를 결정하기 위해 쿼리를 조정하고 메모리 사용을 모니터링해야 할 수 있습니다.  
+사용 가능한 힙 메모리의 크기는 Neo4j의 성능에서 중요합니다. 일반적으로 동시 작업을 유지할 만큼 충분히 큰 힙을 설정합니다. 힙 크기가 너무 작으면 성능이 좋지 않을 수 있습니다.
+힙 메모리 크기는 dbms.memory.heap.initial_size와 dbms.memory.heap.max_size 설정 값에 의해 결정됩니다. 원치 않는 전체 가비지 콜렉션에 따른 일시 정지를 피하려면 이 두 설정 값을 같은 값으로 설정하는 것이 좋습니다.  
+예제 9.5. 힙 크기 설정하기
+```
+대부분의 경우, 8GB 에서 16GB 사이의 힙 크기는 Neo4j가 안정적으로 실행되기에 적절합니다.  
+이 예제에서는, 힙 크기를 16GB로 설정합니다. 원하지 않는 가비지 콜렉션을 피하기 위해 초기 값과 최대 값을 동일 값으로 설정합니다.  
 dbms.memory.heap.initial_size=16G
 dbms.memory.heap.max_size=16G
+```
 ### 메모리 설정 확인
-After configuring the parameters for the page cache and the heap as described in the sections above, we should do a control check that there is actually enough memory left for the operating system and index caching. Do the following sanity check:
+위 절들에서 설명한 대로 페이지 캐시와 힙의 설정값을 지정한 후에는 OS(운영 체제)와 인덱스 캐싱에 충분한 메모리가 남아 있는지 확인합니다. 다음 사항을 확인하십시오:
+실제 OS에 남아 있는 메모리 OS = 시스템의 가용 RAM 크기 - 인덱스 캐시 크기 - 페이지 캐시 - 힙 크기.
 
-Actual memory left for the OS = RAM available on the machine - index cache size - page cache - heap size.
+예제 9.6. 메모리 설정 확인하기
+```
+이 예제에서는 64GB RAM 시스템을 가정합니다. 이 절의 이전 예제에 따라 메모리를 설정했다고 가정합니다.  
 
-Example 9.6. Verify memory configuration
-For the sake of this example, let’s say that our machine has 64GB of RAM. We assume that we have configured our memory settings according to the previous examples in this section.
+시스템의 가용 RAM = 64GB
+OS에 예약할 최소 메모리  = 1GB
+루씬(Lucene) 인덱스 캐시 크기 = 1GB
+페이지 캐시 = 42GB
+힙 크기 = 16GB
 
-We have:
+실제 OS에 남아있는 메모리 = 64GB - 1 GB - 16GB - 42GB = 4GB > 1GB.  
 
-RAM available on the machine = 64GB
-Minimum amount of memory we wish to reserve for the OS = 1GB
-Lucene index cache size = 1GB
-Page cache = 42GB
-Heap size = 16GB
-We now do the check:
-
-Actual memory left for the OS = 64GB - 1 GB - 16GB - 42GB = 4GB > 1GB.
-
-The above calculation shows that we indeed do have enough memory left for the operating system, and therefore avoid the risk of swapping.
-
-It is always recommended to define the page cache and heap size parameters explicitly in neo4j.conf in order to have good control over your system’s behavior. If these parameters are not explicitly defined, some heuristic settings will be computed at startup based on available system resources.
+위의 계산에 따르면 OS(운영 체제)에 충분한 메모리가 남아 있으므로 스와핑 위험을 피할 수 있습니다.
+```
+<span class="glyphicon glyphicon-info-sign" aria-hidden="true"> </span> 시스템을 무리없이 운영하려면 neo4j.conf에서 페이지 캐시와 힙 크기 설정을 하는 것이 좋습니다. 이러한 설정 값이 명시 적으로 정의되지 않으면, 일부 휴리스틱 설정은 이용 가능한 시스템 리소스를 기반으로 시작 시 계산됩니다.
