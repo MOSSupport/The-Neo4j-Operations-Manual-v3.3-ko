@@ -29,6 +29,19 @@ Neo4j 클러스터는 단일 마스터 인스턴스와 0 개 이상의 슬레이
 2. 마스터가 실패하고 두개 이상의 슬레이브가 묶인 경우, 즉 동일한 가장 높은 커밋 된 트랜잭션 ID를 갖는 경우, 가장 낮은 ha.server_id 값을 갖는 슬레이브가 새로운 마스터로 선택됩니다. ha.server_id는 클러스터 내에서 고유하며, 다른 인스턴스보다 먼저 마스터가 될 수 있는 인스턴스를 구성 할 수 있으므로 좋은 타이 브레이커입니다.
 
 #### 4.3.1.4. 분기
-데이터 분기는 두 가지 다른 방식에서 발생될 수 있습니다.
+데이터 분기는 두 가지 방식에서 발생될 수 있습니다.
 * 슬레이브가 마스터의 뒤쪽으로 너무 멀리 떨어지면 클러스터를 떠나거나 다시 조인합니다. 이러한 유형의 분기는 무해합니다.
 * 마스터 재선이 일어나고, 구 마스터는 죽기 전에 슬레이브들이 수신하지 못한 하나 또는 그 이상의 커밋 된 트랜잭션을 가지고 있습니다. 이러한 유형의 분기는 해롭고 조치가 필요합니다.
+데이터베이스는 분기가 발생하기 전에 데이터베이스 파일의 내용으로 디렉토리를 생성하여 그것이 검토될 수 있고 상황이 해결되도록 최상의 상황을 만듭니다. 일반적인 작업에서는 데이터 분기가 발생하지 않습니다.
+
+#### 4.3.1.5. 요약
+이 모든 것은 다음과 같이 요약 될 수 있습니다 :
+* Write transactions can be performed on any database instance in a cluster.
+* Neo4j cluster is fault tolerant and can continue to operate from any number of machines down to a single machine.
+* Slaves will be automatically synchronized with the master on write operations.
+* If the master fails, a new master will be elected automatically.
+* The cluster automatically handles instances becoming unavailable (for example due to network issues), and also makes sure to accept them as members in the cluster when they are available again.
+* Transactions are atomic, consistent and durable but eventually propagated out to other slaves.
+* Updates to slaves are eventually consistent by nature but can be configured to be pushed optimistically from master during commit.
+* If the master goes down, any running write transaction will be rolled back and new transactions will block or fail until a new master has become available.
+* Reads are highly available and the ability to handle read load scales with more database instances in the cluster.
