@@ -8,6 +8,8 @@
   * [Introduction to clustering](clustering/introduction-to-clustering.md)
   * [Causal Cluster](clustering/causal-cluster.md)
   * [Highly Available cluster](clustering/highly-available-cluster.md)
+    * Architecture of a Highly Available cluster
+    * Configure a Highly Available cluster
 * [Upgrade](upgrade.md)
 * [Backup](backup.md)
 * [Security](security.md)
