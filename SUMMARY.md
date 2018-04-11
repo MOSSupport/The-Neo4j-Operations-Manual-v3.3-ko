@@ -12,6 +12,8 @@
     * [Architecture of a Highly Available cluster](clustering/highly-available-cluster/architecture-of-a-highly-available-cluster.md)
     * [Configure a Highly Available cluster](clustering/highly-available-cluster/configure-a-highly-available-cluster.md)
     * Install an arbiter instance
+    * Endpoints for status information
+    * HAProxy for load balancing
 * [Upgrade](upgrade.md)
 * [Backup](backup.md)
 * [Security](security.md)
