@@ -355,6 +355,108 @@ $neo4j-home>
 ##2.6.3.5 ```dump``` 명령어
 
 ```dump```명령어는 블록 장치 저장소에 있는 파일의 절대 경로를 사용하고, 이진 내용을 표준 출력 스트림에 기록합니다. 이는
-기본적인 내보니기 기능으로 사용가능합니다. 출력을 파일로 입력하는 
+기본적인 내보내기 기능으로 사용할 수 있습니다. 출력을 파일로 입력하는 것이 일반적인 방법입니다. 에러 메시지(파일 이름을 잘못입력하는 것과 같은)는 표준 출력이 파이프로 전송되는 것을 숨겨지지 않도록 표준 에러 스트립에 입력될 것입니다. 
 
- 
+아래는 관계 저장소 파일이 덤프되고, 압축을 위해 ```gzip```로 파이프되고, 백업 경로 파일에 쓰여지는 예 입니다. 
+
+```
+$neo4j-home> bin/neo4j-admin blockdev dump /neo4j-home/data/databases/graph.db/neostore.relationshiptypestore.db | gzip > /var/backup/neostore.relationshipstore.db.gz
+$neo4j-home>
+```
+
+
+##2.6.3.6. ```rename```명령어 
+
+```rename```명령어는 블록 장치 저장소의 파일 이름을 재설정하거나 제거할 때 사용합니다. 블록 장치 내 파일의 절대 경로 시작을 일치시키는데 사용하는  ```source-path```변수와 일치하는 원본 경로 비율을 대체할 때 ```target-path```변수를 사용합니다. 예를 들어, ```/neo4j-home``` 디렉토리를 ```/home```으로 이름을 바꿀때, ```rename /neo4j- /```는 작동되지 않기 때문에 ```neo4j-home```의 전체 경로 요소인 ```rename /neo4j-home /home```를 전부 적어야합니다. 
+
+
+이를 설명하기 위해서, 데이터베이스 경로의 기본 이름인 ```graph.db```을 ```rename```을 사용해서 ```example.db```로 사용할 수 있습니다. 블록 장치 저장소에 다음 파일이 있는 경우:
+
+
+```
+$neo4j-home> bin/neo4j-admin blockdev ls
+/neo4j-home/data/databases/graph.db/neostore.nodestore.db.labels            4096 bytes
+/neo4j-home/data/databases/graph.db/neostore.nodestore.db                   4096 bytes
+/neo4j-home/data/databases/graph.db/neostore.propertystore.db.index.keys    4096 bytes
+/neo4j-home/data/databases/graph.db/neostore.propertystore.db.index         4096 bytes
+/neo4j-home/data/databases/graph.db/neostore.propertystore.db.strings       4096 bytes
+/neo4j-home/data/databases/graph.db/neostore.propertystore.db.arrays        24576 bytes
+/neo4j-home/data/databases/graph.db/neostore.propertystore.db               16384 bytes
+/neo4j-home/data/databases/graph.db/neostore.relationshipstore.db           12288 bytes
+/neo4j-home/data/databases/graph.db/neostore.relationshiptypestore.db.names 4096 bytes
+/neo4j-home/data/databases/graph.db/neostore.relationshiptypestore.db       4096 bytes
+/neo4j-home/data/databases/graph.db/neostore.labeltokenstore.db.names       4096 bytes
+/neo4j-home/data/databases/graph.db/neostore.labeltokenstore.db             4096 bytes
+/neo4j-home/data/databases/graph.db/neostore.schemastore.db                 4096 bytes
+/neo4j-home/data/databases/graph.db/neostore.relationshipgroupstore.db      4096 bytes
+/neo4j-home/data/databases/graph.db/neostore                                4096 bytes
+Total: 15 files, 102400 bytes
+$neo4j-home>
+```
+
+
+```rename```명령어는 다음과 같이 사용 가능합니다:
+
+```
+$neo4j-home> bin/neo4j-admin blockdev rename  /neo4j-home/data/databases/graph.db /neo4j-home/data/databases/example.db
+rename from /neo4j-home/data/databases/graph.db/neostore.relationshiptypestore.db
+rename to   /neo4j-home/data/databases/example.db/neostore.relationshiptypestore.db
+rename from /neo4j-home/data/databases/graph.db/neostore.nodestore.db.labels
+rename to   /neo4j-home/data/databases/example.db/neostore.nodestore.db.labels
+rename from /neo4j-home/data/databases/graph.db/neostore.labeltokenstore.db.names
+rename to   /neo4j-home/data/databases/example.db/neostore.labeltokenstore.db.names
+rename from /neo4j-home/data/databases/graph.db/neostore.propertystore.db.arrays
+rename to   /neo4j-home/data/databases/example.db/neostore.propertystore.db.arrays
+rename from /neo4j-home/data/databases/graph.db/neostore.propertystore.db.strings
+rename to   /neo4j-home/data/databases/example.db/neostore.propertystore.db.strings
+rename from /neo4j-home/data/databases/graph.db/neostore.relationshiptypestore.db.names
+rename to   /neo4j-home/data/databases/example.db/neostore.relationshiptypestore.db.names
+rename from /neo4j-home/data/databases/graph.db/neostore.propertystore.db.index
+rename to   /neo4j-home/data/databases/example.db/neostore.propertystore.db.index
+rename from /neo4j-home/data/databases/graph.db/neostore.labeltokenstore.db
+rename to   /neo4j-home/data/databases/example.db/neostore.labeltokenstore.db
+rename from /neo4j-home/data/databases/graph.db/neostore.schemastore.db
+rename to   /neo4j-home/data/databases/example.db/neostore.schemastore.db
+rename from /neo4j-home/data/databases/graph.db/neostore.nodestore.db
+rename to   /neo4j-home/data/databases/example.db/neostore.nodestore.db
+rename from /neo4j-home/data/databases/graph.db/neostore.propertystore.db.index.keys
+rename to   /neo4j-home/data/databases/example.db/neostore.propertystore.db.index.keys
+rename from /neo4j-home/data/databases/graph.db/neostore
+rename to   /neo4j-home/data/databases/example.db/neostore
+rename from /neo4j-home/data/databases/graph.db/neostore.relationshipstore.db
+rename to   /neo4j-home/data/databases/example.db/neostore.relationshipstore.db
+rename from /neo4j-home/data/databases/graph.db/neostore.propertystore.db
+rename to   /neo4j-home/data/databases/example.db/neostore.propertystore.db
+rename from /neo4j-home/data/databases/graph.db/neostore.relationshipgroupstore.db
+rename to   /neo4j-home/data/databases/example.db/neostore.relationshipgroupstore.db
+$neo4j-home>
+```
+
+
+주어진 파일의 절대 경로를 적으면, ```rename```명령어는 개별 파일에서도 사용할 수 있습니다. 
+
+## 2.6.4. 3.1.0에서 3.1.1로 업그레이드
+
+```3.1.0``` 또는 ```3.1.1```으로 업그레이드할 때, [표준 업그레이드 절차]("https://neo4j.com/docs/operations-manual/current/upgrade/")를 참조하세요.
+
+
+```3.1.0```또는 ```3.1.1```를 이후 버전으로 업그레이드할 때, DBFS 포맷 변화로 인해 일부 메뉴얼 단계를 참조해야 합니다. 자세한 내용은 아래를 참조하십시오.
+
+1. 데이터베이스가 운영되고 있다면, 완전히 샷다운해야 합니다.
+2. Neo4j를 일반적인 방법을 백업합니다.
+3. 이전 업그레이드 버전인 Neo4j(3.1.0 또는 3.1.1)을 명령어 ```neo4j-admin blockdev dump```와 함께 사용해서,           
+   CAPI에서 호스팅하는 저장 파일 전부를 백업합니다.
+4. Neo4j 3.3.4를 설치하고 ```neo4j-blockdevice-*.jar```의 3.3.4버전을 lib 디렉토리 놓습니다. 
+   [섹션 3.1,"라일 저장소"]("https://neo4j.com/docs/operations-manual/current/configuration/file-locations/")를 참고하세요.
+5. 이전 설치 버전의 설정 파일을 모두 확인하고 모든 코스튬 설정 3.3.4로 변경된 것을 확인해야합니다. 특히, Neo4j의 CAPI 특정 플래시 설정인 ```dbms.memory.pagecache.swapper```, ```dbms.memory.pagecache.swapper.capi.lib```과 ```dbms.memory.pagecache.swapper.capi.device```를 옯겨야 합니다. 만약, 데이터베이스가 코스튬 위치에 저장되어 있다면, ```dbms.directories.data```을 설정해야 합니다. 데이터베이스가 ```graph.db```로 불리지 않는다면, neo4j.conf의 ```dbms.active_database```설정을 데이터 베이스 이름으로 설정해야 합니다. 
+
+
+아래 단계는 새롭게 설치된 Neo4j 3.3.4에서 수행되는 단계입니다. 
+
+6. 새로운 DBFS 버전으로 포맷하기 위해서 ```neo4j-admin blockdev format```를 사용합니다.
+7. 위 3스텝에서 백업한 저장된 파일드를 다시 가져오기 위해서 ```neo4j-admin blockdev import```을 사용합니다. 
+8. 필요한 경우 저장된 파일이 기존 경로 이름을 재사용하는지 확인하기위해서 ```neo4j-admin blockdev rename```을 사용합니다. 
+9. neo4j.conf.내 ```dbms.allow_upgrade=true```을 설정해야합니다. Neo4j는 이 설정없이 시작되지 않습니다. 
+10. Neo4j를 시작하십시오. 시작하는 동안 데이터 베이스가 업그레이드될 것 입니다. 업그레이드와 프로시스 지시자에 관련된 내용은 debug.log.에서 확인할 수 있습니다. 
+11. 업그레이드가 완료되면, ```dbms.allow_upgrade```는 ```false```로 설정되거나 neo4j.conf에서 제거되어야 합니다.
+12. 업그레이드 직후에 전체 백업을 만드는 것이 좋습니다.

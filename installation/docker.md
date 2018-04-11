@@ -122,7 +122,8 @@ docker run \
 
 이 이미지가 제공하는 구성은 Neo4j를 학습하기 위해 제작되었지만, 프로덕션 용에 알맞게 수정되어야 합니다. 특별히 Neo4j에 할당된 메모리는 같은 서버에서 다수의 콘테이너를 작동할 때 제한적 입니다.(아래의 ```NEO4J_CACHE_MEMORY```와 ```NEO4J_HEAP_MEMORY 참조) 
 
- 
+
+
  환경 설정을 수정하는 3가지 방법이 잇습니다. :
 
 
@@ -170,7 +171,7 @@ docker run \
 ```
 
 
-## Neo4J 기업용 에디션<code>Enterprise Edition</code>
+## Neo4J 기업용 에디션 <code>Enterprise Edition</code>
 
 
 남은 섹션에서는 Neo4j 엔터프라이즈 버전에서 이용가능한 환경 설정에 대해 다룹니다. 
