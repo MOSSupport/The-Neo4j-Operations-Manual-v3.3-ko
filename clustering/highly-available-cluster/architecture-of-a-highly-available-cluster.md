@@ -35,13 +35,13 @@ Neo4j 클러스터는 단일 마스터 인스턴스와 0 개 이상의 슬레이
 데이터베이스는 분기가 발생하기 전에 데이터베이스 파일의 내용으로 디렉토리를 생성하여 그것이 검토될 수 있고 상황이 해결되도록 최상의 상황을 만듭니다. 일반적인 작업에서는 데이터 분기가 발생하지 않습니다.
 
 #### 4.3.1.5. 요약
-이 모든 것은 다음과 같이 요약 될 수 있습니다 :
-* Write transactions can be performed on any database instance in a cluster.
-* Neo4j cluster is fault tolerant and can continue to operate from any number of machines down to a single machine.
-* Slaves will be automatically synchronized with the master on write operations.
-* If the master fails, a new master will be elected automatically.
-* The cluster automatically handles instances becoming unavailable (for example due to network issues), and also makes sure to accept them as members in the cluster when they are available again.
-* Transactions are atomic, consistent and durable but eventually propagated out to other slaves.
-* Updates to slaves are eventually consistent by nature but can be configured to be pushed optimistically from master during commit.
-* If the master goes down, any running write transaction will be rolled back and new transactions will block or fail until a new master has become available.
-* Reads are highly available and the ability to handle read load scales with more database instances in the cluster.
+이 모든 것은 다음과 같이 요약 될 수 있습니다:
+* 쓰기 트랜잭션은 클러스터의 모든 데이터베이스 인스턴스에서 수행될 수 있습니다.
+* Neo4j 클러스터는 내결함성이 있으며 여러 대의 시스템에서 단일 시스템으로 작동을 계속 할 수 있습니다.
+* 슬레이브는 쓰기 작업시 마스터와 자동으로 동기화됩니다.
+* 만일 마스터가 실패한다면 새로운 마스터가 자동으로 선출됩니다.
+* 클러스터는 사용할 수 없게 된 인스턴스(예를 들어 네트워크 문제로 인해)를 자동으로 처리하고, 그들이 다시 사용할 수 있게 되면 클러스터의 멤버로 받아들입니다.
+* 트랜잭션은 원자성, 일관성 및 내구성을 갖지만 결국에는 다른 슬레이브에게 전파됩니다.
+* 슬레이브에 대한 업데이트는 결국 자연적으로 일관성이 있지만 커밋되는 도중에 마스터에서 긍정적으로 푸시되도록 구성 할 수 있습니다.
+* 마스터가 중단되면 실행 중인 모든 쓰기 트랜잭션이 롤백 되며, 새 마스터를 사용할 수 있게 될 때까지 새로운 트랜잭션이 차단되거나 실패합니다.
+* 읽기 기능은 높게 사용 가능하며 클러스터 내의 더 많은 데이터베이스 인스턴스로 읽기 로드 스케일을 처리하는 기능입니다.
