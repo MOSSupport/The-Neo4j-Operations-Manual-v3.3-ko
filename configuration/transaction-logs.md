@@ -36,38 +36,14 @@
 
 표 3.6. 로그 보존을 통제하는 종류
 
-```
-종류	설명	예 
-files
+ | 종류   | 설명                                                         | 예                             |
+| ------ | ------------------------------------------------------------ | ------------------------------ |
+| 파일   | 가장 최근에 저장된 논리 로그 파일의 수                       | "10 파일"                      |
+| 사이즈 | 로그 파일을 사용하는 최대 디스크 크기                        | "300M 사이즈" 또는 "1G 사이즈" |
+| txs    | 유지할 트랜잭션 개수                                         | "250k txs" 또는 "5M txs"       |
+| 시     | 현 시간을부터 N시간에 내 커밋 된 트랜잭션이 포함된 로그 유지 | "10 시간"                      |
+| 일     | 현재 시간으로부터 몇 일내에 커밋 된 트랜잭션이 포함된 로그 유지 | "50 일"                        |
 
-Number of most recent logical log files to keep
-
-"10 files"
-
-size
-
-Max disk size to allow log files to occupy
-
-"300M size" or "1G size"
-
-txs
-
-Number of transactions to keep
-
-"250k txs" or "5M txs"
-
-hours
-
-Keep logs which contains any transaction committed within N hours from current time
-
-"10 hours"
-
-days
-
-Keep logs which contains any transaction committed within N days from current time
-
-"50 days"
-```
 
 
 예 3.8. 로그 보존 정책 설정

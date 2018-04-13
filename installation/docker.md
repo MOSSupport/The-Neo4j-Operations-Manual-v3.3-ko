@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 
 ## 2.5 도커
 
@@ -31,9 +29,7 @@
 +	/ssl
 
 
-때론 데이터베이스와 로그를 컨테이너 밖에 두는 것이 바람직합니다. 다음 명령어는 컨테이너에서 Bolt와 Http 포트를위해 사용될 것 입니다. 그리고, /data와 /logs 볼륨은 호스트 디렉토리에 매핑됩니다. 
-
-
+때로는 데이터베이스와 로그를 컨테이너 밖에 두는 것이 바람직합니다. 다음 명령어는 컨테이너에서 Bolt와 Http 포트를위해 사용될 것 입니다. 그리고, /data와 /logs 볼륨은 호스트 디렉토리에 매핑됩니다. 
 
 ```
 docker run \
@@ -46,10 +42,8 @@ docker run \
 
 
 리눅스의 ```http://localhost:7474```나 OS X의 ```http://$(docker-machine ip default):7474```에 접속하세요.
+이 문서에 있는 볼륨은 모두 OS X(VM머신에 ```$HOME```은 자동적으로 마운트된 곳에서 작업하기 위해 ```$HOME```하위에 저장되어 있습니다. 리눅스에서 볼륨은 어느 곳에든 저장할 수 있습니다. 
 
-
-이 문서에 있는 볼륨은 모두 OS X(VM머신에 ```$HOME```은 자동적으로 마운트된 곳에서 작업하기 위해 ```$HOME```하위에 저장되어 있습니다. 
-	 
 
 <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 
 기본적으로, Neo4j는 첫 접속 시 새 패스워드를 설정하기 위해 인증과 ```neo4j/neo4j```으로 로그인을 해야합니다. ```--env NEO4J_AUTH=neo4j/<password>```를 지정하여 Docker 컨테이너 비밀번호를 바로 설정할 수 있습니다. 또는 ```--env NEO4J_AUTH=none```을 명시하여 인증을 비활성화할 수 있습니다. 
@@ -58,34 +52,34 @@ docker run \
 
 ## 2.5.2 Neo4j 에디션
 
+테그는 Neo4j 커뮤니티와 엔터프라이즈 버전에서 모두 사용가능합니다. ```neo4j:3.3.0-enterprise```와 같이 특정 엔터프라이즈 버전 테그(tag)는 ```-enterprise```  접미어가 있습니다. ```neo4j:3.3.0```와 같은 커뮤니티 버전 테그는 접미어가 없습니다. 최근 Neo4j 버전은 ```neo4j:enterprise```로 사용할 수 있습니다. 
 
-테그는 Neo4j 커뮤니티와 엔터프라이즈 버전에서 모두 사용가능합니다. ```neo4j:3.3.0-enterprise```와 같이 특정 엔터프라이즈 버전 테그(tag)는 ```-enterprise```  suffix가 있습니다. 최근 Neo4j 버전은 ```neo4j:enterprise```로 사용할 수 있습니다. 
-
-	
 
 ## 2.5.2.1 Neo4j 에디션 라이센스
 
+Neo4j 에디션을 이용하기 위해서 반드시 라이센스 동의를 해야합니다. 
 
-Neo4j 에디션을 이용하기 위해서는 반드시 라이센스 동의를 해야합니다. 
+> (c) Network Engine for Objects in Lund AB. 2017. 무단 복제 금지. Neo4j 또는 상업 라이센스가 없는 경우 이 소포트웨어 사용이 금지됩니다. 
 
+> 이메일 관련 문의 : [licensing@neo4j.com]("licensing@neo4j.com")
 
-
-> (c) Network Engine for Objects in Lund AB. 2017. All Rights Reserved. Use of this Software without a proper commercial license with Neo4j, Inc. or its affiliates is prohibited.
-
-
-> 이메일 관련 문의 : licensing@neo4j.com
-
-> 더 많은 정보 관련 문의 : https://neo4j.com/licensing/
+> 더 많은 정보 관련 문의 : [https://neo4j.com/licensing/]("https://neo4j.com/licensing/")
 
 
-
-라이센스에 동의하기 위해서 ```NEO4J_ACCEPT_LICENSE_AGREEMENT=yes``` 환경 변수를 설정해야 합니다. 이를 통해 다음 도큐먼트 인수를 사용할 수 있습니다. :
+라이센스에 동의하려면,  ```NEO4J_ACCEPT_LICENSE_AGREEMENT=yes``` 환경 변수를 설정해야 합니다. 이를 통해 다음 도큐먼트 인수를 사용할 수 있습니다. :
 
 
 ```--env=NEO4J_ACCEPT_LICENSE_AGREEMENT=yes```
 
 
 ## 2.5.3 도커 환경 설정
+
+
+
+
+
+
+
 
 
 
