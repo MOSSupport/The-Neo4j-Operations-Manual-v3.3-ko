@@ -153,7 +153,7 @@ localhost
 
 
 #default_listen_address
-수신 주소는  IP주소(e.g. 127.0.0.1 or 0.0.0.0)와 포트번호 (e.g. 7687) 두 가지로 구성됩니다. ```listen_address``` IP 주소 포트가 명시되어 있지많으면, ```default_listen_address```공유된 설정에서 인터페이스는 상속됩니다.
+수신 주소는  IP주소(e.g. 127.0.0.1 or 0.0.0.0)와 포트번호 (e.g. 7687) 두 부분으로 구성됩니다. ```listen_address``` IP 주소 포트가 명시되어 있지많으면, ```default_listen_address```공유된 설정에서 인터페이스는 상속됩니다.
 
 #예 3.3. Bolt 커넥터를 위한 ```listen_address``` 명시화 작업
 
@@ -162,3 +162,28 @@ Bolt 연결을 위해 모든 네트워크 인터페이스(0.0.0.0)와 포트 700
 
 ```dbms.connector.bolt.listen_address=0.0.0.0:7000```
 
+```default_listen_address```을 사용해서 IP 주소와 Bolt 커넥터를 위해 포트 넘버를 명시화하는 것과 동일합니다. 
+
+```
+dbms.connectors.default_listen_address=0.0.0.0
+
+dbms.connector.bolt.listen_address=:7000
+```
+
+
+#default_advertised_address
+
+광고된 주소는 주소(정규화된 도메인 이름, 호스트 이름, IP주소)와 포트 번호(e.g. 7687) 두 부분으로 구성됩니다. ```advertised_address```의 주소 부분이 명시화되어 있지 않으면, 인터페이스는 ```default_advertised_address```에서 공유한 설정에서 상속받습니다. 
+
+#예 3.4. 볼트 커넥터를 위한 ```advertised_address``` 명시화
+
+```dbms.connector.bolt.advertised_address=server1:9000```
+
+이것은 ```default_advertised_address``` 설정을 사용해서 주소를 지정하고 다음 Bolt 커넥터의 포트 번호를 명시화하는 것과 같습니다. 
+ 
+
+```
+dbms.connectors.default_advertised_address=server1
+
+dbms.connector.bolt.advertised_address=:9000
+```

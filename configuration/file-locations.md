@@ -5,118 +5,24 @@
 중요한 파일은 기본적으로 다음 위치에서 확인할 수 있습니다. 
 
 
-```
+ 
 Package	환경 설정	 데이터 	로그 	메트릭스	Import	Bin	Lib	Plugins
-Linux or OS X tarball
 
-<neo4j-home>/conf/neo4j.conf
-
-<neo4j-home>/data
-
-<neo4j-home>/logs
-
-<neo4j-home>/metrics
-
-<neo4j-home>/import
-
-<neo4j-home>/bin
-
-<neo4j-home>/lib
-
-<neo4j-home>/plugins
-
-Windows zip
-
-<neo4j-home>\conf\neo4j.conf
-
-<neo4j-home>\data
-
-<neo4j-home>\logs
-
-<neo4j-home>\metrics
-
-<neo4j-home>\import
-
-<neo4j-home>\bin
-
-<neo4j-home>\lib
-
-<neo4j-home>\plugins
-
-Debian
-
-/etc/neo4j/neo4j.conf
-
-/var/lib/neo4j/data
-
-/var/log/neo4j
-
-/var/lib/neo4j/metrics
-
-/var/lib/neo4j/import
-
-/usr/bin
-
-/usr/share/neo4j/lib
-
-/var/lib/neo4j/plugins
-
-RPM
-
-/etc/neo4j/neo4j.conf
-
-/var/lib/neo4j/data
-
-/var/log/neo4j
-
-/var/lib/neo4j/metrics
-
-/var/lib/neo4j/import
-
-/usr/bin
-
-/usr/share/neo4j/lib
-
-/var/lib/neo4j/plugins
-
-Windows desktop
-
-%APPDATA%\Neo4j Community Edition\neo4j.conf
-
-%APPDATA%\Neo4j Community Edition
-
-%APPDATA%\Neo4j Community Edition\logs
-
-%APPDATA%\Neo4j Community Edition\metrics
-
-%APPDATA%\Neo4j Community Edition\import
-
-%ProgramFiles%\Neo4j CE 3.3\bin
-
-(in package)
-
-%ProgramFiles%\Neo4j CE 3.3\plugins
-
-OS X desktop
-
-${HOME}/Documents/Neo4j/neo4j.conf
-
-${HOME}/Documents/Neo4j
-
-${HOME}/Documents/Neo4j/logs
-
-${HOME}/Documents/Neo4j/metrics
-
-${HOME}/Documents/Neo4j/import
-
-(in package)
-
-(in package)
-
-(in package)
+ 
+ | 패키지                   | 설정                                           | 데이터                              | 로그                                     | 메트릭스                                    | 임포팅                                     | 빈(Bin)                           | 립(Lib)                | 플러그인                              |
+| :----------------------- | :--------------------------------------------- | :---------------------------------- | :--------------------------------------- | :------------------------------------------ | :----------------------------------------- | :-------------------------------- | :--------------------- | :------------------------------------ |
+| 리눅스 또는 OS X tarbell | *<neo4j-home>/conf/neo4j.conf*                 | *<neo4j-home>/data*                 | *<neo4j-home>/logs*                      | *<neo4j-home>/metrics*                      | *<neo4j-home>/import*                      | *<neo4j-home>/bin*                | *<neo4j-home>/lib*     | *<neo4j-home>/plugins*                |
+| 윈도우 zip               | *<neo4j-home>\conf\neo4j.conf*                 | *<neo4j-home>\data*                 | *<neo4j-home>\logs*                      | *<neo4j-home>\metrics*                      | *<neo4j-home>\import*                      | *<neo4j-home>\bin*                | *<neo4j-home>/lib*     | *<neo4j-home>/plugins*                |
+| 데비안                   | */etc/neo4j/neo4j.conf*                        | */var/lib/neo4j/data*               | */var/log/neo4j*                         | */var/lib/neo4j/metrics*                    | */var/lib/neo4j/import*                    | */usr/bin*                        | */usr/share/neo4j/lib* | */var/lib/neo4j/plugins*              |
+| RPM                      | */etc/neo4j/neo4j.conf*                        | */var/lib/neo4j/data*               | */var/log/neo4j*                         | */var/lib/neo4j/metrics*                    | */var/lib/neo4j/import*                    | */usr/bin*                        | */usr/share/neo4j/lib* | */var/lib/neo4j/plugins*              |
+| 윈도우 데스크톱          | *%APPDATA%\Neo4j Community Edition\neo4j.conf* | *%APPDATA%\Neo4j Community Edition* | *%APPDATA%\Neo4j Community Edition\logs* | *%APPDATA%\Neo4j Community Edition\metrics* | *%APPDATA%\Neo4j Community Edition\import* | *%ProgramFiles%\Neo4j CE 3.3\bin* | 패키지 내부            | *%ProgramFiles%\Neo4j CE 3.3\plugins* |
+| OS X 데스크톱            | *${HOME}/Documents/Neo4j/neo4j.conf*           | *${HOME}/Documents/Neo4j*           | *${HOME}/Documents/Neo4j/logs*           | *${HOME}/Documents/Neo4j/metrics*           | *${HOME}/Documents/Neo4j/import*           | 패키지 내부                       | 패키지 내부            | 패키지 내부                           |
 
 
-```
+
+
+
+
 
 
 데이터 위치는 Neo4j에 내부에 있으며 이 구조는 통보없이 다른 버전으로 변경될 수도 있습니다. 
