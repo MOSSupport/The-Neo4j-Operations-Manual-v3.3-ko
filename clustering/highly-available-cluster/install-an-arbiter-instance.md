@@ -8,5 +8,5 @@ Neo4j의 일반적인 배치는 내결함성과 읽기 확장성을 제공하기
 arbiter 인스턴스는 표준 Neo4j 클러스터 멤버와 동일한 설정을 사용하여 neo4j.conf에서 구성됩니다. 이 인스턴스는 [표 A.148, "dbms.mode"](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.mode) 옵션을 `ARBITER`로 설정하여 arbiter로 구성됩니다. 물론 특정 클러스터가 아닌 설정은 무시되므로 적절히 구성된 Neo4j 인스턴스를 대신하여 arbiter 인스턴스를 쉽게 시작할 수 있습니다.
 
 arbiter 인스턴스를 시작하려면 `neo4j`를 평소와 같이 실행하십시오:
-<br><table><td>`neo4j_home$ ./bin/neo4j start`</td></table><br>
+<br><table><td>neo4j_home$ ./bin/neo4j start</td></table>
 당신은 그것을 서비스로 중지, 설치 및 제거하고 다른 Neo4j 인스턴스와 정확히 동일한 방식으로 상태를 요청할 수 있습니다.
