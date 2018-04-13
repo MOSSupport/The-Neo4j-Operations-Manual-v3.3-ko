@@ -61,31 +61,12 @@ CALL dbms.setConfigValue('dbms.logs.query.enabled', '')
 
 표 3.5. 다이나믹 설정 참조
 
-```
-이름	설명
-dbms.checkpoint.iops.limit
-
-Limit the number of IOs the background checkpoint process will consume per second.
-
-dbms.logs.query.enabled
-
-Log executed queries that take longer than the configured threshold, dbms.logs.query.threshold.
-
-dbms.logs.query.rotation.keep_number
-
-Maximum number of history files for the query log.
-
-dbms.logs.query.rotation.size
-
-The file size in bytes at which the query log will auto-rotate.
-
-dbms.logs.query.threshold
-
-If the execution of query takes more time than this threshold, the query is logged - provided query logging is enabled.
-
-dbms.transaction.timeout
-
-The maximum time interval of a transaction within which it should be completed.
-```
-
+| 이름                                                         | 설명                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [dbms.checkpoint.iops.limit]("https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.checkpoint.iops.limit") | IOs의 백그라운드 체크포인트 수를 제한하면, 절차가 초마다 시실행될 것 입니다. |
+| [dbms.logs.query.enabled]("https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.logs.query.enabled") | 설정된 임계값 dbms.logs.query.threshold 보다 오래 걸리는 쿼리를 로깅합니다. |
+| [dbms.logs.query.rotation.keep_number]("https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.logs.query.rotation.keep_number") | 쿼리 로깅의 히스토리 최대 실행 파일 개수                     |
+| [dbms.logs.query.rotation.size]("https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.logs.query.rotation.size") | 쿼리 로그가 자동 회전할 파일 바이트 사이즈                   |
+| [dbms.logs.query.threshold]("https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.logs.query.threshold") | 쿼리 실행이 임계값보다 오래 걸리면 제공된 쿼리 로깅이 실행되어 조회가 로깅됩니다. |
+| [dbms.transaction.timeout]("https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.transaction.timeout") | 트랜잭션이 완료되는 최대 시간 간격.                          |
 
