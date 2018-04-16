@@ -1,16 +1,20 @@
-<<<<<<< HEAD
-## 7.1.1. Introduction 
+## 7.1.1. 소개 <code>Enterprise Edition</code>
+
 This section provides an overview of authentication and authorization in Neo4j.
+
+Neo4j의 보안은 인증 및 권한 부여에 의해 제어됩니다. 인증은 인증 된 사용자가 특정 작업을 수행할 수 있는지 여부를 확인하는 것과 관련하여 사용자가 올바른 사용자임을 확인하는 과정입니다.
 Security in Neo4j is controlled by authentication and authorization. Authentication is the process of ensuring that a user is who the user claims to be, while authorization pertains to checking whether the authenticated user is allowed to perform a certain action.
 
+권한부여는 역할 기반의 접속을 제어를 관리합니다(RBAC). Neo4j 보안 모델의 핵심은 네 가지 미리 정의 된 그래프 글로벌 데이터 액세스 역할(graph-global data-access roles)을 중심으로합니다: reader, publisher, architect and admin. 각 역할에는 Neo4j 데이터 그래프 및 스키마에서 허용되는 일련의 승인 된 작업이 포함됩니다. 사용자는 이러한 사용자 지정 역할 외에 하나 또는 하나 이상의 역할에 할당 될 수 있습니다. 
 Authorization is managed using role-based access control (RBAC). The core of the Neo4j security model is centred around the four predefined graph-global data-access roles: reader, publisher, architect and admin. Each role includes a set of authorized actions permitted on the Neo4j data graph and its schema. A user can be assigned to none, one or more of these roles, as well as other custom roles.
 
+Neo4j는 사용자 인증 및 권한 부여를 수행 할 수있는 여러 인증 공급자를 지원합니다.
 Neo4j has supports multiple auth providers that can perform user authentication and authorization:
 
-Native auth provider.
-LDAP auth provider.
-Custom-built plugin auth providers.
-Kerberos authentication with single sign-on.
+- Native auth provider.
+- LDAP auth provider.
+- Custom-built plugin auth providers.
+- Kerberos authentication with single sign-on.
 
 ### 7.1.1.1. Native auth provider
 
@@ -26,33 +30,4 @@ For clients with specific requirements not satisfied with either native or LDAP,
 
 ### 7.1.1.4. Kerberos authentication and single sign-on
 
-=======
-## 7.1.1. Introduction 
-This section provides an overview of authentication and authorization in Neo4j.
-Security in Neo4j is controlled by authentication and authorization. Authentication is the process of ensuring that a user is who the user claims to be, while authorization pertains to checking whether the authenticated user is allowed to perform a certain action.
-
-Authorization is managed using role-based access control (RBAC). The core of the Neo4j security model is centred around the four predefined graph-global data-access roles: reader, publisher, architect and admin. Each role includes a set of authorized actions permitted on the Neo4j data graph and its schema. A user can be assigned to none, one or more of these roles, as well as other custom roles.
-
-Neo4j has supports multiple auth providers that can perform user authentication and authorization:
-
-Native auth provider.
-LDAP auth provider.
-Custom-built plugin auth providers.
-Kerberos authentication with single sign-on.
-
-### 7.1.1.1. Native auth provider
-
-Neo4j provides a native auth provider that stores user and role information locally on disk. With this option, full user management is available as procedures described in Section 7.1.4, “Native user and role management”.
-
-### 7.1.1.2. LDAP auth provider
-
-Another way of controlling authentication and authorization is through external security software such as Active Directory or OpenLDAP, which is accessed via the built-in LDAP connector. A description of the LDAP plugin using Active Directory is available in Section 7.1.5, “Integration with LDAP”.
-
-### 7.1.1.3. Custom-built plugin auth providers
-
-For clients with specific requirements not satisfied with either native or LDAP, Neo4j provides a plugin option for building custom integrations. It is recommended that this option is used as part of a custom delivery as negotiated with Neo4j Professional Services. The plugin is described in Developer Manual → Plugins.
-
-### 7.1.1.4. Kerberos authentication and single sign-on
-
->>>>>>> 15306b3493298011ecb983449bcb87e4e62535df
 In addition to LDAP, Native and custom providers, Neo4j supports Kerberos for authentication and single sign-on. Kerberos support is provided via the Neo4j Kerberos Add-On.
