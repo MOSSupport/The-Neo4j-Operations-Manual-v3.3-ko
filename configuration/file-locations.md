@@ -1,9 +1,10 @@
-##3.1 파일 위치
+# 3.1 파일 위치
 
-> 이 섹션에서는 서로 다른 Neo4j 배포판 파일이 저장된 위치와 Neo4j 실행에 필요한 파일 권한을 확인합니다. 
+```
+이 섹션에서는 서로 다른 Neo4j 배포판 파일이 저장된 위치와 Neo4j 실행에 필요한 파일 권한을 확인합니다. 
+```
 
 중요한 파일은 기본적으로 다음 위치에서 확인할 수 있습니다. 
-
 
  
  | 패키지                   | 설정                                           | 데이터                              | 로그                                     | 메트릭스                                    | 임포팅                                     | 빈(Bin)                           | 립(Lib)                | 플러그인                              |
@@ -16,7 +17,9 @@
 | OS X 데스크톱            | *${HOME}/Documents/Neo4j/neo4j.conf*           | *${HOME}/Documents/Neo4j*           | *${HOME}/Documents/Neo4j/logs*           | *${HOME}/Documents/Neo4j/metrics*           | *${HOME}/Documents/Neo4j/import*           | 패키지 내부                       | 패키지 내부            | 패키지 내부                           |
 
 
+
 데이터 위치는 Neo4j에 내부에 있으며 이 구조는 통보없이 다른 버전으로 변경될 수도 있습니다. 
+
 
 ##3.1.1. 로그 파일
 
@@ -46,23 +49,22 @@
 | *conf*         | *<neo4j-home>/conf* | ``` NEO4J_CONF``` | *<neo4j-home>*의 서브경로가 아니면 반드시 명시해야 합니다. |
 
 
-
 ##3.1.3. 권한
-Neo4j를 사용하는 유저는 다음 권한이 필요합니다.:
+Neo4j를 사용하는 유저는 다음 권한이 필요합니다:
 
-읽기 권한
-
+**읽기 권한**
 + conf
 + import
 + bin
 + lib
 + plugins
 
-읽기/쓰기 권한
 
+**읽기/쓰기 권한**
 + data
 + logs
 + metrics
 
-실행 권한
+
+**실행 권한**
 + bin의 모든 파일 
