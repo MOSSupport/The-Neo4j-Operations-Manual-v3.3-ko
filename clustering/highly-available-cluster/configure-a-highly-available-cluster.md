@@ -38,4 +38,4 @@ IP 주소 또는 호스트 이름은 클러스터에 참여하는 시스템에 �
 예를 들어, `ha.host.data=192.168.33.22:6001`은 6001 포트에서 클러스터 마스터의 트랜잭션을 수신합니다.
 
 ##### ha.join_timeout
-`ha.join_timeout`은 `ha.initial_hosts`의 모든 멤버가 클러스터 형성을 포기하기 전에 시작되어야 하는 시간 제한을 나타냅니다. 기본값은 30초 입니다. 기본값을 사용하면 `ha.initial_hosts`에 정의 된 각 인스턴스는 클러스터가 성공적으로 형성되기 위해 30 초 내에 시작되어야 합니다.
+[`ha.join_timeout`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_ha.join_timeout)은 `ha.initial_hosts`의 모든 멤버가 클러스터 형성을 포기하기 전에 시작되어야 하는 시간 제한을 나타냅니다. 기본값은 30초 입니다. 기본값을 사용하면 `ha.initial_hosts`에 정의 된 각 인스턴스는 클러스터가 성공적으로 형성되기 위해 30 초 내에 시작되어야 합니다.
