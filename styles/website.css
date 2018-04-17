@@ -1,8 +1,8 @@
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
 
 /* BEGIN abstract */
-div.abstract {
-  margin: 0 0 1em 0;
+section.normal.markdown-section.div.abstract {
+  margin: 0 0 1em 0; 
   display: block;
 
   padding: 8px;
