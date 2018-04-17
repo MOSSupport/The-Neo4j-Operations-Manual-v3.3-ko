@@ -40,13 +40,12 @@ IP 주소 또는 호스트 이름은 클러스터에 참여하는 시스템에 �
 ##### ha.join_timeout
 [`ha.join_timeout`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_ha.join_timeout)은 [`ha.initial_hosts`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_ha.initial_hosts)의 모든 멤버가 클러스터 형성을 포기하기 전에 시작되어야 하는 시간 제한을 나타냅니다. 기본값은 30초 입니다. 기본값을 사용하면 `ha.initial_hosts`에 정의 된 각 인스턴스는 클러스터가 성공적으로 형성되기 위해 30 초 내에 시작되어야 합니다.
 
-<table><td>
-##### 주소 및 포트 형식
+
+>> ##### 주소 및 포트 형식
 `ha.host.coordination` 및 `ha.host.data` 구성 옵션은 `<호스트 이름 또는 IP 주소>:<포트>`로 지정됩니다.
 `ha.host.data`의 경우, 주소는 호스트의 네트워크 인터페이스 중 하나에 할당 된 주소여야 합니다.
 `ha.host.coordination`의 경우, 주소는 호스트의 네트워크 인터페이스 중 하나에 할당 된 주소이거나, Neo4j가 모든 네트워크 인터페이스에서 수신 대기하도록 하는 `0.0.0.0` 값이어야 합니다.
 주소 또는 포트를 생략할 수 있으며, 이 경우 해당 부분의 기본값이 사용됩니다. 호스트 이름 또는 IP 주소가 생략되면 포트 앞에 콜론 (예: `:5001`)이 와야합니다.
 포트 범위를 설정하는 구문은 `<호스트 이름 또는 IP 주소>:<첫 번째 포트>[-<두 번째 포트>]`입니다. 이 경우, Neo4j는 각 포트를 순서대로 테스트하고, 사용되지 않는 포트를 먼저 선택합니다. 호스트 이름이 `0.0.0.0`("모든 인터페이스" 주소)으로 지정된 경우 이 사용법은 허용되지 않습니다.
-</td></table>
 
 Neo4j 클러스터를 설정하기 위한 실습 안내서는 [Section B.2, "Set up a Highly Available cluster"](https://neo4j.com/docs/operations-manual/3.3/tutorial/highly-available-cluster/)을 참조하십시오.
