@@ -4,7 +4,7 @@
 이 섹션에서는 서로 다른 Neo4j 배포판 파일이 저장된 위치와 Neo4j 실행에 필요한 파일 권한을 확인합니다. 
 ```
 
-중요한 파일은 기본적으로 다음 위치에서 확인할 수 있습니다. 
+중요한 파일은 기본적으로 다음에서 확인할 수 있습니다. 
 
  
  | 패키지                   | 설정                                           | 데이터                              | 로그                                     | 메트릭스                                    | 임포팅                                     | 빈(Bin)                           | 립(Lib)                | 플러그인                              |
@@ -16,31 +16,27 @@
 | 윈도우 데스크톱          | *%APPDATA%\Neo4j Community Edition\neo4j.conf* | *%APPDATA%\Neo4j Community Edition* | *%APPDATA%\Neo4j Community Edition\logs* | *%APPDATA%\Neo4j Community Edition\metrics* | *%APPDATA%\Neo4j Community Edition\import* | *%ProgramFiles%\Neo4j CE 3.3\bin* | 패키지 내부            | *%ProgramFiles%\Neo4j CE 3.3\plugins* |
 | OS X 데스크톱            | *${HOME}/Documents/Neo4j/neo4j.conf*           | *${HOME}/Documents/Neo4j*           | *${HOME}/Documents/Neo4j/logs*           | *${HOME}/Documents/Neo4j/metrics*           | *${HOME}/Documents/Neo4j/import*           | 패키지 내부                       | 패키지 내부            | 패키지 내부                           |
 
-
-
-데이터 위치는 Neo4j에 내부에 있으며 이 구조는 통보없이 다른 버전으로 변경될 수도 있습니다. 
-
+데이터 위치는 Neo4j에 내부에 있으며 구조는 통보없이 버전 간 변경될 수도 있습니다. 
 
 ##3.1.1. 로그 파일
 
 
 | 파일 이름           | 설명                                                         |
 | ------------------- | ------------------------------------------------------------ |
-| *neo4j.log*         | 일반적인 Neo4j가 쓰여진 위치의 기본 로그. Debian과 RPM 패키지에 적혀지지 않는다. |
+| *neo4j.log*         | 일반적인 Neo4j가 쓰여진 곳의 기본 로그. Debian과 RPM 패키지에 적혀지지 않는다. |
 | *debug.log*         | Neo4 디버깅 문제를 다룰 때 유용한 정보                       |
 | *http.log*          | HTTP API에 대한 로그 요청                                    |
-| *gc.log*            | JVM이 제공하는 가비지 컬렉션                                 |
+| *gc.log*            | JVM이 제공하는 가비지 컬렉션 로깅                                |
 | *query.log*         | 지정된 임계 값보다 오래 걸리는 쿼리(기업용만 가능)           |
 | *security.log*      | 보안 이벤트 로그(기업용만 가능)                              |
 | *service-error.log* | 윈도우 서비스를 설치하거나 실행할 때 발생하는 로그 에러(윈도우만 가능) |
-
 
 
 ##3.1.2. 환경 설정
 
 일부 경로는 ```dbms.directories.*``` 설정에서 변경합니다.: 자세한 정보는 [섹션 A.1, "환경 설정 세팅"]("https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/")를 참조하세요.
 
-<neo4j-home>의 위치와 conf는 다양한 환경 변수로 설정될 수 있습니다. 
+<neo4j-home>의 위치와 conf를 환경 변수로 설정할 수 있습니다. 
 
 
 | 위치           | 기본값              | 환경 변수         | 요점                                                       |
