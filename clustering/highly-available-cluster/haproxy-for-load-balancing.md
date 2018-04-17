@@ -19,3 +19,11 @@ defaults
     timeout client 2h
     timeout server 2h
 ```
+
+쓰기를 수행하려는 드라이버가 연결될 위치를 설정하십시오.
+
+```
+frontend neo4j-write
+    bind *:7680
+    default_backend current-master
+```
