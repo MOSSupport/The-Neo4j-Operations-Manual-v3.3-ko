@@ -15,3 +15,27 @@ Neo4j HA 클러스터의 일반적인 사용 사례는 읽기 작업에 슬레�
 
 ##### 표 4.2. HA HTTP 엔드포인트 응답
 ![HA HTTP endpoint responses](./HA-HTTP-endpoint-responses.png)
+
+#### 4.3.4.3. 예제
+커맨드 라인에서 이러한 엔드포인트를 요청하는 일반적인 방법은 curl을 사용하는 것입니다. 인수를 사용하지 않을 경우 curl은 제공된 URI에 대해 HTTP GET을 수행하고 본문 텍스트가 있는 경우 해당 텍스트를 출력합니다. 만일 응답 코드를 얻고 싶다면 자세한 출력을 위해 -v 플래그를 추가하십시오. 여기 몇 가지 예가 있습니다:
+* 자세한 출력으로 실행중인 마스터에서 마스터 엔드포인트 요청
+````
+#> curl -v localhost:7474/db/manage/server/ha/master
+* About to connect() to localhost port 7474 (#0)
+*   Trying ::1...
+* connected
+* Connected to localhost (::1) port 7474 (#0)
+> GET /db/manage/server/ha/master HTTP/1.1
+> User-Agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8r zlib/1.2.5
+> Host: localhost:7474
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: text/plain
+< Access-Control-Allow-Origin: *
+< Transfer-Encoding: chunked
+< Server: Jetty(6.1.25)
+<
+* Connection #0 to host localhost left intact
+true* Closing connection #0
+````
