@@ -14,4 +14,4 @@ Neo4j HA 클러스터의 일반적인 사용 사례는 읽기 작업에 슬레�
 엔드포인트를 사용하기 위해, 둘 중 하나에서 HTTP GET 작업을 수행하면 다음이 반환됩니다:
 
 ##### 표 4.2. HA HTTP 엔드포인트 응답
-![HA HTTP endpoint responses](/highly-available-cluster/HA-HTTP-endpoint-responses.png)
+![HA HTTP endpoint responses](./HA-HTTP-endpoint-responses.png)
