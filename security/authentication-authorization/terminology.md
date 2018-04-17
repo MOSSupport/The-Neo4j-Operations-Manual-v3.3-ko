@@ -12,7 +12,7 @@ The following terms are relevant to role-based access control within Neo4j:
 
 ##### active user
 
-
+시스템 내에서 활동 중이며 데이터의 지정된 역할에 의해 지정된 작업을 수행 할 수있는 [user](#user)입니다. [suspended user](#suspended-user)와는 대조적입니다.
 A [user](#user) who is active within the system and can perform actions prescribed by any assigned [roles](#role) on the data. This is in contrast to a [suspended user](#suspended-user).
 
 ##### administrator
