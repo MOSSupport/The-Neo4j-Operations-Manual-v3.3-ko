@@ -1,6 +1,10 @@
 ### 7.1.2. 용 어
 
 <div class="abstract">
+	<p>This section lists the relevant terminology related to authentication and authorization in Neo4j.</p>
+</div>
+
+<div class="abstract">
 	<p>이 절에서는 Neo4j에서 인증 및 권한 부여와 관련된 용어를 나열합니다. 
 	</p>
 </div>
