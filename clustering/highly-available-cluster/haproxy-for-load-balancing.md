@@ -113,6 +113,69 @@ HAProxy는 이제 다음을 실행하여 시작할 수 있습니다:
 http://<ha-proxy-ip>:8080/haproxy?stats에 연결하여 상태 대시보드를 볼 수 있습니다. 이 대시보드는 포트 80에서 실행되도록 이동할 수 있으며 인증을 추가할 수도 있습니다. 자세한 내용은 HAProxy 설명서를 참조하십시오.
 
 #### 4.3.5.3. 읽기 및 쓰기 최적화하기
-Neo4j는 HTTP 응답 코드를 사용하여 시스템을 구별하기 위해 HAProxy (또는 해당 로드 밸런서)가 사용할 수 있는 *상태 점검 URL* 카탈로그([4.3.4. "상태 정보의 엔드포인트"](./endpoints-for-status-information.md) 참조)를 제공합니다. 위의 예제에서는, 트랜잭션 처리를 위해 일반적으로 사용 가능한 시스템에 요청을 보내는(they are alive!) /available 엔드포인트를 사용했습니다. 
+Neo4j는 HTTP 응답 코드를 사용하여 시스템을 구별하기 위해 HAProxy (또는 해당 로드 밸런서)가 사용할 수 있는 *상태 점검 URL* 카탈로그([4.3.4. "상태 정보의 엔드포인트"](./endpoints-for-status-information.md) 참조)를 제공합니다. 위의 예제에서는, 트랜잭션 처리를 위해 일반적으로 사용 가능한 시스템에 요청을 보내는(they are alive!) /available 엔드포인트를 사용했습니다.
 
 그러나 그것은 오직 슬레이브에만 또는 마스터에만 지시하는 요청을 가질 수 있습니다. 만일 쓰기 요청과 읽기 전용 요청 사이에서 응용 프로그램을 구별 할 수 있다면, 두 개의 (논리적) 로드 밸런서의 장점을 활용할 수 있습니다: 마스터에게 모든 쓰기를 보내는 하나와 슬레이브에게 모든 읽기 전용 요청을 보내는 하나. HAProxy에서는 다중 백엔드를 추가하여 논리적 로드 밸런서를 구축합니다.
+
+여기에서 트레이드 오프는, Neo4j가 슬레이브에서 프록시 쓰기를 허용하는 반면, 이 간접적 지시가 불필요하게 슬레이브의 리소스를 묶어 쓰기 요청에 지연 시간을 더한다는 것입니다. 반대로, 읽기 트래픽이 마스터의 리소스를 묶어 두는 것은 특별히 원하지 않습니다. Neo4j는 읽기를 위해 수평 확장할 수 있지만 쓰기는 여전히 단일 인스턴스로 제한됩니다. 가능하다면, 해당 인스턴스는 독점적으로 쓰기를 수행하여 최대 쓰기 성능을 보장해야 합니다.
+
+다음 예는 /slave 엔드포인트를 사용하여 시스템 집합에서 마스터를 제외합니다.
+
+```
+global
+    daemon
+    maxconn 256
+
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend http-in
+    bind *:80
+    default_backend neo4j-slaves
+
+backend neo4j-slaves
+    option httpchk GET /db/manage/server/ha/slave
+    server s1 10.0.1.10:7474 maxconn 32 check
+    server s2 10.0.1.11:7474 maxconn 32 check
+    server s3 10.0.1.12:7474 maxconn 32 check
+
+listen admin
+    bind *:8080
+    stats enable
+```
+
+>> 실제로는 슬레이브에 대한 쓰기는 흔하지 않습니다. 슬레이브에 쓰는 것은 데이터가 두 위치(슬레이브와 마스터)에 유지되도록 보장하는 이점이 있지만, 비용이 발생됩니다. 이 비용은 누락된 트랜잭션을 적용하여 슬레이브가 즉시 마스터와 일관성을 갖도록 한 다음, 동시에 마스터에 새 트랜잭션을 적용해야 한다는 것입니다. 이는 마스터에 쓰고 마스터 푸시로 하나 이상의 슬레이브에 변경을 수행하는 것보다 비용이 더 많이 드는 작업입니다.
+
+#### 4.3.5.4. HAProxy를 사용한 캐시 기반 샤딩
+Neo4j HA는 캐시 기반 샤딩(cache-based sharding)이라 하는 것을 가능하게 합니다. 만약 데이터 집합이 너무 커서 단일 시스템의 캐시에 맞지 않는다면, 요청에 일관된 라우팅 알고리즘을 적용하여 각 시스템의 캐시가 실제로 그래프의 다른 부분을 캐시합니다. 일반적인 라우팅 키는 사용자 ID일 수 있습니다.
+
+이 예에서 사용자 ID는 요청되는 URL에 있는 조회 매개 변수입니다. 이것은 각 요청에 대해 동일한 사용자를 동일한 시스템으로 라우팅 할 것입니다.
+
+```
+global
+    daemon
+    maxconn 256
+
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend http-in
+    bind *:80
+    default_backend neo4j-slaves
+
+backend neo4j-slaves
+    balance url_param user_id
+    server s1 10.0.1.10:7474 maxconn 32
+    server s2 10.0.1.11:7474 maxconn 32
+    server s3 10.0.1.12:7474 maxconn 32
+
+listen admin
+    bind *:8080
+    stats enable
+```
