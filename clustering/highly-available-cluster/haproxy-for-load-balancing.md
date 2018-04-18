@@ -20,10 +20,92 @@ defaults
     timeout server 2h
 ```
 
-쓰기를 수행하려는 드라이버가 연결될 위치를 설정하십시오.
+쓰기를 수행하려는 드라이버가 연결할 위치를 설정하십시오:
 
 ```
 frontend neo4j-write
     bind *:7680
     default_backend current-master
+```
+
+이제 우리는 현재 마스터 인스턴스를 가리키는 백엔드를 설정합니다.
+
+```
+backend current-master
+    option  httpchk HEAD /db/manage/server/ha/master HTTP/1.0
+
+    server db01 10.0.1.10:7687 check port 7474
+    server db02 10.0.1.11:7687 check port 7474
+    server db03 10.0.1.12:7687 check port 7474
+```
+
+위의 예제에서 `httpchk`는 Neo4j에 대한 인증이 비활성화 된 경우 수행하는 방식으로 구성됩니다. 하지만 기본적으로 인증은 사용하도록 설정되어 있으므로 인증 헤더를 전달할 필요가 있습니다. 이것은 `option httpchk HEAD /db/manage/server/ha/master HTTP/1.0\r\nAuthorization:\ Basic\ bmVvNGo6bmVvNGo=`의 라인을 따를 것이며 마지막 부분은 사용자 이름 및 비밀번호를 위해 base64로 인코딩된 값으로 대체되어야 합니다.
+
+읽기를 수행하려는 드라이버가 연결할 위치를 구성하십시오:
+
+```
+frontend neo4j-read
+    bind *:7681
+    default_backend slaves
+```
+
+마지막으로 라운드 로빈 방식으로 슬레이브를 가리키는 백엔드를 구성하십시오:
+
+```
+backend slaves
+    balance roundrobin
+    option  httpchk HEAD /db/manage/server/ha/slave HTTP/1.0
+
+    server db01 10.0.1.10:7687 check port 7474
+    server db02 10.0.1.11:7687 check port 7474
+    server db03 10.0.1.12:7687 check port 7474
+```
+
+`slave` 백엔드의 서버는 `current-master` 백엔드와 동일한 방식으로 구성된다는 것을 주목하십시오.
+
+그러면 위의 모든 구성을 하나의 파일에 넣음으로써, Bolt Protocol을 사용하는 응용 프로그램에 대한 로드 밸런싱을 수행 할 수 있는 기본 작동 가능한 HAProxy 구성을 얻습니다.
+
+기본적으로 서버와 드라이버간에 암호화가 사용됩니다. 암호화 기능이 켜지면 위에서 생성된 HAProxy 구성은 HAProxy에 대한 TLS/SSL 관문 레이아웃에서 직접 작동하기 위해 변경할 필요가 없습니다. 그러나 채택된 드라이버 인증 전략에 따라 일부 특수 요구 사항이 서버 인증서에 적용될 수 있습니다.
+
+첫 번째 사용 신뢰(trust-on-first-use) 인증 전략을 사용하는 드라이버의 경우, 각 드라이버는 연결되는 HAProxy 포트를 클러스터에서 수신한 첫 번째 인증서를 가지고 등록합니다. 그러면 모든 이후의 연결에 대해 드라이버는 등록된 것과 동일한 인증서가 있는 서버와만 연결할 것입니다. 따라서 드라이버가 클러스터의 모든 인스턴스와 연결할 수 있게 하려면 이 모드에서는 클러스터의 모든 인스턴스가 동일한 인증서를 공유해야 합니다.
+
+드라이버가 신뢰할 수 있는 인증서 모드로 실행되도록 구성된 경우, 드라이버에 알려진 인증서는 클러스터의 서버에 설치된 모든 인증서의 루트 인증서여야 합니다. 또는 여러 인증서를 신뢰할 수 있는 인증서로 등록할 수 있는 Java 드라이버와 같은 드라이버의 경우, 드라이버는 클러스터에서 사용되는 서버 인증서가 모두 신뢰할 수 있는 인증서로 등록되어 있으면 클러스터에서도 잘 동작합니다.
+
+HAProxy를 다른 암호화 레이아웃과 함께 사용하려면, 해당 웹 사이트의 전체 설명서를 참조하십시오.
+
+#### 4.3.5.2. HTTP API를 위한 HAProxy 구성하기
+HAProxy는 다양한 방법으로 구성될 수 있습니다. 전체 문서는 해당 웹 사이트에서 볼 수 있습니다.
+
+이 예에서는 세 개의 HA 서버에 대한 밸런스 요청을 로드하기 위해 HAProxy를 구성합니다. 단순히 다음 구성을 /etc/haproxy/haproxy.cfg에 기록하세요:
+
+```
+global
+    daemon
+    maxconn 256
+
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend http-in
+    bind *:80
+    default_backend neo4j
+
+backend neo4j
+    option httpchk GET /db/manage/server/ha/available
+    server s1 10.0.1.10:7474 maxconn 32
+    server s2 10.0.1.11:7474 maxconn 32
+    server s3 10.0.1.12:7474 maxconn 32
+
+listen admin
+    bind *:8080
+    stats enable
+```
+
+HAProxy는 이제 다음을 실행하여 시작할 수 있습니다:
+
+```
+/usr/sbin/haproxy -f /etc/haproxy/haproxy.cfg
 ```
