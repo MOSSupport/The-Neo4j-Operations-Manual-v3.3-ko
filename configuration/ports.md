@@ -1,0 +1,19 @@
+
+# 3.2. 포트
+
+>  이 섹션에서는 Neo4j 설치 파일과 관련된 포트에 대해 알아봅니다. 
+
+이 섹션에서는 방화벽에서 Neo4j의 특정 포트 개벙 여부와 관련된 전체적인 개요를 제공합니다. 포트는 일반적인 네트워크 작동에 필요한 곳에 추가됩니다. 방화벽은 특정 조건을 기반으로 수행하기 때문에 포트 개방과 관련된 특정 권장 사항을 만들 수 없습니다. 
+
+
+| 이름               | 기본 포트 번호                   | 관련 설정                                                    | 코멘트                                                       |
+| ------------------ | -------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 백업               | ```6362-6372```                  | ``` dbms.backup.enabled=true```,  ``` dbms.backup.address=127.0.0.1:6362-6372``` | 백업은 기본으로 사용됩니다. 생산 환경에서 이 포트로 외부 접속은 방화벽에서 차단되어야 합니다. 참조 [챕터6. 백업]("https://neo4j.com/docs/operations-manual/current/backup/") |
+| HTTP               | ```7474```                       | 참조 [섹션 3.6,Neo4j 연결 설정]("https://neo4j.com/docs/operations-manual/current/configuration/connectors/") | 트래픽이 비암호화되어 있기 때문에 외부 접속으로 이 포트에서 여는 것은 관정하지 않습니다. Neo4j브라우저와 REST API에서 사용됩니다. |
+| HTTPS              | ```7473```                       | 참조 [섹션 3.6,Neo4j 연결 설정]("https://neo4j.com/docs/operations-manual/current/configuration/connectors/") | REST API에서 사용됩니다.                                     |
+| 볼트(Bolt)         | ```7687```                       | 참조 [섹션 3.6,Neo4j 연결 설정]("https://neo4j.com/docs/operations-manual/current/configuration/connectors/") | Cypher 쉘과 Neo4j브라우저에서 사용됩니다.                    |
+| 일반      클러스터 | ```5000```,```6000```,```7000``` | ``` causal_clustering.discovery_listen_address=:5000``` ```causal_clustering.transaction_listen_address=:6000         ```  ```causal_clustering.raft_listen_address=:7000``` | 리스트된 포트는 neo4j.conf의 기본 포트입니다. 포트는 생산 환경에 따라 다릅니다. 그렇기 때문에, 가능한 포트 개통은 순차적으로 수정되어야 합니다. 참조 [섹션 4.2.12,일반적인 클러스터 설정]("https://neo4j.com/docs/operations-manual/current/clustering/causal-clustering/settings/") |
+| HA  클러스터       | ```5001```,```6001```            | ``` ha.host.coordination=127.0.0.1:5001 ```                                          ``` ha.host.data=127.0.0.1:6001``` | 리스트된 포트들은 neo4j.conf의 기본 포트입니다.포트는 생산 환경에 따라 다릅니다. 그렇기 때문에, 가능한 포트 개통은 순차적으로 수정되어야 합니다. 참조[섹션 4.3 이용가능한 하이 클러스터]("https://neo4j.com/docs/operations-manual/current/clustering/high-availability/") |
+| 그래픽 모니터링    | ```2003```                       | ``` metrics.graphite.server=localhost:2003```                | Neo4j 데이터베이스가 Graphite 서버와 통신할 수 있도록 아웃바운드 연결을하는 포트. 참조[섹션 8.1 메트릭스]("https://neo4j.com/docs/operations-manual/current/monitoring/metrics/") |
+| JMX 모니터링       | ```3637```                       | ```dbms.jvm.additional=-Dcom.sun.management.jmxremote.port=3637``` | 이는 JMX를 나타내기 위한 설정입니다. 데이터 베이스를 검사할 때 이 방식을 권장하지 않습니다. 이것은 기본적으로 비활성화 되어 있습니다. |
+| Neo4j 쉘           | ```1337```                       | ``` dbms.shell.port=1337```                                  | neo4j-쉘 도구는 더이상 사용되지 않기에, 사용하지 않는것을 권장합니다. neo4j쉘 기능을 대체하는 지원 도구는 [챕터 10.도구]("https://neo4j.com/docs/operations-manual/current/tools/")에서 확인할 수 있습니다. |

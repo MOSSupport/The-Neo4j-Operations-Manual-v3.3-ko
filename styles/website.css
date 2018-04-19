@@ -1,1 +1,25 @@
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+
+/* BEGIN abstract */
+div.abstract {
+  margin: 0 0 1em 0; 
+  display: block;
+
+  padding: 8px;
+  background: none;
+  border: 1px solid #666666;
+  border-radius: 4px;
+
+  color: #666666;
+  font-size: 1.15rem;
+  line-height: 1.75;
+  word-spacing: 0.1em;
+  letter-spacing: 0;
+  font-style: italic;
+  text-align: justify;
+}
+
+div.abstract > p:last-child {
+  margin-bottom: 0;
+}
+/* END abstract */
