@@ -14,5 +14,5 @@
    — 리눅스 파일 시스템 설정 방법.
 * [디스크, RAM과 그 밖의 팁들](/performance/disks-ram-and-other-tips.md)
    — 디스크, RAM과 그 밖의 팁들.
-* [데이터베이스 통계값](/performance/statistics-gathering.md)
-   — 데이터베이스 통계값 관리 방법.
+* [데이터베이스 통계](/performance/statistics-gathering.md)
+   — 데이터베이스 통계 관리 방법.
