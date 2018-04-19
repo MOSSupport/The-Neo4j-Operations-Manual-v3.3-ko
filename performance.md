@@ -8,7 +8,7 @@
   — 최적의 운영을 위한 메모리 설정 방법.
 * [가비지 컬렉터](/performance/garbage-collector.md)
    — 자바 가상 머신의 가비지 컬렉터 설정 방법.
-* [압축 스토리지](/performance/compressed-storage.md)
+* [스토리지 압축](/performance/compressed-storage.md)
    — 압축 스토리지의 속성 설정 방법.
 * [리눅스 파일 시스템 튜닝](/performance/linux-file-system-tuning.md)
    — 리눅스 파일 시스템 설정 방법.
