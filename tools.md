@@ -4,12 +4,12 @@
 ```
 이 장은 다음의 주제로 구성됩니다:
 
-* [`neo4j-admin` 도구 설명](https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/)
-* [임포트 도구를 사용하여 Neo4j에 데이터를 임포트하는 방법](https://neo4j.com/docs/operations-manual/current/tools/import/)
-  - [문법](https://neo4j.com/docs/operations-manual/current/tools/import/syntax/)
-  - [CSV 헤더 포맷](https://neo4j.com/docs/operations-manual/current/tools/import/file-header-format/)
-  - [옵션](https://neo4j.com/docs/operations-manual/current/tools/import/options/)
-* [`neo4j-admin`을 사용한 Neo4j 데이터베이스 dump와 load 방법](https://neo4j.com/docs/operations-manual/current/tools/dump-load/)
-* [`neo4j-admin`을 사용한 Neo4j 데이터베이스의 일관성 체크 방법](https://neo4j.com/docs/operations-manual/current/tools/consistency-checker/)
-* [데이터베이스 저장소 정보 디스플레이 방법](https://neo4j.com/docs/operations-manual/current/tools/store-info/)
-* [`cypher-shell` 사용 방법](https://neo4j.com/docs/operations-manual/current/tools/cypher-shell/)
+* [`neo4j-admin` 도구 설명](/tools/neo4j-admin.md)
+* [임포트 도구를 사용하여 Neo4j에 데이터를 임포트하는 방법](/tools/import.md)
+  - [문법](/tools/import/syntax.md)
+  - [CSV 헤더 포맷](tools/import/file-header-format.md)
+  - [옵션](/tools/import/options.md)
+* [`neo4j-admin`을 사용한 Neo4j 데이터베이스 dump와 load 방법](/tools/dump-load.md)
+* [`neo4j-admin`을 사용한 Neo4j 데이터베이스의 일관성 체크 방법](/tools/consistency-checker.md)
+* [데이터베이스 저장소 정보 디스플레이 방법](/tools/store-info.md)
+* [`cypher-shell` 사용 방법](/tools/cypher-shell.md)
