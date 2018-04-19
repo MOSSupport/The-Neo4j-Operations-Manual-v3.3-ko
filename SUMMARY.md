@@ -7,6 +7,7 @@
 * [Clustering](clustering.md)
   * [Introduction to clustering](clustering/introduction-to-clustering.md)
   * [Causal Cluster](clustering/causal-cluster.md)
+    * [architecture](clustering/causal-cluster/architecture.md)
   * [Highly Available cluster](clustering/highly-available-cluster.md)
     * [Architecture of a Highly Available cluster](clustering/highly-available-cluster/architecture-of-a-highly-available-cluster.md)
     * [Configure a Highly Available cluster](clustering/highly-available-cluster/configure-a-highly-available-cluster.md)
