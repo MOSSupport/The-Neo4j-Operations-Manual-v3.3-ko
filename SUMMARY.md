@@ -7,8 +7,12 @@
 * [Clustering](clustering.md)
   * [Introduction to clustering](clustering/introduction-to-clustering.md)
   * [Causal Cluster](clustering/causal-cluster.md)
-    * [architecture](clustering/causal-cluster/architecture.md)
-    * [lifecycle](clustering/causal-cluster/lifecycle.md)
+    * [Architecture](clustering/causal-cluster/architecture.md)
+    * [Lifecycle](clustering/causal-cluster/lifecycle.md)
+    * [Create a new Causal Cluster](clustering/causal-cluster/create-a-new-causal-cluster.md)
+    * Seed a cluster
+    * Backup planning for a Causal Cluster 
+    * Intra-cluster encryption
   * [Highly Available cluster](clustering/highly-available-cluster.md)
     * [Architecture of a Highly Available cluster](clustering/highly-available-cluster/architecture-of-a-highly-available-cluster.md)
     * [Configure a Highly Available cluster](clustering/highly-available-cluster/configure-a-highly-available-cluster.md)
