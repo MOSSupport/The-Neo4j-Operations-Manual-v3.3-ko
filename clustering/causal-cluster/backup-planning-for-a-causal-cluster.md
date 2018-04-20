@@ -6,4 +6,4 @@ Neo4j Causal Clustering 클러스터에서 Core Server와 Read Replica는 모두
 #### 4.2.5.1. Read replica 백업
 일반적으로 우리는 전형적인 클러스터 배포에서 Core Server보다 훨씬 더 많기 때문에 Read Replica가 백업 공급자 역할을 하도록 선택하는 것을 선호합니다.
 
-그러나 Read Replica는 Core Server에서 비동기적으로 복제되기 때문에 코어 클러스터와 관련하여 트랜잭션을 적용할 때 어느 정도 뒤처질 수 있습니다. Read replica가 코어 서버에서 연결이 끊어지는 경우도 있으므로 해당 복제본의 내용이 매우 오래 되었을 수 있습니다.
+그러나 Read Replica는 Core Server에서 비동기적으로 복제되기 때문에 코어 클러스터와 관련하여 트랜잭션을 적용할 때 어느 정도 뒤처질 수 있습니다. Read replica가 Core Server에서 연결이 끊어지는 경우도 있으므로 해당 복제본의 내용이 꽤 오래 되었을 수도 있습니다. 여기에서 병리학적으로 나쁜 경우는 바로 이전의 백업보다 덜 최신으로 끝난 내용을 지금 당장 백업 하는 것입니다.
