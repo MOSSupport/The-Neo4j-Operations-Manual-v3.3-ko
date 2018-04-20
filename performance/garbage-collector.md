@@ -29,5 +29,3 @@ Neo4j는 자바 프로세스의 수명주기 동안, 올드 제너레이션에�
 | dbms.memory.heap.initial_size | 초기 힙 크기(MB 단위) |
 | dbms.memory.heap.max_size | 최대 힙 크기(MB 단위) |
 | dbms.jvm.additional | 추가적인 JVM 매개변수 |
-
-end
