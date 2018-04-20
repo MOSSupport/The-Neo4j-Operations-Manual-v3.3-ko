@@ -8,17 +8,20 @@
 #### 10.2.2.1. 속성
 속성의 경우, 필드의 `<name>` 부분은 속성 키이고 `<field_type>` 부분은 데이터 형식입니다(아래 참조). 노드 데이터 파일과 관계 데이터 파일 모두에 속성을 가질 수 있습니다.  
 **데이터 형식**
-Use one of int, long, float, double, boolean, byte, short, char, string to designate the data type for properties. If no data type is given, this defaults to string. To define an array type, append [] to the type. By default, array values are separated by ;. A different delimiter can be specified with --array-delimiter.
+속성의 데이터 형식에 `int`, `long`, `float`, `double`, `boolean`, `byte`, `short`, `char`, `string`을 사용합니다. 데이터 형식이 지정되지않으면 디폴트로 `string`입니다. 배열로 정의하려면 []을 데이터 형식에 추가합니다. 기본적으로 배열 값은 `;`로 구분됩니다. 다른 구분 기호는` --array-delimiter`를 사용합니다.
 **IGNORE**
-If there are fields in the data that we wish to ignore completely, this can be done using the IGNORE keyword. IGNORE must be prepended with a :. See example in the relevant section below.
-10.2.2.2. Node data files
-For files containing node data, there is one mandatory field; the ID, and one optional field; the LABEL:
+데이터에 무시할 필드가있는 경우 `IGNORE` 키워드를 사용합니다. `IGNORE` 앞에는 `:`가 붙습니다. 아래 예제를 참조합니다.
 
-ID
-Each node must have a unique ID which is used during the import. The IDs are used to find the correct nodes when creating relationships. Note that the ID has to be unique across all nodes in the import; even for nodes with different labels. The unique ID can be persisted in a property whose name is defined by the <name> part of the field definition <name>:ID. If no such property name is defined, the unique ID will be used for the purpose of the import but not be available for reference later.
-LABEL
-Read one or more labels from this field. Like array values, multiple labels are separated by ;, or by the character specified with --array-delimiter.
-Example 10.2. Define two nodes files
+#### 10.2.2.2. 노드 데이터 파일
+노드 데이터가 들어있는 파일에는 필수 필드, `ID`와 선택적 필드, `LABEL:`이 있습니다.
+
+**ID**
+임포트되는 동안 사용될, 각 노드는 고유 ID가 있어야 합니다. ID는 노드간의 관계 생성시, 올바른 노드를 찾는데 사용됩니다. ID는 임포트되는 모든 노드, 심지어는 레이블(label)이 다른 노드와도 고유(unique)해야 합니다. 속성에서도 ID는 고유해야 합니다. 즉, 필드 정의 `<name>:ID`의 `<name>` 에서도 ID는 유일해야 합니다. 그러한 속성의 이름이 `<name>`에서 정의되지 않으면, 고유 ID는 임포트에서 사용되지만 나중에 참조는 할 수 없습니다.   
+**LABEL**
+이 필드에서 하나 이상의 레이블을 읽습니다. 배열과 마찬가지로, 여러 레이블은 디폴트로는 `;`로 구분되거나, `--array-delimiter`로 구분 문자를 지정합니다.  
+
+예제 10.2. 두개의 노드 파일 정의하기
+```
 We define three movies in the movies.csv file. They have the properties movieId, year and title. All the movies are given the label Movie. Two of them are also given the label Sequel.
 
 movieId:ID,title,year:int,:LABEL
@@ -31,7 +34,7 @@ personId:ID,name,:LABEL
 keanu,"Keanu Reeves",Actor
 laurence,"Laurence Fishburne",Actor
 carrieanne,"Carrie-Anne Moss",Actor
-
+```
 #### 10.2.2.3. Relationship data files
 For files containing relationship data, there are three mandatory fields:
 
