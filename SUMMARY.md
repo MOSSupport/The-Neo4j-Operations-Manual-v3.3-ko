@@ -40,6 +40,7 @@
 * [Monitoring](monitoring.md)
 * [Performance](performance.md)
   * [Memory configuration](performance/memory-configuration.md)
+  * Garbage collector
   * [Compressed storage](performance/compressed-storage.md)
   * [Linux file system tuning](performance/linux-file-system-tuning.md)
   * [Disks, RAM and other tips](performance/disks-ram-and-other-tips.md)
