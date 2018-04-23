@@ -22,31 +22,33 @@
 
 예제 10.2. 두개의 노드 파일 정의하기
 ```
-We define three movies in the movies.csv file. They have the properties movieId, year and title. All the movies are given the label Movie. Two of them are also given the label Sequel.
+이 예제는 movies.csv 파일에서 3개의 영화를 정의합니다.  영화는 [movieId], [year], [title] 속성을 가집니다. 모든 영화에 [Movie] 레이블이 붙습니다. 그 중 두 영화에 [Sequel]이라는 레이블이  더 붙습니다.
 
 movieId:ID,title,year:int,:LABEL
 tt0133093,"The Matrix",1999,Movie
 tt0234215,"The Matrix Reloaded",2003,Movie;Sequel
 tt0242653,"The Matrix Revolutions",2003,Movie;Sequel
-We also define three actors in the actors.csv file. They all have the properties personId and name, and the label Actor.
+
+actors.csv파일에서는 3명의 배우를 정의합니다. 배우는 [personId]와 [name] 속성과, [Actor]라는 레이블을 갖습니다.
 
 personId:ID,name,:LABEL
 keanu,"Keanu Reeves",Actor
 laurence,"Laurence Fishburne",Actor
 carrieanne,"Carrie-Anne Moss",Actor
 ```
-#### 10.2.2.3. Relationship data files
-For files containing relationship data, there are three mandatory fields:
-
-TYPE
-The relationship type to use for this relationship.
-START_ID
-The ID of the start node for this relationship.
-END_ID
-The ID of the end node for this relationship.
+#### 10.2.2.3. 관계 데이터 파일
+관계 데이터 파일에는 3개의 필수 필드가 있습니다:   
+**TYPE**
+관계의 형식.
+**START_ID**
+이 관계의 시작 노드의 ID
+**END_ID**
+이 관계의 끝 노드의 ID
 The START_ID and END_ID refer to the unique node ID defined in one of the node data sources, as explained in the previous section. None of these takes a name, e.g. if <name>:START_ID or <name>:END_ID is defined, the <name> part will be ignored.
+START_ID 및 END_ID는 이전 섹션에서 설명한대로 노드 데이터 소스 중 하나에 정의 된 고유 한 노드 ID를 참조합니다. 이들 중 어느 것도 이름을 사용하지 않습니다. <name> : START_ID 또는 <name> : END_ID가 정의되면 <name> 부분은 무시됩니다.
 
-Example 10.3. Define a relationships file
+예제 10.3. 관계 파일 정의하기
+```
 In this example we assume that the two nodes files from the previous example are used together with the following relationships file.
 
 We define relationships between actors and movies in the file roles.csv. Each row connects a start node and an end node with a relationship of relationship type ACTED_IN. Notice how we use the unique identifiers personId and movieId from the nodes files above. The name of character that the actor is playing in this movie is stored as a role property on the relationship.
@@ -61,6 +63,7 @@ laurence,"Morpheus",tt0242653,ACTED_IN
 carrieanne,"Trinity",tt0133093,ACTED_IN
 carrieanne,"Trinity",tt0234215,ACTED_IN
 carrieanne,"Trinity",tt0242653,ACTED_IN
+```
 
 #### 10.2.2.4. ID spaces
 By default, the import tool assumes that node identifiers are unique across node files. In many cases the ID is only unique across each entity file, for example when our CSV files contain data extracted from a relational database and the ID field is pulled from the primary key column in the corresponding table. To handle this situation we define ID spaces. ID spaces are defined in the ID field of node files using the syntax ID(<ID space identifier>). To reference an ID of an ID space in a relationship file, we use the syntax START_ID(<ID space identifier>) and END_ID(<ID space identifier>).
