@@ -24,7 +24,7 @@ Neo4j HA클러스터(Neo4j Enterprise Edition)를 업그레이드하려면 매�
     
   5. 다음 명령을 사용하여 이전 설치에서 데이터를 가져옵니다.
   
-  ``` neo4j-admin import --mode=database --database=<database-name> --from=<source-directory> ```
+      ``` neo4j-admin import --mode=database --database=<database-name> --from=<source-directory> ```
   
   6. 데이터베이스를 graph.db라고 하지 않는 경우 _neo4j.conf_ 에서 ```dbms.active_database```를 데이터베이스 이름으로 설정합니다.
   7. 3.3.5 설치의 _neo4j.conf_ 에서 ```dbms.allow_format_migration=true```로 설정합니다. 이 설정을 안하면 Neo4j는 기동에 실패합니다.
