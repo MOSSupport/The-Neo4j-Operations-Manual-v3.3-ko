@@ -17,13 +17,16 @@ A [user](#user) who is active within the system and can perform actions prescrib
 
 ##### administrator
 
+[관리자(admin)](./native-user-role-management/native-roles.md/#admin-role))역할에 할당된 [사용자](#user)입니다.
 This is a [user](#user) who has been assigned the [`admin`](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/#admin-role) role.
 
 ##### current user
 
+이 장에서 설명하는 명령을 호출하는 현재 로그인한 [사용자](#user)입니다. 
 This is the currently logged-in [user](#user) invoking the commands described in this chapter.
 
 ##### password policy
+
 
 The password policy is a set of rules of what makes up a valid password. For Neo4j, the following rules apply:
 
