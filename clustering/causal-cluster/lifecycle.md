@@ -1,5 +1,5 @@
-### 4.2.2. Causal 클러스터 수명주기 `Enterprise Edition`
-> 이 장에서는 Neo4j Causal 클러스터의 수명주기에 대해 설명합니다.
+### 4.2.2. Causal 클러스터 수명 주기 `Enterprise Edition`
+> 이 장에서는 Neo4j Causal 클러스터의 수명 주기에 대해 설명합니다.
 
 [4.2.1 "소개"](./architecture.md)에서는 Causal 클러스터의 개요를 제공했습니다. 이 장에서는 클러스터가 어떻게 작동하는지에 대해 더 깊이 이해할 것입니다. 클러스터 작동 방식에 대한 이해를 높임으로써 우리는 생산 시스템의 설계, 배포 및 문제 해결에 대한 대비를 더 강화하게 될 것입니다.
 
@@ -15,6 +15,6 @@ discovery 프로토콜은 Causal 클러스터를 형성하는 첫 번째 단계�
 
 >> discovery 프로토콜은 그것이 코어 서버인지 검색을 수행하는 Read replica인지에 관계없이 오직 코어 서버만을 대상으로 합니다. 이는 Read Replica가 수없이 많으며 상대적으로 말하자면 일시적인 반면에 코어 서버는 시간이 지남에 따라 더 적고 상대적으로 안정적일 것으로 예상하기 때문입니다.
 
-힌트는 일반적으로 점으로 구분 된 10 진수 IP 주소 및 보급 된 포트로써, [*neo4j.conf*](/configuration.html)의 [`causal_clustering.initial_discovery_members`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_causal_clustering.initial_discovery_members)로 제공됩니다. 
+힌트는 일반적으로 점으로 구분 된 10 진수 IP 주소 및 보급 된 포트로써, [*neo4j.conf*](/configuration.html)의 [`causal_clustering.initial_discovery_members`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_causal_clustering.initial_discovery_members)로 제공됩니다.
 
-####4.2.2.6. Backup protocol
+#### backup protocol
