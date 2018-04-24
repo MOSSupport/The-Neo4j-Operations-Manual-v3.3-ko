@@ -27,14 +27,17 @@ This is the currently logged-in [user](#user) invoking the commands described in
 
 ##### password policy
 
-
+암호정책은 유효한 암호를 구성하는 규칙의 집합입니다. Neo4j에는 다음 규칙이 적용됩니다.
 The password policy is a set of rules of what makes up a valid password. For Neo4j, the following rules apply:
 
+* 암호는 빈 문자열 일 수 없습니다.
+* 암호를 변경할 때, 새 암호는 이전 암호와 같을 수 없습니다.
 * The password cannot be the empty string.
 * When changing passwords, the new password cannot be the same as the previous password.
 
 ##### role
 
+역할은 자료에 대한 읽기 및 쓰기와 같은 권한에 대한 행동의 모음입니다. Neo4j에는 2가지 형태의 역할이 있습니다.
 This is a collection of actions — such as read and write — permitted on the data. There are two types of roles in Neo4j:
 
 * Native roles are described in [Section 7.1.4.1, “Native roles”](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/).
