@@ -10,7 +10,7 @@ Neo4j provides five built-in roles in our role-based access control framework:
 
 -   `reader`
 
-    Read-only access to the data graph (all nodes, relationships, properties).
+    데이터 그래프에 읽기 전용으로 연결 (모든 노드, 관계, 속성).
 
 -   `editor`
 
