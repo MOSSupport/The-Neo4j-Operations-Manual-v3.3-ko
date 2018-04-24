@@ -5,6 +5,7 @@
 	</p>
 </div>
 
+Neo4j는 역할 기반 액세스 제어 프레임워크에 다섯 가지 기본 제공 역할을 제공합니다.
 Neo4j provides five built-in roles in our role-based access control framework:
 
 -   `reader`
