@@ -8,11 +8,14 @@
   — 최적의 운영을 위한 메모리 설정 방법.
 * [가비지 컬렉터](/performance/garbage-collector.md)
    — 자바 가상 머신의 가비지 컬렉터 설정 방법.
-* [압축 스토리지](/performance/compressed-storage.md)
+* [스토리지 압축](/performance/compressed-storage.md)
    — 압축 스토리지의 속성 설정 방법.
 * [리눅스 파일 시스템 튜닝](/performance/linux-file-system-tuning.md)
    — 리눅스 파일 시스템 설정 방법.
 * [디스크, RAM과 그 밖의 팁들](/performance/disks-ram-and-other-tips.md)
    — 디스크, RAM과 그 밖의 팁들.
-* [데이터베이스 통계값](/performance/statistics-gathering.md)
-   — 데이터베이스 통계값 관리 방법.
+* [데이터베이스 통계](/performance/statistics-gathering.md)
+   — 데이터베이스 통계 관리 방법.
+
+
+
