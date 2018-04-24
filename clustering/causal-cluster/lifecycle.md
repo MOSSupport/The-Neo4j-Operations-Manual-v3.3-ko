@@ -17,4 +17,4 @@ discovery 프로토콜은 Causal 클러스터를 형성하는 첫 번째 단계�
 
 힌트는 일반적으로 점으로 구분 된 10 진수 IP 주소 및 보급 된 포트로써, [*neo4j.conf*](/configuration.html)의 [`causal_clustering.initial_discovery_members`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_causal_clustering.initial_discovery_members)로 제공됩니다.
 
-### backup protocol
+#### 4.2.2.6 backup 프로토콜
