@@ -11,7 +11,7 @@ Neo4j HA클러스터(Neo4j Enterprise Edition)를 업그레이드하려면 매�
 데비안을 사용하는 경우 [섹션 2.2.1.2"업그레이드"](../installation/linux/debian.md)를 참조하십시오.
 
   1. 데이터베이스가 실행 중이면 완전히 종료합니다.
-  2. 데이터베이스 디렉터리와 [neo4j.conf](../configuration/file-locations.md)의 백업 복사본을 만듭니다.
+  2. 데이터베이스 디렉터리와 [_neo4j.conf_](../configuration/file-locations.md)의 백업 복사본을 만듭니다.
   3. Neo4j EnterpriseEdition과 함께 제공되는 [온라인 백업 도구](../backup.md)를 사용하는 경우 백업이 성공적으로 완료되었는지 확인합니다.
   4. 이전 설치의 구성 파일에 있는 설정을 검토하고 모든 사용자 지정 설정을 3.3.5 설치에 적용합니다.
 <br>&nbsp;&nbsp;&middot; Neo4j 2.x와 3.3.5 사이에 많은 설정이 변경되었으므로 2.x-config-migrator(tools 디렉터리에서 포함)를 사용하여 구성 파일을 마이 그레이션 하는 것이 좋습니다.
@@ -36,9 +36,15 @@ Neo4j HA클러스터(Neo4j Enterprise Edition)를 업그레이드하려면 매�
 ### 5.2.2. 3.x에서 업그레이드
 
   1. 데이터베이스가 실행 중이면 완전히 종료합니다.
-  2. 데이터베이스 디렉터리와 [neo4j.conf](../configuration/file-locations.md)의 백업 복사본을 만듭니다.
-  3. 
+  2. 데이터베이스 디렉터리와 [_neo4j.conf_](../configuration/file-locations.md)의 백업 복사본을 만듭니다.
+  <br>Neo4j Enterprise Edition와 함께 제공되는 [온라인 백업 도구](../backup.md)를 사용하는 경우 백업이 성공적으로 완료되었는지 확인합니다.
+  3. 다음 방법 중 하나를 사용하여 Neo4j를 설치합니다.
+  <br>&nbsp;&nbsp;a. 설치 시 tarball또는 zip파일을 사용하는 경우:
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;i. Neo4j 3.3.5의 압축을 풉니다.
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;ii. 이전 설치의 _neo4j.conf_ 에 있는 설정을 검토하고 모든 사용자 지정 설정을 3.3.5 설치로 전송합니다. 특히 `dbms.directories.data` 및 `dbms.active_database` 에 주의해야 합니다.
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;iii. 3.3.5 설치의 _neo4j.conf_ 에서 ```dbms.allow_format_migration=true```로 설정합니다. 이 설정을 안하면 Neo4j는 기동에 실패합니다.
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;iv. 이전 설치의 [_data_](../configuration/file-locations.md) 디렉터리를 새 설치로 복사합니다. `dbms.directories.data` 가 _NEO4J_HOME_ 외부의 디렉터리를 가리키는 경우에는 이 단계를 적용할수 없습니다.
   4. Neo4j 3.3.5.를 시작합니다. 데이터베이스 업그레이드는 시작할 때 수행됩니다.
-  5. 업그레이드 및 진행률에 대한 자세한 내용은 [debug.log](../configuration/file-locations.md)에 기록됩니다.
+  5. 업그레이드 및 진행률에 대한 자세한 내용은 [_debug.log_](../configuration/file-locations.md)에 기록됩니다.
   6. 업그레이드가 완료되면 ```dbms.allow_upgrade```옵션은 ```false```로 설정되거나 제거되어야 합니다.
   7. 업그레이드 후에는 즉시 전체 백업을 수행하는 것이 좋습니다.
