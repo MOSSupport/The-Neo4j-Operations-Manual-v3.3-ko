@@ -41,7 +41,7 @@ Neo4j HA클러스터(Neo4j Enterprise Edition)를 업그레이드하려면 매�
   3. 다음 방법 중 하나를 사용하여 Neo4j를 설치합니다.
   <br>&nbsp;&nbsp;a. 설치 시 tarball또는 zip파일을 사용하는 경우:
   <br>&nbsp;&nbsp;&nbsp;&nbsp;i. Neo4j 3.3.5의 압축을 풉니다.
-  <br>&nbsp;&nbsp;&nbsp;&nbsp;ii. 이전 설치의 _neo4j.conf_ 에 있는 설정을 검토하고 모든 사용자 지정 설정을 3.3.5 설치로 전송합니다. 특히 `dbms.directories.data` 및 `dbms.active_database` 에 주의해야 합니다.
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;ii. 이전 설치의 _neo4j.conf_ 에 있는 설정을 검토하고 모든 사용자 지정 설정을 3.3.5 설치로 전송합니다. 특히 [`dbms.directories.data`](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.directories.data) 및 [`dbms.active_database`](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.active_database) 에 주의해야 합니다.
   <br>&nbsp;&nbsp;&nbsp;&nbsp;iii. 3.3.5 설치의 _neo4j.conf_ 에서 ```dbms.allow_format_migration=true```로 설정합니다. 이 설정을 안하면 Neo4j는 기동에 실패합니다.
   <br>&nbsp;&nbsp;&nbsp;&nbsp;iv. 이전 설치의 [_data_](../configuration/file-locations.md) 디렉터리를 새 설치로 복사합니다. `dbms.directories.data` 가 _NEO4J_HOME_ 외부의 디렉터리를 가리키는 경우에는 이 단계를 적용할수 없습니다.
   <br>&nbsp;&nbsp;b. Debian또는 RPM 배포를 사용하는 경우:
