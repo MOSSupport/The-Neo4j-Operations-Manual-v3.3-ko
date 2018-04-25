@@ -26,7 +26,7 @@ Neo4j는 역할 기반 액세스 제어 프레임워크에 다섯 가지 기본 
 
     데이터 그래프에 읽기/쓰기 접근. 향후 다른 스키마 구성과 함께 인덱스에 대한 접근 설정/삭제. 쿼리 보기/종료.
 
-We detail below the set of actions on the data and database prescribed by each role:
+각 역할별로 규정 된 데이터 및 데이터베이스에 대한 일련의 작업에 대해 자세히 설명합니다.
 
 | Action                                   | `reader` | `editor` | `publisher` | `architect` | `admin` | (no role) |
 | ---------------------------------------- | -------- | -------- | ----------- | ----------- | ------- | --------- |
@@ -49,6 +49,6 @@ We detail below the set of actions on the data and database prescribed by each r
 | View all users for a role                |          |          |             |             | `X`     |           |
 | View all queries                         |          |          |             |             | `X`     |           |
 | Terminate all queries                    |          |          |             |             | `X`     |           |
-| Dynamically change configuration (see [Section 3.7, “Dynamic settings”](https://neo4j.com/docs/operations-manual/3.3/configuration/dynamic-settings/)) |          |          |             |             | `X`     |           |
+| Dynamically change configuration ([3.7절, "동적 설정" 참조](/configuration/dynamic-settings.md)) |          |          |             |             | `X`     |           |
 
 A [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) who has no assigned roles will not have any rights or capabilities regarding the data, not even read privileges. A user may have more than one assigned role, and the union of these determine what action(s) on the data may be undertaken by the user.
