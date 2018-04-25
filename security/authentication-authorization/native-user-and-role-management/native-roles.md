@@ -6,7 +6,6 @@
 </div>
 
 Neo4j는 역할 기반 액세스 제어 프레임워크에 다섯 가지 기본 제공 역할을 제공합니다.
-Neo4j provides five built-in roles in our role-based access control framework:
 
 -   `reader`
 
@@ -14,20 +13,18 @@ Neo4j provides five built-in roles in our role-based access control framework:
 
 -   `editor`
 
-    데이터 그래프에 읽기/쓰기 접근이 가능합니다. 
-    Read/write access to the data graph. Write access limited to creating and changing existing properties key, node labels, and relationship types of the graph.
+    데이터 그래프에 읽기/쓰기 접근이 가능합니다. 쓰기 액세스는 기존 속성 키, 노드 레이블 및 그래프의 관계 유형을 만들고 변경하는 것으로 제한됩니다.
 
 -   `publisher`
-
-    Read/write access to the data graph.
+    데이터 그래프에 읽기/쓰기 접근.
 
 -   `architect`
 
-    Read/write access to the data graph.Set/delete access to indexes along with any other future schema constructs.
+    데이터 그래프에 읽기/쓰기 접근. 향후 다른 스키마 구성과 함께 인덱스에 대한 접근 설정/삭제. 
 
 -   `admin`
 
-    Read/write access to the data graph.Set/delete access to indexes along with any other future schema constructs.View/terminate queries.
+    데이터 그래프에 읽기/쓰기 접근. 향후 다른 스키마 구성과 함께 인덱스에 대한 접근 설정/삭제. 쿼리 보기/종료.
 
 We detail below the set of actions on the data and database prescribed by each role:
 
