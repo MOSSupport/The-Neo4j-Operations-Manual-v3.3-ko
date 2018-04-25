@@ -32,13 +32,13 @@ Neo4j 는 다운그레이드를 지원하지 않습니다. 단, 이 절에 설�
 
 - 기존 Causal 클러스터가 있습니다.
 - 애플리케이션과 Neo4j 데이터베이스 사이에 로드 밸런싱 장치가 있습니다.
-- 안전한 위치에 저장된 전체 백업이 있습니다.
+- 안전한 위치에 저장된 [전체 백업](../backup/perform-backup.md)이 있습니다.
 
 **절차**
 
 1. 새 클러스터를 준비합니다.
 <br>&nbsp;&nbsp;a. Neo4j Enterprise Edition 3.3.5를 설치합니다.
-<br>&nbsp;&nbsp;b. 각각의 새 서버에 _neo4j.conf_ 파일을 준비합니다. [섹션 5.1"업그레이드 계획"](upgrade-planning.md)에 따라 새로운 구성 설정 또는 변경된 구성 설정을 고려해야 할 수 있습니다.
+<br>&nbsp;&nbsp;b. 각각의 새 서버에 [_neo4j.conf_](configuration/file-locations) 파일을 준비합니다. [섹션 5.1"업그레이드 계획"](upgrade-planning.md)에 따라 새로운 구성 설정 또는 변경된 구성 설정을 고려해야 할 수 있습니다.
 <br>&nbsp;&nbsp;새 서버의 IP주소가 구성 파일에 반영되었는지 확인합니다.
 <br>&nbsp;&nbsp;```dbms.mode=CORE```
 <br>&nbsp;&nbsp;```causal_clustering.initial_discovery_members=<YOUR SETUP>```
@@ -46,7 +46,7 @@ Neo4j 는 다운그레이드를 지원하지 않습니다. 단, 이 절에 설�
 <br>&nbsp;&nbsp;a. 클러스터의 각 서버에서 다음을 수행합니다.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;i. 데이터베이스를 종료합니다.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;ii. _neo4j.conf_ 를 편집하여 `neo4j.conf` 를 `true`로 설정합니다.
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```dbms.read_only=true```
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[`dbms.read_only=true`](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.read_only)
 <br>&nbsp;&nbsp;b. 이전 클러스터의 서버를 시작하고 클러스터가 형성되는지 확인합니다. 이제부터 클라이언트는 읽기 전용 모드로 데이터베이스에 액세스 할 수 있습니다.
 3. 클러스터의 전체 백업을 수행합니다. 자세한 내용은 [섹션 6.2"백업 수행"](../backup/perform-backup.md)을 참조하십시오.
 4. 새 클러스터의 서버 중 하나에서 업그레이드를 수행합니다.
