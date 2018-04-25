@@ -46,10 +46,14 @@ Neo4j 는 다운그레이드를 지원하지 않습니다. 단, 이 절에 설�
 <br>&nbsp;&nbsp;&nbsp;&nbsp;```dbms.mode=SINGLE```
 <br>&nbsp;&nbsp;&nbsp;&nbsp;```dbms.allow_upgrade=true```
 <br>&nbsp;&nbsp;c. 이 서버에 백업을 전송합니다.
-<br>&nbsp;&nbsp;d.
-<br>&nbsp;&nbsp;e.
-<br>&nbsp;&nbsp;f.
-<br>&nbsp;&nbsp;g.
+<br>&nbsp;&nbsp;d. Neo4j 3.3.5를 시작합니다.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&middot;데이터베이스 업그레이드는 시작할 때 수행됩니다.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&middot;업그레이드 및 진행률에 대한 정보가 _debug.log_ 에 기록됩니다.
+<br>&nbsp;&nbsp;e. 업그레이드가 완료되면 데이터베이스를 종료합니다.
+<br>&nbsp;&nbsp;f. 업그레이드된 데이터베이스의 새 백업을 수행합니다.
+<br>&nbsp;&nbsp;g. 이 서버의 기존 구성 파일을 복원합니다.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;```neo4j-home$ mv neo4j.conf.save neo4j.conf```
+
 5. 업그레이드된 데이터베이스를 사용하여 클러스터를 준비합니다. 자세한 내용은 [섹션 4.2.4 "Seed a Causal Cluster"](../clustering/causal-clustering/seed-cluster.md)를 참조하십시오.
 <br>&nbsp;&nbsp;a. 마지막 백업을 새 클러스터의 다른 서버로 전송합니다.
 <br>&nbsp;&nbsp;b. neo4j-admin을 사용하여 각 시스템의 백업을 복원합니다.
