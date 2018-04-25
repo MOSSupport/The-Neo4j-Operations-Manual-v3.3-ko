@@ -1,6 +1,15 @@
+# 5. 업그레이드
+
+`이 섹션에서는 Neo4j를 이전 버전에서 업그레이드하는 방법을 설명합니다.`
+
 ## 5.1. 업그레이드 계획
 
 이 장에 나와있는 절차에 따라 업그레이드를 계획합니다.
+
+> 이 지침에서 Neo4j 데이터를 저장하는 데 사용되는 디렉토리를 `데이터베이스 디렉토리`라고 합니다. 데이터베이스 디렉토리의 기본 경로는 _\<neo4j-home>/data/databases/graph.db_ 입니다.
+<br>[dbms.directories.data](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.directories.data) 또는 [dbms.active_database](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.active_database) 설정값에 대한 사용자 정의 값이 있는 경우에는 데이터베이스 디렉터리의 위치가 영향을 받습니다.
+
+
 
 ### 5.1.1. 지원되는 업그레이드 경로
 
@@ -30,7 +39,7 @@
 <br>업그레이드 계획의 일환으로 Neo4j를 사용하는 모든 애플리케이션을 테스트하고 업데이트할 준비를해야 합니다. 애플리케이션 코드를 업데이트하는 데 필요한 개발 시간은 애플리케이션에 따라 달라집니다.
 
 6. 사용자 플러그인을 업그레이드합니다.
-<br>_플러그인_ 디렉토리([섹션 3.1"파일 위치"](https://neo4j.com/docs/operations-manual/3.3/configuration/file-locations/)참조)를 확인하여 사용자 지정 플러그인이 배포에 사용되는지 확인합니다. 모든 플러그인이 Neo4j 3.3.5와 호환되는지 확인합니다.
+<br>_플러그인_ 디렉토리([섹션 3.1"파일 위치"](../configuration/file-locations.md)참조)를 확인하여 사용자 지정 플러그인이 배포에 사용되는지 확인합니다. 모든 플러그인이 Neo4j 3.3.5와 호환되는지 확인합니다.
 
 7. 요구 사항에 따라 디스크 공간 사용을 계획합니다.
 <br>업그레이드는 데이터베이스의 전체 복사본을 만들기 때문에 여유 디스크 공간이 많이 필요합니다. 업그레이드의 경우 추가적인(50% * size_of(`데이터베이스 디렉터리`))를 사용할 수 있는지 확인하십시오. 또한 사전 업그레이드에 필요한 디스크 공간을 예약해야 합니다.
