@@ -51,4 +51,5 @@ Neo4j는 역할 기반 액세스 제어 프레임워크에 다섯 가지 기본 
 | Terminate all queries                    |          |          |             |             | `X`     |           |
 | Dynamically change configuration ([3.7절, "동적 설정" 참조](/configuration/dynamic-settings.md)) |          |          |             |             | `X`     |           |
 
+할당 된 역할이 없는 [사용자](/security/authentication-authorization/terminology.html/#term-user)에게는 읽기 권한조차 데이터와 관련된 권한이나 기능이 없습니다. 사용자는 둘 이상의 할당된 역할을 가질 수 있으며 이들의 결합은 사용자가 수행 할 수 있는 데이터의 작업을 결정합니다.
 A [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) who has no assigned roles will not have any rights or capabilities regarding the data, not even read privileges. A user may have more than one assigned role, and the union of these determine what action(s) on the data may be undertaken by the user.
