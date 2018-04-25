@@ -30,9 +30,8 @@ Neo4j HA클러스터(Neo4j Enterprise Edition)를 업그레이드하려면 매�
   10. 업그레이드가 완료되면 ```dbms.allow_upgrade```옵션은 ```false```로 설정되거나 제거되어야 합니다.
   11. 업그레이드 후에는 즉시 전체 백업을 수행하는 것이 좋습니다.
   
-  > 사이퍼 호환성
-  
-  > Cypher언어는 Neo4j 버전 사이에서 진화할 수 있습니다. 이전 버전과의 호환성을 위해 Neo4j는 이전 Cypher언어 버전을 명시적으로 선택할 수 있는 지침을 제공합니다. 이 작업은 [Neo4j Developer Manual](https://neo4j.com/docs/developer-manual/3.4-preview/cypher/deprecations-additions-removals-compatibility/#cypher-compatibility)에 설명된 대로 전체 또는 개별 문장에 대해 적용할 수 있습니다.
+  > **사이퍼 호환성**<br>
+ Cypher언어는 Neo4j 버전 사이에서 진화할 수 있습니다. 이전 버전과의 호환성을 위해 Neo4j는 이전 Cypher언어 버전을 명시적으로 선택할 수 있는 지침을 제공합니다. 이 작업은 [Neo4j Developer Manual](https://neo4j.com/docs/developer-manual/3.4-preview/cypher/deprecations-additions-removals-compatibility/#cypher-compatibility)에 설명된 대로 전체 또는 개별 문장에 대해 적용할 수 있습니다.
 
 ### 5.2.2. 3.x에서 업그레이드
 
