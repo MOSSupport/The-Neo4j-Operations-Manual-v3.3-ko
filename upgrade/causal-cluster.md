@@ -40,7 +40,8 @@ Neo4j 는 다운그레이드를 지원하지 않습니다. 단, 이 절에 설�
 2. Set your cluster to read-only. Note: This step involves downtime. 
 3. 클러스터의 전체 백업을 수행합니다. 자세한 내용은 [섹션 6.2"백업 수행"](../backup/perform-backup.md)을 참조하십시오.
 4. Perform the upgrade on one of the servers in the new cluster:
-5. Prepare the cluster with the upgraded database. See Section 4.2.4, “Seed a Causal Cluster” for more information. 
+5. 업그레이드된 데이터베이스를 사용하여 클러스터를 준비합니다. 자세한 내용은 [섹션 4.2.4 "Seed a Causal Cluster"](../clustering/causal-clustering/seed-cluster.md)를 참조하십시오.
+
 6. 이전 클러스터의 서버를 종료합니다. **참고**:이 단계에서는 다운 타임이 발생합니다.
 7. 로드 밸런서가 새 클러스터를 가리키도로록 설정합니다.
 8. 클러스터의 서버를 시작하고 클러스터가 형성되어 트랜잭션을 수락하는지 확인합니다.
