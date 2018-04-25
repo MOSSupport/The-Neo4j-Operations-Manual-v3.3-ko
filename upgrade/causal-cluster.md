@@ -39,7 +39,17 @@ Neo4j 는 다운그레이드를 지원하지 않습니다. 단, 이 절에 설�
 1. Prepare the new cluster:
 2. Set your cluster to read-only. Note: This step involves downtime. 
 3. 클러스터의 전체 백업을 수행합니다. 자세한 내용은 [섹션 6.2"백업 수행"](../backup/perform-backup.md)을 참조하십시오.
-4. Perform the upgrade on one of the servers in the new cluster:
+4. 새 클러스터의 서버 중 하나에서 업그레이드를 수행합니다.
+<br>&nbsp;&nbsp;a. 새 클러스터에 있는 서버 중 하나의 임시 파일에 준비된 neo4j.conf를 저장합니다.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;```neo4j-home$ cp neo4j.conf neo4j.conf.save```
+<br>&nbsp;&nbsp;b. _neo4j.conf_ 를 편집하여 이 서버를 독립 실행형 서버로 만들고 다음과 같이 업그레이드할 수 있도록 설정합니다.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;```dbms.mode=SINGLE```
+<br>&nbsp;&nbsp;&nbsp;&nbsp;```dbms.allow_upgrade=true```
+<br>&nbsp;&nbsp;c. 이 서버에 백업을 전송합니다.
+<br>&nbsp;&nbsp;d.
+<br>&nbsp;&nbsp;e.
+<br>&nbsp;&nbsp;f.
+<br>&nbsp;&nbsp;g.
 5. 업그레이드된 데이터베이스를 사용하여 클러스터를 준비합니다. 자세한 내용은 [섹션 4.2.4 "Seed a Causal Cluster"](../clustering/causal-clustering/seed-cluster.md)를 참조하십시오.
 <br>&nbsp;&nbsp;a. 마지막 백업을 새 클러스터의 다른 서버로 전송합니다.
 <br>&nbsp;&nbsp;b. neo4j-admin을 사용하여 각 시스템의 백업을 복원합니다.
