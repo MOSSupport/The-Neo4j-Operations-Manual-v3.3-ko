@@ -14,6 +14,7 @@ Neo4j provides five built-in roles in our role-based access control framework:
 
 -   `editor`
 
+    데이터 그래프에 읽기/쓰기 접근이 가능합니다. 
     Read/write access to the data graph. Write access limited to creating and changing existing properties key, node labels, and relationship types of the graph.
 
 -   `publisher`
