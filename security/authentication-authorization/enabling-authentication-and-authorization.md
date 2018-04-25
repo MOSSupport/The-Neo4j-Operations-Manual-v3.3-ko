@@ -1,4 +1,4 @@
-### 7.1.3. Enabling authentication and authorization  <code>Enterprise Edition</code>
+### 7.1.3. 인증과 권한 부여 활성화  <code>Enterprise Edition</code>
 
 <div class="abstract">
 	<p>이 절에서는 Neo4j의 인증과 권한 부여에 활성화에 대해서 설명합니다. 
