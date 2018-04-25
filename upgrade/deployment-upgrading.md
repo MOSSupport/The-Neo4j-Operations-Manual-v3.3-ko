@@ -24,7 +24,7 @@ Neo4j HA클러스터(Neo4j Enterprise Edition)를 업그레이드하려면 매�
       ``` neo4j-admin import --mode=database --database=<database-name> --from=<source-directory> ```
   
   6. 데이터베이스를 graph.db라고 하지 않는 경우 _neo4j.conf_ 에서 ```dbms.active_database```를 데이터베이스 이름으로 설정합니다.
-  7. 3.3.5 설치의 _neo4j.conf_ 에서 ```dbms.allow_format_migration=true```로 설정합니다. 이 설정을 안하면 Neo4j는 기동에 실패합니다.
+  7. 3.3.5 설치의 _neo4j.conf_ 에서 [`dbms.allow_format_migration=true`](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.allow_format_migration)로 설정합니다. 이 설정을 안하면 Neo4j는 기동에 실패합니다.
   8. Neo4j 3.3.5.를 시작합니다. 데이터베이스 업그레이드는 시작할 때 수행됩니다.
   9. 업그레이드 및 진행률에 대한 자세한 내용은 [debug.log](../configuration/file-locations.md)에 기록됩니다.
   10. 업그레이드가 완료되면 ```dbms.allow_upgrade```옵션은 ```false```로 설정되거나 제거되어야 합니다.
