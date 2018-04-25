@@ -36,7 +36,12 @@ Neo4j 는 다운그레이드를 지원하지 않습니다. 단, 이 절에 설�
 
 **절차**
 
-1. Prepare the new cluster:
+1. 새 클러스터를 준비합니다.
+<br>&nbsp;&nbsp;a. Neo4j Enterprise Edition 3.3.5를 설치합니다.
+<br>&nbsp;&nbsp;b. 각각의 새 서버에 _neo4j.conf_ 파일을 준비합니다. [섹션 5.1"업그레이드 계획"](upgrade-planning.md)에 따라 새로운 구성 설정 또는 변경된 구성 설정을 고려해야 할 수 있습니다.
+<br>&nbsp;&nbsp;새 서버의 IP주소가 구성 파일에 반영되었는지 확인합니다.
+<br>&nbsp;&nbsp;```dbms.mode=CORE```
+<br>&nbsp;&nbsp;```causal_clustering.initial_discovery_members=<YOUR SETUP>```
 2. 클러스터를 읽기 전용으로 설정합니다. **참고**:이 단계에서는 다운 타임이 발생합니다.
 <br>&nbsp;&nbsp;a. 클러스터의 각 서버에서 다음을 수행합니다.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;i. 데이터베이스를 종료합니다.
