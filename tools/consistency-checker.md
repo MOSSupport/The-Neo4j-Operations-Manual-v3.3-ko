@@ -1,2 +1,107 @@
- 
+## 10.4. Consistency checker
+This section describes the Neo4j consistency checker.
 
+The consistency of a database or a backup can be checked using the check-consistency argument to the neo4j-admin tool.
+
+### 10.4.1. Check consistency of a database or a backup
+The neo4j-admin tool is located in the bin directory. Run it with the check-consistency argument in order to check the consistency of a database.
+
+문법
+
+neo4j-admin check-consistency [--database=<name>] [--backup=</path/to/backup>] [--verbose[=<true|false>]] [--report-dir=<directory>] [--additional-config=<config-file-path>] [--check-graph[=<true|false>]] [--check-indexes[=<true|false>]] [--check-label-scan-store[=<true|false>]] [--check-property-owners[=<true|false>]]
+
+옵션
+
+Option	Default	Description
+--database
+
+graph.db
+
+Name of database.
+
+--backup
+
+
+Path to backup to check consistency of. Cannot be used together with --database.
+
+--additional-config
+
+
+Configuration file to supply additional configuration in. This argument is deprecated.
+
+--verbose
+
+false
+
+Enable verbose output.
+
+--report-dir
+
+.
+
+Directory to write report file in.
+
+--check-graph
+
+true
+
+Perform checks between nodes, relationships, properties, types and tokens.
+
+--check-indexes
+
+true
+
+Perform checks on indexes.
+
+--check-label-scan-store
+
+true
+
+Perform checks on the label scan store.
+
+--check-property-owners
+
+false
+
+Perform additional checks on property ownership. This check is very expensive in time and memory.
+
+Limitations
+
+The consistency checker cannot be used with a database which is currently in use. If used with a running database, it will stop and print an error.
+
+Output
+
+If the consistency checker does not find errors, it will exit cleanly and not produce a report. If the consistency checker finds errors, it will exit with an exit code of 1 and write a report file with a name on the format inconsistencies-YYYY-MM-DD.HH24.MI.SS.report. The location of the report file is the current working directory, or as specified by the parameter report-dir.
+
+예제 10.8. Run the consistency checker
+Run with the --database option to check the consistency of a database. Note that the database must be stopped first.
+
+$neo4j-home> bin/neo4j stop
+$neo4j-home> bin/neo4j-admin check-consistency --database=graph.db
+
+2017-02-02 09:45:31.719+0000 INFO  [o.n.k.i.s.f.RecordFormatSelector] Selected RecordFormat:StandardV3_0[v0.A.7] record format from store /Users/maria/neo4j-enterprise-3.2.0-alpha03/data/databases/graph.db
+2017-02-02 09:45:31.719+0000 INFO  [o.n.k.i.s.f.RecordFormatSelector] Format not configured. Selected format from the store: RecordFormat:StandardV3_0[v0.A.7]
+2017-02-02 09:45:31.963+0000 INFO  [o.n.m.MetricsExtension] Initiating metrics...
+....................  10%
+....................  20%
+....................  30%
+....................  40%
+....................  50%
+....................  60%
+....................  70%
+....................  80%
+....................  90%
+...................Checking node and relationship counts
+....................  10%
+....................  20%
+....................  30%
+....................  40%
+....................  50%
+....................  60%
+....................  70%
+....................  80%
+....................  90%
+.................... 100%
+Run with the --backup option to check the consistency of a backup.
+
+bin/neo4j-admin check-consistency --backup backup/graph.db-backup
