@@ -15,5 +15,5 @@ To propagate changes to native users, custom roles, and role assignments across 
 -   Manually copy users and roles files on disk to all other cluster instances
 -   Use a shared network folder to store users and roles files
 -   Create an automated process that synchronizes the stored data across the cluster using, for example, a combination of `rsync` and `crontab`
-ㄹㅇㄹㄴㅇ
+
 We note that the recommended solution for clustered security is to use the LDAP or plugin auth provider.

@@ -23,3 +23,10 @@ div.abstract > p:last-child {
   margin-bottom: 0;
 }
 /* END abstract */
+
+/* BEGIN Examples */
+.informalexample, .example > .example-contents { border-style: solid; border-width: 1px; border-color: #e6e6e6; margin-bottom: 1.33333em; padding: 1.33333em; background: white; -webkit-border-radius: 3px; border-radius: 3px; }
+.informalexample > :first-child, .example > .example-contents > :first-child { margin-top: 0; }
+.informalexample > :last-child, .example > .example-contents > :last-child { margin-bottom: 0; }
+.example > .example-title { line-height: 1.4; color: #777777; font-weight: 300; margin-top: 0.2em; margin-bottom: 0.5em; }
+/* END Examples */
