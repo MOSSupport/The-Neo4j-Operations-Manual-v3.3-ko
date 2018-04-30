@@ -1,10 +1,11 @@
-#### 7.1.4.4. Procedures for native user and role management 
+#### 7.1.4.4. 기본 사용자 및 역할 관리 절차 
 
 <div class="abstract">
-	<p>이 절에서는 Neo4j Cluster의 기본 사용자와 역할 및 역할 할당을 전파하는 방법에 대해서 설명합니다. 
+	<p>이 절에서는 Neo4j Cluster의 기본 사용자 및 역할 관리하는 절차에 대해서 설명합니다. 
 	</p>
 </div>
 This section describes procedures for native user and role management in Neo4j.
+
 
 In Neo4j, native user and role management are managed by using built-in procedures through Cypher. This section gives a list of all the security procedures for user management along with some simple examples. Use the Neo4j Browser or the Neo4j Cypher Shell to run the examples provided.
 
@@ -90,6 +91,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 Example 7.2. List all roles
 <div class="example-contents">
 The following example shows, for each role in the system, the name of the role and the usernames of all assigned users.
+
 
 <code>
 CALL dbms.security.listRoles()
