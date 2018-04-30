@@ -16,7 +16,7 @@ neo4j-admin check-consistency [--database=<name>] [--backup=</path/to/backup>] [
 |---|---|---|
 | --database | graph.db | 데이터베이스 명 |
 | --backup |  | 일관성을 검사하기위한 백업 경로. --database와 함께 사용 불가. |
-| --verbose | 거짓(false) | 자세한 출력을 지정. |
+| --verbose | 거짓(false) | 자세한 출력 여부를 지정. |
 | --report-dir | . | 보고서 파일을 출력할 디렉터리. |
 | --check-graph | 참(true) | 노드, 관계, 속성, 유형, 토큰 간의 체크 수행. |
 | --check-indexes | 참(true) | 인덱스의 체크 수행. |
@@ -25,15 +25,15 @@ neo4j-admin check-consistency [--database=<name>] [--backup=</path/to/backup>] [
 
 **제한 사항**
 
-The consistency checker cannot be used with a database which is currently in use. If used with a running database, it will stop and print an error.
+현재 사용중인 데이터베이스의 일관성을 체크할 수는 없습니다. 만약 실행중인 데이터베이스에 체크를 수행하면, 실행이 안되고 오류를 보여줍니다.
 
 **출력**
 
-If the consistency checker does not find errors, it will exit cleanly and not produce a report. If the consistency checker finds errors, it will exit with an exit code of 1 and write a report file with a name on the format inconsistencies-YYYY-MM-DD.HH24.MI.SS.report. The location of the report file is the current working directory, or as specified by the parameter report-dir.
+일관성 체커가 오류를 찾지 못하면 일관성 체커는 오류없이 끝내고 보고서를 생성하지 않습니다. 일관성 체커 프로그램에서 오류를 발견하면 종료 코드 1로 종료하고 inconsistencies-YYYY-MM-DD.HH24.MI.SS.report 형식의 이름 가진 보고서 파일을 작성합니다. 보고서 파일의 위치는 현재 작업 디렉토리이거나 report-dir 옵션으로 지정됩니다.
 
-예제 10.8. Run the consistency checker
-Run with the --database option to check the consistency of a database. Note that the database must be stopped first.
-
+예제 10.8. 일관성 체커 실행  
+데이터베이스 일관성 체크에는 --database 옵션울 사용합니다. 주: 먼저 데이터베이스의 실행을 중지한 뒤 실행합니다.
+```
 $neo4j-home> bin/neo4j stop
 $neo4j-home> bin/neo4j-admin check-consistency --database=graph.db
 
@@ -60,6 +60,8 @@ $neo4j-home> bin/neo4j-admin check-consistency --database=graph.db
 ....................  80%
 ....................  90%
 .................... 100%
-Run with the --backup option to check the consistency of a backup.
-
+```
+백업 DB에 관한 일관성 체크에는 --backup 옵션을 사용합니다.
+```
 bin/neo4j-admin check-consistency --backup backup/graph.db-backup
+```
