@@ -5,72 +5,29 @@ neo4j-admin을 이용하여 데이터베이스나 백업 DB에 대하여 일관�
 
 ### 10.4.1. 데이터베이스나 백업 DB에 대한 일관성 체크
 
-neo4j-admin 도구는 bin 디렉터리에 위칩합니다. 데이터베이스의 일관성을 체크하기 위해서는 check-consistency 매개변수로 neo4j-admin 도구를 실행합니다.
+neo4j-admin 도구는 bin 디렉터리에 위치합니다. 데이터베이스의 일관성을 체크하기 위해서는 check-consistency 매개변수로 neo4j-admin 도구를 실행합니다.
 
-문법
+**문법**
 ```
-neo4j-admin check-consistency [--database=<name>] [--backup=</path/to/backup>] [--verbose[=<true|false>]] [--report-dir=<directory>] [--additional-config=<config-file-path>] [--check-graph[=<true|false>]] [--check-indexes[=<true|false>]] [--check-label-scan-store[=<true|false>]] [--check-property-owners[=<true|false>]]
+neo4j-admin check-consistency [--database=<name>] [--backup=</path/to/backup>] [--verbose[=<true|false>]] [--report-dir=<directory>] [--check-graph[=<true|false>]] [--check-indexes[=<true|false>]] [--check-label-scan-store[=<true|false>]] [--check-property-owners[=<true|false>]]
 ```
-옵션
+**옵션**
+| 옵션 | 디폴트 | 설명 |
+|---|---|---|
+| --database | graph.db | 데이터베이스 명 |
+| --backup |  | 일관성을 검사하기위한 백업 경로. --database와 함께 사용 불가. |
+| --verbose | 거짓(false) | 자세한 출력을 지정. |
+| --report-dir | . | 보고서 파일을 출력할 디렉터리. |
+| --check-graph | 참(true) | 노드, 관계, 속성, 유형, 토큰 간의 체크 수행. |
+| --check-indexes | 참(true) | 인덱스의 체크 수행. |
+| --check-label-scan-store | 참(true) | 레이블(label) 스캔 저장소 체크 수행. |
+| --check-property-owners | 거짓(false) | 속성 소유권에 관한 추가 체크 수행. 이 체크는 시간-메모리가 매우 소비됩니다. |
 
-Option	Default	Description
---database
-
-graph.db
-
-Name of database.
-
---backup
-
-
-Path to backup to check consistency of. Cannot be used together with --database.
-
---additional-config
-
-
-Configuration file to supply additional configuration in. This argument is deprecated.
-
---verbose
-
-false
-
-Enable verbose output.
-
---report-dir
-
-.
-
-Directory to write report file in.
-
---check-graph
-
-true
-
-Perform checks between nodes, relationships, properties, types and tokens.
-
---check-indexes
-
-true
-
-Perform checks on indexes.
-
---check-label-scan-store
-
-true
-
-Perform checks on the label scan store.
-
---check-property-owners
-
-false
-
-Perform additional checks on property ownership. This check is very expensive in time and memory.
-
-Limitations
+**제한 사항**
 
 The consistency checker cannot be used with a database which is currently in use. If used with a running database, it will stop and print an error.
 
-Output
+**출력**
 
 If the consistency checker does not find errors, it will exit cleanly and not produce a report. If the consistency checker finds errors, it will exit with an exit code of 1 and write a report file with a name on the format inconsistencies-YYYY-MM-DD.HH24.MI.SS.report. The location of the report file is the current working directory, or as specified by the parameter report-dir.
 
