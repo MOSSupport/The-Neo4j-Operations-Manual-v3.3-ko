@@ -11,21 +11,21 @@ In Neo4j, native user and role management are managed by using built-in procedur
 
 The section describes the following:
 
--   [List all users](./security/authentication-authorization/native-user-role-management/procedures/#userauth-list-all-users)
--   [List all roles](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-list-all-roles)
--   [List all roles for a user](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-list-all-roles-for-user)
--   [List all users for a role](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-list-all-users-for-role)
--   [Create a user](./security/authentication-authorization/native-user-role-management/procedures/#userauth-add-user)
--   [Delete a user](./security/authentication-authorization/native-user-role-management/procedures/#userauth-delete-user)
--   [Assign a role to a user](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-assign-role-to-user)
--   [Remove a role from a user](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-remove-role-from-user)
--   [Create a custom role](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-create-role)
--   [Delete a custom role](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-delete-role)
--   [Suspend a user](./security/authentication-authorization/native-user-role-management/procedures/#userauth-suspend-user)
--   [Activate a user](./security/authentication-authorization/native-user-role-management/procedures/#userauth-activate-user)
--   [Change a user’s password](./security/authentication-authorization/native-user-role-management/procedures/#userauth-change-users-password)
--   [Change the current user’s password](./security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password)
--   [List roles per procedure](./security/authentication-authorization/native-user-role-management/procedures/#list-roles-per-procedure)
+- [List all users](./security/authentication-authorization/native-user-role-management/procedures/#userauth-list-all-users)
+- [List all roles](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-list-all-roles)
+- [List all roles for a user](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-list-all-roles-for-user)
+- [List all users for a role](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-list-all-users-for-role)
+- [Create a user](./security/authentication-authorization/native-user-role-management/procedures/#userauth-add-user)
+- [Delete a user](./security/authentication-authorization/native-user-role-management/procedures/#userauth-delete-user)
+- [Assign a role to a user](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-assign-role-to-user)
+- [Remove a role from a user](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-remove-role-from-user)
+- [Create a custom role](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-create-role)
+- [Delete a custom role](./security/authentication-authorization/native-user-role-management/procedures/#user-roles-delete-role)
+- [Suspend a user](./security/authentication-authorization/native-user-role-management/procedures/#userauth-suspend-user)
+- [Activate a user](./security/authentication-authorization/native-user-role-management/procedures/#userauth-activate-user)
+- [Change a user’s password](./security/authentication-authorization/native-user-role-management/procedures/#userauth-change-users-password)
+- [Change the current user’s password](./security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password)
+- [List roles per procedure](./security/authentication-authorization/native-user-role-management/procedures/#list-roles-per-procedure)
 
 
 ##### List all users
@@ -54,7 +54,6 @@ The following example shows, for each [user](./security/authentication-authoriza
 ```
 CALL dbms.security.listUsers()
 ```
-
 
 ```
 +---------------------------------------------------------------------+
@@ -92,7 +91,7 @@ An [administrator](./security/authentication-authorization/terminology/#term-adm
 Example 7.2. List all roles
 <div class="example-contents">
 The following example shows, for each role in the system, the name of the role and the usernames of all assigned users.
-<p/>
+<p>
 
 <code>
 CALL dbms.security.listRoles()
