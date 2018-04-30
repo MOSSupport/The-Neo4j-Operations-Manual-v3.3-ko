@@ -5,16 +5,17 @@
 ```
 neo4j-admin memrec [--memory=<Neo4j만 사용하는 메모리>]
 ```
-The recommendations will be given in a format such that it can be copied and pasted straight into neo4j.conf.
+권장 사항은 neo4j.conf에 바로 복사, 붙여넣기 가느안 포맷으로 제공됩니다.
 
 **옵션**
 
-Option	Default	Description
---memory 16g The amount of memory to allocate to Neo4j. Valid units are: k, K, m, M, g, G.
+| 옵션 | 디폴트 | 설명 |
+|---|---|---|
+| --memory | 16g | Neo4j에 할당될 메모리의 크기. 유효한 단위: k, K, m, M, g, G. |
 
 **고려 사항**
 
-The neo4j-admin memrec command calculates a valid starting point for Neo4j memory settings, based on the provided memory. The specific conditions for your use case may warrant adjustment of these values. If the storage required for indexing purposes is high, then it might be advantageous to leave more memory for the operating system. On the other hand, if your workload has many concurrent transactions and many updates, Neo4j will need more heap memory. See also Section 9.1, “Memory configuration” for a description of the memory settings in Neo4j.
+`neo4j-admin memrec` 명령은 Neo4j 메모리 설정의 유효한 시작 포인트를 계산해 줍니다. 유스 케이스마다 권장값 조정이 필요할 수 있습니다. 인덱싱 목적으로 필요한 스토리지가 높으면 운영 체제용으로 더 많은 메모리를 남겨 두는 것이 좋습니다. 반면, 작업 부하에 많은 동시 트랜잭션과 많은 업데이트가 있는 경우의 Neo4j는 더 많은 힙 메모리를 필요로합니다. Neo4j의 메모리 설정에 대한 설명은 9.1 절. [메모리 구성](../performance/memory-configuration.md)을 참조하십시오.
 
 예제 10.9. `neo4j-admin`의 `memrec` 명령 사용  
 다음 예제는 `neo4j-admin memrec`이 16G 메모리에서 메모리 추천을 제공하는 방법을 보여줍니다:  
