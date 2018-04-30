@@ -1,15 +1,16 @@
-## 10.4. Consistency checker
-This section describes the Neo4j consistency checker.
+## 10.4. 일관성 체커
+> 이 절에서는 Neo4j 일관성 체커에 대하여 설명합니다.
 
-The consistency of a database or a backup can be checked using the check-consistency argument to the neo4j-admin tool.
+neo4j-admin을 이용하여 데이터베이스나 백업 DB에 대하여 일관성을 체크합니다.
 
-### 10.4.1. Check consistency of a database or a backup
-The neo4j-admin tool is located in the bin directory. Run it with the check-consistency argument in order to check the consistency of a database.
+### 10.4.1. 데이터베이스나 백업 DB에 대한 일관성 체크
+
+neo4j-admin 도구는 bin 디렉터리에 위칩합니다. 데이터베이스의 일관성을 체크하기 위해서는 check-consistency 매개변수로 neo4j-admin 도구를 실행합니다.
 
 문법
-
+```
 neo4j-admin check-consistency [--database=<name>] [--backup=</path/to/backup>] [--verbose[=<true|false>]] [--report-dir=<directory>] [--additional-config=<config-file-path>] [--check-graph[=<true|false>]] [--check-indexes[=<true|false>]] [--check-label-scan-store[=<true|false>]] [--check-property-owners[=<true|false>]]
-
+```
 옵션
 
 Option	Default	Description
