@@ -25,11 +25,11 @@
 
 Neo4j만 실행되는 서버라면 1GB는 적절한 값입니다.
 
-예제 9.1. OS 메모리 결정
-```
-OS용으로 예약할 메모리 크기를 정합니다. 이 값은 이 절의 마지막 예제에서 사용됩니다.
+예제 9.1. OS 메모리 결정  
+***
+OS용으로 예약할 메모리 크기를 정합니다. 이 값은 이 절의 마지막 예제에서 사용됩니다.  
 OS 예약으로 사용할 메모리의 크기 = 1GB.
-```
+***
 만약, 실제 서버의 RAM이 크다면, OS용으로 1GB 보다 더 큰 값을 예약합니다.
 
 ### 루씬 인덱스 캐시
@@ -39,15 +39,17 @@ Neo4j는 인덱싱 기능 중 일부에 [아파치 루씬(Apache Lucene)](https:
 * NEO4J_HOME/data/databases/<데이터베이스 명>/index
 * NEO4J_HOME/data/databases/<database-name>/schema/index/\*/\*/lucene\*
 
-예제 9.2. 루씬 인덱스에 예약할 메모리 측정
-```
+예제 9.2. 루씬 인덱스에 예약할 메모리 측정  
+***
 데이터베이스 명은 graph.db로 가정합니다. 인덱스 크기는 인덱스 크기에 schema/index/lucene 디렉토리의 크기를 합산합니다.  
+```
 $neo4j-home> ls data/databases/graph.db/index | du -ch | tail -1
 500M    total
 $neo4j-home> find data/databases/graph.db/schema/index -regex '.*/lucene.*' | du -hc | tail -1
 500M    total
-인덱스를 위해 예약될 메모리 용량 = 500MB + 500MB = 1GB.
 ```
+인덱스를 위해 예약될 메모리 용량 = 500MB + 500MB = 1GB.  
+***
 ### 페이지 캐시
 페이지 캐시는 디스크에 저장되는 Neo4j 데이터의 캐시에 사용됩니다. 디스크의 모든 그래프 데이터, 또는 적어도 대부분의 그래프 데이터가 메모리에 캐시되면, 값비싼 디스크 액세스를 하지 않아, 최적의 성능을 얻을 수 있습니다.  
 
@@ -67,68 +69,75 @@ Neo4j가 페이지 캐시에 사용할 수 있는 메모리 양을 지정하는 
 
 사용 중인 프로덕션 데이터베이스와 새로운 데이터베이스의 최적 페이지 캐시 크기를 결정하고 설정하는 방법의 예제는 아래를 참고합니다.
 
-예제 9.3. 사용 중인 Neo4j 데이터베이스의 페이지 캐시 예측
-```
+예제 9.3. 사용 중인 Neo4j 데이터베이스의 페이지 캐시 예측  
+***
 이 예제의 데이터베이스 명은 표준 이름인 graph.db라고 가정합니다.
 데이터베이스 파일의 전체 크기를 예측하려고 합니다. Posix 시스템에서 다음 명령을 실행합니다:
+```
 $neo4j-home> ls data/databases/graph.db/*store.db* | du -ch | tail -1
 33G total
 $neo4j-home> find data/databases/graph.db/schema/index -regex '.*/native.*' | du -hc | tail -1
 2G  total
+```
 두 용량의 합은 33G + 2G = 35G 입니다. 이 예제에서는 데이터베이스가 향후 20% 증가할 것을 예상하여 여유 공간을 둡니다. 결과에 다음과 같이 20% 증가분을 포함시킵니다:
 
-dbms.memory.pagecache.size = 1.2 * (35GB) =  42GB
+`dbms.memory.pagecache.size` = 1.2 * (35GB) =  42GB
 
 neo4j.conf 파일에 다음을 추가하여 페이지 캐시를 설정합니다:
-
+```
 dbms.memory.pagecache.size=42GB
 ```
+***
 예제 9.4. 새로운 Neo4j 데이터베이스 페이지 캐시 예측
-```
+***
 이 예제의  데이터베이스 명은 표준 이름인 graph.db라고 가정합니다.
 새로운 Neo4j 데이터베이스의 경우에는, 데이터 전체 중 일부(예를 들면 1/100 )만 임포트(import)한 뒤, 결과 저장-크기에 해당 배수(x100)를 곱해 줍니다. 향후 데이터베이스가 20% 정도 증가할 것으로 예상하여 20%정도 여유를 둡니다.
 
 만약 테스트 데이터베이스에 1/100 만큼 임포트했다면, 다음에는 결과되는 데이터베이스 크기를 알아봅니다. 만약 Posix 시스템이면 다음 명령으로 확인합니다:  
-
+```
 $neo4j-home> ls data/databases/graph.db/*store.db* | du -ch | tail -1
 330M total
 $neo4j-home> find data/databases/graph.db/schema/index -regex '.*/native.*' | du -hc | tail -1
 20M total
+```
 여기에서 합은: 330M + 20M = 350M입니다. 결과값에 20% 증가분을 더 추가해 줍니다:
 
-dbms.memory.pagecache.size = 120*(350 MB) =  42GB
+`dbms.memory.pagecache.size` = 120*(350 MB) =  42GB
 
 다음과 같이 neo4j.conf에 페이지 캐시를 설정합니다:
-
+```
 dbms.memory.pagecache.size=42G
 ```
+***
 ### 힙 크기
 힙(Heap) 공간은 쿼리 실행, 트랜잭션 상태, 그래프 관리 등에 사용됩니다. 필요한 힙의 크기는 어떻게 Neo4j를 사용하는지에 따라 크게 달라집니다. 예를 들어 실행 시간이 긴 쿼리나 큰 데이터셋간에 데카르트 곱을 수행하는 쿼리의 경우, 간단한 쿼리보다 큰 힙이 필요합니다. 성능 문제가 발생할 경우 힙을 증가시켜야 할지 여부를 결정하기 위해 쿼리를 조정하고 메모리 사용을 모니터링해야 할 수 있습니다.  
 사용 가능한 힙 메모리의 크기는 Neo4j의 성능에서 중요합니다. 일반적으로 동시 작업을 유지할 만큼 충분히 큰 힙을 설정합니다. 힙 크기가 너무 작으면 성능이 좋지 않을 수 있습니다.
-힙 메모리 크기는 dbms.memory.heap.initial_size와 dbms.memory.heap.max_size 설정 값에 의해 결정됩니다. 원치 않는 전체 가비지 콜렉션에 따른 일시 정지를 피하려면 이 두 설정 값을 같은 값으로 설정하는 것이 좋습니다.  
+힙 메모리 크기는 `dbms.memory.heap.initial_size`와 `dbms.memory.heap.max_size` 설정 값에 의해 결정됩니다. 원치 않는 전체 가비지 콜렉션에 따른 일시 정지를 피하려면 이 두 설정 값을 같은 값으로 설정하는 것이 좋습니다.  
 예제 9.5. 힙 크기 설정하기
-```
+***
 대부분의 경우, 8GB 에서 16GB 사이의 힙 크기는 Neo4j가 안정적으로 실행되기에 적절합니다.  
 이 예제에서는, 힙 크기를 16GB로 설정합니다. 원하지 않는 가비지 콜렉션을 피하기 위해 초기 값과 최대 값을 동일 값으로 설정합니다.  
+```
 dbms.memory.heap.initial_size=16G
 dbms.memory.heap.max_size=16G
 ```
+***
 ### 메모리 설정 확인
 위 절들에서 설명한 대로 페이지 캐시와 힙의 설정값을 지정한 후에는 OS(운영 체제)와 인덱스 캐싱에 충분한 메모리가 남아 있는지 확인합니다. 다음 사항을 확인하십시오:
 실제 OS에 남아 있는 메모리 OS = 시스템의 가용 RAM 크기 - 인덱스 캐시 크기 - 페이지 캐시 - 힙 크기.
 
 예제 9.6. 메모리 설정 확인하기
-```
+***
 이 예제에서는 64GB RAM 시스템을 가정합니다. 이 절의 이전 예제에 따라 메모리를 설정했다고 가정합니다.  
 
-시스템의 가용 RAM = 64GB
-OS에 예약할 최소 메모리  = 1GB
-루씬(Lucene) 인덱스 캐시 크기 = 1GB
-페이지 캐시 = 42GB
-힙 크기 = 16GB
+* 시스템의 가용 RAM = 64GB
+* OS에 예약할 최소 메모리  = 1GB
+* 루씬(Lucene) 인덱스 캐시 크기 = 1GB
+* 페이지 캐시 = 42GB
+* 힙 크기 = 16GB
 
 실제 OS에 남아있는 메모리 = 64GB - 1 GB - 16GB - 42GB = 4GB > 1GB.  
 
 위의 계산에 따르면 OS(운영 체제)에 충분한 메모리가 남아 있으므로 스와핑 위험을 피할 수 있습니다.
-```
+***
 <span class="glyphicon glyphicon-info-sign" aria-hidden="true"> </span> 시스템을 무리없이 운영하려면 neo4j.conf에서 페이지 캐시와 힙 크기 설정을 하는 것이 좋습니다. 이러한 설정 값이 명시 적으로 정의되지 않으면, 일부 휴리스틱 설정은 이용 가능한 시스템 리소스를 기반으로 시작 시 계산됩니다.

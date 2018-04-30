@@ -18,11 +18,12 @@ neo4j-admin import [--mode=csv] [--database=<name>]
                           [--max-memory=<max-memory-that-importer-can-use>]
 ```
 예제 10.1. CSV 파일에서 데이터 임포트  
-
+***
 다음 절의 CSV 헤더 포맷에 따라 데이터 형식을 지정한 movies.csv, actors.csv, roles.csv 파일이 있고, 이들 세 파일에서 임포트 명령은 다음과 같습니다.
 ```
 neo4j_home$ bin/neo4j-admin import --nodes import/movies.csv --nodes import/actors.csv --relationships import/roles.csv
 ```
+***
 3.0-이전 데이터베이스로 임포트하는 명령을 다음과 같습니다:
 ```
 neo4j-admin import --mode=database [--database=<name>]

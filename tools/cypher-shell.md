@@ -27,6 +27,7 @@ cypher-shell [-h] [-a ADDRESS] [-u USERNAME] [-p PASSWORD] [--encryption {true,f
 | --encryption {true,false} | Neo4j 연결의 암호화 여부  반드시 암호화합니다.; Neo4j의 설정과 일치해야 합니다.(디폴트: true). |
 
 예제 10.12. 사용자명과 암호로 Cypher Shell 호출  
+***
 ```
 $neo4j-home> bin/cypher-shell -u johndoe -p secret
 
@@ -35,7 +36,9 @@ Type :help for a list of available commands or :exit to exit the shell.
 Note that Cypher queries must end with a semicolon.
 neo4j>
 ```
+***
 예제 10.13. Cypher Shell 내에서 도움말 호출   
+***
 ```
 neo4j> :help
 Available commands:
@@ -51,7 +54,9 @@ Available commands:
 For help on a specific command type:
     :help command
 ```    
+***
 예제 10.14. Cypher Shell 내에서 쿼리 실행   
+***
 ```
 neo4j> MATCH (n) RETURN n;
 +-----------------------------------------------------------------+
@@ -61,7 +66,9 @@ neo4j> MATCH (n) RETURN n;
 | (:Person {name: "Selina Kyle", alias: ["Catwoman", "The Cat"]}) |
 +-----------------------------------------------------------------+  
 ```
+***
 예제 10.15. 명령-줄에서 Cypher 스크립트와 함께 Cypher Shell 호출   
+***
 다음은 examples.cypher라는 파일의 내용입니다:
 ```
 MATCH (n) RETURN n;
@@ -76,10 +83,12 @@ n
 batman
 (:Person {name: "Bruce Wayne", alias: "Batman"})
 ```
+***
 ### 10.7.2. 쿼리 매개변수
 Cypher Shell은 매개변수에 의한 쿼리를 지원합니다. 종종 스크립팅에서  사용됩니다.  
 
 예제 10.16. Cypher Shell에서 매개변수 사용  
+***
 ':param' 키워드를 사용하여 매개변수 'thisAlias'에 'Robin'을 지정합니다. ':params' 키워드를 사용하여 매개변수를 체크합니다.
 ```
 neo4j> :param thisAlias 'Robin'
@@ -96,6 +105,7 @@ n
 (:Person {name: "Selina Kyle", alias: ["Catwoman", "The Cat"]})
 (:Person {name: "Dick Grayson", alias: "Robin"})
 ```
+***
 Cypher Shell 1.1.4 부터는 매개변수 문법이 변경되었고 매개변수 출력 리스팅도 약간 변경되었습니다.
 ```
 neo4j> :param thisAlias => 'Robin'
@@ -105,7 +115,8 @@ neo4j> :params
 ### 10.7.3. 트랜젝션  
 Cypher Shell 명시적인 트랜젝션을 지원합니다. 트랜젝션은 키워드, :begin, :commit, :rollback:으로 제어합니다:
   
-예제 10.17. 세밀한 트랜잭션 제어 사용
+예제 10.17. 세밀한 트랜잭션 제어 사용  
+***
 첫번째 Cypher Shell 세션에서 트랜젝션을 시작합니다:
 ```
 neo4j> MATCH (n) RETURN n;
@@ -136,14 +147,16 @@ n
 (:Person {name: "Edward Mygma", alias: "The Riddler"})
 neo4j>
 ```
-
+***
 ### 10.7.4. 프로시저
-Cypher Shell은 현재 사용자에게 권한이 부여된 모든 프로시저 실행을 지원합니다. 여기서는 빌트-인 프로시저 dbms.showCurrentUser()를 사용합니다.
+Cypher Shell은 현재 사용자에게 권한이 부여된 모든 프로시저 실행을 지원합니다. 여기서는 빌트-인 프로시저 `dbms.showCurrentUser()`를 사용합니다.
 
 예제 10.18. Cypher Shell에서 프로시저 호출하기
 ```
+***
 neo4j> CALL dbms.showCurrentUser();
 username, roles, flags
 "johndoe", ["admin"], []
 neo4j> :exit
 ```
+***

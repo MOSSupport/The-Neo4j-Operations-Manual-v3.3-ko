@@ -11,4 +11,4 @@ $ echo 'deadline' > /sys/block/sda/queue/scheduler
 $ cat               /sys/block/sda/queue/scheduler
 noop [deadline] cfq
 ```
-또 다른 권장되는 방법은 파일과 디렉토리 액세스 시간 업데이트를 비활성화하는 것입니다. 이렇게하면 파일 시스템에서 이 메타 데이터를 업데이트하는 쓰기를 수행 할 필요가 없으므로 쓰기 성능이 향상됩니다. 이는 fstab에서`noatime, nodiratime` 마운트 옵션을 설정하거나 disk mount 명령으로 가능합니다.
+또 다른 권장되는 방법은 파일과 디렉토리 액세스 시간 업데이트를 비활성화하는 것입니다. 이렇게하면 파일 시스템에서 이 메타 데이터를 업데이트하는 쓰기를 수행 할 필요가 없으므로 쓰기 성능이 향상됩니다. 이는 _fstab_에서`noatime, nodiratime` 마운트 옵션을 설정하거나 disk mount 명령으로 가능합니다.
