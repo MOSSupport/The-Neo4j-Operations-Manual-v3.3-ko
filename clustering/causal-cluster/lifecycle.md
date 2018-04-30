@@ -73,7 +73,7 @@ Read Replica는 그래프 쿼리를 동시에 처리하고 코어 서버의 트�
 >> 매우 느린 데이터베이스 저장소 복사본은 코어 서버가 상당히 이동하면서 트랜잭션 로그 전달을 통해 따라잡기에는 Read replica를 너무 뒤에 남겨 둘 수 있습니다. 이 경우 Read replica 서버는 catchup 프로토콜을 반복합니다. 병리학적인 경우에 운영자는 빠른 백업으로부터 최근 저장 파일의 스냅 샷, 복원 또는 파일 복사에 개입할 수 있습니다.
 
 #### 4.2.2.6. backup 프로토콜
- Causal 클러스터의 수명 기간 동안 운영자는 재해 복구를 위해 클러스터 상태를 백업하길 원할 것입니다.
+ Causal 클러스터의 수명 기간 동안 운영자는 재해 복구를 위해 클러스터 상태를 백업하길 원할 것입니다. 백업은 온라인 시스템과 최근 상태 사이에 고의적인 차이를 두어 공통 실패 지점 (예 : 동일한 클라우드 저장소)을 공유하지 않도록 하는 전략입니다.
 
 During the lifetime of the Causal Cluster, operators will want to back up the cluster state for disaster recovery purposes. Backup is a strategy that places a deliberate gap between the online system and its recent state such that the two do not share common failure points (such as the same cloud storage). Backup is in addition to and orthogonal to any strategies for spreading Core Servers and Read Replicas across data centers.
 
