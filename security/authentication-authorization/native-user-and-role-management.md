@@ -27,7 +27,7 @@ For managing native users, Neo4j offers additional actions for an administrator:
 
 이 절은 아래 내용을 설명합니다.:
 
--   #####[기본 역할](./native-user-and-role-management/native-roles.md)
--   #####[사용자 역할](./native-user-and-role-management/custom-roles.md)
+-   ######[기본 역할](./native-user-and-role-management/native-roles.md)
+-   ######[사용자 역할](./native-user-and-role-management/custom-roles.md)
 -   #####[사용자 및 역할 전파](./native-user-and-role-management/propagate-users-and-roles.md)
 -   #####[기본 사용자 및 역할 관리 절차](./native-user-and-role-management/procedures-for-native-user-and-role-management.md)
