@@ -27,13 +27,15 @@ Neo4j는 두 가지 방법으로 통계를 최신 상태로 유지합니다. 레
 인덱스 샘플링을 트리거.
 `db.resampleOutdatedIndexes()`
 모든 오래된 인덱스의 리샘플링을 트리거.
-예제 9.7. 수동 인덱스 리샘플링 트리거
-```
+
+예제 9.7. 수동 인덱스 리샘플링 트리거  
+
 다음 예제는 db.resampleIndex()를 호출하여, 레이블 [Person]과 속성 [name]에 있는 인덱스의 리샘플링을 트리거하는 방법을 보여줍니다:
-CALL db.resampleIndex(":Person(name)");
+`CALL db.resampleIndex(":Person(name)");`  
 다음 예제는 모든 오래된 인덱스의 리샘플링을 트리거하기 위해  db.resampleOutdatedIndexes()를 호출하는 방법을 보여줍니다:
-CALL db.resampleOutdatedIndexes();
-```
+
+`CALL db.resampleOutdatedIndexes();`  
+
 ### 9.6.2. 실행 계획
 실행 계획은 캐시되며, 계획 생성에 사용된 통계 정보가 변경 될 때까지 재-계획되지 않습니다. 다음 설정을 사용하면 데이터베이스의 업데이트시, 재계획을 적용하는 방법을 제어 할 수 있습니다:
 

@@ -8,17 +8,18 @@ Neo4j 데이터베이스는 `neo4j-admin`의 dump와 load 명령을 사용하여
 
 이 명령은 한 환경에서 다른 환경으로 데이터베이스를 이동하는데 유용합니다. 데이터베이스의 오프라인 백업에도 사용합니다. 온라인 오프라인 백업에 대한 설명은 6.1.1절 “온라인 오프라인 백업”을 참조합니다.
 
-예제 10.6. neo4j-admin의 dump 명령
-```
+예제 10.6. neo4j-admin의 dump 명령  
+
 graph.db라는 데이터베이스를 /backups/graph.db/2016-10-02.dump파일로 덤프합니다. 덤프 파일의 대상 경로는 /backups/graph.db이며, 명령 실행전에 해당 디렉터리가 반드시 존재해야 합니다.
+```
 $neo4j-home> bin/neo4j-admin dump --database=graph.db --to=/backups/graph.db/2016-10-02.dump
 $neo4j-home> ls /backups/graph.db
 $neo4j-home> 2016-10-02.dump
 ```
-예제 10.7. neo4j-admin의 load 명령
-```
-/backups/graph.db/2016-10-02.dump 파일에 포함된 백업 데이터베이스를 graph.db로 로드합니다. 데이터베이스가 실행 중이므로, 먼저 데이터베이스의 실행을 멈춥니다. --force 옵션을 사용하면, 기존 데이터베이스에 덮어쓰기됩니다.
+예제 10.7. neo4j-admin의 load 명령  
 
+/backups/graph.db/2016-10-02.dump 파일에 포함된 백업 데이터베이스를 graph.db로 로드합니다. 데이터베이스가 실행 중이므로, 먼저 데이터베이스의 실행을 멈춥니다. --force 옵션을 사용하면, 기존 데이터베이스에 덮어쓰기됩니다.
+```
 $neo4j-home> bin/neo4j stop
 Stopping Neo4j.. stopped
 $neo4j-home> bin/neo4j-admin load --from=/backups/graph.db/2016-10-02.dump --database=graph.db --force
