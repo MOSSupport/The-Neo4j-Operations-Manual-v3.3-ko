@@ -1,7 +1,7 @@
-#### 7.1.4.4. Procedures for native user and role management 
+#### 7.1.4.4. 초기 사용자 및 역할 관리 절차 
 
 <div class="abstract">
-	<p>이 절에서는 Neo4j Cluster의 기본 사용자와 역할 및 역할 할당을 전파하는 방법에 대해서 설명합니다. 
+	<p>이 절에서는 Neo4j Cluster의 기본 사용자 및 역할 관리하는 절차에 대해서 설명합니다. 
 	</p>
 </div>
 This section describes procedures for native user and role management in Neo4j.
