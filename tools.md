@@ -11,5 +11,6 @@
   - [옵션](/tools/import/options.md)
 * [`neo4j-admin`을 사용한 Neo4j 데이터베이스 dump와 load 방법](/tools/dump-load.md)
 * [`neo4j-admin`을 사용한 Neo4j 데이터베이스의 일관성 체크 방법](/tools/consistency-checker.md)
+* [Neo4j 메모리 설정에 대한 초기 권장 사항을 얻는 방법](/tools/neo4j-admin-memrec.md)
 * [데이터베이스 저장소 정보 디스플레이 방법](/tools/store-info.md)
 * [`cypher-shell` 사용 방법](/tools/cypher-shell.md)
