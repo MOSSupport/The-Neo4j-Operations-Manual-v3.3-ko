@@ -10,7 +10,7 @@
 ### 8.3.2.1. 전문 용어
 
 **관리자**
-관리자는 ```admin``` 역할을 맡은 유저입니다. 유저와 그 역할에 관련된 내용은 [섹션 7.1.4,"네이티브 사용자와 역할 관리"](../security/authentication-authorization/native-user-role-management.md)를 참조하십시오.
+관리자는 ```admin``` 역할을 맡은 유저입니다. 유저와 그 역할에 관련된 내용은 [섹션 7.1.4,"네이티브 사용자와 역할 관리"](../../security/authentication-authorization/native-user-and-role-management.md)를 참조하십시오.
 
 **현재 사용자**
 '현재 사용자'는 이 섹션에서 설명된 명령어를 호출하고 현재 로그인한 유저입니다. 
