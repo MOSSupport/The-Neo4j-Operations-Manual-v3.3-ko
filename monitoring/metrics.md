@@ -1,5 +1,5 @@
 
-##8.1. 메트릭스(Metrics)  
+## 8.1. 메트릭스(Metrics)  
 
 ```
 이 섹션에서는 Neo4j 메트릭스 출력 기능을 이용해서 다양한 메트릭스를 기록하고 표시하는 방법에 대해 다룹니다.
@@ -7,13 +7,13 @@
 
 이 섹션에서는 다음에 대해서 다룹니다.:
 
-+ [메트릭스 로깅 활성화]("https://neo4j.com/docs/operations-manual/current/monitoring/metrics/#metrics-enable")
-+ [사용가능한 메트릭스]("https://neo4j.com/docs/operations-manual/current/monitoring/metrics/reference/")
-	+ [범용 메트릭스]("https://neo4j.com/docs/operations-manual/current/monitoring/metrics/reference/#metrics-general-purpose")
-	+ [인과 관계 클러스터 메트릭스]("https://neo4j.com/docs/operations-manual/current/monitoring/metrics/reference/#causal-clustering-metrics")
++ 메트릭스 로깅 활성화
++ [사용가능한 메트릭스](metrics/reference.md)
+	+ [범용 메트릭스](metrics/reference.md)
+	+ [인과 관계 클러스터 메트릭스](metrics/reference.md)
 
 
-###8.1.1. 메트릭스 로깅 활성화
+### 8.1.1. 메트릭스 로깅 활성화
 
 Neo4j는 두 가지 방법으로 리포트를 보고할 수 있습니다. 
 
@@ -42,7 +42,7 @@ metrics.neo4j.counts.enabled=true
 metrics.neo4j.network.enabled=true
 ```
 
-####8.1.1.1. Graphite
+#### 8.1.1.1. Graphite
 
 아래 내용을 Graphite와 통합하기 위해서 neo4j.conf 설정에 추가합니다.
 
@@ -62,10 +62,10 @@ Neo4j를 시작하고 웹 브라우저를 통해 Graphite에 연결하여 Neo4j 
 
 If you configure the Graphite server to be a hostname or DNS entry you should be aware that the JVM resolves hostnames to IP addresses and by default caches the result indefinitely for security reasons. 
 
-> Graphite 서버를 호스트 이름 또는 DNS로 구성할 때 JVM이 호스트 이름을 IP주소로 연결하고 보안상 결과를 무한 캐싱한다는 것을 염두해야 합니다. 이것은 JVM보안 속성 내 ```networkaddress.cache.ttl``` 가 통제합니다. 더 많은 정보는 [https://docs.oracle.com/javase/8/docs/technotes/guides/net/properties.html]("https://docs.oracle.com/javase/8/docs/technotes/guides/net/properties.html")에서 확인 가능합니다. 
+> Graphite 서버를 호스트 이름 또는 DNS로 구성할 때 JVM이 호스트 이름을 IP주소로 연결하고 보안상 결과를 무한 캐싱한다는 것을 염두해야 합니다. 이것은 JVM보안 속성 내 ```networkaddress.cache.ttl``` 가 통제합니다. 더 많은 정보는 [https://docs.oracle.com/javase/8/docs/technotes/guides/net/properties.html](https://docs.oracle.com/javase/8/docs/technotes/guides/net/properties.html)에서 확인 가능합니다. 
 
 
-####8.1.1.2. CSV 파일
+#### 8.1.1.2. CSV 파일
 
 메트릭스를 로컬 .CSV 파일에 추가하려면 아래 설정을 neo4j.conf 파일에 추가하십시오.:
 
