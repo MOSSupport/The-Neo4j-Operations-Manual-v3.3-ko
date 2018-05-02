@@ -284,7 +284,7 @@ docker run --name=neo4j-core --detach \
          neo4j:3.3-enterprise
 ```
 
-이는 ```<public-address>``` 가 공공 호스트 이름이거나 머신 ip-주소입니다. 더 많은 정보는[섹션 4.2.3, 새로운 일상 클러스터 제작](../clustering/causal-clustering/architecture.md)에서 확인할 수 있습니다. 
+이는 ```<public-address>``` 가 공공 호스트 이름이거나 머신 ip-주소입니다. 더 많은 정보는[섹션 4.2.3, 새로운 일상 클러스터 제작](../clustering/causal-cluster/architecture.md)에서 확인할 수 있습니다. 
     
 
 ### 2.5.5 Neo4J 고 가용성 모드 
