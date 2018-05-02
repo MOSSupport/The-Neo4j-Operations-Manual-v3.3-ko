@@ -12,7 +12,7 @@ Neo4j는 데이터 베이스에서 실행되는 로그 쿼리를 기록하도록
 
 ### 8.2.1.1. 로그 환경 설정
 
-로그 파일 이름은 ```query.log```이고, 이것은 *logs* 디렉토리에 있습니다. ([섹션 3.1,"파일 위치"]("https://neo4j.com/docs/operations-manual/current/configuration/file-locations/"))를 참조하십시오.
+로그 파일 이름은 ```query.log```이고, 이것은 *logs* 디렉토리에 있습니다. ([섹션 3.1,"파일 위치"](../../configuration/file-locations.md))를 참조하십시오.
 
 쿼리 로그 회전은 neo4j.conf 설정 파일에서 설정할 수 있습니다. 이용가능한 변수는 다음과 같습니다.:
 
