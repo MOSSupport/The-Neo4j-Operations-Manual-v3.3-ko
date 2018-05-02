@@ -12,7 +12,7 @@ Neo4j는 리눅스, Windows 그리고 Mac OS에서 운영됩니다. Mac OS와 Wi
 + [Mac OS](osx.md) - Mac OS를 위한 설치 요구 사항.
 + [Windows](windows.md) - Windows를 위한 위한 설치 요구 사항.
 + [Docker](docker.md) - Docker을 위한 설치 요구 사항.
-+ [CAPI Flash](docker.md) - CAPI 플래시를 위한 설치 요구 사항.
++ [CAPI Flash](capi-flash.md) - CAPI 플래시를 위한 설치 요구 사항.
 
 
  
