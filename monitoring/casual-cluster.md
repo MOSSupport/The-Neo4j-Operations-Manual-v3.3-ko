@@ -8,7 +8,7 @@
 인과 관계 Neo4j 클러스터는 이전 섹션에서 다룬 특정 메트릭스 외에도 운영자가 모니터링하려는 인프라 및 전체 클러스터 상태를 관찰하는 성능을 제공합니다. 절차를 사용하여 클러스터 현재 상태를 확인 및 검사하고  토플러지를 이해할 수 있습니다. 추가적으로, HTTP 엔드포인트를 사용하여 상태를 확인할 수 있습니다. 
 
 
-> 이 섹션에서 다루는 내용은 [인과 관계 클러스터 모드](../../clustering/causal-clustering.md)에서만 사용할 수 있습니다. 
+> 이 섹션에서 다루는 내용은 [인과 관계 클러스터 모드](../clustering/causal-cluster.md)에서만 사용할 수 있습니다. 
 
 
 ### 8.4.1. 인과 관계 클러스터 모니터링 절차
@@ -55,7 +55,7 @@ CALL dbms.cluster.role()
 | 팔로워 |
 
 
-###8.4.1.2. 클러스터 내 인스턴스 개요 
+### 8.4.1.2. 클러스터 내 인스턴스 개요 
 
 ```dbms.cluster.overview()```절차는 모든 클러스터 인스턴스의 세부 정보를 리턴하여 클러스터 토플러지 개요를 제공합니다. 
 
@@ -138,7 +138,7 @@ server: [
 
 ### 8.4.2.2.앤드포인트
 
-[핵심서버](../../clustering/causal-clustering.md)에는 상태와 관련하여 3가지 앤드포인트가 있습니다. 그것들은:
+[핵심서버](../clustering/causal-cluster/architecture.md)에는 상태와 관련하여 3가지 앤드포인트가 있습니다. 그것들은:
 
 + ```/db/manage/server/core/writable```
 + ```/db/manage/server/core/read-only```
@@ -149,7 +149,7 @@ server: [
 ```/read-only/``` 앤드포인트는 특정 인스턴스에 읽기 트래픽을 지시할 때 사용합니다. 
 ```/available/``` 앤드 포인트는 임의 요청 타입을 지정하는 일반적인 경우에 트랜잭션을 처리하도록 사용합니다. 
 
-[읽기 복제본](../../clustering/causal-clustering.md)은 한 개의 앤트포인트로 옵니다. 이것은:
+[읽기 복제본](../clustering/causal-cluster/architecture.md)은 한 개의 앤트포인트로 옵니다. 이것은:
 
 + ```/db/manage/server/read-replica/available``` 
  
