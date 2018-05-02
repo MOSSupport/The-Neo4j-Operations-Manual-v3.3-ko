@@ -65,7 +65,7 @@
 | ``` neo4j.transaction.terminated_read```      | 종료된 총 읽기 트랜잭션 수                     |
 | ``` neo4j.transaction.terminated_write```     | 종료된 총 쓰기 트랜잭션 수                     |
 | ``` neo4j.transaction.last_committed_tx_id``` | 마지막으로 커밋(committed)된 트랜잭션 ID       |
-| ````neo4j.transaction.last_closed_tx_id```    | 마지막으로 마감된 트랜잭션 ID                  |
+| ```neo4j.transaction.last_closed_tx_id```    | 마지막으로 마감된 트랜잭션 ID                  |
 
 
 **테이블 8.5. 사이퍼(Cypher) 매트릭스**
@@ -175,7 +175,7 @@
 
 읽기 복제본 메트릭스는 윈도우 복제본을 코어 서버와 관련지어서 추적합니다.
 
-**표 8.13. 코어 메트릭스**
+** 8.13. 코어 메트릭스**
 
 | 이름                                       | 설명                                                         |
 | ------------------------------------------ | ------------------------------------------------------------ |
