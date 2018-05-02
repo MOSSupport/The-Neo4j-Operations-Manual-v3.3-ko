@@ -1,7 +1,8 @@
 # 9. 성능
 
-> 운영 성능에 영향을 미치는 내용들을 살펴보고 Neo4j에서 최적의 성능을 위한 튜닝 방법에 대해 설명합니다.
-
+<div class="abstract">
+운영 성능에 영향을 미치는 내용들을 살펴보고 Neo4j에서 최적의 성능을 위한 튜닝 방법에 대해 설명합니다.
+</div>
 이 장에서 다루는 주제는 다음과 같습니다:
 
 * [메모리 설정](/performance/memory-configuration.md)
@@ -16,6 +17,4 @@
    — 디스크, RAM과 그 밖의 팁들.
 * [데이터베이스 통계](/performance/statistics-gathering.md)
    — 데이터베이스 통계 관리 방법.
-
-
 

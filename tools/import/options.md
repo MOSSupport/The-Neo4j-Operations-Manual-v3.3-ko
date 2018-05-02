@@ -1,6 +1,7 @@
 ### 10.2.3. Options
-> 이 절에서는 Neo4j 임포트(import) 도구를 사용하여 CSV파일에서 데이터 임포트 시 사용할 수있는 옵션에 대해 자세히 설명합니다.
-
+<div class="abstract">
+이 절에서는 Neo4j 임포트(import) 도구를 사용하여 CSV파일에서 데이터 임포트 시 사용할 수있는 옵션에 대해 자세히 설명합니다.
+</div>
 **--database=<DB 명>**  
 데이터베이스 이름. 디폴트: `graph.db`  
 **--additional-config=<설정 파일 경로>**  

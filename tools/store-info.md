@@ -1,6 +1,7 @@
-## 10.6. 저장소 정보 디스플에이
-> 이 장에서는 `neo4j-admin`의 `store-info` 명령을 설명합니다.
-
+## 10.6. 저장소 정보 디스플레이
+<div class="abstract">
+이 장에서는 `neo4j-admin`의 `store-info` 명령을 설명합니다.
+</div>
 `neo4j-admin`의 `store-info` 명령을 사용하여 Neo4j 데이터베이스의 버전이 디스플레이됩니다:  
 ```
 neo4j-admin store-info --store=<path-to-store>

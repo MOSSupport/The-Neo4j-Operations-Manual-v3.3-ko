@@ -1,6 +1,7 @@
 ## 10.7. Cypher Shell
-> 이 절은 Neo4j Cypher Shell에 대해 설명합니다.
-
+<div class="abstract">
+이 절은 Neo4j Cypher Shell에 대해 설명합니다.
+</div>
 Cypher shell은 제품의 일부로 설치되는 명령-줄 도구입니다. 이 도구는 Neo4j 데이터베이스에 연결하고 Cypher를 사용하여 데이터 쿼리, 스키마 정의 또는 관리 작업을 수행 할 수 있습니다. Cypher Shell은 명시적으로 트랜잭션을 노출하여 여러 작업을 그룹화하고 적용 또는 롤백 할 수 있습니다. Cypher Shell은 암호화된 바이너리 프로토콜인 Bolt를 통해 통신합니다.
 
 ### 10.7.1. Cypher Shell 호출하기

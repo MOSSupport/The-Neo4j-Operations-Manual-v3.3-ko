@@ -1,6 +1,7 @@
 ## 10.3. 데이터베이스의 dump와 load
-> 이 절에서는 `neo4j-admin`의 dump와 load 명령을 설명합니다.
-
+<div class="abstract">
+이 절에서는 `neo4j-admin`의 dump와 load 명령을 설명합니다.
+</div>
 Neo4j 데이터베이스는 `neo4j-admin`의 dump와 load 명령을 사용하여 덤프와 로드됩니다:
 
 `neo4j-admin dump --database=<데이터베이스-명> --to=<대상-경로>`

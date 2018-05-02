@@ -1,6 +1,7 @@
-## 10.5. 메모리 추천
-> 이 절에서는 neo4j-admin의 memrec 명령을 설명합니다.
-
+## 10.5. 메모리 권장사항
+<div class="abstract">
+이 절에서는 neo4j-admin의 memrec 명령을 설명합니다.
+</div>
 `neo4j-admin`의 `memrec` 명령을 사용하여,  command of to get an initial recommendation on how to configure memory parameters for Neo4j:
 ```
 neo4j-admin memrec [--memory=<Neo4j만 사용하는 메모리>]
