@@ -60,8 +60,6 @@ metrics.prefix=Neo4j_1
 
 Neo4j를 시작하고 웹 브라우저를 통해 Graphite에 연결하여 Neo4j 메트릭스를 모니터링 합니다.   
 
-If you configure the Graphite server to be a hostname or DNS entry you should be aware that the JVM resolves hostnames to IP addresses and by default caches the result indefinitely for security reasons. 
-
 > Graphite 서버를 호스트 이름 또는 DNS로 구성할 때 JVM이 호스트 이름을 IP주소로 연결하고 보안상 결과를 무한 캐싱한다는 것을 염두해야 합니다. 이것은 JVM보안 속성 내 ```networkaddress.cache.ttl``` 가 통제합니다. 더 많은 정보는 [https://docs.oracle.com/javase/8/docs/technotes/guides/net/properties.html](https://docs.oracle.com/javase/8/docs/technotes/guides/net/properties.html)에서 확인 가능합니다. 
 
 
