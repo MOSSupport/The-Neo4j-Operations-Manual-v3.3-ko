@@ -73,10 +73,22 @@ Read Replica는 그래프 쿼리를 동시에 처리하고 코어 서버의 트�
 >> 매우 느린 데이터베이스 저장소 복사본은 코어 서버가 상당히 이동하면서 트랜잭션 로그 전달을 통해 따라잡기에는 Read replica를 너무 뒤에 남겨 둘 수 있습니다. 이 경우 Read replica 서버는 catchup 프로토콜을 반복합니다. 병리학적인 경우에 운영자는 빠른 백업으로부터 최근 저장 파일의 스냅 샷, 복원 또는 파일 복사에 개입할 수 있습니다.
 
 #### 4.2.2.6. backup 프로토콜
- Causal 클러스터의 수명 기간 동안 운영자는 재해 복구를 위해 클러스터 상태를 백업하길 원할 것입니다. 백업은 온라인 시스템과 최근 상태 사이에 고의적인 차이를 두어 공통 실패 지점 (예 : 동일한 클라우드 저장소)을 공유하지 않도록 하는 전략입니다.
+ Causal 클러스터의 수명 기간 동안 운영자는 재해 복구를 위해 클러스터 상태를 백업하길 원할 것입니다. 백업은 온라인 시스템과 최근 상태 사이에 고의적인 차이를 두어 공통 실패 지점 (예 : 동일한 클라우드 저장소)을 공유하지 않도록 하는 전략입니다. 백업은 데이터 센터 전반에 걸쳐 코어 서버 및 Read Replica를 배포하기 위한 모든 전략에 추가되며 직교합니다.
 
-During the lifetime of the Causal Cluster, operators will want to back up the cluster state for disaster recovery purposes. Backup is a strategy that places a deliberate gap between the online system and its recent state such that the two do not share common failure points (such as the same cloud storage). Backup is in addition to and orthogonal to any strategies for spreading Core Servers and Read Replicas across data centers.
+>> Neo4j 클러스터를 백업하는 방법에 대한 자세한 내용은 [4.2.5장. "인과 클러스터 백업 계획"](./backup-planning-for-a-causal-cluster.md)에서 참조하십시오.
 
+Backup 프로토콜은 사실상 Catchup 프로토콜의 인스턴스로서 구현됩니다. 클라이언트가 Read replica가 되는 대신에 실시간 데이터베이스가 아닌 디스크에 데이터를 스풀링하는 사실상 `neo4j-admin backup` 툴입니다.
 
-
-For operational details on how to backup a Neo4j cluster, see Section 4.2.5, “Backup planning for a Causal Cluster”.
+`neo4j-admin backup`을 통해 전체 및 증분 백업을 수행할 수 있으며 코어 서버와 Read Replica 모두 지원 백업을 수행할 수 있습니다. 그러나 Read Replica가 상대적으로 많으면, 더 적은 수의 코어 서버가 아닌 이들 중 하나를 백업의 대상으로 지정하는 것이 일반적입니다 (코어 대 Read replica 백업에 대한 더 자세한 내용은 [4.2.5장, "Causal 클러스터 백업 계획"](./backup-planning-for-a-causal-cluster.md) 참조) .
+
+#### 4.2.2.7. Read replica
+클린 종료시, Read replica는 discovery 프로토콜을 호출하여 클러스터의 공유된 화이트 보드 개요에서 그 자신을 제거합니다. 또한 데이터베이스가 완전히 종료되고, 일관성이 있으며, 즉시 이후에 사용할 수 있도록 준비되었는지도 확인합니다.
+
+정전과 같은 언클린 종료시, 클러스터의 개요를 유지하는 코어 서버는 Read replica의 연결이 갑자기 끊겼음을 알게될 것입니다. discovery 장치는 처음에는 Read replica의 화이트 보드 항목을 숨기고, Read replica가 신속히 다시 나타나지 않으면 공유된 화이트 보드에서 적당한 메모리 사용이 재확보됩니다.
+
+언클린 종료시, Read replica는 완전히 일관된 저장소 파일이나 트랜잭션 로그를 가지지 않을 수 있습니다. 후속 재부팅시 Read replica는 부분적으로 적용된 트랜잭션을 롤백하여 데이터베이스가 일관된 상태가 되도록 합니다.
+
+#### 4.2.2.8. 코어 종료
+코어 서버 부팅과 같이 클린 코어 서버 종료는 Raft 프로토콜을 통해 처리됩니다. 코어 서버가 종료될 때, 그것은 코어 서버 주위에 복제되는 Raft 로그에 구성원 항목을 추가합니다. 코어 서버의 대다수가 그 구성원 항목을 커밋하면 leaver는 논리적으로 클러스터를 벗어나 안전하게 종료할 수 있습니다. 남아있는 모든 인스턴스는 클러스터가 더 작아진 것을 수용하므로 내결함성이 떨어집니다. 만약 그 Leaver가 떠나는 시점에 리더 역할을 하고 있었다면, 그것은 간결한 선거 후에 또 다른 코어 서버로 전환될 것입니다.
+
+언클린 종료는 코어 서버가 남아 있다는 것을 클러스터에 직접 알려주지 않습니다. 대신에 코어 클러스터 크기는 커밋을 위한 계산 대부분을 위해 동일하게 유지됩니다. 따라서 5 개의 코어 서버 클러스터에서 언클린 종료가 발생하면, 이제 언클린 종료 전 3/5보다 더 엄격한 마진인 3/4 멤버가 커밋에 동의해야 합니다.
