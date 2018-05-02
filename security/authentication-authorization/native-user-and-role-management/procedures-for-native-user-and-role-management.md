@@ -5,35 +5,35 @@
 	</p>
 </div>
 
-In Neo4j, native user and role management are managed by using built-in procedures through Cypher. This section gives a list of all the security procedures for user management along with some simple examples. Use the Neo4j Browser or the Neo4j Cypher Shell to run the examples provided.
+Neo4j에서는 Cypher를 통해 내장 프로 시저를 사용하여 기본 사용자 및 역할 관리를 관리합니다. 이 절에서는 몇 가지 간단한 예제와 함께 사용자 관리를위한 모든 보안 절차 목록을 제공합니다. 제공된 예제를 실행하려면 Neo4j Browser 또는 Neo4j Cypher Shell을 사용하십시오.
 
-The section describes the following:
+이 절에서는 다음을 설명합니다.
 
--   [List all users](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-list-all-users)
--   [List all roles](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#user-roles-list-all-roles)
--   [List all roles for a user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#user-roles-list-all-roles-for-user)
--   [List all users for a role](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#user-roles-list-all-users-for-role)
--   [Create a user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-add-user)
--   [Delete a user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-delete-user)
--   [Assign a role to a user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#user-roles-assign-role-to-user)
--   [Remove a role from a user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#user-roles-remove-role-from-user)
--   [Create a custom role](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#user-roles-create-role)
--   [Delete a custom role](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#user-roles-delete-role)
--   [Suspend a user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-suspend-user)
--   [Activate a user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-activate-user)
--   [Change a user’s password](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-users-password)
--   [Change the current user’s password](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password)
--   [List roles per procedure](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#list-roles-per-procedure)
+- [List all users](procedures-for-native-user-and-role-management.md/#list-all-users)
+- [List all roles](procedures-for-native-user-and-role-management.md/#list-all-roles)
+- [List all roles for a user](procedures-for-native-user-and-role-management.md/#list-all-roles-for-user)
+- [List all users for a role](procedures-for-native-user-and-role-management.md/#list-all-users-for-role)
+- [Create a user](procedures-for-native-user-and-role-management.md/#create-a-user)
+- [Delete a user](procedures-for-native-user-and-role-management.md/#delete-a-user)
+- [Assign a role to a user](procedures-for-native-user-and-role-management.md/#assign-a-role-to-a-user)
+- [Remove a role from a user](procedures-for-native-user-and-role-management.md/#remove-a-role-from-a-user)
+- [Create a custom role](procedures-for-native-user-and-role-management.md/#create-a-custom-role)
+- [Delete a custom role](procedures-for-native-user-and-role-management.md/#delete-a-custom-role)
+- [Suspend a user](procedures-for-native-user-and-role-management.md/#suspend-a-user)
+- [Activate a user](procedures-for-native-user-and-role-management.md/#activate-a-user)
+- [Change a user’s password](procedures-for-native-user-and-role-management.md/#change-a-users-password)
+- [Change the current user’s password](procedures-for-native-user-and-role-management.md/#change-the-current-users-password)
+- [List roles per procedure](procedures-for-native-user-and-role-management.md/#list-roles-per-procedure)
 
 ##### List all users
 
 An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to view the details of every [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) in the system.
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.listUsers()`
 
-**Returns:**
+**결과값:**
 
 | Name       | Type         | Description                              |
 | ---------- | ------------ | ---------------------------------------- |
@@ -41,17 +41,20 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 | `roles`    | List<String> | This is a list of roles assigned to the user. |
 | `flags`    | List<String> | This is a series of flags indicating whether the user is suspended or needs to change their password. |
 
-**Exceptions:**
+**예외:**
 
+<div class="example">
 Example 7.1. List all users
-
+<div class="example-contents">
 The following example shows, for each [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) in the system, the username, the [roles](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/) assigned to the user, and whether the user is suspended or needs to change their password.
+<p>
 
-```
+<code>
 CALL dbms.security.listUsers()
-```
+</code>
 
-```
+<pre>
+<code>
 +---------------------------------------------------------------------+
 | username | roles                     | flags                        |
 +---------------------------------------------------------------------+
@@ -61,24 +64,27 @@ CALL dbms.security.listUsers()
 | "john"   | ["architect","publisher"] | []                           |
 +---------------------------------------------------------------------+
 4 rows
-```
+</code>
+</pre>
+</div>
+</div>
 
 ##### List all roles
 
 An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to view all assigned users for each role in the system.
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.listRoles()`
 
-**Returns:**
+**결과값:**
 
 | Name    | Type         | Description                              |
 | ------- | ------------ | ---------------------------------------- |
 | `role`  | String       | This is the name of the role.            |
 | `users` | List<String> | This is a list of the usernames of all users who have been assigned the role. |
 
-**Exceptions:**
+**예외:**
 
 <div class="example">
 Example 7.2. List all roles
@@ -110,23 +116,23 @@ CALL dbms.security.listRoles()
 
 Any [active user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-active-user) is able to view all of their assigned [roles](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/). An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to view all assigned roles for any [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) in the system.
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.listRolesForUser(*username*)`
 
-**Arguments:**
+**인수:**
 
 | Name       | Type   | Description                       |
 | ---------- | ------ | --------------------------------- |
 | `username` | String | This is the username of the user. |
 
-**Returns:**
+**결과값:**
 
 | Name    | Type   | Description                              |
 | ------- | ------ | ---------------------------------------- |
 | `value` | String | This returns all roles assigned to the requested user. |
 
-**Exceptions:**
+**예외:**
 
 | The current user is not an administrator and the username does not match that of the current user. |
 | ---------------------------------------- |
@@ -137,15 +143,17 @@ Any [active user](https://neo4j.com/docs/operations-manual/3.3/security/authenti
 -   This procedure may be invoked by the current user to view their roles, irrespective of whether or not the current user is an administrator.
 -   This procedure may be invoked by an administrator to view the roles for another user.
 
+<div class="example">
 Example 7.3. List all roles for a user
-
+<div class="example-contents">
 The following example lists all the roles for the user with username '**johnsmith**', who has the [roles](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/) `reader` and `publisher`.
 
-```
+<code>
 CALL dbms.security.listRolesForUser('johnsmith')
-```
+</code>
 
-```
+<pre>
+<code>
 +-------------+
 | value       |
 +-------------+
@@ -153,43 +161,48 @@ CALL dbms.security.listRolesForUser('johnsmith')
 | "publisher" |
 +-------------+
 2 rows
-```
+</code>
+</pre>
+</div>
+</div>
 
 ##### List all users for a role
 
 An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to view all assigned [users](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) for a [role](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/).
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.listUsersForRole(*roleName*)`
 
-**Arguments:**
+**인수:**
 
 | Name       | Type   | Description                   |
 | ---------- | ------ | ----------------------------- |
 | `roleName` | String | This is the name of the role. |
 
-**Returns:**
+**결과값:**
 
 | Name    | Type   | Description                              |
 | ------- | ------ | ---------------------------------------- |
 | `value` | String | This returns all assigned users for the requested role. |
 
-**Exceptions:**
+**예외:**
 
 | The current user is not an administrator. |
 | ---------------------------------------- |
 | The role name does not exist in the system. |
 
+<div class="example">
 Example 7.4. List all users for a role
-
+<div class="example-contents">
 The following example lists all the assigned users - '**bill**' and '**anne**' - for the [role](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/)`publisher`.
 
-```
+<code>
 CALL dbms.security.listUsersForRole('publisher')
-```
+</code>
 
-```
+<pre>
+<code>
 +--------+
 | value  |
 +--------+
@@ -197,17 +210,20 @@ CALL dbms.security.listUsersForRole('publisher')
 | "anne" |
 +--------+
 2 rows
-```
+</code>
+</pre>
+</div>
+</div>
 
 ##### Create a user
 
 An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to create a new [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user). This action ought to be followed by assigning a [role](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/) to the user, which is described [here](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#user-roles-assign-role-to-user).
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.createUser(*username*, *password*, *requirePasswordChange*)`
 
-**Arguments:**
+**인수:**
 
 | Name                    | Type    | Description                              |
 | ----------------------- | ------- | ---------------------------------------- |
@@ -215,7 +231,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 | `password`              | String  | This is the user’s password.             |
 | `requirePasswordChange` | Boolean | This is optional, with a default of `true`. If this is `true`, (i) the user will be forced to change their password when they log in for the first time, and (ii) until the user has changed their password, they will be forbidden from performing any other operation. |
 
-**Exceptions:**
+**예외:**
 
 | The current user is not an administrator. |
 | ---------------------------------------- |
@@ -223,29 +239,32 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 | The username is already in use within the system. |
 | The password is the empty string.        |
 
+<div class="example">
 Example 7.5. Create a user
-
+<div class="example-contents">
 The following example creates a [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) with the username '**johnsmith**' and password '**h6u4%kr**'. When the user '**johnsmith**' logs in for the first time, he will be required to [change his password](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password).
 
-```
+<code>
 CALL dbms.security.createUser('johnsmith', 'h6u4%kr')
-```
+</code>
+</div>
+</div>
 
 ##### Delete a user
 
 An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to delete permanently a [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) from the system. It is not possible to undo this action, so, if in any doubt, consider [suspending the user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-suspend-user) instead.
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.deleteUser(*username*)`
 
-**Arguments:**
+**인수:**
 
 | Name       | Type   | Description                              |
 | ---------- | ------ | ---------------------------------------- |
 | `username` | String | This is the username of the user to be deleted. |
 
-**Exceptions:**
+**예외:**
 
 | The current user is not an administrator. |
 | ---------------------------------------- |
@@ -258,30 +277,33 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 -   Deleting a user will terminate with immediate effect all of the user’s sessions and roll back any running transactions.
 -   As it is not possible for the current user to delete themselves, there will always be at least one administrator in the system.
 
+<div class="example">
 Example 7.6. Delete a user
-
+<div class="example-contents">
 The following example deletes a [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) with the username '**janebrown**'.
 
-```
+<code>
 CALL dbms.security.deleteUser('janebrown')
-```
+<code>
+</div>
+</div>
 
 ##### Assign a role to a user
 
 An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to assign a [role](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/) to any [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) in the system, thus allowing the user to perform a series of actions upon the data.
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.addRoleToUser(*roleName*, *username*)`
 
-**Arguments:**
+**인수:**
 
 | Name       | Type   | Description                              |
 | ---------- | ------ | ---------------------------------------- |
 | `roleName` | String | This is the name of the role to be assigned to the user. |
 | `username` | String | This is the username of the user who is to be assigned the role. |
 
-**Exceptions:**
+**예외:**
 
 | The current user is not an administrator. |
 | ---------------------------------------- |
@@ -294,30 +316,33 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 -   This is an idempotent procedure.
 
+<div class="example">
 Example 7.7. Assign a role to a user
-
+<div class="example-contents">
 The following example assigns the [role](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/) `publisher` to the user with username '**johnsmith**'.
 
-```
+<code>
 CALL dbms.security.addRoleToUser('publisher', 'johnsmith')
-```
+</code>
+</div>
+</div>
 
 ##### Remove a role from a user
 
 An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to remove a [role](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/) from any [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) in the system, thus preventing the user from performing upon the data any actions prescribed by the role.
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.removeRoleFromUser(*roleName*, *username*)`
 
-**Arguments:**
+**인수:**
 
 | Name       | Type   | Description                              |
 | ---------- | ------ | ---------------------------------------- |
 | `roleName` | String | This is the name of the role which is to be removed from the user. |
 | `username` | String | This is the username of the user from which the role is to be removed. |
 
-**Exceptions:**
+**예외:**
 
 | The [current user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-current-user) is not an administrator. |
 | ---------------------------------------- |
@@ -331,29 +356,32 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 -   As it is not possible for the current user to remove the `admin` role from themselves, there will always be at least one administrator in the system.
 -   This is an idempotent procedure.
 
+<div class="example">
 Example 7.8. Remove a role from a user
-
+<div class="example-contents">
 The following example removes the [role](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/) `publisher` from the user with username '**johnsmith**'.
 
-```
+<code>
 CALL dbms.security.removeRoleFromUser('publisher', 'johnsmith')
-```
+</code>
+</div>
+</div>
 
 ##### Create a custom role
 
 An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to create custom roles in the system.
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.createRole(*roleName*)`
 
-**Arguments:**
+**인수:**
 
 | Name       | Type   | Description                              |
 | ---------- | ------ | ---------------------------------------- |
 | `roleName` | String | This is the name of the role to be created. |
 
-**Exceptions:**
+**예외:**
 
 | The current user is not an administrator. |
 | ---------------------------------------- |
@@ -362,29 +390,32 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 | The role name contains characters other than alphanumeric characters and the ‘_’ character. |
 | The role name matches one of the native roles: `reader`, `publisher`, `architect`, and `admin`. |
 
+<div class="example">
 Example 7.9. Create a new custom role
-
+<div class="example-contents">
 The following example creates a new custom role.
 
-```
+<code>
 CALL dbms.security.createRole('operator')
-```
+</code>
+</div>
+</div>
 
 ##### Delete a custom role
 
 An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to delete custom roles from the system. The native roles `reader`, `publisher`, `architect`, and `admin` (see [Section 7.1.4.1, “Native roles”](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/)) cannot be deleted.
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.deleteRole(*roleName*)`
 
-**Arguments:**
+**인수:**
 
 | Name       | Type   | Description                              |
 | ---------- | ------ | ---------------------------------------- |
 | `roleName` | String | This is the name of the role to be deleted. |
 
-**Exceptions:**
+**예외:**
 
 | The current user is not an administrator. |
 | ---------------------------------------- |
@@ -395,29 +426,32 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 -   Any role assignments will be removed.
 
+<div class="example">
 Example 7.10. Delete a custom role
-
+<div class="example-contents">
 The following example deletes the custom role '**operator**' from the system.
 
-```
+<code>
 CALL dbms.security.deleteRole('operator')
-```
+</code>
+</div>
+</div>
 
 ##### Suspend a user
 
 An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to suspend a [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) from the system. The suspended user may be [activated](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-activate-user) at a later stage.
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.suspendUser(*username*)`
 
-**Arguments:**
+**인수:**
 
 | Name       | Type   | Description                              |
 | ---------- | ------ | ---------------------------------------- |
 | `username` | String | This is the username of the user to be suspended. |
 
-**Exceptions:**
+**예외:**
 
 | The current user is not an administrator. |
 | ---------------------------------------- |
@@ -432,30 +466,33 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 -   As it is not possible for the current user to suspend themselves, there will always be at least one active administrator in the system.
 -   This is an idempotent procedure.
 
+<div class="example">
 Example 7.11. Suspend a user
-
+<div class="example-contents">
 The following example suspends a [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) with the username '**billjones**'.
 
-```
+<code>
 CALL dbms.security.suspendUser('billjones')
-```
+</code>
+</div>
+</div>
 
 ##### Activate a user
 
 An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to activate a suspended [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) so that the user is once again able to access the data in their original capacity.
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.activateUser(*username*, *requirePasswordChange*)`
 
-**Arguments:**
+**인수:**
 
 | Name                    | Type    | Description                              |
 | ----------------------- | ------- | ---------------------------------------- |
 | `username`              | String  | This is the username of the [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) to be activated. |
 | `requirePasswordChange` | Boolean | This is optional, with a default of `true`. If this is `true`, (i) the user will be forced to change their password when they next log in, and (ii) until the user has changed their password, they will be forbidden from performing any other operation. |
 
-**Exceptions:**
+**예외:**
 
 | The current user is not an administrator. |
 | ---------------------------------------- |
@@ -466,23 +503,26 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 -   This is an idempotent procedure.
 
+<div class="example">
 Example 7.12. Activate a user
-
+<div class="example-contents">
 The following example activates a [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) with the username '**jackgreen**'. When the user '**jackgreen**' next logs in, he will be required to [change his password](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password).
 
-```
+<code>
 CALL dbms.security.activateUser('jackgreen')
-```
+</code>
+</div>
+</div>
 
 ##### Change a user’s password
 
 An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to change the password of any [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) within the system. Alternatively, the [current user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-current-user) may change their own password.
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.changeUserPassword(*username*, *newPassword*, *requirePasswordChange*)`
 
-**Arguments:**
+**인수:**
 
 | Name                    | Type    | Description                              |
 | ----------------------- | ------- | ---------------------------------------- |
@@ -490,7 +530,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 | `newPassword`           | String  | This is the new password for the user.   |
 | `requirePasswordChange` | Boolean | This is optional, with a default of `true`. If this is `true`, (i) the user will be forced to change their password when they next log in, and (ii) until the user has changed their password, they will be forbidden from performing any other operation. |
 
-**Exceptions:**
+**예외:**
 
 | The current user is not an administrator and the username does not match that of the current user. |
 | ---------------------------------------- |
@@ -516,40 +556,43 @@ CALL dbms.security.changeUserPassword('joebloggs', 'h6u4%kr')
 
 Any [active user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-active-user) is able to change their own password at any time.
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.security.changePassword(*password*, *requirePasswordChange*)`
 
-**Arguments:**
+**인수:**
 
 | Name                    | Type    | Description                              |
 | ----------------------- | ------- | ---------------------------------------- |
 | `password`              | String  | This is the new password for the [current user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-current-user). |
 | `requirePasswordChange` | Boolean | This is optional, with a default of `false`. If this is `true`, (i) the current user will be forced to change their password when they next log in, and (ii) until the current user has changed their password, they will be forbidden from performing any other operation. |
 
-**Exceptions:**
+**예외:**
 
 | The password is the empty string.        |
 | ---------------------------------------- |
 | The password is the same as the current user’s previous password. |
 
+<div class="example">
 Example 7.14. Change the current user’s password
-
+<div class="example-contents">
 The following example changes the password of the current user to '**h6u4%kr**'.
 
-```
+<code>
 CALL dbms.security.changePassword('h6u4%kr')
-```
+</code>
+</div>
+</div>
 
 ##### List roles per procedure
 
 Any [active user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-active-user) is able to view all procedures in the system, including which role(s) have the privilege to execute them.
 
-**Syntax:**
+**문법:**
 
 `CALL dbms.procedures()`
 
-**Returns:**
+**결과값:**
 
 | Name          | Type         | Description                              |
 | ------------- | ------------ | ---------------------------------------- |
@@ -558,11 +601,13 @@ Any [active user](https://neo4j.com/docs/operations-manual/3.3/security/authenti
 | `description` | String       | This is a description of the procedure.  |
 | `roles`       | List<String> | This is a list of roles having the privilege to execute the procedure. |
 
+<div class="example">
 Example 7.15. List role per procedure
-
+<div class="example-contents">
 The following example shows, for four of the security procedures, the procedure name, the description, and which roles have the privilege to execute the procedure.
 
-```
+<pre>
+<code>
 CALL dbms.procedures()
 YIELD name, signature, description, roles
 WITH name, description, roles
@@ -579,7 +624,9 @@ LIMIT 4
 |"dbms.security.changeUserPassword"|"Change the given user's password."  | ["admin"]                           |
 +--------------------------------------------------------------------------------------------------------------+
 4 rows
-```
+</code>
+</pre>
 
-
+</div>
+</div>
 
