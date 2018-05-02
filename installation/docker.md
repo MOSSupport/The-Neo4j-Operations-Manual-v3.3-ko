@@ -127,7 +127,7 @@ docker run \
 
 + ```NEO4J_dbms_mode```: 데이터베이스는 기본 ```SINGLE```모드로 설정되고, 일반적인 클러스터링으로는 ```CORE```이나 ```READ_REPLICA```로 설정되고, 하이 클러스터링은 ```HA```로 설정됩니다.
 
-####일반적인 클러스터 설정
+#### 일반적인 클러스터 설정
 
 + ```NEO4J_causal__clustering_expected__core__cluster__size``` : 초기 클러스터 사이즈(코어 인스턴스 개수).
 
@@ -284,7 +284,7 @@ docker run --name=neo4j-core --detach \
          neo4j:3.3-enterprise
 ```
 
-이는 ```<public-address>``` 가 공공 호스트 이름이거나 머신 ip-주소입니다. 더 많은 정보는[섹션 4.2.3, 새로운 일상 클러스터 제작](../clustering/causal-clustering/create-a-new-causal-cluster.md)에서 확인할 수 있습니다. 
+이는 ```<public-address>``` 가 공공 호스트 이름이거나 머신 ip-주소입니다. 더 많은 정보는[섹션 4.2.3, 새로운 일상 클러스터 제작](../clustering/causal-clustering/architecture.md)에서 확인할 수 있습니다. 
     
 
 ### 2.5.5 Neo4J 고 가용성 모드 
@@ -334,7 +334,7 @@ Neo4j 고 가용성 모드에 대한 자세한 내용은 [섹션 B.2, "고 이�
 docker run --publish=7474:7474 --publish=7687:7687 --volume=$HOME/neo4j/plugins:/plugins neo4j:3.3
 ```
 
- 절차 관련 자세한 내용은 [개발자 메뉴얼 -> 절차](https://neo4j.com/docs/developer-manual/3.4-preview/extending-neo4j/procedures)을 확인하면 됩니다. 
+ 절차 관련 자세한 내용은 [개발자 메뉴얼 -> 절차](https://neo4j.com/docs/developer-manual/3.2/extending-neo4j/procedures)을 확인하면 됩니다. 
 
 ### 2.5.7. 사이퍼 쉘(Cypher Shell)
 
