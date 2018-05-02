@@ -1,7 +1,10 @@
 # 10 장. 도구들
-```
-이 장에서는 Neo4j 도구인 [neo4j-admin]과 [cypher-shell]를 사용하여, 새로운 데이터베이스로 데이터를 임포트(import)하는 방법을 설명하고, 기존 데이터베이스에서 [dump]와 [load] 명령 방법과 데이터베이스 일관성 검사하는 방법을 설명합니다.
-```
+<div class="abstract">
+<p>이 장에서는 Neo4j 도구인 [neo4j-admin]과 [cypher-shell]를 사용하여, 
+새로운 데이터베이스로 데이터를 임포트(import)하는 방법을 설명하고, 
+기존 데이터베이스에서 [dump]와 [load] 명령 방법과 데이터베이스 일관성 검사하는 방법을 설명합니다.
+</p>
+</div>
 이 장은 다음의 주제로 구성됩니다:
 
 * [`neo4j-admin` 도구 설명](/tools/neo4j-admin.md)
