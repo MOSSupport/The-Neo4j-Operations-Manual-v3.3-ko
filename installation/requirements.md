@@ -24,7 +24,7 @@
 ### 메모리
 
  메모리가 클수록 큰 그래프를 추가할 수 있지만, 가비지 콜렉션 작업은에 방해되지 않도록 환경설정 해야합니다. 
-더 많은 내용은 [섹션 9.1,메모리 환경설정]("https://neo4j.com/docs/operations-manual/current/performance/memory-configuration/")을 참조하십시오. 
+더 많은 내용은 [섹션 9.1,메모리 환경설정](../performance/memory-configuration.md)을 참조하십시오. 
 
 
 **최소**
@@ -35,7 +35,7 @@
 
 ### 디스크
 
-용량 외에도 저장소를 선택할 때, 디스크 특성별 퍼포먼스가 가장 중요한 요소입니다. Neo4j는 랜덤 읽기(random read) 작업에 큰 영향을 미칩니다. 평균 검색 시간이 적게 걸리는 미디어를 택하세요: 회전하는 SSD 디스크. 자세한 내용은 [섹션 9.5, 디스크,RAM과 다른 팁]("https://neo4j.com/docs/operations-manual/current/performance/disks-ram-and-other-tips/")을 참조하십시오.
+용량 외에도 저장소를 선택할 때, 디스크 특성별 퍼포먼스가 가장 중요한 요소입니다. Neo4j는 랜덤 읽기(random read) 작업에 큰 영향을 미칩니다. 평균 검색 시간이 적게 걸리는 미디어를 택하세요: 회전하는 SSD 디스크. 자세한 내용은 [섹션 9.5, 디스크,RAM과 다른 팁](../performance/disks-ram-and-other-tips.md)을 참조하십시오.
 
 
 **최소**
@@ -49,7 +49,7 @@
 
 ### 파일 시스템
 
-ACID가 적절하게 동작하기 위해서는 파일시스템이 플러시(fsync, fdatasync)을 지원해야 합니다. 리눅스 옵션 중 하나인 파일시스템 환경설정 방법은 [섹션 9.4, 리눅스 파일 시스템 튜닝]("https://neo4j.com/docs/operations-manual/current/performance/linux-file-system-tuning/")을 참고하십시오.
+ACID가 적절하게 동작하기 위해서는 파일시스템이 플러시(fsync, fdatasync)을 지원해야 합니다. 리눅스 옵션 중 하나인 파일시스템 환경설정 방법은 [섹션 9.4, 리눅스 파일 시스템 튜닝](../performance/linux-file-system-tuning.md)을 참고하십시오.
 
 
 **최소**
