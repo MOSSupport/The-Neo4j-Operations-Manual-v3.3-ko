@@ -16,7 +16,7 @@
 `neo4j-admin`이 정상 종료되면 종료 코드 0을 리턴합니다. 0이 아닌 종료 코드는 명령 실행 중 오류가 발생했음을 의미합니다. 0이 아닌 종료 코드는 백업 명령의 종료 코드와 같은 오류에 대한 추가 정보를 포함 할 수 있습니다
 
 ### 10.1.3. 문법과 명령
-`neo4j-admin`은 [bin](../configuration/file-locations.md) 폴더에 위치하며 다음과 같이 실행합니다:  
+`neo4j-admin`은 [bin](../configuration/file-locations.md) 폴더에 위치하며 다음과 같이 실행합니다:
 `neo4j-admin <command>`
 
 #### 일반
@@ -35,5 +35,5 @@
 * `load` `dump`명령으로 생성한 아카이브에서 데이터베이스를 로드합니다.
 #### 온라인 백업; 더 자세한 내용은 [백업](../back.md)절을 참조합니다.
 * `backup` 실행 중인 Neo4j 엔터프라이즈 서버에서 온라인 백업을 실행합니다.
-* `restore` 백업된 데이터베이스를 복원합니다.  
+* `restore` 백업된 데이터베이스를 복원합니다.
 더 자세한 내용은 `neo4j-admin help <command>`을 참조합니다.
