@@ -9,7 +9,7 @@ Neo4j는 콘솔 어플리케이션이나 윈도우 서비스로 작동할 수도
 
 ### 2.4.1 Neo4j 데스크톱 
 
-http://neo4j.com/download/](http://neo4j.com/download) 에 접속한 후, 
+[http://neo4j.com/download/](http://neo4j.com/download) 에 접속한 후, 
 Neo4j 데스크톱 지시 사항을 따라 가십시오.
 
 
