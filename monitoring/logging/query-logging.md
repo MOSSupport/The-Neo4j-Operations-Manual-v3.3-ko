@@ -16,10 +16,7 @@ Neo4j는 데이터 베이스에서 실행되는 로그 쿼리를 기록하도록
 
 쿼리 로그 회전은 neo4j.conf 설정 파일에서 설정할 수 있습니다. 이용가능한 변수는 다음과 같습니다.:
 
-| 변수 명                                           | 기본 값     | 설명                 
-
-
-                                        |
+| 변수 명                                           | 기본 값     | 설명                 |
 | ------------------------------------------------- | ----------- | ------------------------------------------------------------ |
 | ``` dbms.logs.query.allocation_logging_enabled``` | ```false``` | 실행된 쿼리를 로그하기 위해서 할당된 바이트를 기록합니다.    |
 | ``` dbms.logs.query.enabled```                    | ```false``` | 실행된 로그 쿼리는 설정 된 임계 값보다 오래 걸립니다. ``` dbms.logs.query.threshold``` |
@@ -30,8 +27,7 @@ Neo4j는 데이터 베이스에서 실행되는 로그 쿼리를 기록하도록
 | ``` dbms.logs.query.threshold```                  | ```0```     | 실행하는 쿼리가 이 임계 값보다 오래 걸릴경우 쿼리는 기록됩니다.(쿼리 로깅이 활성화 되었을 경우) |
 | ``` dbms.logs.query.time_logging_enabled```       | ```false``` | 실행하는 쿼리가 기록될 때 상세한 시간 정보를 기록합니다. |
 
-
-**예 8.1. 간단한 쿼리 로깅을위한 환경 설정**
+**예 8.1. 간단한 쿼리 로깅을 위한 환경 설정**
 
 이 예에서는 쿼리 로깅을 설정하지만 나머지 쿼리 로그 변수는 기본값으로 남겨둡니다. 
 
@@ -51,7 +47,7 @@ dbms.logs.query.enabled=true
 2017-11-22 14:32 ... INFO  2 ms: bolt-session   bolt    johndoe neo4j-javascript/1.4.1      client/127.0.0.1:59261  ...
 ```
 
-**예 8.2. 세부정보가 포함 된 쿼리 로깅 구성**
+**예 8.2. 세부정보가 포함된 쿼리 로깅 구성**
 
 이 예에서는 쿼리 로깅을 설정하고 일부 추가 로깅을 활성화합니다. 
 
@@ -62,7 +58,7 @@ dbms.logs.query.allocation_logging_enabled=true
 dbms.logs.query.page_logging_enabled=true
 ```
 
-아래는 이 쿼리 기록 구성 변수가 활성화 된 예 입니다. 
+아래는 쿼리 기록 구성 변수가 활성화된 예 입니다. 
 
 ```
 2017-11-22 12:38 ... INFO  3 ms: bolt-session   bolt    johndoe neo4j-javascript/1.4.1                         ...
@@ -76,8 +72,7 @@ dbms.logs.query.page_logging_enabled=true
 
 내장 프로 시저인 ```dbms.setTXMetaData```을 이용해서 프로메타데이터를 쿼리에 첨부하고 쿼리 기록을 출력할 수 있습니다. 일반적으로 프로그램별로 다르지만 ```cypher-shell```을 사용해서 다음과 같이 설명할 수 있습니다. 
 
-**예 8.3. 메타데이터를 쿼리에 추가**
-
+**예 8.3. 쿼리에 메타데이터 추가**
 
 트랙잭션을 시작하고 메타 데이터 리스트의 ```dbms.setTXMetaData```을 호출합니다. 
 
@@ -96,3 +91,4 @@ neo4j# :commit
 ... CALL dbms.setTXMetaData({ User: 'jsmith', AppServer: 'app03.dc01.company.com'}); - {} - {}
 ... CALL dbms.procedures() YIELD name RETURN COUNT(name); - {} - {User: 'jsmith', AppServer: 'app03.dc01.company.com'}
 ```
+
