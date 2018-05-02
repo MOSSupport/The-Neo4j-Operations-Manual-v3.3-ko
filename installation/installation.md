@@ -8,7 +8,7 @@ Neo4j는 리눅스, Windows 그리고 Mac OS에서 운영됩니다. Mac OS와 Wi
 그 토픽들은 다음과 같습니다. 
 
 + [시스템 요구사항](requirements.md) - Neo4j 생산 배포를 위한 시스템 요구 사항.
-+ [리눅스](linux.md) - 리눅스를 위한 설치 요구 사항.
++ [리눅스](linux.md.md) - 리눅스를 위한 설치 요구 사항.
 + [Mac OS](osx.md) - Mac OS를 위한 설치 요구 사항.
 + [Windows](windows.md) - Windows를 위한 위한 설치 요구 사항.
 + [Docker](docker.md) - Docker을 위한 설치 요구 사항.
