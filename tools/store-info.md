@@ -20,12 +20,14 @@ Store format superseded in:   3.0.6
 출력 결과는 데이터베이스가 high-limit 포맷, 즉,  엔터프라이즈 버전을 사용하도록 구성되었음을 알 수 있습니다. 즉, Neo4j Enterprise Edition에서만 백업될 수 있습니다.
 
 출력 결과에 이 포맷은 Neo4j 3.0.0에 소개되었고, 더 새로운 포맷은 Neo4j 3.0.6에 출시되었음을 보여줍니다. 이 의미는 백업이 복원되려면 반드시 포맷 마이그레이션이 수행되어야함을 의미합니다.(자세한 내용은 [5장. 업그레이드](../upgrade.md)를 참조합니다.).
-
+<div class="example">
 예제 10.11. 새로운 백업 사용 예제  
+<div class="example-contents">
 앞의 예제와 같이, Neo4j의 또 다른 백업이 /backups/graph-db.2016-11-11/ 있다고 가정합니다. 이 경우 출력 결과는 다음과 같습니다:
-```
+<code>
 $neo4j-home> bin/neo4j-admin store-info --store=/backups/graph-db.2016-11-11
 Store format version:    v0.A.7
 Introduced in version:   3.0.0
-```
+</code>
 명령의 출력 결과는 Neo4j의 모든 버전에서 지원되는 표준 저장소 형식으로 백업되었음을 나타냅니다. 또한 Neo4j의 가장 최신 버전입니다. 이는 백업을 복원하기 위해 형식 마이그레이션 할 필요가 없음을 의미합니다. 
+</div></div>

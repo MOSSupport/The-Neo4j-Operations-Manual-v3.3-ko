@@ -31,10 +31,11 @@ neo4j-admin check-consistency [--database=<name>] [--backup=</path/to/backup>] [
 **출력**
 
 일관성 체커가 오류를 찾지 못하면 일관성 체커는 오류없이 끝내고 보고서를 생성하지 않습니다. 일관성 체커 프로그램에서 오류를 발견하면 종료 코드 1로 종료하고 inconsistencies-YYYY-MM-DD.HH24.MI.SS.report 형식의 이름 가진 보고서 파일을 작성합니다. 보고서 파일의 위치는 현재 작업 디렉토리이거나 report-dir 옵션으로 지정됩니다.
-
+<div class="example">
 예제 10.8. 일관성 체커 실행  
+<div class="example-contents">
 데이터베이스 일관성 체크에는 --database 옵션울 사용합니다. 주: 먼저 데이터베이스의 실행을 중지한 뒤 실행합니다.
-```
+<code>
 $neo4j-home> bin/neo4j stop
 $neo4j-home> bin/neo4j-admin check-consistency --database=graph.db
 
@@ -61,8 +62,8 @@ $neo4j-home> bin/neo4j-admin check-consistency --database=graph.db
 ....................  80%
 ....................  90%
 .................... 100%
-```
+</code>
 백업 DB에 관한 일관성 체크에는 --backup 옵션을 사용합니다.
-```
+<code>
 bin/neo4j-admin check-consistency --backup backup/graph.db-backup
-```
+</code></div></div>

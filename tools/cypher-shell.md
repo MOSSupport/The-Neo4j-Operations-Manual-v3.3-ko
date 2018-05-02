@@ -26,18 +26,21 @@ cypher-shell [-h] [-a ADDRESS] [-u USERNAME] [-p PASSWORD] [--encryption {true,f
 | -u USERNAME, --username USERNAME | 연결에 사용될 사용자명. 환경 변수 NEO4J_USERNAME로 명시 가능 (디폴트: ). |
 | -p PASSWORD, --password PASSWORD | 연결에 사용될 암호.  환경 변수 NEO4J_PASSWORD로 명시 가능 (디폴트: ). |
 | --encryption {true,false} | Neo4j 연결의 암호화 여부  반드시 암호화합니다.; Neo4j의 설정과 일치해야 합니다.(디폴트: true). |
-
+<div class="example">
 예제 10.12. 사용자명과 암호로 Cypher Shell 호출  
-```
+<div class="example-contents">
+<code>
 $neo4j-home> bin/cypher-shell -u johndoe -p secret
 
 Connected to Neo4j at bolt://localhost:7687 as user neo4j.
 Type :help for a list of available commands or :exit to exit the shell.
 Note that Cypher queries must end with a semicolon.
 neo4j>
-```
+</code></div></div>
+<div class="example">
 예제 10.13. Cypher Shell 내에서 도움말 호출   
-```
+<div class="example-contents">
+<code>
 neo4j> :help
 Available commands:
   :begin    Open a transaction
@@ -51,44 +54,49 @@ Available commands:
 
 For help on a specific command type:
     :help command
-```    
+</code></div></div>
+<div class="example">
 예제 10.14. Cypher Shell 내에서 쿼리 실행   
-```
+<div class="example-contents">
+<code>
 neo4j> MATCH (n) RETURN n;
-+-----------------------------------------------------------------+
+<pre>+-----------------------------------------------------------------+
 | n                                                               |
 +-----------------------------------------------------------------+
 | (:Person {name: "Bruce Wayne", alias: "Batman"})                |
 | (:Person {name: "Selina Kyle", alias: ["Catwoman", "The Cat"]}) |
 +-----------------------------------------------------------------+  
-```
+</pre></code></div></div>
+<div class="example">
 예제 10.15. 명령-줄에서 Cypher 스크립트와 함께 Cypher Shell 호출   
+<div class="example-contents">
 다음은 examples.cypher라는 파일의 내용입니다:
-```
+<code>
 MATCH (n) RETURN n;
 MATCH (batman:Person {name: 'Bruce Wayne'}) RETURN batman;
-```
+</code>
 명령-줄에서 'examples.cypher' 스크립트를 호출합니다. 이 절의 나머지 부분의 모든 예제는 간단한 출력을 위해`--format plain` 플래그를 사용할 것입니다. 
-```
+<code>
 $neo4j-home> cat examples.cypher | bin/cypher-shell -u neo4j -p secret --format plain
 n
 (:Person {name: "Bruce Wayne", alias: "Batman"})
 (:Person {name: "Selina Kyle", alias: ["Catwoman", "The Cat"]})
 batman
 (:Person {name: "Bruce Wayne", alias: "Batman"})
-```
+</code></div></div>
 ### 10.7.2. 쿼리 매개변수
 Cypher Shell은 매개변수에 의한 쿼리를 지원합니다. 종종 스크립팅에서  사용됩니다.  
-
+<div class="example">
 예제 10.16. Cypher Shell에서 매개변수 사용  
+<div class="example-contents">
 ':param' 키워드를 사용하여 매개변수 'thisAlias'에 'Robin'을 지정합니다. ':params' 키워드를 사용하여 매개변수를 체크합니다.
-```
+<code>
 neo4j> :param thisAlias 'Robin'
 neo4j> :params
 thisAlias: Robin
-```
+</code>
 이제 Cypher 쿼리에서 'thisAlias' 매개변수를 사용합니다. 결과를 검증합니다.
-```
+<code>
 neo4j> CREATE (:Person {name : 'Dick Grayson', alias : {thisAlias} });
 Added 1 nodes, Set 2 properties, Added 1 labels
 neo4j> MATCH (n) RETURN n;
@@ -96,19 +104,20 @@ n
 (:Person {name: "Bruce Wayne", alias: "Batman"})
 (:Person {name: "Selina Kyle", alias: ["Catwoman", "The Cat"]})
 (:Person {name: "Dick Grayson", alias: "Robin"})
-```
+</code>
 Cypher Shell 1.1.4 부터는 매개변수 문법이 변경되었고 매개변수 출력 리스팅도 약간 변경되었습니다.
-```
+<code>
 neo4j> :param thisAlias => 'Robin'
 neo4j> :params
 :param thisAlias => 'Robin'
-```
+</code></div></div>
 ### 10.7.3. 트랜젝션  
 Cypher Shell 명시적인 트랜젝션을 지원합니다. 트랜젝션은 키워드, :begin, :commit, :rollback:으로 제어합니다:
-  
+<div class="example">
 예제 10.17. 세밀한 트랜잭션 제어 사용
+<div class="example-contents">
 첫번째 Cypher Shell 세션에서 트랜젝션을 시작합니다:
-```
+<code>
 neo4j> MATCH (n) RETURN n;
 n
 (:Person {name: "Bruce Wayne", alias: "Batman"})
@@ -117,17 +126,17 @@ n
 neo4j> :begin
 neo4j# CREATE (:Person {name : 'Edward Mygma', alias : 'The Riddler' });
 Added 1 nodes, Set 2 properties, Added 1 labels
-```
+</code>
 이제 두번째 Cypher Shell 세션을 오픈하면,  최근의 CREATE 문의 변화가 없음을 알 수 있습니다:
-```
+<code>
 neo4j> MATCH (n) RETURN n;
 n
 (:Person {name: "Bruce Wayne", alias: "Batman"})
 (:Person {name: "Selina Kyle", alias: ["Catwoman", "The Cat"]})
 (:Person {name: "Dick Grayson", alias: "Robin"})
-```
+</code>
 이제 첫번째 세션으로 가서 해당 트랜젝션을 커밋합니다:
-```
+<code>
 neo4j# :commit
 neo4j> MATCH (n) RETURN n;
 n
@@ -136,15 +145,16 @@ n
 (:Person {name: "Dick Grayson", alias: "Robin"})
 (:Person {name: "Edward Mygma", alias: "The Riddler"})
 neo4j>
-```
+</code></div></div>
 
 ### 10.7.4. 프로시저
 Cypher Shell은 현재 사용자에게 권한이 부여된 모든 프로시저 실행을 지원합니다. 여기서는 빌트-인 프로시저 dbms.showCurrentUser()를 사용합니다.
-
+<div class="example">
 예제 10.18. Cypher Shell에서 프로시저 호출하기
-```
+<div class="example-contents">
+<code>
 neo4j> CALL dbms.showCurrentUser();
 username, roles, flags
 "johndoe", ["admin"], []
 neo4j> :exit
-```
+</code></div></div>
