@@ -1,5 +1,5 @@
 
-## 2.2.4. Linux tarbell 설치 
+## 2.2.4. Linux tarball 설치 
 
 > 이 섹션에서는 tarball에서 Linux에 Neo4j를 설치하고 콘솔 어플리케이션 또는 서비스로 운영하는 방법에 대해 알아봅니다. 
 
