@@ -28,7 +28,7 @@ sudo apt-get update
 sudo apt-get -t jessie-backports install ca-certificates-java
 ```
 
-이제 Neo4j 3.3.5를 설치할 수 있습니다. 설치되지 않은 경우 자동으로 Java 8을 설치합니다. [섹션 "설치된 여러 Java 버전 다루기"](linux/debian.md)를 참조하여 설치 후 Neo4j를 시작할 수 있는지 확인합니다. 
+이제 Neo4j 3.3.5를 설치할 수 있습니다. 설치되지 않은 경우 자동으로 Java 8을 설치합니다. [섹션 "설치된 여러 Java 버전 다루기"](debian.md)를 참조하여 설치 후 Neo4j를 시작할 수 있는지 확인합니다. 
 
 ### 우분투 14.04의 자바 8
 
@@ -40,7 +40,7 @@ sudo apt-get update
 sudo apt-get install oracle-java8-installer
 ```
 
-+ 설치되면 [섹션 "설치된 다양한 자바 버전 다루기"](linux/debian.md)를 참조하여 설치 후 Neo4j를 시작할 수 있는지 확인합니다. 
++ 설치되면 [섹션 "설치된 다양한 자바 버전 다루기"](debian.md)를 참조하여 설치 후 Neo4j를 시작할 수 있는지 확인합니다. 
 
 ### 설치된 여러 Java 버전 다루기 
 
@@ -60,7 +60,7 @@ java-1.8.0-openjdk-amd64 1069 /usr/lib/jvm/java-1.8.0-openjdk-amd64
 sudo update-java-alternatives --jre --set <java8name>
 ```
 
-###저장소 추가
+### 저장소 추가
 
 + Debian 패키지는 [https://debian.neo4j.org](https://debian.neo4j.org)에서 다운받을 수 있습니다. 저장소를 사용하려면 아래 단계를 따라야 합니다. 
 
@@ -107,7 +107,7 @@ echo "neo4j-enterprise neo4j/license note" | sudo debconf-set-selections
 
 ### 2.2.1.2. 업그레이드
 
-Neo4j 3.x 버전을 3.3.5로 업그레이드하려면 [쳅터 5. 업그레이드](../upgrade.md)지시 사항을 참조하면 됩니다. 
+Neo4j 3.x 버전을 3.3.5로 업그레이드하려면 [쳅터 5. 업그레이드](../../upgrade/upgrade-planning.md)지시 사항을 참조하면 됩니다. 
 아래의 요약은 Neo4j 2.3을 3.3.5로 업그레이드할 때 필요합니다. 
 
 ### Neo4j 2.3에서 업그레이드
@@ -164,12 +164,12 @@ sudo service neo4j start
 
 ### 2.2.1.3. 파일 위치
 
-모든 Neo4j 패키지의 파일 위치는 [이곳](../configuration/file-locations.md)에서 확인 가능합니다. 
+모든 Neo4j 패키지의 파일 위치는 [이곳](../../configuration/file-locations.md)에서 확인 가능합니다. 
 
 
 ### 2.2.1.4. 작동
 
-대부분 Neo4j 환경 설정은 [neo4j.conf](../configuration/file-locations.md)에서 가능합니다. 일부 특화된 패키지 옵션은 /etc/default/neo4j에 설정되어 있습니다. 
+대부분 Neo4j 환경 설정은 [neo4j.conf](../../configuration/file-locations.md)에서 가능합니다. 일부 특화된 패키지 옵션은 /etc/default/neo4j에 설정되어 있습니다. 
 
 | 환경 변수                | 기본 값 | 상세 사항                                                    |
 | ------------------------ | ------- | ------------------------------------------------------------ |
