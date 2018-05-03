@@ -58,7 +58,7 @@ CALL dbms.setConfigValue('dbms.logs.query.enabled', '')
 ```
 
 
-## 3.7.2. 다이나믹 설정 참조
+### 3.7.2. 다이나믹 설정 참조
 
 **표 3.5. 다이나믹 설정 참조**
 
