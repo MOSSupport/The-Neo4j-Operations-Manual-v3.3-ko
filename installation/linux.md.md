@@ -14,4 +14,4 @@ Neo4j를 시스템 서비스로 설치하십시오.
 + [Neo4j를 Debian이나 그 기반 분배에서 설치](/installation/linux/debian.md)
 + [Neo4j RPM 패키지를 활용하여 Neo4j를 효율적으로 사용](/installation/linux/rpm.md)
 + [Neo4j를 시스템 서비스로 설치](/installation/linux/systemd.md)
-+ [ tarbell이 아니라  Neo4j를 리눅스에서 설치](/installation/linux/tarbell.md)
++ [ tarball이 아니라  Neo4j를 리눅스에서 설치](/installation/linux/tarbell.md)
