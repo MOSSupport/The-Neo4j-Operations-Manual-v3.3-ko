@@ -9,11 +9,11 @@ Neo4j는 콘솔 어플리케이션 또는 서비스로 운영됩니다.
 
 ### 2.3.1 Neo4j 데스크톱
 
-   [http://neo4j.com/download/]("https://neo4j.com/download/") 에 접속한 후, 컴퓨터에서 Neo4j 데스크톱 지시 사항을 따라 가십시오.
+   [http://neo4j.com/download/](https://neo4j.com/download) 에 접속한 후, 컴퓨터에서 Neo4j 데스크톱 지시 사항을 따라 가십시오.
 
 ### 2.3.2 Unix 콘솔 어플리케이션
 
-  1. 최근 출시된 버전을 [http://neo4j.com/download/]("https://neo4j.com/download/")에서 다운 받으십시오.
+  1. 최근 출시된 버전을 [https://neo4j.com/download/other-releases/#releases](https://neo4j.com/download/other-releases/#releases)에서 다운 받으십시오.
     개인 플랫폼에 맞는 tar.ge 배포판을 선택하십시오.
 
   2. ```tar _xf <filename>```을 사용해서 압축을 풉니다.

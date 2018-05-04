@@ -1,4 +1,4 @@
-#3.3. 초기 비밀번호 설정
+## 3.3. 초기 비밀번호 설정
 
 ```
 초기 비밀번호 설정하는 방법을 확인합니다. 
@@ -9,7 +9,9 @@
 
 **문법 :**
 
-```neo4j-admin set-initial-password <password>```
+```
+neo4j-admin set-initial-password <password>
+```
 
 
 **예시 3.1. neo4j-admin의 ```set-initial-password``` 명령어를 사용하십시오.**
@@ -17,7 +19,9 @@
 
 데이터 베이스를 처음으로 설정하기 전에, ```neo4j```네이티브 유저 비밀번호를 'h6u4%kr'로 설정하세요. 
 
-```$neo4j-home> bin/neo4j-admin set-initial-password h6u4%kr```
+```
+$neo4j-home> bin/neo4j-admin set-initial-password h6u4%kr
+```
 
 
 

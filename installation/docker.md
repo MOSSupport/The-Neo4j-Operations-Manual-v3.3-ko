@@ -16,7 +16,7 @@
 + Bolt : ```7687```
 
 
-또한, 다음 볼륨도 나타냅니다. 호스트 디렉토리를 ```--volume``` 옵션을 사용하여 마운트할 수 있습니다. 다른 배포 Neo4j에서 기본적으로 사용하는 디렉토리의 상세내용은 [섹션 3.1, "File locations"]("https://neo4j.com/docs/operations-manual/current/configuration/file-locations/")에서 확인할 수 있습니다. 
+또한, 다음 볼륨도 나타냅니다. 호스트 디렉토리를 ```--volume``` 옵션을 사용하여 마운트할 수 있습니다. 다른 배포 Neo4j에서 기본적으로 사용하는 디렉토리의 상세내용은 [섹션 3.1, "File locations"](../configuration/file-locations.md)에서 확인할 수 있습니다. 
 
 + /conf
 + /data
@@ -66,8 +66,8 @@ docker run \
 Neo4j 에디션을 이용하기 위해서 반드시 라이센스에 동의를 해야합니다. 
 
 > (c) Network Engine for Objects in Lund AB. 2017. 무단 복제 금지. Neo4j 또는 상업 라이센스가 없는 경우 이 소포트웨어 사용이 금지됩니다. 
-> 이메일 관련 문의 : [licensing@neo4j.com]("licensing@neo4j.com")
-> 더 많은 정보 관련 문의 : [https://neo4j.com/licensing/]("https://neo4j.com/licensing/")
+> 이메일 관련 문의 : [licensing@neo4j.com](licensing@neo4j.com)
+> 더 많은 정보 관련 문의 : [https://neo4j.com/licensing/](https://neo4j.com/licensing)
 
 라이센스에 동의하려면,  ```NEO4J_ACCEPT_LICENSE_AGREEMENT=yes``` 환경 변수를 설정해야 합니다. 이를 통해 다음 도큐먼트 인수를 사용할 수 있습니다. :
 
@@ -76,7 +76,7 @@ Neo4j 에디션을 이용하기 위해서 반드시 라이센스에 동의를 �
 
 ## 2.5.3 도커 환경 설정
 
-이미지의 기본 환경설정은 Neo4j을 학습하기 위해서 제작되었지만, 생산용으로 적합하도록 수정해야 합니다. 특히, Neo4j에 할당된 메모리는 다수의 컨테이너가 같은 서버에서 시작되어야 하기에 제한적 입니다. (아래 ```NEO4J_CACHE_MEMORY```와 ```NEO4J_HEAP_MEMORY```를 참조하시오.) 자세한 내용은 [섹션 A.1, 설정 세팅]("https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/")를 참조하시오. 
+이미지의 기본 환경설정은 Neo4j을 학습하기 위해서 제작되었지만, 생산용으로 적합하도록 수정해야 합니다. 특히, Neo4j에 할당된 메모리는 다수의 컨테이너가 같은 서버에서 시작되어야 하기에 제한적 입니다. (아래 ```NEO4J_CACHE_MEMORY```와 ```NEO4J_HEAP_MEMORY```를 참조하시오.) 자세한 내용은 [섹션 A.1, 설정 세팅](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/)를 참조하시오. 
 
 설정을 수정하는 세 가지 방법이 있습니다. 
 + 환경 변수 설정
@@ -101,7 +101,7 @@ docker run \
 ```
 
 
-모든 설정 값은 (참조[섹션 A.1 설정세팅]("https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/")) 다음 명명 제도를 이용해 전송할 수 있습니다.  
+모든 설정 값은 (참조[섹션 A.1 설정세팅](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings)) 다음 명명 제도를 이용해 전송할 수 있습니다.  
 
 + ```NEO4J_``` 접두어.
 + ```_```는 반드시 두번 사용되어야 합니다. : ```_```는 ```__```로 대체.
@@ -127,7 +127,7 @@ docker run \
 
 + ```NEO4J_dbms_mode```: 데이터베이스는 기본 ```SINGLE```모드로 설정되고, 일반적인 클러스터링으로는 ```CORE```이나 ```READ_REPLICA```로 설정되고, 하이 클러스터링은 ```HA```로 설정됩니다.
 
-####일반적인 클러스터 설정
+#### 일반적인 클러스터 설정
 
 + ```NEO4J_causal__clustering_expected__core__cluster__size``` : 초기 클러스터 사이즈(코어 인스턴스 개수).
 
@@ -143,7 +143,7 @@ docker run \
 클러스팅 설정을 다루기 위한 주소와 포트는 아래를 참조하면 됩니다. 
 
 
-####고 가용성 클러스터 설정
+#### 고 가용성 클러스터 설정
 
 + ```NEO4J_ha_server__id``` : 서버 아이디는 클러스터 에서 고유한 값이어야 딥니다. 
 
@@ -158,7 +158,7 @@ docker run \
 HA 클러스터 환경 설정의 예는 아래에서 볼 수 있습니다. 
 
 
-####2.5.3.2 ./conf 볼륨
+#### 2.5.3.2 ./conf 볼륨
 
 Neo4j 설정을 임의로 수정하려면, 컨테이너를 /conf와 함께 제공하면 됩니다. 
 
@@ -188,7 +188,7 @@ docker run \
 ```
 
 
-####2.5.3.3. 새 이미지 빌드
+#### 2.5.3.3. 새 이미지 빌드
 
 더욱 복잡한 사용자 정의를 이용하려면 아래를 토대로 새 이미지를 생성할 수 있습니다. 
 
@@ -210,16 +210,16 @@ docker run -e "EXTENSION_SCRIPT=/extra_conf.sh" cafe12345678
 
 확장 스크립트가 소스로 변경되면 현재 작업 디렉토리는 Neo4j 설치 루트가됩니다.
 
-####2.5.3.4. Neo4j 업그레이드
+#### 2.5.3.4. Neo4j 업그레이드
 
 업그레이드를 하려면, ```NEO4J_dbms_allow__upgrade```을 ```참```으로 설정하면 됩니다. 업그레이드 관련 자세한 내용은 아래를 참고하면 됩니다.:
 
-+ [싱글 인스턴스 업그레이드]("https://neo4j.com/docs/operations-manual/current/upgrade/deployment-upgrading/")
-+ [Neo4j 일반 클러스터 업그레이드]("https://neo4j.com/docs/operations-manual/current/upgrade/causal-cluster/")
-+ [Neo4j HA 클러스터 업그레이드]("https://neo4j.com/docs/operations-manual/current/upgrade/high-availability/")
++ [싱글 인스턴스 업그레이드](../upgrade/deployment-upgrading.md)
++ [Neo4j 일반 클러스터 업그레이드](../upgrade/causal-cluster.md)
++ [Neo4j HA 클러스터 업그레이드](../upgrade/high-availability.md)
 
 
-###2.5.4. Neo4j 일반 클러스터 모드
+### 2.5.4. Neo4j 일반 클러스터 모드
 
 Docker에서 CC모드로 Neo4j를 작동하려면 서로 통신하도록 클러스터 컨테이너를 연결해야 됩니다. 각 컨테이너에서 서로의 네트워크 루트 및 ```NEO4J_causal__clustering_expected__core__cluster__size```와 ```NEO4J_causal__clustering_initial__discovery__members```를 가져야되고 환경 변수 코어를 설정 해야합니다. 읽기 복제본은 ```NEO4J_causal__clustering_initial__discovery__members```을 유지해야 합니다. 
 
@@ -284,7 +284,7 @@ docker run --name=neo4j-core --detach \
          neo4j:3.3-enterprise
 ```
 
-이는 ```<public-address>``` 가 공공 호스트 이름이거나 머신 ip-주소입니다. 더 많은 정보는[섹션 4.2.3, 새로운 일상 클러스터 제작]("https://neo4j.com/docs/operations-manual/current/clustering/causal-clustering/setup-new-cluster/")에서 확인할 수 있습니다. 
+이는 ```<public-address>``` 가 공공 호스트 이름이거나 머신 ip-주소입니다. 더 많은 정보는[섹션 4.2.3, 새로운 일상 클러스터 제작](../clustering/causal-cluster/architecture.md)에서 확인할 수 있습니다. 
     
 
 ### 2.5.5 Neo4J 고 가용성 모드 
@@ -323,7 +323,7 @@ docker run --name=instance3 --detach --publish=7476:7474 --publish=7689:7687 --n
 ```
 
 
-Neo4j 고 가용성 모드에 대한 자세한 내용은 [섹션 B.2, "고 이용 클러스터 설정"]("https://neo4j.com/docs/operations-manual/current/tutorial/highly-available-cluster/")에서 확인할 수 있습니다. 
+Neo4j 고 가용성 모드에 대한 자세한 내용은 [섹션 B.2, "고 이용 클러스터 설정"](https://neo4j.com/docs/operations-manual/current/tutorial/highly-available-cluster)에서 확인할 수 있습니다. 
 
 
 ### 2.5.6. 사용자 정의 절차
@@ -334,7 +334,7 @@ Neo4j 고 가용성 모드에 대한 자세한 내용은 [섹션 B.2, "고 이�
 docker run --publish=7474:7474 --publish=7687:7687 --volume=$HOME/neo4j/plugins:/plugins neo4j:3.3
 ```
 
- 절차 관련 자세한 내용은 [개발자 메뉴얼 -> 절차]("https://neo4j.com/docs/developer-manual/3.4-preview/extending-neo4j/procedures/")을 확인하면 됩니다. 
+ 절차 관련 자세한 내용은 [개발자 메뉴얼 -> 절차](https://neo4j.com/docs/developer-manual/3.2/extending-neo4j/procedures)을 확인하면 됩니다. 
 
 ### 2.5.7. 사이퍼 쉘(Cypher Shell)
 

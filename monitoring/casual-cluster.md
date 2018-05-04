@@ -1,5 +1,5 @@
 
-##8.4. 인과 관계 클러스터 모니터링
+## 8.4. 인과 관계 클러스터 모니터링
 
 ```
 이 섹션에서는 Neo4j 인과관계 클러스터를 모니터링하는 방법을 추가로 알아봅니다.
@@ -8,22 +8,21 @@
 인과 관계 Neo4j 클러스터는 이전 섹션에서 다룬 특정 메트릭스 외에도 운영자가 모니터링하려는 인프라 및 전체 클러스터 상태를 관찰하는 성능을 제공합니다. 절차를 사용하여 클러스터 현재 상태를 확인 및 검사하고  토플러지를 이해할 수 있습니다. 추가적으로, HTTP 엔드포인트를 사용하여 상태를 확인할 수 있습니다. 
 
 
-> 이 섹션에서 다루는 내용은 [인과 관계 클러스터 모드]("https://neo4j.com/docs/operations-manual/current/clustering/causal-clustering/")에서만 사용할 수 있습니다. 
+> 이 섹션에서 다루는 내용은 [인과 관계 클러스터 모드](../clustering/causal-cluster.md)에서만 사용할 수 있습니다. 
 
 
-###8.4.1. 인과 관계 클러스터 모니터링 절차
+### 8.4.1. 인과 관계 클러스터 모니터링 절차
 
 ```
 이 섹션에서는 인과 관계 클러스터 Neo4j 모니터링 절차에 대해 다룹니다.  
 ```
 
 이 섹션에서는 다음에 대해 알아봅니다.:
-+ [클러스터 멤버 역할 확인]("https://neo4j.com/docs/operations-manual/current/monitoring/causal-cluster/#dbms.cluster.role")
-+ [클러스터 내 인스턴스 개요]("https://neo4j.com/docs/operations-manual/current/monitoring/causal-cluster/#dbms.cluster.overview")
-+ [라우팅 권장사항 가져오기]("https://neo4j.com/docs/operations-manual/current/monitoring/causal-cluster/#dbms.cluster.routing.getServers")
++ 클러스터 멤버 역할 확인
++ 클러스터 내 인스턴스 개요
++ 라우팅 권장사항 가져오기
 
-
-####8.4.1.1. 클러스터 멤버 역할 확인
+#### 8.4.1.1. 클러스터 멤버 역할 확인
 
 ```dbms.cluster.role()``` 프로시저를 호출하여 인과 관계 클러스터 내 모든 인스턴스 역할을 리턴할 수 있습니다. 
 
@@ -56,7 +55,7 @@ CALL dbms.cluster.role()
 | 팔로워 |
 
 
-###8.4.1.2. 클러스터 내 인스턴스 개요 
+### 8.4.1.2. 클러스터 내 인스턴스 개요 
 
 ```dbms.cluster.overview()```절차는 모든 클러스터 인스턴스의 세부 정보를 리턴하여 클러스터 토플러지 개요를 제공합니다. 
 
@@ -96,7 +95,7 @@ CALL dbms.cluster.overview()
 | 00000000-0000-0000-0000-000000000000 | [bolt://neo31:7687, http://neo31:7474, https://neo31:7473] | 복제본_ 읽기 |
 
 
-###8.4.1.3. 라우팅 권장사항 가져오기
+### 8.4.1.3. 라우팅 권장사항 가져오기
 
 어플리케이션 관점에서볼 때 클러스터에서 멤버의 역할에 대해 알면 흥미롭지 않습니다. 대신 어플케이션은 어떤 인스턴스가 원하는 서비스를 제공할 수 있는지 알아야합니다. ```dbms.cluster.routing.getServers()``` 절차에서 이와 관련된 정보를 확인할 수 있습니다.  
 
@@ -130,16 +129,16 @@ server: [
 ]
 ```
 
-##8.4.2. 상태 정보 앤드포인트
+## 8.4.2. 상태 정보 앤드포인트
 
-###8.4.2.1. 소개
+### 8.4.2.1. 소개
 
 인과관계 클러스터는 클러스터 상태를 모니터링하는데 쓰이는 HTTP 앤드포인트를 나타냅니다. 이 섹션에서는 앤드포인트와 그 구성 요소에 대해 알아봅니다. 
 
 
-###8.4.2.2.앤드포인트
+### 8.4.2.2.앤드포인트
 
-[핵심서버]("https://neo4j.com/docs/operations-manual/current/clustering/causal-clustering/introduction/#causal-clustering-core-servers")에는 상태와 관련하여 3가지 앤드포인트가 있습니다. 그것들은:
+[핵심서버](../clustering/causal-cluster/architecture.md)에는 상태와 관련하여 3가지 앤드포인트가 있습니다. 그것들은:
 
 + ```/db/manage/server/core/writable```
 + ```/db/manage/server/core/read-only```
@@ -150,7 +149,7 @@ server: [
 ```/read-only/``` 앤드포인트는 특정 인스턴스에 읽기 트래픽을 지시할 때 사용합니다. 
 ```/available/``` 앤드 포인트는 임의 요청 타입을 지정하는 일반적인 경우에 트랜잭션을 처리하도록 사용합니다. 
 
-[읽기 복제본]("https://neo4j.com/docs/operations-manual/current/clustering/causal-clustering/introduction/#causal-clustering-read-replicas")은 한 개의 앤트포인트로 옵니다. 이것은:
+[읽기 복제본](../clustering/causal-cluster/architecture.md)은 한 개의 앤트포인트로 옵니다. 이것은:
 
 + ```/db/manage/server/read-replica/available``` 
  
@@ -179,7 +178,7 @@ server: [
 | ``` /db/manage/server/read-replica/available``` | ``` 200 OK``` | ``` true``` |
 
 
-###8.4.2.3.예시
+### 8.4.2.3.예시
 
 명령 줄(Command line)에서 끝 점을 사용하려면 ```curl```을 쓰면 됩니다. 변수가 없는 경우, ```curl```은 제공된 URI에서 HTTP의 ```GET```을 수행하고 본문 내용이 있는 경우 그 내용을 출력할 것 입니다. 또한, 응답 코드를 받고 싶다면 ```-v``` 플래그를 상세 출력문에 추가하면 됩니다. 아래는 관련 예시 입니다.:
 

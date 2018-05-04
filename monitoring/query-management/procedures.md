@@ -1,5 +1,5 @@
 
-##8.3.2. 쿼리 관리 절차
+## 8.3.2. 쿼리 관리 절차
 
 ```
 이 섹션에서는 Neo4j에서 현재 쿼리에 맞춰 실행되는 절차에 대해 알아봅니다. 
@@ -7,10 +7,10 @@
 
 명시되지 않는 한, 이 섹션의 절차 내에 있는 모든 변수는 제공되어야 합니다. 
 
-###8.3.2.1. 전문 용어
+### 8.3.2.1. 전문 용어
 
 **관리자**
-관리자는 ```admin``` 역할을 맡은 유저입니다. 유저와 그 역할에 관련된 내용은 [섹션 7.1.4,"네이티브 사용자와 역할 관리"]("https://neo4j.com/docs/operations-manual/current/security/authentication-authorization/native-user-role-management/")를 참조하십시오.
+관리자는 ```admin``` 역할을 맡은 유저입니다. 유저와 그 역할에 관련된 내용은 [섹션 7.1.4,"네이티브 사용자와 역할 관리"](../../security/authentication-authorization/native-user-and-role-management.md)를 참조하십시오.
 
 **현재 사용자**
 '현재 사용자'는 이 섹션에서 설명된 명령어를 호출하고 현재 로그인한 유저입니다. 
@@ -21,7 +21,7 @@
 + 유저는 인간, 어플리케이션 등을 나타냅니다.
 
 
-###8.3.2.2. 실행되는 모든 쿼리 나열
+### 8.3.2.2. 실행되는 모든 쿼리 나열
 
 관리자는 현재 인스턴스 내에 실행되는 모든 쿼리를 확인할 수 있습니다. 대신에 현재 유저는 자신의 실행되는 모든 쿼리를 확인할 수 있습니다. 
 
@@ -42,8 +42,8 @@
 | ``` indexes```             | List    | 쿼리에서 사용되는 인덱스입니다.                              |
 | ``` startTime```           | String  | 쿼리가 시작된 시간입니다.                                    |
 | ``` elapsedTime```         | String  | ``` elapsedTimeMillis``` 을 대신 사용합니다. 쿼리가 시작된 이후 경과된 시간입니다. |
-| ````connectionDetails````  | String  | ``` requestScheme```,``` clientAddress```,``` requestUri``` 을 대신 사용합니다. 쿼리와 관련된 세부 연결 정보입니다. |
-| ````protocol````           | String  | 쿼리를 실행하는 연결에서 사용되는 프로토콜입니다.            |
+| ```connectionDetails```  | String  | ``` requestScheme```,``` clientAddress```,``` requestUri``` 을 대신 사용합니다. 쿼리와 관련된 세부 연결 정보입니다. |
+| ```protocol```           | String  | 쿼리를 실행하는 연결에서 사용되는 프로토콜입니다.            |
 | ``` clientAddress```       | String  | 쿼리를 실행하는 연결에서 사용되는 클라이언트 주소입니다.     |
 | ````requestUri````         | String  | 쿼리를 실행하는 클라이언트 연결에서 사용되는 URI 요청입니다. |
 | ``` status```              | String  | 실행중인 쿼리의 상태입니다.                                  |
@@ -78,7 +78,7 @@ CALL dbms.listQueries() YIELD queryId, username, query, elapsedTimeMillis, reque
 ```
 
 
-###8.3.2.3. 쿼리에 대한 모든 활성 잠금 나열 
+### 8.3.2.3. 쿼리에 대한 모든 활성 잠금 나열 
 
 관리자는 트랙잭션 실행 쿼리의 ```queryId```을 사용해서 모든 활성 잠금을 확인할 수 있습니다. 
 
@@ -133,7 +133,7 @@ RETURN queryId, query, resourceType, resourceId, mode
 ```
 
 
-###8.3.2.4. 여러 쿼리 종료
+### 8.3.2.4. 여러 쿼리 종료
 
 관리자는 주어진 모든 쿼리 ID중 하나를 사용하여 인스턴스의 모든 트랙잭션에서 실행되는 쿼리를 종료할 수 있습니다. 대안으로, 현재 유저는 주어진 쿼리 ID중 임의의 쿼리 ID를 갖는 유저의 모든 트랜잭션을 종료시킬 수 있습니다. 
 
@@ -175,7 +175,7 @@ CALL dbms.killQueries(['query-378','query-765'])
 ```
 
 
-###8.3.2.5. 단일 쿼리 종료
+### 8.3.2.5. 단일 쿼리 종료
 
 관리자는 ID가 주어진 실행중인 모든 트랜잭션을 인스턴스에서 종료할 수 있습니다. 대안으로 현재 유저는 자신의 주어진 ID로 쿼리를 실행하여 트랜잭션을 종료할 수 있습니다. 
 
@@ -194,9 +194,9 @@ CALL dbms.killQueries(['query-378','query-765'])
 
 | 이름            | 종류   | 설명                                                |
 | --------------- | ------ | --------------------------------------------------- |
-| ``` queryId```  | String | 종료된 쿼리의 ID입니다.                             |
-| ``` username``` | String | 쿼리(현재는 종료된)를 실행하던 사용자의 이름입니다. |
-| ``` message```  | String | 쿼리가  검색 성공 여부를 나타내는 메시지입니다.     |
+| ```queryId```  | String | 종료된 쿼리의 ID입니다.                             |
+| ```username``` | String | 쿼리(현재는 종료된)를 실행하던 사용자의 이름입니다. |
+| ```message```  | String | 쿼리가  검색 성공 여부를 나타내는 메시지입니다.     |
 
 
 **예 8.8. 단일 쿼리 종료**

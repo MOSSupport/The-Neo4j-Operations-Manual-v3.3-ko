@@ -1,5 +1,5 @@
 
-##8.2.1. 쿼리 로깅(Query Logging)
+## 8.2.1. 쿼리 로깅(Query Logging)
 
 ```
 이 섹션에서는 Neo4j가 지원하는 쿼리 로깅에 대해 다룹니다. 
@@ -10,9 +10,9 @@ Neo4j는 데이터 베이스에서 실행되는 로그 쿼리를 기록하도록
 쿼리 로깅은 ```dbms.logs.query.enabled```변수를 ```true```로 설정해서 활성화해야 됩니다. 변수 ```dbms.logs.query.threshold```는 쿼리 로깅을 위해서 임계 값을 결정합니다. 쿼리 실행 시간이 이 임계 값보다 오래걸리면 로깅됩니다. ```dbms.logs.query.threshold```을 ```0```으로 설정하면 모든 쿼리가 로깅될 것 입니다. 
 
 
-###8.2.1.1. 로그 환경 설정
+### 8.2.1.1. 로그 환경 설정
 
-로그 파일 이름은 ```query.log```이고, 이것은 *logs* 디렉토리에 있습니다. ([섹션 3.1,"파일 위치"]("https://neo4j.com/docs/operations-manual/current/configuration/file-locations/"))를 참조하십시오.
+로그 파일 이름은 ```query.log```이고, 이것은 *logs* 디렉토리에 있습니다. ([섹션 3.1,"파일 위치"](../../configuration/file-locations.md))를 참조하십시오.
 
 쿼리 로그 회전은 neo4j.conf 설정 파일에서 설정할 수 있습니다. 이용가능한 변수는 다음과 같습니다.:
 
@@ -68,7 +68,7 @@ dbms.logs.query.page_logging_enabled=true
 2017-11-22 12:38 ... INFO  6 ms: (planning: 2, cpu: 6, waiting: 0) - 420872 B - 0 page hits, 0 page faults -   ...
 ```
 
-###8.2.1.2. 쿼리에 메타데이터 첨부 
+### 8.2.1.2. 쿼리에 메타데이터 첨부 
 
 내장 프로 시저인 ```dbms.setTXMetaData```을 이용해서 프로메타데이터를 쿼리에 첨부하고 쿼리 기록을 출력할 수 있습니다. 일반적으로 프로그램별로 다르지만 ```cypher-shell```을 사용해서 다음과 같이 설명할 수 있습니다. 
 
