@@ -19,15 +19,19 @@
 
 Neo4j를 세개의 개별 시스템에서 실행할 때, 가장 기본적인 구성은 다섯가지 매개 변수의 변경을 필요로 합니다. 아래 설정은 [*neo4j.conf*](/configuration/file-locations.md)의 "Network connector configuration"이라는 헤더 아래에 있습니다.
 
-[`dbms.connectors.default_listen_address`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.connectors.default_advertised_address)
+[`dbms.connectors.default_listen_address`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.connectors.default_listen_address)
+
   이 시스템이 들어오는 메시지를 수신하는 데 사용하는 주소 또는 네트워크 인터페이스. 이 행의 주석 처리를 제거하면 이 값이 Neo4j가 모든 네트워크 인터페이스에 바인딩 할 수 있도록 허용해주는 `0.0.0.0`으로 설정됩니다. `dbms.connectors.default_listen_address = 0.0.0.0`의 주석 처리를 제거하십시오.
-[`dbms.connectors.default_advertised_address`]
+
+[`dbms.connectors.default_advertised_address`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.connectors.default_advertised_address)
+
   다른 시스템이 연결하도록 지시된 주소. 일반적인 경우 이것은 이 서버의 공용 IP 주소로 설정해야 합니다. 예를 들어, IP 주소가 33.44.55.66인 경우 이 설정은 다음과 같아야 합니다:
   `dbms.connectors.default_advertised_address=33.44.55.66`
 
 아래의 설정은 [*neo4j.conf*](/configuration/file-locations.md)의 "Causal Clustering Configuration"이라는 헤더 아래에 있습니다.
 
 [`dbms.mode`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.mode)
+
   단일 데이터베이스 인스턴스의 작동 모드. Causal 클러스터링에는 두 가지 가능한 모드가 있습니다: `CORE` 또는 `READ_REPLICA`. 세개의 인스턴스에서 우리는 `CORE`모드를 사용할 것입니다. 다음 행의 주석 처리를 제거하십시오:`#dbms.mode=CORE`.
 [`causal_clustering.expected_core_cluster_size`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_causal_clustering.expected_core_cluster_size)
   시작시 초기 클러스터 크기. 이것은 초기 안정적인 멤버십 상태를 달성하고 이후 클러스터에 안전하게 쓰기 위해 필요합니다. 이 값은 클러스터의 일부로서 포함하려는 코어 인스턴스의 수입니다. 예를 들어, `causal_clustering.expected_core_cluster_size=3`은 클러스터에 세개의 코어 구성원이 있음을 지정합니다.
