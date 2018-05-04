@@ -20,7 +20,7 @@
 Neo4j를 세개의 개별 시스템에서 실행할 때, 가장 기본적인 구성은 다섯가지 매개 변수의 변경을 필요로 합니다. 아래 설정은 [*neo4j.conf*](/configuration/file-locations.md)의 "Network connector configuration"이라는 헤더 아래에 있습니다.
 
 [`dbms.connectors.default_listen_address`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.connectors.default_listen_address)<br>
-"  "이 시스템이 들어오는 메시지를 수신하는 데 사용하는 주소 또는 네트워크 인터페이스. 이 행의 주석 처리를 제거하면 이 값이 Neo4j가 모든 네트워크 인터페이스에 바인딩 할 수 있도록 허용해주는 `0.0.0.0`으로 설정됩니다. `dbms.connectors.default_listen_address = 0.0.0.0`의 주석 처리를 제거하십시오.
+&nbsp;&nbsp;이 시스템이 들어오는 메시지를 수신하는 데 사용하는 주소 또는 네트워크 인터페이스. 이 행의 주석 처리를 제거하면 이 값이 Neo4j가 모든 네트워크 인터페이스에 바인딩 할 수 있도록 허용해주는 `0.0.0.0`으로 설정됩니다. `dbms.connectors.default_listen_address = 0.0.0.0`의 주석 처리를 제거하십시오.
 [`dbms.connectors.default_advertised_address`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.connectors.default_advertised_address)<br>
     다른 시스템이 연결하도록 지시된 주소. 일반적인 경우 이것은 이 서버의 공용 IP 주소로 설정해야 합니다. 예를 들어, IP 주소가 33.44.55.66인 경우 이 설정은 다음과 같아야 합니다:
   `dbms.connectors.default_advertised_address=33.44.55.66`
