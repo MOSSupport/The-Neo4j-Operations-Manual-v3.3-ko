@@ -42,3 +42,11 @@ $neo4j-home> cp $some-dir/cluster01.key certificates/cluster
 $neo4j-home> cp $some-dir/cluster01.crt certificates/cluster
 ```
 ----------------------------------------------------
+
+**SSL 정책 생성**
+SSL 정책은 설치된 암호화 객체를 사용하며 추가로 매개 변수를 구성할 수 있습니다. 우리는 구성에서 다음 매개 변수를 사용할 것입니다:
+
+표 4.1. 예제 설정
+|-------------------|
+|설정 접미사| 값 | 코멘트 |
+|`client_auth`|`REQUIRE`|이것을 `REQUIRE`로 설정하면 서버에 대한 상호 인증을 효과적으로 수행할 수 있습니다|
