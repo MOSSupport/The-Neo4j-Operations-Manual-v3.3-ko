@@ -27,7 +27,7 @@ Neo4j에서는 Cypher를 통해 내장 프로 시저를 사용하여 기본 사�
 
 ##### List all users
 
-An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-administrator) is able to view the details of every [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) in the system.
+[administrator](/security/authentication-authorization/terminology.md/#administrator)는 모든 [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology.md/#user)에 대해서 내용을 확인이 가능합니다.
 
 **문법:**
 
@@ -35,16 +35,16 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 **결과값:**
 
-| Name       | Type         | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ---------- | ------------ | ---------------------------------------- |
-| `username` | String       | This is the user’s username.             |
-| `roles`    | List<String> | This is a list of roles assigned to the user. |
-| `flags`    | List<String> | This is a series of flags indicating whether the user is suspended or needs to change their password. |
+| `username` | String       | 사용자의 이름입니다.             |
+| `roles`    | List<String> | 사용자에게 할당된 역할의 목록입니다. |
+| `flags`    | List<String> | 사용자가 일시 중지되었거나 암호를 변경해야하는지 여부를 나타내는 일련의 플래그입니다.|
 
 **예외:**
 
 <div class="example">
-Example 7.1. List all users
+예제 7.1. List all users
 <div class="example-contents">
 The following example shows, for each [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) in the system, the username, the [roles](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/) assigned to the user, and whether the user is suspended or needs to change their password.
 <p>
@@ -79,7 +79,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 **결과값:**
 
-| Name    | Type         | Description                              |
+| 이름    | 타입         | 설 명                                     |
 | ------- | ------------ | ---------------------------------------- |
 | `role`  | String       | This is the name of the role.            |
 | `users` | List<String> | This is a list of the usernames of all users who have been assigned the role. |
@@ -87,7 +87,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 **예외:**
 
 <div class="example">
-Example 7.2. List all roles
+예제 7.2. List all roles
 <div class="example-contents">
 The following example shows, for each role in the system, the name of the role and the usernames of all assigned users.
 <p>
@@ -122,13 +122,13 @@ Any [active user](https://neo4j.com/docs/operations-manual/3.3/security/authenti
 
 **인수:**
 
-| Name       | Type   | Description                       |
+| 이름       | 타입         | 설 명                                     |
 | ---------- | ------ | --------------------------------- |
 | `username` | String | This is the username of the user. |
 
 **결과값:**
 
-| Name    | Type   | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ------- | ------ | ---------------------------------------- |
 | `value` | String | This returns all roles assigned to the requested user. |
 
@@ -144,7 +144,7 @@ Any [active user](https://neo4j.com/docs/operations-manual/3.3/security/authenti
 -   This procedure may be invoked by an administrator to view the roles for another user.
 
 <div class="example">
-Example 7.3. List all roles for a user
+예제 7.3. List all roles for a user
 <div class="example-contents">
 The following example lists all the roles for the user with username '**johnsmith**', who has the [roles](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/) `reader` and `publisher`.
 
@@ -176,13 +176,13 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 **인수:**
 
-| Name       | Type   | Description                   |
+| 이름       | 타입         | 설 명                                     |
 | ---------- | ------ | ----------------------------- |
 | `roleName` | String | This is the name of the role. |
 
 **결과값:**
 
-| Name    | Type   | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ------- | ------ | ---------------------------------------- |
 | `value` | String | This returns all assigned users for the requested role. |
 
@@ -193,7 +193,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 | The role name does not exist in the system. |
 
 <div class="example">
-Example 7.4. List all users for a role
+예제 7.4. List all users for a role
 <div class="example-contents">
 The following example lists all the assigned users - '**bill**' and '**anne**' - for the [role](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/)`publisher`.
 
@@ -225,7 +225,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 **인수:**
 
-| Name                    | Type    | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ----------------------- | ------- | ---------------------------------------- |
 | `username`              | String  | This is the user’s username.             |
 | `password`              | String  | This is the user’s password.             |
@@ -240,7 +240,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 | The password is the empty string.        |
 
 <div class="example">
-Example 7.5. Create a user
+예제 7.5. Create a user
 <div class="example-contents">
 The following example creates a [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) with the username '**johnsmith**' and password '**h6u4%kr**'. When the user '**johnsmith**' logs in for the first time, he will be required to [change his password](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password).
 
@@ -260,7 +260,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 **인수:**
 
-| Name       | Type   | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ---------- | ------ | ---------------------------------------- |
 | `username` | String | This is the username of the user to be deleted. |
 
@@ -278,7 +278,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 -   As it is not possible for the current user to delete themselves, there will always be at least one administrator in the system.
 
 <div class="example">
-Example 7.6. Delete a user
+예제 7.6. Delete a user
 <div class="example-contents">
 The following example deletes a [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) with the username '**janebrown**'.
 
@@ -298,7 +298,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 **인수:**
 
-| Name       | Type   | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ---------- | ------ | ---------------------------------------- |
 | `roleName` | String | This is the name of the role to be assigned to the user. |
 | `username` | String | This is the username of the user who is to be assigned the role. |
@@ -317,7 +317,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 -   This is an idempotent procedure.
 
 <div class="example">
-Example 7.7. Assign a role to a user
+예제 7.7. Assign a role to a user
 <div class="example-contents">
 The following example assigns the [role](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/) `publisher` to the user with username '**johnsmith**'.
 
@@ -337,7 +337,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 **인수:**
 
-| Name       | Type   | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ---------- | ------ | ---------------------------------------- |
 | `roleName` | String | This is the name of the role which is to be removed from the user. |
 | `username` | String | This is the username of the user from which the role is to be removed. |
@@ -357,7 +357,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 -   This is an idempotent procedure.
 
 <div class="example">
-Example 7.8. Remove a role from a user
+예제 7.8. Remove a role from a user
 <div class="example-contents">
 The following example removes the [role](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/) `publisher` from the user with username '**johnsmith**'.
 
@@ -377,7 +377,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 **인수:**
 
-| Name       | Type   | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ---------- | ------ | ---------------------------------------- |
 | `roleName` | String | This is the name of the role to be created. |
 
@@ -391,7 +391,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 | The role name matches one of the native roles: `reader`, `publisher`, `architect`, and `admin`. |
 
 <div class="example">
-Example 7.9. Create a new custom role
+예제 7.9. Create a new custom role
 <div class="example-contents">
 The following example creates a new custom role.
 
@@ -411,7 +411,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 **인수:**
 
-| Name       | Type   | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ---------- | ------ | ---------------------------------------- |
 | `roleName` | String | This is the name of the role to be deleted. |
 
@@ -427,7 +427,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 -   Any role assignments will be removed.
 
 <div class="example">
-Example 7.10. Delete a custom role
+예제 7.10. Delete a custom role
 <div class="example-contents">
 The following example deletes the custom role '**operator**' from the system.
 
@@ -447,7 +447,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 **인수:**
 
-| Name       | Type   | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ---------- | ------ | ---------------------------------------- |
 | `username` | String | This is the username of the user to be suspended. |
 
@@ -467,7 +467,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 -   This is an idempotent procedure.
 
 <div class="example">
-Example 7.11. Suspend a user
+예제 7.11. Suspend a user
 <div class="example-contents">
 The following example suspends a [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) with the username '**billjones**'.
 
@@ -487,7 +487,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 **인수:**
 
-| Name                    | Type    | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ----------------------- | ------- | ---------------------------------------- |
 | `username`              | String  | This is the username of the [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) to be activated. |
 | `requirePasswordChange` | Boolean | This is optional, with a default of `true`. If this is `true`, (i) the user will be forced to change their password when they next log in, and (ii) until the user has changed their password, they will be forbidden from performing any other operation. |
@@ -504,7 +504,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 -   This is an idempotent procedure.
 
 <div class="example">
-Example 7.12. Activate a user
+예제 7.12. Activate a user
 <div class="example-contents">
 The following example activates a [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) with the username '**jackgreen**'. When the user '**jackgreen**' next logs in, he will be required to [change his password](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password).
 
@@ -524,7 +524,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 
 **인수:**
 
-| Name                    | Type    | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ----------------------- | ------- | ---------------------------------------- |
 | `username`              | String  | This is the username of the user whose password is to be changed. |
 | `newPassword`           | String  | This is the new password for the user.   |
@@ -544,7 +544,7 @@ An [administrator](https://neo4j.com/docs/operations-manual/3.3/security/authent
 -   This procedure may be invoked by an administrator to change another user’s password.
 -   In addition to changing the user’s password, this will terminate with immediate effect all of the user’s sessions and roll back any running transactions.
 
-Example 7.13. Change a user’s password
+예제 7.13. Change a user’s password
 
 The following example changes the password of the [user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-user) with the username '**joebloggs**' to '**h6u4%kr**'. When the user '**joebloggs**' next logs in, he will be required to [change his password](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password).
 
@@ -562,7 +562,7 @@ Any [active user](https://neo4j.com/docs/operations-manual/3.3/security/authenti
 
 **인수:**
 
-| Name                    | Type    | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ----------------------- | ------- | ---------------------------------------- |
 | `password`              | String  | This is the new password for the [current user](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/terminology/#term-current-user). |
 | `requirePasswordChange` | Boolean | This is optional, with a default of `false`. If this is `true`, (i) the current user will be forced to change their password when they next log in, and (ii) until the current user has changed their password, they will be forbidden from performing any other operation. |
@@ -574,7 +574,7 @@ Any [active user](https://neo4j.com/docs/operations-manual/3.3/security/authenti
 | The password is the same as the current user’s previous password. |
 
 <div class="example">
-Example 7.14. Change the current user’s password
+예제 7.14. Change the current user’s password
 <div class="example-contents">
 The following example changes the password of the current user to '**h6u4%kr**'.
 
@@ -594,7 +594,7 @@ Any [active user](https://neo4j.com/docs/operations-manual/3.3/security/authenti
 
 **결과값:**
 
-| Name          | Type         | Description                              |
+| 이름       | 타입         | 설 명                                     |
 | ------------- | ------------ | ---------------------------------------- |
 | `name`        | String       | This is the name of the procedure.       |
 | `signature`   | String       | This is the signature of the procedure.  |
@@ -602,7 +602,7 @@ Any [active user](https://neo4j.com/docs/operations-manual/3.3/security/authenti
 | `roles`       | List<String> | This is a list of roles having the privilege to execute the procedure. |
 
 <div class="example">
-Example 7.15. List role per procedure
+예제 7.15. List role per procedure
 <div class="example-contents">
 The following example shows, for four of the security procedures, the procedure name, the description, and which roles have the privilege to execute the procedure.
 
