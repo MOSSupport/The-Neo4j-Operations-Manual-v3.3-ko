@@ -72,7 +72,7 @@ CALL dbms.security.listUsers()
 
 ##### List all roles
 
-[administrator](/security/authentication-authorization/terminology/#administrator)는 시스템의 각 역할에 대해 할당 된 모든 사용자를 볼 수 있습니다.
+[administrator](/security/authentication-authorization/terminology.md/#administrator)는 시스템의 각 역할에 대해 할당 된 모든 사용자를 볼 수 있습니다.
 
 **문법:**
 
@@ -116,7 +116,7 @@ CALL dbms.security.listRoles()
 ##### List all roles for a user
 
 
-[active user](/security/authentication-authorization/terminology.md/#active-user)는 할당 된 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md)을 모두 볼 수 있습니다. [administrator](/security/authentication-authorization/terminology/#administrator)는 시스템의 모든 [user](/security/authentication-authorization/terminology.md/#user)에 대해 할당 된 모든 역할을 볼 수 있습니다.
+[active user](/security/authentication-authorization/terminology.md/#active-user)는 할당 된 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md)을 모두 볼 수 있습니다. [administrator](/security/authentication-authorization/terminology.md/#administrator)는 시스템의 모든 [user](/security/authentication-authorization/terminology.md/#user)에 대해 할당 된 모든 역할을 볼 수 있습니다.
 
 **문법:**
 
@@ -172,7 +172,7 @@ CALL dbms.security.listRolesForUser('johnsmith')
 
 ##### List all users for a role
 
-[administrator](/security/authentication-authorization/terminology/#administrator)는 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md)에 대해 할당 된 모든 [user](/security/authentication-authorization/terminology/#user)를 볼 수 있습니다.
+[administrator](/security/authentication-authorization/terminology.md/#administrator)는 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md)에 대해 할당 된 모든 [user](/security/authentication-authorization/terminology/#user)를 볼 수 있습니다.
 
 
 **문법:**
@@ -223,8 +223,8 @@ CALL dbms.security.listUsersForRole('publisher')
 
 ##### Create a user
 
-[administrator](/security/authentication-authorization/terminology/#administrator)는 새 [user](/security/authentication-authorization/terminology/#user)를 만들 수 있습니다. 이 작업은 사용자에게 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md)을 할당하여 수행해야합니다. 설명은 [여기](/security/authentication-authorization/native-user-and-role-management/procedures-for-native-user-and-role-management.md/#assign-a-role-to-a-user)를 참조하세요.
-An [administrator](/security/authentication-authorization/terminology/#term-administrator) is able to create a new [user](/security/authentication-authorization/terminology/#term-user). This action ought to be followed by assigning a [role](/security/authentication-authorization/native-user-role-management/native-roles/) to the user, which is described [here](/security/authentication-authorization/native-user-role-management/procedures/#user-roles-assign-role-to-user).
+[administrator](/security/authentication-authorization/terminology.md/#administrator)는 새 [user](/security/authentication-authorization/terminology.md/#user)를 만들 수 있습니다. 이 작업은 사용자에게 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md)을 할당하여 수행해야합니다. 설명은 [여기](/security/authentication-authorization/native-user-and-role-management/procedures-for-native-user-and-role-management.md/#assign-a-role-to-a-user)를 참조하세요.
+
 
 **문법:**
 
@@ -234,8 +234,8 @@ An [administrator](/security/authentication-authorization/terminology/#term-admi
 
 | 이름       | 타입         | 설 명                                     |
 | ----------------------- | ------- | ---------------------------------------- |
-| `username`              | String  | This is the user’s username.             |
-| `password`              | String  | This is the user’s password.             |
+| `username`              | String  | 사용자의 사용자 이름입니다.             |
+| `password`              | String  | 사용자의 암호입니다.             |
 | `requirePasswordChange` | Boolean | This is optional, with a default of `true`. If this is `true`, (i) the user will be forced to change their password when they log in for the first time, and (ii) until the user has changed their password, they will be forbidden from performing any other operation. |
 
 **예외:**
@@ -249,7 +249,7 @@ An [administrator](/security/authentication-authorization/terminology/#term-admi
 <div class="example">
 예제 7.5. Create a user
 <div class="example-contents">
-The following example creates a [user](/security/authentication-authorization/terminology/#term-user) with the username '**johnsmith**' and password '**h6u4%kr**'. When the user '**johnsmith**' logs in for the first time, he will be required to [change his password](/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password).
+The following example creates a [user](/security/authentication-authorization/terminology.md/#term-user) with the username '**johnsmith**' and password '**h6u4%kr**'. When the user '**johnsmith**' logs in for the first time, he will be required to [change his password](/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password).
 
 <code>
 CALL dbms.security.createUser('johnsmith', 'h6u4%kr')
@@ -259,7 +259,7 @@ CALL dbms.security.createUser('johnsmith', 'h6u4%kr')
 
 ##### Delete a user
 
-An [administrator](/security/authentication-authorization/terminology/#term-administrator) is able to delete permanently a [user](/security/authentication-authorization/terminology/#term-user) from the system. It is not possible to undo this action, so, if in any doubt, consider [suspending the user](/security/authentication-authorization/native-user-role-management/procedures/#userauth-suspend-user) instead.
+An [administrator](/security/authentication-authorization/terminology.md/#term-administrator) is able to delete permanently a [user](/security/authentication-authorization/terminology.md/#term-user) from the system. It is not possible to undo this action, so, if in any doubt, consider [suspending the user](/security/authentication-authorization/native-user-role-management/procedures/#userauth-suspend-user) instead.
 
 **문법:**
 
@@ -287,7 +287,7 @@ An [administrator](/security/authentication-authorization/terminology/#term-admi
 <div class="example">
 예제 7.6. Delete a user
 <div class="example-contents">
-The following example deletes a [user](/security/authentication-authorization/terminology/#term-user) with the username '**janebrown**'.
+The following example deletes a [user](/security/authentication-authorization/terminology.md/#term-user) with the username '**janebrown**'.
 
 <code>
 CALL dbms.security.deleteUser('janebrown')
@@ -297,7 +297,7 @@ CALL dbms.security.deleteUser('janebrown')
 
 ##### Assign a role to a user
 
-An [administrator](/security/authentication-authorization/terminology/#term-administrator) is able to assign a [role](/security/authentication-authorization/native-user-role-management/native-roles/) to any [user](/security/authentication-authorization/terminology/#term-user) in the system, thus allowing the user to perform a series of actions upon the data.
+An [administrator](/security/authentication-authorization/terminology.md/#term-administrator) is able to assign a [role](/security/authentication-authorization/native-user-role-management/native-roles/) to any [user](/security/authentication-authorization/terminology.md/#term-user) in the system, thus allowing the user to perform a series of actions upon the data.
 
 **문법:**
 
@@ -336,7 +336,7 @@ CALL dbms.security.addRoleToUser('publisher', 'johnsmith')
 
 ##### Remove a role from a user
 
-An [administrator](/security/authentication-authorization/terminology/#term-administrator) is able to remove a [role](/security/authentication-authorization/native-user-role-management/native-roles/) from any [user](/security/authentication-authorization/terminology/#term-user) in the system, thus preventing the user from performing upon the data any actions prescribed by the role.
+An [administrator](/security/authentication-authorization/terminology.md/#term-administrator) is able to remove a [role](/security/authentication-authorization/native-user-role-management/native-roles/) from any [user](/security/authentication-authorization/terminology.md/#term-user) in the system, thus preventing the user from performing upon the data any actions prescribed by the role.
 
 **문법:**
 
@@ -351,7 +351,7 @@ An [administrator](/security/authentication-authorization/terminology/#term-admi
 
 **예외:**
 
-| The [current user](/security/authentication-authorization/terminology/#term-current-user) is not an administrator. |
+| The [current user](/security/authentication-authorization/terminology.md/#term-current-user) is not an administrator. |
 | ---------------------------------------- |
 | The username does not exist in the system. |
 | The role name does not exist in the system. |
@@ -376,7 +376,7 @@ CALL dbms.security.removeRoleFromUser('publisher', 'johnsmith')
 
 ##### Create a custom role
 
-An [administrator](/security/authentication-authorization/terminology/#term-administrator) is able to create custom roles in the system.
+An [administrator](/security/authentication-authorization/terminology.md/#term-administrator) is able to create custom roles in the system.
 
 **문법:**
 
@@ -410,7 +410,7 @@ CALL dbms.security.createRole('operator')
 
 ##### Delete a custom role
 
-An [administrator](/security/authentication-authorization/terminology/#term-administrator) is able to delete custom roles from the system. The native roles `reader`, `publisher`, `architect`, and `admin` (see [Section 7.1.4.1, “Native roles”](/security/authentication-authorization/native-user-role-management/native-roles/)) cannot be deleted.
+An [administrator](/security/authentication-authorization/terminology.md/#term-administrator) is able to delete custom roles from the system. The native roles `reader`, `publisher`, `architect`, and `admin` (see [Section 7.1.4.1, “Native roles”](/security/authentication-authorization/native-user-role-management/native-roles/)) cannot be deleted.
 
 **문법:**
 
@@ -446,7 +446,7 @@ CALL dbms.security.deleteRole('operator')
 
 ##### Suspend a user
 
-An [administrator](/security/authentication-authorization/terminology/#term-administrator) is able to suspend a [user](/security/authentication-authorization/terminology/#term-user) from the system. The suspended user may be [activated](/security/authentication-authorization/native-user-role-management/procedures/#userauth-activate-user) at a later stage.
+An [administrator](/security/authentication-authorization/terminology.md/#term-administrator) is able to suspend a [user](/security/authentication-authorization/terminology.md/#term-user) from the system. The suspended user may be [activated](/security/authentication-authorization/native-user-role-management/procedures/#userauth-activate-user) at a later stage.
 
 **문법:**
 
@@ -476,7 +476,7 @@ An [administrator](/security/authentication-authorization/terminology/#term-admi
 <div class="example">
 예제 7.11. Suspend a user
 <div class="example-contents">
-The following example suspends a [user](/security/authentication-authorization/terminology/#term-user) with the username '**billjones**'.
+The following example suspends a [user](/security/authentication-authorization/terminology.md/#term-user) with the username '**billjones**'.
 
 <code>
 CALL dbms.security.suspendUser('billjones')
@@ -486,7 +486,7 @@ CALL dbms.security.suspendUser('billjones')
 
 ##### Activate a user
 
-An [administrator](/security/authentication-authorization/terminology/#term-administrator) is able to activate a suspended [user](/security/authentication-authorization/terminology/#term-user) so that the user is once again able to access the data in their original capacity.
+An [administrator](/security/authentication-authorization/terminology.md/#term-administrator) is able to activate a suspended [user](/security/authentication-authorization/terminology.md/#term-user) so that the user is once again able to access the data in their original capacity.
 
 **문법:**
 
@@ -496,7 +496,7 @@ An [administrator](/security/authentication-authorization/terminology/#term-admi
 
 | 이름       | 타입         | 설 명                                     |
 | ----------------------- | ------- | ---------------------------------------- |
-| `username`              | String  | This is the username of the [user](/security/authentication-authorization/terminology/#term-user) to be activated. |
+| `username`              | String  | This is the username of the [user](/security/authentication-authorization/terminology.md/#term-user) to be activated. |
 | `requirePasswordChange` | Boolean | This is optional, with a default of `true`. If this is `true`, (i) the user will be forced to change their password when they next log in, and (ii) until the user has changed their password, they will be forbidden from performing any other operation. |
 
 **예외:**
@@ -513,7 +513,7 @@ An [administrator](/security/authentication-authorization/terminology/#term-admi
 <div class="example">
 예제 7.12. Activate a user
 <div class="example-contents">
-The following example activates a [user](/security/authentication-authorization/terminology/#term-user) with the username '**jackgreen**'. When the user '**jackgreen**' next logs in, he will be required to [change his password](/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password).
+The following example activates a [user](/security/authentication-authorization/terminology.md/#term-user) with the username '**jackgreen**'. When the user '**jackgreen**' next logs in, he will be required to [change his password](/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password).
 
 <code>
 CALL dbms.security.activateUser('jackgreen')
@@ -523,7 +523,7 @@ CALL dbms.security.activateUser('jackgreen')
 
 ##### Change a user’s password
 
-An [administrator](/security/authentication-authorization/terminology/#term-administrator) is able to change the password of any [user](/security/authentication-authorization/terminology/#term-user) within the system. Alternatively, the [current user](/security/authentication-authorization/terminology/#term-current-user) may change their own password.
+An [administrator](/security/authentication-authorization/terminology.md/#term-administrator) is able to change the password of any [user](/security/authentication-authorization/terminology.md/#term-user) within the system. Alternatively, the [current user](/security/authentication-authorization/terminology.md/#term-current-user) may change their own password.
 
 **문법:**
 
@@ -553,7 +553,7 @@ An [administrator](/security/authentication-authorization/terminology/#term-admi
 
 예제 7.13. Change a user’s password
 
-The following example changes the password of the [user](/security/authentication-authorization/terminology/#term-user) with the username '**joebloggs**' to '**h6u4%kr**'. When the user '**joebloggs**' next logs in, he will be required to [change his password](/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password).
+The following example changes the password of the [user](/security/authentication-authorization/terminology.md/#term-user) with the username '**joebloggs**' to '**h6u4%kr**'. When the user '**joebloggs**' next logs in, he will be required to [change his password](/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password).
 
 ```
 CALL dbms.security.changeUserPassword('joebloggs', 'h6u4%kr')
@@ -561,7 +561,7 @@ CALL dbms.security.changeUserPassword('joebloggs', 'h6u4%kr')
 
 ##### Change the current user’s password
 
-Any [active user](/security/authentication-authorization/terminology/#term-active-user) is able to change their own password at any time.
+Any [active user](/security/authentication-authorization/terminology.md/#term-active-user) is able to change their own password at any time.
 
 **문법:**
 
@@ -571,7 +571,7 @@ Any [active user](/security/authentication-authorization/terminology/#term-activ
 
 | 이름       | 타입         | 설 명                                     |
 | ----------------------- | ------- | ---------------------------------------- |
-| `password`              | String  | This is the new password for the [current user](/security/authentication-authorization/terminology/#term-current-user). |
+| `password`              | String  | This is the new password for the [current user](/security/authentication-authorization/terminology.md/#term-current-user). |
 | `requirePasswordChange` | Boolean | This is optional, with a default of `false`. If this is `true`, (i) the current user will be forced to change their password when they next log in, and (ii) until the current user has changed their password, they will be forbidden from performing any other operation. |
 
 **예외:**
@@ -593,7 +593,7 @@ CALL dbms.security.changePassword('h6u4%kr')
 
 ##### List roles per procedure
 
-Any [active user](/security/authentication-authorization/terminology/#term-active-user) is able to view all procedures in the system, including which role(s) have the privilege to execute them.
+Any [active user](/security/authentication-authorization/terminology.md/#term-active-user) is able to view all procedures in the system, including which role(s) have the privilege to execute them.
 
 **문법:**
 
