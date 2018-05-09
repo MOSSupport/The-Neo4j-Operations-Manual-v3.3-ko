@@ -47,6 +47,8 @@ Neo4j에서는 Cypher를 통해 내장 프로 시저를 사용하여 기본 사�
 예제 7.1. List all users
 <div class="example-contents">
 
+아래의 예제는 시스템의 각 <a href="/security/authentication-authorization/terminology.html#user">user</a> 는 사용자이름, 사용자에 할당된 <a href="/security/authentication-authorization/native-user-and-role-management/native-roles.html">roles</a>, 그리고 사용자가 일지 중지되었거나 비밀번호를 변경해야 하는지 여부를 보여줍니다.
+
 아래의 예제는 시스템의 각 [user](/security/authentication-authorization/terminology.md/#user) 는 사용자이름, 사용자에 할당된 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md), 그리고 사용자가 일지 중지되었거나 비밀번호를 변경해야 하는지 여부를 보여줍니다.
 <p>
 
