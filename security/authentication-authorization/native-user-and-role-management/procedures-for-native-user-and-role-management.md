@@ -172,8 +172,8 @@ CALL dbms.security.listRolesForUser('johnsmith')
 
 ##### List all users for a role
 
+[관리자](/security/authentication-authorization/terminology/#administrator)는 [역할](/security/authentication-authorization/native-user-and-role-management/native-roles.md)에 대해 할당 된 모든 [사용자](/security/authentication-authorization/terminology/#user)를 볼 수 있습니다.
 
-An [administrator](/security/authentication-authorization/terminology/#term-administrator) is able to view all assigned [users](/security/authentication-authorization/terminology/#term-user) for a [role](/security/authentication-authorization/native-user-role-management/native-roles/).
 
 **문법:**
 
@@ -183,19 +183,19 @@ An [administrator](/security/authentication-authorization/terminology/#term-admi
 
 | 이름       | 타입         | 설 명                                     |
 | ---------- | ------ | ----------------------------- |
-| `roleName` | String | This is the name of the role. |
+| `roleName` | String | 역할의 이름입니다. |
 
 **결과값:**
 
 | 이름       | 타입         | 설 명                                     |
 | ------- | ------ | ---------------------------------------- |
-| `value` | String | This returns all assigned users for the requested role. |
+| `value` | String | 요청 된 역할에 대해 할당 된 모든 사용자가 반환됩니다. |
 
 **예외:**
 
-| The current user is not an administrator. |
+| 현재 사용자는 관리자가 아닙니다. |
 | ---------------------------------------- |
-| The role name does not exist in the system. |
+| 역할 이름이 시스템에 없습니다. |
 
 <div class="example">
 예제 7.4. List all users for a role
