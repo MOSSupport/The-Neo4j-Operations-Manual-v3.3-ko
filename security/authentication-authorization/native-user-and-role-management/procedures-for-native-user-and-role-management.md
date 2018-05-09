@@ -172,7 +172,7 @@ CALL dbms.security.listRolesForUser('johnsmith')
 
 ##### List all users for a role
 
-[관리자](/security/authentication-authorization/terminology/#administrator)는 [역할](/security/authentication-authorization/native-user-and-role-management/native-roles.md)에 대해 할당 된 모든 [사용자](/security/authentication-authorization/terminology/#user)를 볼 수 있습니다.
+[administrator](/security/authentication-authorization/terminology/#administrator)는 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md)에 대해 할당 된 모든 [user](/security/authentication-authorization/terminology/#user)를 볼 수 있습니다.
 
 
 **문법:**
@@ -200,7 +200,8 @@ CALL dbms.security.listRolesForUser('johnsmith')
 <div class="example">
 예제 7.4. List all users for a role
 <div class="example-contents">
-The following example lists all the assigned users - '**bill**' and '**anne**' - for the [role](/security/authentication-authorization/native-user-role-management/native-roles/)`publisher`.
+
+다음 예는 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md) `publisher`에 할당된 모든 사용자인 '**bill**'과 '**anne**'를 나열합니다.
 
 <code>
 CALL dbms.security.listUsersForRole('publisher')
