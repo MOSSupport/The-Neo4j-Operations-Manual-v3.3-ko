@@ -25,5 +25,5 @@ Neo4j Causal 클러스터를 모니터링하는 데 사용할 수 있는 기능�
 * [데이터 센터 복구]() - 데이터 센터 손실 후 클러스터를 완전 가동 상태로 복구하는 방법
 
 #### 설정 참조
-* [설정 참조](https://neo4j.com/docs/operations-manual/3.3/clustering/causal-clustering/settings/) - 가장 중요한 Causal 클러스터 설정 요약
+* [설정 참조](./causal-cluster/settings.md) - 가장 중요한 Causal 클러스터 설정 요약
 단일 시스템에서 테스트 클러스터를 로컬로 설정하려면 [how to set up a local Causal Cluster](https://neo4j.com/docs/operations-manual/3.3/tutorial/local-causal-cluster/)을 참조하십시오
