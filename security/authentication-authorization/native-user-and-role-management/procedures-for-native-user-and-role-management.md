@@ -150,7 +150,7 @@ CALL dbms.security.listRoles()
 예제 7.3. List all roles for a user
 <div class="example-contents">
 
-다음 예제는 사용자 이름이 '<strong>johnsmith</strong>'인 사용자의 <a href="/security/authentication-authorization/native-user-and-role-management/native-roles.html">roles</a>인 <code>reader</code> 와 <code>publisher</code>을 보여줍니다.
+다음 예제는 사용자 이름이 '<b>johnsmith</b>'인 사용자의 <a href="/security/authentication-authorization/native-user-and-role-management/native-roles.html">roles</a>인 <code>reader</code> 와 <code>publisher</code>을 보여줍니다.
 <p>
 
 <code>
@@ -173,7 +173,7 @@ CALL dbms.security.listRolesForUser('johnsmith')
 
 ##### List all users for a role
 
-[administrator](/security/authentication-authorization/terminology.md/#administrator)는 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md)에 대해 할당 된 모든 [user](/security/authentication-authorization/terminology/#user)를 볼 수 있습니다.
+[administrator](/security/authentication-authorization/terminology.md/#administrator)는 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md)에 대해 할당 된 모든 [user](/security/authentication-authorization/terminology.md/#user)를 볼 수 있습니다.
 
 
 **문법:**
@@ -202,7 +202,8 @@ CALL dbms.security.listRolesForUser('johnsmith')
 예제 7.4. List all users for a role
 <div class="example-contents">
 
-다음 예는 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md) `publisher`에 할당된 모든 사용자인 '**bill**'과 '**anne**'를 나열합니다.
+다음 예는 <a href="/security/authentication-authorization/native-user-and-role-management/native-roles.html">roles</a> <code>publisher</code>에 할당된 모든 사용자인 '<b>bill</b>'과 '<b>anne</b>'를 나열합니다.
+<p>
 
 <code>
 CALL dbms.security.listUsersForRole('publisher')
@@ -237,20 +238,22 @@ CALL dbms.security.listUsersForRole('publisher')
 | ----------------------- | ------- | ---------------------------------------- |
 | `username`              | String  | 사용자의 사용자 이름입니다.             |
 | `password`              | String  | 사용자의 암호입니다.             |
-| `requirePasswordChange` | Boolean | This is optional, with a default of `true`. If this is `true`, (i) the user will be forced to change their password when they log in for the first time, and (ii) until the user has changed their password, they will be forbidden from performing any other operation. |
+| `requirePasswordChange` | Boolean | 선택값이며 기본은 `true`입니다. `true`이면 (i) 사용자는 처음 로그인시에 필수로 패스워드를 변경해야 합니다. (ii) 비밀번호를 변경하기 전까지 사용자는 다른 작업을 수행할 수 없습니다. |
 
 **예외:**
 
-| The current user is not an administrator. |
+| 현재사용자는 관리자가 아닙니다. |
 | ---------------------------------------- |
-| The username either contains characters other than the ASCII characters between `!` and `~`, or contains `:`and `,`. |
-| The username is already in use within the system. |
-| The password is the empty string.        |
+| 사용자 이름은 `!` 와 `~` 사이에 ASCII 문자 이외의 문자를 포함하거나 `:` 와 `,` 를 포함합니다.  |
+| 사용자 이름은 이미 시스템 내에서 사용 중입니다. |
+| 암호는 빈 문자열입니다. |
 
 <div class="example">
 예제 7.5. Create a user
 <div class="example-contents">
-The following example creates a [user](/security/authentication-authorization/terminology.md/#term-user) with the username '**johnsmith**' and password '**h6u4%kr**'. When the user '**johnsmith**' logs in for the first time, he will be required to [change his password](/security/authentication-authorization/native-user-role-management/procedures/#userauth-change-your-password).
+
+아래 예제는 사용자 이름이 '<b>johnsmith</b>'이며 암호가 '<b>h6u4%kr</b>'인 <a href="/security/authentication-authorization/terminology.html#user">user</a>를 생성합니다. 사용자 '<b>johnsmith</b>'는 처음 로그인시 [암호를 변경](/security/authentication-authorization/native-user-and-role-management/procedures-for-native-user-and-role-management.md/#change-a-users-password)해야 합니다.
+<p>
 
 <code>
 CALL dbms.security.createUser('johnsmith', 'h6u4%kr')
@@ -289,6 +292,7 @@ An [administrator](/security/authentication-authorization/terminology.md/#term-a
 예제 7.6. Delete a user
 <div class="example-contents">
 The following example deletes a [user](/security/authentication-authorization/terminology.md/#term-user) with the username '**janebrown**'.
+<p>
 
 <code>
 CALL dbms.security.deleteUser('janebrown')
