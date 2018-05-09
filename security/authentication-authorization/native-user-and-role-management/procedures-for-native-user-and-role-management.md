@@ -49,9 +49,8 @@ Neo4j에서는 Cypher를 통해 내장 프로 시저를 사용하여 기본 사�
 
 아래의 예제는 시스템의 각 <a href="/security/authentication-authorization/terminology.html#user">user</a> 는 사용자이름, 사용자에 할당된 <a href="/security/authentication-authorization/native-user-and-role-management/native-roles.html">roles</a>, 그리고 사용자가 일지 중지되었거나 비밀번호를 변경해야 하는지 여부를 보여줍니다.
 
-아래의 예제는 시스템의 각 [user](/security/authentication-authorization/terminology.md/#user) 는 사용자이름, 사용자에 할당된 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md), 그리고 사용자가 일지 중지되었거나 비밀번호를 변경해야 하는지 여부를 보여줍니다.
 <p>
-
+<p>
 <code>
 CALL dbms.security.listUsers()
 </code>
@@ -151,8 +150,8 @@ CALL dbms.security.listRoles()
 예제 7.3. List all roles for a user
 <div class="example-contents">
 
-다음 예제는 사용자 이름이 '**johnsmith**'인 사용자의 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md)인 `reader` 와 `publisher`을 보여줍니다.
-
+다음 예제는 사용자 이름이 '<strong>johnsmith</strong>'인 사용자의 <a href="/security/authentication-authorization/native-user-and-role-management/native-roles.html">roles</a>인 <code>reader</code> 와 <code>publisher</code>을 보여줍니다.
+<p>
 
 <code>
 CALL dbms.security.listRolesForUser('johnsmith')
