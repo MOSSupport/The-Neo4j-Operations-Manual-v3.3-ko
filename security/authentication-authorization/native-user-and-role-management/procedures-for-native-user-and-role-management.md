@@ -46,6 +46,7 @@ Neo4j에서는 Cypher를 통해 내장 프로 시저를 사용하여 기본 사�
 <div class="example">
 예제 7.1. List all users
 <div class="example-contents">
+
 아래의 예제는 시스템의 각 [user](/security/authentication-authorization/terminology.md/#user) 는 사용자이름, 사용자에 할당된 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md), 그리고 사용자가 일지 중지되었거나 비밀번호를 변경해야 하는지 여부를 보여줍니다.
 <p>
 
@@ -135,9 +136,9 @@ CALL dbms.security.listRoles()
 
 **예외:**
 
-| The current user is not an administrator and the username does not match that of the current user. |
+| 현재 사용자가 관리자가 아니며 사용자 이름이 현재 사용자의 사용자 이름과 일치하지 않습니다. |
 | ---------------------------------------- |
-| The username does not exist in the system. |
+| 사용자 이름이 시스템에 없습니다. |
 
 **고려사항:**
 
@@ -147,7 +148,9 @@ CALL dbms.security.listRoles()
 <div class="example">
 예제 7.3. List all roles for a user
 <div class="example-contents">
-The following example lists all the roles for the user with username '**johnsmith**', who has the [roles](/security/authentication-authorization/native-user-role-management/native-roles/) `reader` and `publisher`.
+
+다음 예제는 사용자 이름이 '**johnsmith**'인 사용자의 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md)인 `reader` 와 `publisher`을 보여줍니다.
+
 
 <code>
 CALL dbms.security.listRolesForUser('johnsmith')
@@ -169,7 +172,8 @@ CALL dbms.security.listRolesForUser('johnsmith')
 
 ##### List all users for a role
 
-An [administrator](/security/authentication-authorization/terminology/#term-administrator) is able to view all assigned [users](/security/authentication-authorization/terminology/#term-user) for a [role](/security/authentication-authorization/native-user-role-management/native-roles/).
+[administrator](/security/authentication-authorization/terminology/#administrator)는 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md)에 대해 할당 된 모든 [user](/security/authentication-authorization/terminology/#user)를 볼 수 있습니다.
+
 
 **문법:**
 
@@ -179,24 +183,25 @@ An [administrator](/security/authentication-authorization/terminology/#term-admi
 
 | 이름       | 타입         | 설 명                                     |
 | ---------- | ------ | ----------------------------- |
-| `roleName` | String | This is the name of the role. |
+| `roleName` | String | 역할의 이름입니다. |
 
 **결과값:**
 
 | 이름       | 타입         | 설 명                                     |
 | ------- | ------ | ---------------------------------------- |
-| `value` | String | This returns all assigned users for the requested role. |
+| `value` | String | 요청 된 역할에 대해 할당 된 모든 사용자가 반환됩니다. |
 
 **예외:**
 
-| The current user is not an administrator. |
+| 현재 사용자는 관리자가 아닙니다. |
 | ---------------------------------------- |
-| The role name does not exist in the system. |
+| 역할 이름이 시스템에 없습니다. |
 
 <div class="example">
 예제 7.4. List all users for a role
 <div class="example-contents">
-The following example lists all the assigned users - '**bill**' and '**anne**' - for the [role](/security/authentication-authorization/native-user-role-management/native-roles/)`publisher`.
+
+다음 예는 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md) `publisher`에 할당된 모든 사용자인 '**bill**'과 '**anne**'를 나열합니다.
 
 <code>
 CALL dbms.security.listUsersForRole('publisher')
