@@ -223,6 +223,7 @@ CALL dbms.security.listUsersForRole('publisher')
 
 ##### Create a user
 
+[administrator](/security/authentication-authorization/terminology/#administrator)는 새 [user](/security/authentication-authorization/terminology/#user)를 만들 수 있습니다. 이 작업은 사용자에게 [roles](/security/authentication-authorization/native-user-and-role-management/native-roles.md)을 할당하여 수행해야합니다. 설명은 [여기](/security/authentication-authorization/native-user-and-role-management/procedures-for-native-user-and-role-management.md/#assign-a-role-to-a-user)를 참조하세요.
 An [administrator](/security/authentication-authorization/terminology/#term-administrator) is able to create a new [user](/security/authentication-authorization/terminology/#term-user). This action ought to be followed by assigning a [role](/security/authentication-authorization/native-user-role-management/native-roles/) to the user, which is described [here](/security/authentication-authorization/native-user-role-management/procedures/#user-roles-assign-role-to-user).
 
 **문법:**
