@@ -4,16 +4,14 @@
 	<p>이 절에서는 Neo4j Cluster의 기본 사용자와 역할 및 역할 할당을 전파하는 방법에 대해서 설명합니다. 
 	</p>
 </div>
-This section describes how to propagate native users, roles, and role assignments across a Neo4j cluster.
 
-기본 사용자, 역할 및 역할 할당은 `auth`와 `roles`라는 파일에 저장이 됩니다.
+기본 사용자, 역할 및 역할 할당은 `auth`와 `roles`라는 파일에 저장이 됩니다. 파일은 *data* 디렉토리 ([3.1 절. "파일 위치"] (https://neo4j.com/docs/operations-manual/3.3/configuration/file-locations/))에있는 하위 디렉토리에 있습니다. *dbms*. Neo4j는 저장된 사용자와 할당 된 역할을 5 초마다 디스크에서 자동으로 다시로드합니다. 사용자와 역할에 대한 변경은 명령이 실행되는 Neo4j 인스턴스에만 적용됩니다. 이는 변경 사항이 Neo4j 인스턴스 클러스터에 자동으로 전파되지는 않지만 특별히 제공되어야 한다는 것을 의미합니다.
 
-Native users, roles and role assignments are stored in files named `auth` and `roles`. The files are located in the *data*directory (see [Section 3.1, “File locations”](https://neo4j.com/docs/operations-manual/3.3/configuration/file-locations/)) in a subdirectory called *dbms*. Neo4j automatically reloads the stored users and assigned roles from disk every five seconds. Changes to users and roles are applied only to the Neo4j instance on which the commands are executed. This means that changes are not automatically propagated across a cluster of Neo4j instances, but have to be specifically provided for.
 
-To propagate changes to native users, custom roles, and role assignments across a cluster, there are three options:
+클러스터에서 기본 사용자, 사용자 지정 역할 및 역할 할당에 변경 내용을 적용하려면 세 가지 옵션이 있습니다.
 
--   Manually copy users and roles files on disk to all other cluster instances
--   Use a shared network folder to store users and roles files
--   Create an automated process that synchronizes the stored data across the cluster using, for example, a combination of `rsync` and `crontab`
+- 디스크의 사용자 및 역할 파일을 다른 모든 클러스터 인스턴스에 수동으로 복사합니다.
+- 공유 네트워크 폴더를 사용하여 사용자 및 역할 파일 저장
+- 예를 들어`rsync`와`crontab`의 조합을 사용하여 클러스터에 저장된 데이터를 동기화하는 자동화 된 프로세스를 만듭니다.
 
-We note that the recommended solution for clustered security is to use the LDAP or plugin auth provider.
+클러스터 된 보안에 권장되는 솔루션은 LDAP 또는 Plugin 인증 공급자를 사용하는 것입니다.
