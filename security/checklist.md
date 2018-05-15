@@ -1,4 +1,4 @@
-## 7.5. Security checklist                  
+## 7.5. 보안 점검목록                 
 
 <div class="abstract">
 	<p>이 절에서는 Neo4j의 보안과 관련된 권장 사항을 요약하여 설명합니다.
