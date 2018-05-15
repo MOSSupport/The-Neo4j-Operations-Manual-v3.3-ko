@@ -1,22 +1,26 @@
 ## 7.3. Unified SSL framework                  
 
 <div class="abstract">
-	<p>이 절에서는 Neo4j의 인증 및 권한 부여에 대해서 설명합니다. 
+	<p>이 절에서는 Neo4j에서 통신 채널 보안을 위한 SSL/TLS 통합에 대해 설명합니다. 
 	</p>
 </div>
-This section describes SSL/TLS integration for securing communication channels in Neo4j.
 
-### 7.3.1. About SSL/TLS in general                     
 
-Neo4j supports the securing of communication channels using standard SSL/TLS technology.               It is common to refer to SSL/TLS as simply SSL for reasons of brevity and that is the approach used here and in configuration.               The modern and secure versions of the standard are however all TLS and this is also the default in Neo4j.            
+### 7.3.1. SSL/TLS 에 대해서
 
-The security provided through SSL can be varied through configuration to provide various levels of integrity, confidentiality               and authentication.               Various ciphers and algorithms provide the basis for key exchanges, encryption and message digests whereas a public/private               key infrastructure provides the basis for authentication.            
 
-### 7.3.2. Terminology                     
+Neo4j는 표준 SSL/TLS 기술을 사용하여 통신 채널의 보안을 지원합니다. SSL/TLS는 SSL/TLS를 간결하게하기 위해 SSL을 사용하는 것이 일반적이며 여기서는 구성에서 사용되는 방법입니다. 그러나 표준에서 현대적이고 안전한 버전은 모두 TLS이며 이는 Neo4j의 기본값이기도 합니다.
 
-The following terms are relevant to SSL support within Neo4j:
 
--   Certificate Authority (*CA*)
+SSL을 통해 제공되는 보안은 다양한 수준의 무결성, 기밀성 및 인증을 제공하기 위해 다양한 구성을 통해 제공 될 수 있습니다. 다양한 암호 및 알고리즘이 키 교환, 암호화 및 메시지 다이제스트의 기반을 제공하는 반면 공개/개인 키 인프라는 인증의 기초를 제공합니다.
+
+
+### 7.3.2. 용 어                     
+
+다음 용어는 Neo4j의 SSL 지원과 관련이 있습니다:
+
+
+- 인증기관 - Certificate Authority (*CA*)
 
     A trusted entity that issues electronic documents that can verify the identity of a digital entity.                     The term commonly refers to globally recognized CAs, but can also include internal CAs that are trusted inside of an organization.                     The electronic documents are digital [certificates](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate).                     They are an essential part of secure communication, and play an important part in the [Public Key Infrastructure](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-pki).                  
 

@@ -1,16 +1,15 @@
 ## 7.5. Security checklist                  
 
 <div class="abstract">
-	<p>이 절에서는 Neo4j의 인증 및 권한 부여에 대해서 설명합니다. 
+	<p>이 절에서는 Neo4j의 보안과 관련된 권장 사항을 요약하여 설명합니다.
 	</p>
 </div>
-This section provides a summary of recommendations regarding security in Neo4j.
 
-Below is a simple checklist highlighting the specific areas within Neo4j that may need some extra attention in order to ensure            the appropriate level of security for your application.         
+다음은 Neo4j 내의 특정 영역을 강조하는 간단한 체크리스트입니다.이 체크리스트는 애플리케이션에 적절한 보안 수준을 보장하기 위해 몇 가지 주의가 필요할 수 있습니다.
 
-1.  Deploy Neo4j on safe servers in safe networks:
-    1.  Use subnets and firewalls.
-    2.  Only open up for the necessary ports.                           For a list of relevant ports see [Section 3.2, “Ports”](https://neo4j.com/docs/operations-manual/current/configuration/ports/).                        
+1.  안전한 네트워크의 안전한 서버에 Neo4j 배포 :
+    1. 서브넷과 방화벽을 사용하십시오.
+    2. 필요한 포트만 열어야합니다. 관련 포트 목록은 [3.2 절. "포트"](/configuration/ports.md)를 참조하십시오.                        
 2.  Protect data-at-rest:
     1.  Use volume encryption (e.g. Bitlocker).
     2.  Manage access to database dumps (refer to [Section 10.3, “Dump and load databases”](https://neo4j.com/docs/operations-manual/current/tools/dump-load/)) and backups (refer to [Section 6.2, “Perform a backup”](https://neo4j.com/docs/operations-manual/current/backup/perform-backup/)).                           In particular, ensure that there is no external access to the port specified by the setting `dbms.backup.address` (this defaults to 6362).                           Failing to protect this port leaves a security hole open by which an unauthorized user can make a copy of the database onto                           a different machine.                        

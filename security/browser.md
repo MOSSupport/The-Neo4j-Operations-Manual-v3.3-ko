@@ -1,15 +1,14 @@
-## 7.4. Browser credentials handling                  
+## 7.4. 브라우저 자격 증명 처리                 
 
 <div class="abstract">
-	<p>이 절에서는 Neo4j의 인증 및 권한 부여에 대해서 설명합니다. 
+	<p>이 절에서는 Neo4j Browser에서 인증서를 처리하는 방법을 제어하는 방법에 대해 설명합니다. 
 	</p>
 </div>
-This section explains how to control how credentials are handled in Neo4j Browser.
 
-Neo4j Browser has two mechanisms for avoiding users having to repeatedly enter their Neo4j credentials.
+Neo4j Browser에는 사용자가 반복적으로 Neo4j 자격 증명을 입력하지 않아도 되는 두가지 매커니즘이 있습니다.
 
-First, while the Browser is open in a web browser tab, it ensures that the existing database session is kept alive.            This is subject to a timeout.            The timeout is configured in the setting `browser.credential_timeout`.            The timeout is reset whenever there is user interaction with the Browser.         
+먼저 브라우저가 웹 브라우저 탭에서 열려있는 동안 기존 데이터베이스 세션이 활성 상태로 유지되도록합니다. 이것은 시간 초과가 될 수 있습니다. 시간초과는 `browser.credential_timeout` 설정에서 구성됩니다. 사용자가 브라우저와 상호 작용할 때마다 시간 초과가 재설정됩니다.
 
-Second, the Browser can also cache the user’s Neo4j credentials locally.            When credentials are cached, they are stored unencrypted in the web browser’s local storage.            If the web browser tab is closed and then re-opened, the session is automatically re-established using the cached credentials.            This local storage is also subject to the timeout configured in the setting `browser.credential_timeout`.            In addition, caching credentials in browser local storage can be disabled altogether.            To disable credentials caching, set `browser.retain_connection_credentials=false` in the server configuration.         
+둘째, 브라우저는 사용자의 Neo4j 자격증명을 로컬에서 캐시 할 수 있습니다. 자격증명이 캐시되면 웹 브라우저의 로컬 저장소에 암호화되지 않은 상태로 저장됩니다. 웹 브라우저 탭을 닫았다가 다시 열면 캐시 된 자격증명을 사용하여 세션이 자동으로 다시 설정됩니다. 이 로컬 저장소는 `browser.credential_timeout` 설정에서 설정 한 타임아웃의 영향을받습니다. 또한 브라우저 로컬 저장소의 자격 증명 캐싱을 모두 비활성화 할 수 있습니다. 자격증명 캐싱을 비활성화하려면 서버 구성에서 `browser.retain_connection_credentials = false` 를 설정하십시오.
 
-If the user issues a `:server disconnect` command then any existing session is terminated and the credentials are cleared from local storage.         
+사용자가 `: server disconnect` 명령을 실행하면 기존 세션이 종료되고 로컬 저장소에서 자격 증명이 지워집니다.
