@@ -1,6 +1,10 @@
 ## 7.1. 인증 및 권한 부여 <code>Enterprise Edition</code>
 
-> 이 섹션에서는 Neo4j의 인증 및 권한 부여에 대해서 설명합니다.
+<div class="abstract">
+	<p>이 절에서는 Neo4j의 인증 및 권한 부여에 대해서 설명합니다. 
+	</p>
+</div>
+
 
 <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 커뮤니티 에디션에서의 사용자 관리는 [A.3, "커뮤니티 에디션 사용자 관리"](reference/user-management-community-edition.md) 를 참조하세요.
 
