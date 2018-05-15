@@ -22,7 +22,7 @@ SSL을 통해 제공되는 보안은 다양한 수준의 무결성, 기밀성 �
 
 ##### 인증기관 - Certificate Authority (*CA*)
 
-디지털 개체의 신원을 확인할 수 있는 전자 문서를 발행하는 신뢰할 수 있는 엔터티입니다. 이 용어는 일반적으로 세계적으로 인정되는 CA를 나타내지만 조직 내부에서 신뢰할 수있는 내부 CA도 포함 할 수 있습니다. 전자 문서는 디지털 [인증서](/security/ssl-framework.md/#인증서--certificate)입니다. 이들은 안전한 통신의 핵심 부분이며 [Public Key Infrastructure](/security/ssl-framework.md/#Public-Key-Infrastructure-PKI)에서 중요한 역할을합니다.                
+디지털 개체의 신원을 확인할 수 있는 전자 문서를 발행하는 신뢰할 수 있는 엔터티입니다. 이 용어는 일반적으로 세계적으로 인정되는 CA를 나타내지만 조직 내부에서 신뢰할 수있는 내부 CA도 포함 할 수 있습니다. 전자 문서는 디지털 [인증서](/security/ssl-framework.md/#인증서---certificate)입니다. 이들은 안전한 통신의 핵심 부분이며 [Public Key Infrastructure](/security/ssl-framework.md/#Public-Key-Infrastructure-PKI)에서 중요한 역할을합니다.                
 
 ##### 인증 해지 목록 - Certificate Revocation List (*CRL*)
 
