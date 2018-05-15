@@ -1,4 +1,4 @@
-## 7.3. Unified SSL framework                  
+## 7.3. 통합 SSL framework                  
 
 <div class="abstract">
 	<p>이 절에서는 Neo4j에서 통신 채널 보안을 위한 SSL/TLS 통합에 대해 설명합니다. 
@@ -22,11 +22,11 @@ SSL을 통해 제공되는 보안은 다양한 수준의 무결성, 기밀성 �
 
 ##### 인증기관 - Certificate Authority (*CA*)
 
-    디지털 개체의 신원을 확인할 수 있는 전자 문서를 발행하는 신뢰할 수 있는 엔터티입니다. 이 용어는 일반적으로 세계적으로 인정되는 CA를 나타내지만 조직 내부에서 신뢰할 수있는 내부 CA도 포함 할 수 있습니다. 전자 문서는 디지털 [인증서](/security/ssl-framework.md/#certificate)입니다. 이들은 안전한 통신의 핵심 부분이며 [Public Key Infrastructure](/security/ssl-framework.md/#Public-Key-Infrastructure-(PKI))에서 중요한 역할을합니다.                
+디지털 개체의 신원을 확인할 수 있는 전자 문서를 발행하는 신뢰할 수 있는 엔터티입니다. 이 용어는 일반적으로 세계적으로 인정되는 CA를 나타내지만 조직 내부에서 신뢰할 수있는 내부 CA도 포함 할 수 있습니다. 전자 문서는 디지털 [인증서](/security/ssl-framework.md/#certificate)입니다. 이들은 안전한 통신의 핵심 부분이며 [Public Key Infrastructure](/security/ssl-framework.md/#Public-Key-Infrastructure-(PKI))에서 중요한 역할을합니다.                
 
 ##### Certificate Revocation List (*CRL*)
 
-    In the event of a certificate being compromised, that certificate can be revoked.                     This is done by means of a list (located in one or several files) spelling out which certificates are revoked.                     The CRL is always issued by the [CA](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate-authority) which issues the corresponding certificates.                  
+In the event of a certificate being compromised, that certificate can be revoked.                     This is done by means of a list (located in one or several files) spelling out which certificates are revoked.                     The CRL is always issued by the [CA](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate-authority) which issues the corresponding certificates.                  
 
 ##### cipher
 
