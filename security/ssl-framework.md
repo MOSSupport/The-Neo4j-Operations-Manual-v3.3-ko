@@ -20,55 +20,55 @@ SSL을 통해 제공되는 보안은 다양한 수준의 무결성, 기밀성 �
 다음 용어는 Neo4j의 SSL 지원과 관련이 있습니다:
 
 
-- 인증기관 - Certificate Authority (*CA*)
+##### 인증기관 - Certificate Authority (*CA*)
 
-    A trusted entity that issues electronic documents that can verify the identity of a digital entity.                     The term commonly refers to globally recognized CAs, but can also include internal CAs that are trusted inside of an organization.                     The electronic documents are digital [certificates](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate).                     They are an essential part of secure communication, and play an important part in the [Public Key Infrastructure](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-pki).                  
+    디지털 개체의 신원을 확인할 수 있는 전자 문서를 발행하는 신뢰할 수 있는 엔터티입니다. 이 용어는 일반적으로 세계적으로 인정되는 CA를 나타내지만 조직 내부에서 신뢰할 수있는 내부 CA도 포함 할 수 있습니다. 전자 문서는 디지털 [인증서](/security/ssl-framework.md/#certificate)입니다. 이들은 안전한 통신의 핵심 부분이며 [Public Key Infrastructure](/security/ssl-framework.md/#Public-Key-Infrastructure-(PKI))에서 중요한 역할을합니다.                
 
--   Certificate Revocation List (*CRL*)
+##### Certificate Revocation List (*CRL*)
 
     In the event of a certificate being compromised, that certificate can be revoked.                     This is done by means of a list (located in one or several files) spelling out which certificates are revoked.                     The CRL is always issued by the [CA](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate-authority) which issues the corresponding certificates.                  
 
--   cipher
+##### cipher
 
     An algorithm for performing encryption or decryption.                     In the most general implementation of encryption of Neo4j communications, we make implicit use of ciphers that are included                     as part of the Java platform.                     The configuration of the SSL framework also allows for the explicit declaration of allowed ciphers.                  
 
--   communication channel
+##### communication channel
 
                          A means for communicating with the Neo4j database.                        Available channels are:                                                                                             Bolt client traffic                           HTTPS client traffic                           intra-cluster communication                                                               
 
--   cryptographic objects
+##### cryptographic objects
 
     A term denoting the artifacts [private keys](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-private-key), [certificates](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate) and [CRLs](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate-revocation-list).                  
 
--   configuration parameters
+##### configuration parameters
 
     These are the parameters defined for a certain [ssl policy](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-policy) in *neo4j.conf*.                  
 
--   certificate
+##### certificate
 
     SSL certificates are issued by a trusted [certificate authority (*CA*)](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate-authority).                     The public key can be obtained and used by anyone to encrypt messages intended for a particular recipient.                     The certificate is commonly stored in a file named *<file name>.crt*.                     This is also referred to as the [public key](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-public-key).                  
 
--   SSL policy
+##### SSL policy
 
     An SSL policy in Neo4j consists of  [a digital certificate](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate) and a set of configuration parameters defined in *neo4j.conf*.                  
 
--   private key
+##### private key
 
     The private key ensures that encrypted messages can be deciphered only by the intended recipient.                     The private key is commonly stored in a file named *<file name>.key*.                     It is important to protect the private key to ensure the integrity of encrypted communication.                  
 
--   Public Key Infrastructure (*PKI*)
+##### Public Key Infrastructure (*PKI*)
 
     A set of roles, policies, and procedures needed to create, manage, distribute, use, store, and revoke [digital certificates](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate) and manage [public-key](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-public-key) encryption.                  
 
--   public key
+##### public key
 
     The public key can be obtained and used by anyone to encrypt messages intended for a particular recipient.                     This is also referred to as the [certificate](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate).                  
 
--   TLS version
+##### TLS version
 
     A version of the [TLS protocol](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-tls-protocol).                  
 
--   TLS protocol
+##### TLS protocol
 
     The cryptographic protocol that provides communications security over a computer network.                     The Transport Layer Security (TLS) protocol and its predecessor, the Secure Sockets Layer (SSL) protocol are both frequently                     referred to as "SSL".                  
 
