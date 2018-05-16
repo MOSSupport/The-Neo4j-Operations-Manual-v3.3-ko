@@ -154,15 +154,19 @@ drwxr-xr-x ... trusted
 
 ### 7.3.5. SSL 정책 적용                     
 
-A communication channel or group of channels gets an SSL policy applied by binding it to an SSL policy name.               Causal Clustering, Bolt and HTTPS can be configured with SSL policies, using the configuration settings `causal_clustering.ssl_policy`, `bolt.ssl_policy` and `https.ssl_policy`.            
+통신 채널 또는 채널 그룹은 SSL정책 이름에 결합하여 적용되는 SSL 정책을 얻는다. Causal 클러스터, Bolt 및 HTTPS는 `causal_clustering.ssl_policy`, `bolt.ssl_policy` 및 `https.ssl_policy`를 구성 설정을 사용하여 SSL정책으로 구성 할 수 있습니다.
 
-Example 7.25. Apply an SSL policy
 
-The following example will configure a causal cluster to use the policy named `example_policy`:                  
+<div class="example">
+예제 7.25. SSL 정책 적용
+<div class="example-contents">
+다음 예제는 Causal 클러스터가 <code>example_policy</code>라는 정책을 사용하도록 설정합니다:
 
-```
+<code>
 causal_clustering.ssl_policy=example_policy
-```
+</code>
+</div>
+</div>
 
 ### 7.3.6. Certificate formats                     
 
