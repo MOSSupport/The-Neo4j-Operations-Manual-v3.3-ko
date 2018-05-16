@@ -40,23 +40,23 @@ Neo4j 데이터베이스와 통신하기 위한 수단을 의미합니다. 가�
 - HTTPS 클라이언트 트래픽
 - 내부 클러스터 통신
 
-##### cryptographic objects
+##### 암호 객체
 
-    A term denoting the artifacts [private keys](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-private-key), [certificates](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate) and [CRLs](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate-revocation-list).                  
+요소를 나타내는 단어 [개인 키](/security/ssl-framework.md/#개인-키), [인증서](/security/ssl-framework.md/#인증서---certificate) 그리고 [CRLS](/security/ssl-framework.md/#인증-해지-목록---certificate-revocation-list-crl)입니다.
 
-##### configuration parameters
+##### 구성 매개변수
 
-    These are the parameters defined for a certain [ssl policy](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-policy) in *neo4j.conf*.                  
+*neo4j.conf*의 특정 [ssl 정책](/security/ssl-framework.md/#ssl-정책)에 대해 정의 된 매개 변수입니다.
 
 ##### 인증서 - certificate
 
-    SSL certificates are issued by a trusted [certificate authority (*CA*)](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate-authority).                     The public key can be obtained and used by anyone to encrypt messages intended for a particular recipient.                     The certificate is commonly stored in a file named *<file name>.crt*.                     This is also referred to as the [public key](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-public-key).                  
+SSL 인증서는 신뢰할 수 있는 [인증기관 - CA](/security/ssl-framework.md/#인증기관---certificate-authority-ca)에서 발급합니다. 공개 키는 특정 수신자를 위한 메시지를 암호화 하기 위해 누구든지 획득하고 사용할 수 있습니다. 인증서는 일반적으로 *<file name>.crt* 라는 파일에 저장됩니다. 이것은 [공개 키](/security/ssl-framework.md/#공개-키)라고도 합니다.                
 
-##### SSL policy
+##### SSL 정책
 
-    An SSL policy in Neo4j consists of  [a digital certificate](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate) and a set of configuration parameters defined in *neo4j.conf*.                  
+Neo4j의 SSL 정책은 [디지털 인증서](/security/ssl-framework.md/#인증서---certificate)와 *neo4j.conf* 정의 된 일련의 구성 매개 변수로 구성됩니다. 
 
-##### private key
+##### 개인 키
 
     The private key ensures that encrypted messages can be deciphered only by the intended recipient.                     The private key is commonly stored in a file named *<file name>.key*.                     It is important to protect the private key to ensure the integrity of encrypted communication.                  
 
@@ -64,7 +64,7 @@ Neo4j 데이터베이스와 통신하기 위한 수단을 의미합니다. 가�
 
     A set of roles, policies, and procedures needed to create, manage, distribute, use, store, and revoke [digital certificates](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate) and manage [public-key](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-public-key) encryption.                  
 
-##### public key
+##### 공개 키
 
     The public key can be obtained and used by anyone to encrypt messages intended for a particular recipient.                     This is also referred to as the [certificate](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate).                  
 
