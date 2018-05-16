@@ -121,32 +121,35 @@ Neo4j와 자바 플랫폼의 결합은 강력한 cipher suites와 프로토콜�
 <div class="example-contents">
 
 이 예제에서 우리는 `example_policy`라는 정책에 대한 설정을 정의하고 생성합니다. 가능한 가장 단순한 구성으로, *neo4j.conf*에 이 정책의 기본 디렉토리를 정의합니다.:                  
-
+<p>
 <code>
 dbms.ssl.policy.example_policy.base_directory=certificates/example_policy
 </code>
-
+<p>
 그런 다음 필수 디렉토리를 만듭니다.
+<p>
 
-<pre>
 <code>
+<pre>
 $neo4j-home> mkdir certificates/example_policy
 $neo4j-home> mkdir certificates/example_policy/trusted
 $neo4j-home> mkdir certificates/example_policy/revoked
-</code>
 </pre>
+</code>
 
-마지막으로 *private.key* 및 *public.crt* 파일을 기본 디렉토리에 놓습니다. 다음과 같은 목록을 갖습니다:
 
-<pre>
+마지막으로 <i>private.key</i> 및 <i>public.crt</i> 파일을 기본 디렉토리에 놓습니다. 다음과 같은 목록을 갖습니다:
+
+
 <code>
+<pre>
 $neo4j-home> ls certificates/example_policy
 -r-------- ... private.key
 -rw-r--r-- ... public.crt
 drwxr-xr-x ... revoked
 drwxr-xr-x ... trusted
-</code>
 </pre>
+</code>
 </div>
 </div>
 
