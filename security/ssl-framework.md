@@ -120,7 +120,7 @@ Neo4j와 자바 플랫폼의 결합은 강력한 cipher suites와 프로토콜�
 
 <div class="example-contents">
 
-이 예제에서 우리는 `example_policy`라는 정책에 대한 설정을 정의하고 생성합니다. 가능한 가장 단순한 구성으로, *neo4j.conf*에 이 정책의 기본 디렉토리를 정의합니다.:                  
+이 예제에서 우리는 `example_policy`라는 정책에 대한 설정을 정의하고 생성합니다. 가능한 가장 단순한 구성으로, <i>neo4j.conf</i>에 이 정책의 기본 디렉토리를 정의합니다.:                  
 <p>
 <code>
 dbms.ssl.policy.example_policy.base_directory=certificates/example_policy
@@ -129,19 +129,18 @@ dbms.ssl.policy.example_policy.base_directory=certificates/example_policy
 그런 다음 필수 디렉토리를 만듭니다.
 <p>
 
-<code>
 <pre>
+<code>
 $neo4j-home> mkdir certificates/example_policy
 $neo4j-home> mkdir certificates/example_policy/trusted
 $neo4j-home> mkdir certificates/example_policy/revoked
-</pre>
 </code>
+</pre>
 
 
 마지막으로 <i>private.key</i> 및 <i>public.crt</i> 파일을 기본 디렉토리에 놓습니다. 다음과 같은 목록을 갖습니다:
 
 
-<code>
 <pre>
 $neo4j-home> ls certificates/example_policy
 -r-------- ... private.key
@@ -149,12 +148,11 @@ $neo4j-home> ls certificates/example_policy
 drwxr-xr-x ... revoked
 drwxr-xr-x ... trusted
 </pre>
-</code>
 </div>
 </div>
 
 
-### 7.3.5. Applying SSL policies                     
+### 7.3.5. SSL 정책 적용                     
 
 A communication channel or group of channels gets an SSL policy applied by binding it to an SSL policy name.               Causal Clustering, Bolt and HTTPS can be configured with SSL policies, using the configuration settings `causal_clustering.ssl_policy`, `bolt.ssl_policy` and `https.ssl_policy`.            
 
