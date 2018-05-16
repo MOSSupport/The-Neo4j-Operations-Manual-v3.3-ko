@@ -22,19 +22,23 @@ SSL을 통해 제공되는 보안은 다양한 수준의 무결성, 기밀성 �
 
 ##### 인증기관 - Certificate Authority (*CA*)
 
-디지털 개체의 신원을 확인할 수 있는 전자 문서를 발행하는 신뢰할 수 있는 엔터티입니다. 이 용어는 일반적으로 세계적으로 인정되는 CA를 나타내지만 조직 내부에서 신뢰할 수있는 내부 CA도 포함 할 수 있습니다. 전자 문서는 디지털 [인증서](/security/ssl-framework.md/#인증서---certificate)입니다. 이들은 안전한 통신의 핵심 부분이며 [Public Key Infrastructure](/security/ssl-framework.md/#Public-Key-Infrastructure-PKI)에서 중요한 역할을합니다.                
+디지털 개체의 신원을 확인할 수 있는 전자 문서를 발행하는 신뢰할 수 있는 엔터티입니다. 이 용어는 일반적으로 세계적으로 인정되는 CA를 나타내지만 조직 내부에서 신뢰할 수있는 내부 CA도 포함 할 수 있습니다. 전자 문서는 디지털 [인증서](/security/ssl-framework.md/#인증서---certificate)입니다. 이들은 안전한 통신의 핵심 부분이며 [Public Key Infrastructure](/security/ssl-framework.md/#public-key-infrastructure-pki)에서 중요한 역할을합니다.                
 
 ##### 인증 해지 목록 - Certificate Revocation List (*CRL*)
 
-In the event of a certificate being compromised, that certificate can be revoked.                     This is done by means of a list (located in one or several files) spelling out which certificates are revoked.                     The CRL is always issued by the [CA](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/#term-ssl-certificate-authority) which issues the corresponding certificates.                  
+인증서가 손상된 경우 해당 인증서를 해지 할 수 있습니다. 이는 하나 또는 여러 파일에 있는 해지 된 인증서를 나열한 목록을 통해 수행됩니다. CRL은 항상 해당 인증서를 발급하는 [CA](/security/ssl-framework.md/#인증기관---certificate-authority-ca)에서 발급합니다.
 
-##### cipher
+##### 암호 - cipher
 
-    An algorithm for performing encryption or decryption.                     In the most general implementation of encryption of Neo4j communications, we make implicit use of ciphers that are included                     as part of the Java platform.                     The configuration of the SSL framework also allows for the explicit declaration of allowed ciphers.                  
+암호화 또는 암호 해독을 수행하기위한 알고리즘. Neo4j 통신의 가장 일반적인 구현에서 Java 플랫폼의 일부로 포함 된 암호를 암시적으로 사용합니다. SSL 프레임 워크의 구성은 허용 된 암호를 명시적으로 선언 할 수도 있습니다.
 
-##### communication channel
+##### 통신채널
 
-                         A means for communicating with the Neo4j database.                        Available channels are:                                                                                             Bolt client traffic                           HTTPS client traffic                           intra-cluster communication                                                               
+Neo4j 데이터베이스와 통신하기 위한 수단을 의미합니다. 가능한 채널은 아래와 같습니다.
+
+- Bolt 클라이언트 트래픽
+- HTTPS 클라이언트 트래픽
+- 내부 클러스터 통신
 
 ##### cryptographic objects
 
