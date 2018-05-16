@@ -95,13 +95,13 @@ Neo4j의 SSL 지원은 SSL 인증서와 매개 변수 집합으로 구성되는 
 
 | 접미사설정       | 설 명                              | 기본값                             |
 | -------------------- | ---------------------------------------- | ---------------------------------------- |
-| `base_directory`     | 암호화 객체가 기본적으로 검색되는 기본 디렉토리입니다. | 기본값이 없습니다. 이 값은 새 정책을 정의하기 위해 제공되어야합니다.  |
+| `base_directory`     | 암호화 객체가 기본적으로 검색되는 기본 디렉터리입니다. | 기본값이 없습니다. 이 값은 새 정책을 정의하기 위해 제공되어야합니다.  |
 | `private_key`        | 이 인스턴스를 인증하고 보안하는 데 사용되는 개인 키입니다. | *private.key*                            |
 | `public_certificate` | 인증 기관 (CA)이 서명 한 개인 키와 일치하는 공용 인증서입니다. | *public.crt*                             |
-| `trusted_dir`        | 신뢰할 수있는 당사자의 인증서로 채워지는 디렉토리입니다. | *trusted*                                |
-| `revoked_dir`        |  인증서 해지 목록 (CRLs)이 채워진 디렉토리입니다. | *revoked*                                |
+| `trusted_dir`        | 신뢰할 수있는 당사자의 인증서로 채워지는 디렉터리입니다. | *trusted*                                |
+| `revoked_dir`        |  인증서 해지 목록 (CRLs)이 채워진 디렉터리입니다. | *revoked*                                |
 
-유일한 필수 설정은 `dbms.ssl.policy.<policy-name>.base_directory`에 의해 정의 된 기본 디렉토리입니다. 기본 디렉토리를 정의함으로써, *암묵적*으로 Neo4j에 &lt;policy-name&gt; 이라는 이름으로 정책을 정의하도록 지시합니다. 이 정책에 대한 다른 설정이 정의되지 않은 경우, Neo4j는 기본적으로 *trusted* 및 *revoked*라는 두 개의 하위 디렉토리뿐만 아니라 기본 디렉토리 내에서 개인 키와 인증서 파일을 찾습니다. 다른 경로가 선호되는 경우 모든 기본값을 무시할 수 있습니다. 보안상의 이유로 Neo4j는 이러한 디렉토리를 자동으로 생성하지 않습니다. 따라서 SSL 정책을 작성하려면 적절한 파일 시스템 구조를 수동으로 설정해야합니다. 인증서 파일 및 개인 키의 존재는 물론 디렉토리의 존재가 필수임을 유의하십시오. Neo4j 사용자만 읽을 수 있도록 개인 키에 올바른 사용 권한이 설정되어 있는지 확인하십시오.
+유일한 필수 설정은 `dbms.ssl.policy.<policy-name>.base_directory`에 의해 정의 된 기본 디렉터리입니다. 기본 디렉터리를 정의함으로써, *암묵적*으로 Neo4j에 &lt;policy-name&gt; 이라는 이름으로 정책을 정의하도록 지시합니다. 이 정책에 대한 다른 설정이 정의되지 않은 경우, Neo4j는 기본적으로 *trusted* 및 *revoked*라는 두 개의 하위 디렉터리뿐만 아니라 기본 디렉터리 내에서 개인 키와 인증서 파일을 찾습니다. 다른 경로가 선호되는 경우 모든 기본값을 무시할 수 있습니다. 보안상의 이유로 Neo4j는 이러한 디렉터리를 자동으로 생성하지 않습니다. 따라서 SSL 정책을 작성하려면 적절한 파일 시스템 구조를 수동으로 설정해야합니다. 인증서 파일 및 개인 키의 존재는 물론 디렉터리의 존재가 필수임을 유의하십시오. Neo4j 사용자만 읽을 수 있도록 개인 키에 올바른 사용 권한이 설정되어 있는지 확인하십시오.
 
 또한 정책에 대해 다음 매개 변수를 구성 할 수 있습니다.
 
@@ -110,7 +110,7 @@ Neo4j의 SSL 지원은 SSL 인증서와 매개 변수 집합으로 구성되는 
 | `client_auth`          | 클라이언트를 인증 여부. 이를 'REQUIRE'로 설정하면 실제로 서버에 대한 상호 인증이 가능해집니다. 이 설정에 사용할 수있는 값은 `NONE`, `OPTIONAL` 또는 `REQUIRE` 입니다. | `REQUIRE`                                |
 | `ciphers`              | 암호 교환에 허용되는 암호 목록입니다. | Java 플랫폼의 기본 cipher suites. |
 | `tls_versions`         | 지원 될 TLS / SSL 프로토콜 버전 목록입니다. | `TLSv1.2`                                |
-| `allow_key_generation` | 이 매개 변수를 기본값인 `false`로 유지하는 것을 강력히 권장됩니다. `true`로 설정이 되면 시작할 때 자동으로 *.key*/*.crt* 파일 쌍이 생성이 됩니다. 또한 필요한 디렉토리 구조가 자동으로 생성됩니다.  | `false`                                  |
+| `allow_key_generation` | 이 매개 변수를 기본값인 `false`로 유지하는 것을 강력히 권장됩니다. `true`로 설정이 되면 시작할 때 자동으로 *.key*/*.crt* 파일 쌍이 생성이 됩니다. 또한 필요한 디렉터리 구조가 자동으로 생성됩니다.  | `false`                                  |
 | `trust_all`            | 이 매개 변수를 기본값인 `false`로 유지하는 것을 강력히 권장됩니다. `true`로 설정하면 "아무나 신뢰"하고 기본적인 인증이 비활성화 됩니다. | `false`                                  |
 
 Neo4j와 자바 플랫폼의 결합은 강력한 cipher suites와 프로토콜을 제공 할 것 입니다.
@@ -120,13 +120,13 @@ Neo4j와 자바 플랫폼의 결합은 강력한 cipher suites와 프로토콜�
 
 <div class="example-contents">
 
-이 예제에서 우리는 `example_policy`라는 정책에 대한 설정을 정의하고 생성합니다. 가능한 가장 단순한 구성으로, <i>neo4j.conf</i>에 이 정책의 기본 디렉토리를 정의합니다.:                  
+이 예제에서 우리는 `example_policy`라는 정책에 대한 설정을 정의하고 생성합니다. 가능한 가장 단순한 구성으로, <i>neo4j.conf</i>에 이 정책의 기본 디렉터리를 정의합니다.:                  
 <p>
 <code>
 dbms.ssl.policy.example_policy.base_directory=certificates/example_policy
 </code>
 <p>
-그런 다음 필수 디렉토리를 만듭니다.
+그런 다음 필수 디렉터리를 만듭니다.
 <p>
 
 <pre>
@@ -138,7 +138,7 @@ $neo4j-home> mkdir certificates/example_policy/revoked
 </pre>
 
 
-마지막으로 <i>private.key</i> 및 <i>public.crt</i> 파일을 기본 디렉토리에 놓습니다. 다음과 같은 목록을 갖습니다:
+마지막으로 <i>private.key</i> 및 <i>public.crt</i> 파일을 기본 디렉터리에 놓습니다. 다음과 같은 목록을 갖습니다:
 
 
 <pre>
@@ -168,19 +168,19 @@ causal_clustering.ssl_policy=example_policy
 </div>
 </div>
 
-### 7.3.6. Certificate formats                     
+### 7.3.6. 인증서 형식                    
 
-All certificates need to be in the PEM format, and they can be combined into one file.               The private key is also required to be in the PEM format.               Multi-host and wildcard certificates are supported.               Such certificates are required if Neo4j has been configured with multiple connectors that bind to different interfaces.            
+모든 인증서는 PEM 형식이어야하며 하나의 파일로 결합 될 수 있습니다. 개인 키는 PEM 형식이어야 합니다. 다중 호스트 및 와일드 카드 인증서가 지원됩니다. Neo4j가 다른 인터페이스에 바인드하는 다중 커넥터로 구성된 경우 이러한 인증서가 필요합니다.          
 
-### 7.3.7. Legacy SSL system                     
+### 7.3.7. 레거시 SSL 시스템                     
 
-In previous versions of Neo4j, SSL support for Bolt and HTTPS was provided using a different system, which we here call the               *legacy SSL system*.               It is expected that this legacy system is to be deprecated at some point in the future, so it is recommended to use the [standard SSL configuration](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/) instead.               The legacy policy is available in the SSL framework under the special `legacy` policy name, but it does not allow the full flexibility of the framework.            
+Neo4j의 이전버전에서는 *레거시 SSL시스템*이라고 불리는 Bolt 및 HTTPS에 대해서 다른 시스템에서 SSL지원을 사용했습니다. 이 레거시 시스템은 향후 어느 시점에서 더 이상 사용되지 않을 것으로 예상되므로 [표준 SSL 구성](/security/ssl-framework.md)을 사용하는 것이 좋습니다. 레거시 정책은 특수한 `legacy` 정책 이름으로 SSL 프레임워크에서 사용 할 수 있지만, 프레임워크의 완전한 유연성을 허용하지 않습니다.        
 
-In order to configure the legacy SSL system with Neo4j, you must have your private key and certificate in files named *neo4j.key* and *neo4j.cert*, respectively.               Note that the key should be unencrypted.               Place the files into the assigned directory.               The default is a directory named *certificates*, which is located in the *neo4j-home* directory.               The directory can also be configured explicitly using [dbms.directories.certificates](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.directories.certificates) in *neo4j.conf*.            
+Neo4j로 레거시 SSL 시스템을 구성하려면 개인 키와 인증서를 *neo4j.key* 및 *neo4j.cert* 파일에 각각 저장해야 합니다. 키는 암호화되지 않아야 합니다. 파일을 지정된 디렉터리에 위치하십시오. 기본 디렉터리 이름은 *certificates*이며 *neo4j-home* 에 위치합니다. 이 디렉터리는 또한 *neo4j.conf*의 [dbms.directories.certificates](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.directories.certificates)를 사용하여 명시적으로 구성할 수도 있습니다.
 
-If started without any certificates installed, the Neo4j process will automatically generate a self-signed SSL certificate               and a private key in the default directory.               Using auto-generation of self-signed SSL certificates will not work if Neo4j has been configured with multiple [connectors](https://neo4j.com/docs/operations-manual/current/configuration/connectors/) that bind to different IP addresses.               If you need to use multiple IP addresses, please configure certificates manually and use multi-host or wildcard certificates               instead.            
+인증서를 설치하지 않고 시작하면 Neo4j 프로세스는 자동으로 자체 서명된 SSL 인증서와 개인 키를 기본 디렉터리에 생성합니다. Neo4j가 다른 IP 주소에 바인드하는 여러 [커넥터](/configuration/connectors.md)로 구성된 경우 자체 서명된 SSL 인증서의 자동 생성을 사용하면 작동하지 않습니다. 여러 IP 주소를 사용해야 하는 경우 수동으로 인증서를 구성하고 대신 다중 호스트 또는 와일드카드 인증서를 사용하십시오.            
 
-The Legacy SSL system is essentially equivalent to the following SSL policy definition:
+레거시 SSL 시스템은 본질적으로 다음 SSL 정책 정의와 같습니다:
 
 ```
 bolt.ssl_policy=legacy
@@ -194,6 +194,6 @@ dbms.ssl.policy.legacy.client_auth=NONE
 dbms.ssl.policy.legacy.tls_versions="TLSv1.2, TLSv1.1, TLSv1"
 ```
 
-The HTTPS and Bolt servers do not support client authentication (a.k.a. *mutual authentication*).               As a result, `client_auth` has to be turned off explicitly by having `client_auth=NONE` while migrating HTTPS and Bolt servers to the new ssl policy.               When client authentication is disabled, values assigned to `trusted_dir`, `revoked_dir` or `trust_all` will be ignored as they are settings used in client authentication.            
+HTTPS 및 Bolt 서버는 클라이언트 인증 (일명. *상호 인증*)을 지원하지 않습니다. 결과적으로 HTTPS와 Bolt 서버를 새로운 SSL 정책으로 마이그레이션하는 동안 `client_auth=NONE` 을 사용하여 `client_auth` 를 명시적으로 꺼야 합니다. 클라이언트 인증이 사용 불가능할 때 `trusted_dir`, `revoked_dir` 또는`trust_all`에 할당된 값은 클라이언트 인증에서 사용되는 설정이므로 무시됩니다.
 
-The `tls_versions` and `ciphers` settings are supported in HTTPS and Bolt servers.               The `legacy` policy defaults to the TLS versions and cipher suites supported by the Java platform.            
+`tls_versions` 와 `ciphers` 설정은 HTTPS와 Bolt 서버에서 지원됩니다. `legacy` 정책은 자바 플랫폼이 지원하는 TLS 버전과 cipher suites로 기본 설정됩니다.
