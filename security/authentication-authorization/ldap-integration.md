@@ -1,8 +1,11 @@
-### 7.1.5. Integration with LDAP                  
+### 7.1.5. LDAP 통합                  
 
-This section describes Neo4j support for integrating with LDAP systems.
+<div class="abstract">
+	<p>이 절에서는 LDAP 시스템과의 통합을 위한 Neo4j 지원에 대해 설명합니다.
+	</p>
+</div>
 
-#### 7.1.5.1. Configure the LDAP auth provider                     
+#### 7.1.5.1. LDAP인증 프로바이더 구성                     
 
 Neo4j supports the LDAP protocol which allows for integration with Active Directory, OpenLDAP or other LDAP-compatible authentication               services.               We will show example configurations where management of federated users is deferred to the LDAP service, using that service’s               facilities for administration.               This means that we completely turn off native Neo4j user and role administration and map LDAP groups to the four built-in               Neo4j roles (`reader`, `publisher`, `architect` and `admin`) and to custom roles.            
 
