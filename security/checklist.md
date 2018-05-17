@@ -10,16 +10,16 @@
 1.  안전한 네트워크의 안전한 서버에 Neo4j 배포 :
     1. 서브넷과 방화벽을 사용하십시오.
     2. 필요한 포트만 열어야합니다. 관련 포트 목록은 [3.2 절. "포트"](/configuration/ports.md)를 참조하십시오.                        
-2.  Protect data-at-rest:
-    1.  Use volume encryption (e.g. Bitlocker).
-    2.  Manage access to database dumps (refer to [Section 10.3, “Dump and load databases”](https://neo4j.com/docs/operations-manual/current/tools/dump-load/)) and backups (refer to [Section 6.2, “Perform a backup”](https://neo4j.com/docs/operations-manual/current/backup/perform-backup/)).                           In particular, ensure that there is no external access to the port specified by the setting `dbms.backup.address` (this defaults to 6362).                           Failing to protect this port leaves a security hole open by which an unauthorized user can make a copy of the database onto                           a different machine.                        
-    3.  Manage access to data files and transaction logs.                           Prohibit all operating system access to Neo4j files except as instructed in [Section 3.1.3, “Permissions”](https://neo4j.com/docs/operations-manual/current/configuration/file-locations/#file-locations-permissions).                        
-3.  Protect data-in-transit:
-    1.  For remote access to the Neo4j database, only open up for encrypted Bolt or HTTPS.
-    2.  Use SSL certificates issued from a trusted Certificate Authority.
-        1.  For configuring your Neo4j installation to use encrypted communication, refer to [Section 7.3, “Unified SSL framework”](https://neo4j.com/docs/operations-manual/current/security/ssl-framework/).                                 
-        2.  For configuring your Bolt and/or HTTPS connectors, refer to [Section 3.6, “Configure Neo4j connectors”](https://neo4j.com/docs/operations-manual/current/configuration/connectors/).                                 
-        3.  If using LDAP, configure your LDAP system with encryption via StartTLS; see [the section called “Use LDAP with encryption via StartTLS”](https://neo4j.com/docs/operations-manual/current/security/authentication-authorization/ldap-integration/#ldap-encrypted-starttls).                                 
+2.  비활성데이터 보호 :
+    1.  볼륨 암호화 사용 (예. Bitlocker).
+    2.  데이터베이스 덤프 접속 관리 (참조 [10.3절, "데이터베이스의 dump와 load"](/tools/dump-load.md)) 와 백업 (참조 [6.2절, "백업 수행"](/backup/perform-backup.md))을 확인합니다.. 특히 `dbms.backup.address` 설정에 지정된 포트에 대한 외부 액세스가 없는지 확인하십시오 (기본값은 6362 임). 이 포트를 보호하지 못하면 인증되지 않은 사용자가 다른 컴퓨터에 데이터베이스 복사본을 만들 수있는 보안 구멍이 생깁니다.                    
+    3.  데이터 파일 및 트랜잭션 로그에 대한 액세스를 관리합니다. [3.1.3절, "권한"](/configuration/file-locations.md/#313-권한)의 지시 사항을 제외하고 Neo4j 파일에 대한 모든 운영 체제 액세스를 금지하십시오Manage access to data files and transaction logs.                           
+3.  전송 중 데이터 보호:
+    1.  Neo4j 데이터베이스에 원격 액세스하려면 암호화 된 볼트 또는 HTTPS 만 열어 둡니다.
+    2.  신뢰할 수있는 인증 기관에서 발급 한 SSL 인증서를 사용하십시오.
+        1.  암호화 된 통신을 사용하도록 Neo4j 설치를 구성하려면 [7.3절, "통합 SSL 프레임워크"](/security/ssl-framework.md)을 참조하십시오.
+        2.  Bolt 및 HTTPS 커넥터 구성에 대해서는 [3.6절, "Neo4j 커넥터 환경 설정"](/configuration/connectors.md)을 참조하십시오.
+        3.  LDAP를 사용하는 경우 StartTLS를 통해 LDAP 시스템을 암호화로 구성하십시오. [StartTLS를 통한 암호화가 있는 LDAP 사용] 절을 참조하십시오.(/security/authentication-authorization/ldap-integration.md/#starttls를-통한-암호화가-있는-ldap-사용).                                 
 4.  Be on top of the security for custom extensions:
     1.  Validate any custom code that you deploy (procedures and unmanaged extensions) and ensure that they do not expose any parts                           of the product or data unintentionally.                        
     2.  Survey the settings `dbms.security.procedures.unrestricted` and `dbms.security.procedures.whitelist` to ensure that they exclusively contain intentionally exposed extensions.                        
