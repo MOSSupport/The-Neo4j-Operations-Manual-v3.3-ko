@@ -1,12 +1,15 @@
-### 7.1.5. Integration with LDAP                  
+### 7.1.5. LDAP 통합                  
 
-This section describes Neo4j support for integrating with LDAP systems.
+<div class="abstract">
+	<p>이 절에서는 LDAP 시스템과의 통합을 위한 Neo4j 지원에 대해 설명합니다.
+	</p>
+</div>
 
-#### 7.1.5.1. Configure the LDAP auth provider                     
+#### 7.1.5.1. LDAP인증 프로바이더 구성                     
 
-Neo4j supports the LDAP protocol which allows for integration with Active Directory, OpenLDAP or other LDAP-compatible authentication               services.               We will show example configurations where management of federated users is deferred to the LDAP service, using that service’s               facilities for administration.               This means that we completely turn off native Neo4j user and role administration and map LDAP groups to the four built-in               Neo4j roles (`reader`, `publisher`, `architect` and `admin`) and to custom roles.            
+Neo4j는 Active Directory, OpenLDAP 또는 기타 LDAP 호환 인증 서비스와의 통합을 허용하는 LDAP프로토콜을 지원합니다. 페더레이션 사용자 관리가 LDAP 서비스로 연기되는 예제 구성을 보여 주며, 해당 서비스의 관리 기능을 사용합니다. 즉 기본 Neo4j 사용자와 역할 관리를 완전히 해제하고 LDAP 그룹을 Neo4j에 내장된 역할 (`reader`, `publisher`, `architect` 그리고 `admin`)과 사용자 정의 역할에 매핑합니다.
 
-All settings need to be defined at server startup time in the default configuration file *neo4j.conf*.               First configure Neo4j to use LDAP as authentication and authorization provider.            
+모든 설정은 기본 구성 파일 *neo4j.conf*에서 서버 시작 시 정의해야 합니다. 먼저 LDAP를 인증 및 권한 부여 제공자로 사용하도록 Neo4j를 구성하십시오.
 
 ```
 # Turn on security
@@ -16,9 +19,9 @@ dbms.security.auth_enabled=true
 dbms.security.auth_provider=ldap
 ```
 
-##### Configuration for Active Directory                        
+##### Active Directory 구성
 
-See below for an example configuration for Active Directory:
+Active Directory의 구성 예제는 아래를 참조하십시오.
 
 ```
 # Configure LDAP to point to the AD server
@@ -47,7 +50,7 @@ dbms.security.ldap.authorization.group_to_role_mapping=\
 #dbms.security.ldap.authorization.system_password=secret
 ```
 
-Below is an alternative configuration for Active Directory that allows for logging in with `sAMAccountName`:               
+다음은 `sAMAccountName`을 사용하여 로그인 할 수있는 Active Directory의 대체 구성입니다.               
 
 ```
 # Configure LDAP to point to the AD server
@@ -82,7 +85,7 @@ dbms.security.ldap.authorization.system_password=secret
 dbms.security.ldap.authentication.use_samaccountname=true
 ```
 
-Below is an alternative configuration for Active Directory that allows for authenticating users from different organizational                  units by using the Active Directory attribute `sAMAccountName`:               
+다음은 Active Directory 속성 `sAMAccountName`을 사용하여 다른 조직 구성 단위의 사용자를 인증 할 수있는 Active Directory의 대체 구성입니다.
 
 ```
 # Configure LDAP to point to the AD server
@@ -101,13 +104,13 @@ dbms.security.ldap.authorization.group_to_role_mapping=\
 "cn=Neo4j Procedures,cn=Users,dc=example,dc=com" = allowed_role
 ```
 
-Specifying the `{0}@example.com` pattern in the `user_dn_template` enables the authentication to start at the root domain.                  The whole tree is checked to find the user, regardless of where it is located within the tree.               
+`{0}@example.com` 패턴을 `user_dn_template`에 지정하면 루트도메인에서 인증을 시작할 수 있습니다. 트리 내에서의 위치에 관계없이 전체 트리를 검사하여 사용자를 찾습니다.
 
-Note that the setting `dbms.security.ldap.authentication.use_samaccountname` is not configured in this example.               
+이 예제에서는 `dbms.security.ldap.authentication.use_samaccountname` 설정이 구성되어 있지 않습니다.
 
-##### Configuration for openLDAP                        
+##### openLDAP 구성                        
 
-See below for an example configuration for openLDAP:
+openLDAP의 구성 예제는 아래를 참조하십시오.
 
 ```
 # Configure LDAP to point to the OpenLDAP server
@@ -136,7 +139,7 @@ dbms.security.ldap.authorization.group_to_role_mapping=\
 #dbms.security.ldap.authorization.system_password=search-account-password
 ```
 
-We would like to draw attention to some details in the configuration examples.                  A comprehensive overview of LDAP configuration options is available in [Section A.1, “Configuration settings”](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/).               
+설정 예제에서 몇 가지 세부 사항에 주의를 기울이고 싶습니다. LDAP 구성 옵션에 대한 포괄적인 개요는 [A.1절, "구성 설정"](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/)에서 볼 수 있습니다.
 
 | Parameter name                           | Default value                        | Description                              |
 | ---------------------------------------- | ------------------------------------ | ---------------------------------------- |
