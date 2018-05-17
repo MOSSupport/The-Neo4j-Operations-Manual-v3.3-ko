@@ -149,27 +149,27 @@ dbms.security.ldap.authorization.group_to_role_mapping=\
 | [dbms.security.ldap.authorization.group_membership_attributes](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.security.ldap.authorization.group_membership_attributes) | `[memberOf]`                         | Lists attribute names on a user object that contains groups to be used for mapping to roles. |
 | [dbms.security.ldap.authorization.group_to_role_mapping](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.security.ldap.authorization.group_to_role_mapping) |                                      | Lists an authorization mapping from groups to the pre-defined built-in roles `admin`, `architect`, `publisher` and `reader`, or to any other custom-defined roles. |
 
-#### 7.1.5.2. Use 'ldapsearch' to verify the configuration                     
+#### 7.1.5.2. 'ldapsearch'를 사용하여 구성 확인                    
 
-We can use the LDAP command-line tool `ldapsearch` to verify that the configuration is correct, and that the LDAP server is actually responding.               We do this by issuing a search command that includes LDAP configuration setting values.            
+LDAP 명령 행 도구 `ldapsearch`를 사용하여 구성이 올바른지 그리고 LDAP 서버가 실제로 응답하는지 확인할 수 있습니다. LDAP 구성 설정 값을 포함하는 검색 명령을 수행합니다.
 
-These example searches verify both the authentication (using the `simple` mechanism) and authorization of user 'john'.               See the `ldapsearch` documentation for more advanced usage and how to use SASL authentication mechanisms.            
+예제 검색은 인증(`간단한` 메커니즘 사용)과 사용자 'john'의 인증을 모두 확인합니다. 보다 진보 된 사용법과 SASL 인증 메커니즘을 사용하는 방법에 대해서는 `ldapsearch` 문서를 보십시오.
 
-With `dbms.security.ldap.authorization.use_system_account=false` (default):            
+`dbms.security.ldap.authorization.use_system_account=false` (기본값):            
 
 ```
 #ldapsearch -v -H ldap://<dbms.security.ldap.host> -x -D <dbms.security.ldap.authentication.user_dn_template : replace {0}> -W -b <dbms.security.ldap.authorization.user_search_base> "<dbms.security.ldap.authorization.user_search_filter : replace {0}>" <dbms.security.ldap.authorization.group_membership_attributes>
 ldapsearch -v -H ldap://myactivedirectory.example.com:389 -x -D cn=john,cn=Users,dc=example,dc=com -W -b cn=Users,dc=example,dc=com "(&(objectClass=*)(cn=john))" memberOf
 ```
 
-With `dbms.security.ldap.authorization.use_system_account=true`:            
+`dbms.security.ldap.authorization.use_system_account=true`:            
 
 ```
 #ldapsearch -v -H ldap://<dbms.security.ldap.host> -x -D <dbms.security.ldap.authorization.system_username> -w <dbms.security.ldap.authorization.system_password> -b <dbms.security.ldap.authorization.user_search_base> "<dbms.security.ldap.authorization.user_search_filter>" <dbms.security.ldap.authorization.group_membership_attributes>
 ldapsearch -v -H ldap://myactivedirectory.example.com:389 -x -D cn=search-account,cn=Users,dc=example,dc=com -w secret -b cn=Users,dc=example,dc=com "(&(objectClass=*)(cn=john))" memberOf
 ```
 
-Then verify that we get a successful response, and that the value of the returned membership attribute is a group that is               mapped to a role in `dbms.security.ldap.authorization.group_to_role_mapping`.            
+그런 다음 성공적인 응답을 받았는지와 반환 된 멤버십 속성의 값이 `dbms.security.ldap.authorization.group_to_role_mapping`의 롤에 매핑 된 그룹인지 확인하십시오.
 
 ```
 # extended LDIF
@@ -192,9 +192,9 @@ result: 0 Success
 # numEntries: 1
 ```
 
-#### 7.1.5.3. The auth cache                     
+#### 7.1.5.3. 인증 캐시                    
 
-The *auth cache* is the mechanism by which Neo4j caches the result of authentication via the LDAP server in order to aid performance.               It is configured with the `dbms.security.ldap.authentication.cache_enabled` and `dbms.security.auth_cache_ttl` parameters.            
+*인증 캐시*는 성능을 돕기 위해 Neo4j가 LDAP 서버를 통한 인증 결과를 캐시하는 메커니즘입니다. `dbms.security.ldap.authentication.cache_enabled` 와 `dbms.security.auth_cache_ttl` 매개변수로 설정됩니다.
 
 ```
 # Turn on authentication caching to ensure performance
@@ -204,18 +204,22 @@ dbms.security.auth_cache_ttl=10m
 
 | Parameter name                           | Default value   | Description                              |
 | ---------------------------------------- | --------------- | ---------------------------------------- |
-| [dbms.security.ldap.authentication.cache_enabled](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.security.ldap.authentication.cache_enabled) | `true`          | Determines whether or not to cache the result of authentication via the LDAP server. Whether authentication caching should                                 be enabled or not must be considered in view of your company’s security guidelines. It should be noted that when using the                                 REST API, disabling authentication caching will result in re-authentication and possibly re-authorization of users on every                                 request, which may severely impact performance on production systems, and put heavy load on the LDAP server. |
-| [dbms.security.auth_cache_ttl](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.security.auth_cache_ttl) | `10000 minutes` | Is the time to live (TTL) for cached authentication and authorization info. Setting the TTL to 0 will disable all auth caching.                                 A short ttl will require more frequent re-authentication and re-authorization, which can impact performance. A very long ttl                                 will also mean that changes to the users settings on an LDAP server may not be reflected in the Neo4j authorization behavior                                 in a timely manner. |
+| [dbms.security.ldap.authentication.cache_enabled](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.security.ldap.authentication.cache_enabled) | `true`          | Determines whether or not to cache the result of authentication via the LDAP server. Whether authentication caching should be enabled or not must be considered in view of your company’s security guidelines. It should be noted that when using the REST API, disabling authentication caching will result in re-authentication and possibly re-authorization of users on every request, which may severely impact performance on production systems, and put heavy load on the LDAP server.  |
+| [dbms.security.auth_cache_ttl](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.security.auth_cache_ttl) | `10000 minutes` | Is the time to live (TTL) for cached authentication and authorization info. Setting the TTL to 0 will disable all auth caching. A short ttl will require more frequent re-authentication and re-authorization, which can impact performance. A very long ttl will also mean that changes to the users settings on an LDAP server may not be reflected in the Neo4j authorization behavior in a timely manner. |
 
-An administrator can clear the auth cache to force the re-querying of authentication and authorization information from the               federated auth provider system.            
+관리자는 인증 캐시를 삭제하여 페더레이션 인증 공급자 시스템에서 인증 및 권한 부여 정보를 다시 쿼리하도록 할 수 있습니다.
 
-Example 7.16. Clear the auth cache
+<div class="example">
+예제 7.16. 인증 캐시 삭제
+<div class="example-contents">
 
-Use Neo4j Browser or Neo4j Cypher Shell to execute this statement.
-
-```
+이 문장을 실행하려면 Neo4j Browser 또는 Neo4j Cypher Shell을 사용하십시오.
+<p>
+<code>
 CALL dbms.security.clearAuthCache()
-```
+</code>
+</div>
+</div>
 
 #### 7.1.5.4. Available methods of encryption                     
 
