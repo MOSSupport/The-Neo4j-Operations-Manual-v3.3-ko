@@ -24,8 +24,8 @@
     1.  배포하는 사용자 지정 코드 (프로시저 및 관리되지 않는 확장)를 확인하고 실수로 제품이나 데이터 일부를 노출하지 않도록 하십시오.                        
     2.  `dbms.security.procedures.unrestricted` 및 `dbms.security.procedures.whitelist` 설정을 조사하여 의도적으로 노출 된 확장을 독점적으로 포함하는지 확인하십시오.                        
 5.  Neo4j 파일에 대한 올바른 파일 사용 권한을 확인하십시오. Neo4j가 실행되는 운영체제 사용자만 해당 파일에 대한 사용 권한을 가져야 합니다. 권한 수준에 대한 지침은 [3.1.3절, "권한"](/configuration/file-locations.md/#313-권한)을 참조하십시오. 특히 권한이 없는 읽기 액세스로부터 데이터파일, 트랜잭션 로그 및 데이터베이스 덤프를 보호하십시오. *bin*, *lib* 및 *plugins* 디렉토리에 대한 액세스를 제한하여 허가되지 않은 확장의 실행으로부터 보호하십시오. 
-6.  If `LOAD CSV` is enabled, ensure that it does not allow unauthorized users to import data.                  How to configure `LOAD CSV` is described in [Developer Manual → `LOAD CSV`](https://neo4j.com/docs/developer-manual/3.2/cypher/clauses/load-csv/).               
-7.  Do not turn off Neo4j authentication.                  Refer to [Section 7.1.3, “Enabling authentication and authorization”](https://neo4j.com/docs/operations-manual/current/security/authentication-authorization/enable/) for details on this setting.               
+6.  `LOAD CSV`가 활성화 된 경우 권한이 없는 사용자가 데이터를 가져올 수 없도록 하십시오. `LOAD CSV` 설정 방법은 [개발자 메뉴얼 →`LOAD CSV`](https://neo4j.com/docs/developer-manual/current/cypher/clauses/load-csv/)을 참조하십시오.               
+7.  Neo4j 인증을 비활성화하지 마십시오. [7.1.3절, "인증과 권한 부여 활성화"](/security/authentication-authorization/enabling-authentication-and-authorization.md) 에 자세한 내용이 있습니다.               
 8.  Survey your *neo4j.conf* file (see [Section 3.1, “File locations”](https://neo4j.com/docs/operations-manual/current/configuration/file-locations/)) for ports relating to deprecated functions (such as neo4j-shell, controlled by the parameter `dbms.shell.port`) and remote JMX (controlled by the parameter setting `dbms.jvm.additional=-Dcom.sun.management.jmxremote.port=3637`).               
-9.  Review [Section 7.4, “Browser credentials handling”](https://neo4j.com/docs/operations-manual/current/security/browser/) to determine whether the default credentials handling in Neo4j Browser complies with your security regulations.                  Follow the instructions to configure it if necessary.               
-10.  Use the latest patch version of Neo4j.
+9.  Neo4j Browser의 기본 인증 정보 처리가 보안 규정을 준수하는지 확인하려면 [7.4절, "브라우저에서 인증 정보 처리"](/security/browser.md)를 검토하십시오. 필요한 경우 지침에 따라 구성하십시오.               
+10.  Neo4j의 최신 패치 버전을 사용하십시오.
