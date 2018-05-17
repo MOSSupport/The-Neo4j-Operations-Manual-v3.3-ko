@@ -192,9 +192,9 @@ result: 0 Success
 # numEntries: 1
 ```
 
-#### 7.1.5.3. The auth cache                     
+#### 7.1.5.3. 인증 캐시                    
 
-The *auth cache* is the mechanism by which Neo4j caches the result of authentication via the LDAP server in order to aid performance.               It is configured with the `dbms.security.ldap.authentication.cache_enabled` and `dbms.security.auth_cache_ttl` parameters.            
+*인증 캐시*는 성능을 돕기 위해 Neo4j가 LDAP 서버를 통한 인증 결과를 캐시하는 메커니즘입니다. `dbms.security.ldap.authentication.cache_enabled` 와 `dbms.security.auth_cache_ttl` 매개변수로 설정됩니다.
 
 ```
 # Turn on authentication caching to ensure performance
@@ -204,18 +204,22 @@ dbms.security.auth_cache_ttl=10m
 
 | Parameter name                           | Default value   | Description                              |
 | ---------------------------------------- | --------------- | ---------------------------------------- |
-| [dbms.security.ldap.authentication.cache_enabled](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.security.ldap.authentication.cache_enabled) | `true`          | Determines whether or not to cache the result of authentication via the LDAP server. Whether authentication caching should                                 be enabled or not must be considered in view of your company’s security guidelines. It should be noted that when using the                                 REST API, disabling authentication caching will result in re-authentication and possibly re-authorization of users on every                                 request, which may severely impact performance on production systems, and put heavy load on the LDAP server. |
-| [dbms.security.auth_cache_ttl](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.security.auth_cache_ttl) | `10000 minutes` | Is the time to live (TTL) for cached authentication and authorization info. Setting the TTL to 0 will disable all auth caching.                                 A short ttl will require more frequent re-authentication and re-authorization, which can impact performance. A very long ttl                                 will also mean that changes to the users settings on an LDAP server may not be reflected in the Neo4j authorization behavior                                 in a timely manner. |
+| [dbms.security.ldap.authentication.cache_enabled](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.security.ldap.authentication.cache_enabled) | `true`          | Determines whether or not to cache the result of authentication via the LDAP server. Whether authentication caching should be enabled or not must be considered in view of your company’s security guidelines. It should be noted that when using the REST API, disabling authentication caching will result in re-authentication and possibly re-authorization of users on every request, which may severely impact performance on production systems, and put heavy load on the LDAP server.  |
+| [dbms.security.auth_cache_ttl](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.security.auth_cache_ttl) | `10000 minutes` | Is the time to live (TTL) for cached authentication and authorization info. Setting the TTL to 0 will disable all auth caching. A short ttl will require more frequent re-authentication and re-authorization, which can impact performance. A very long ttl will also mean that changes to the users settings on an LDAP server may not be reflected in the Neo4j authorization behavior in a timely manner. |
 
-An administrator can clear the auth cache to force the re-querying of authentication and authorization information from the               federated auth provider system.            
+관리자는 인증 캐시를 삭제하여 페더레이션 인증 공급자 시스템에서 인증 및 권한 부여 정보를 다시 쿼리하도록 할 수 있습니다.
 
-Example 7.16. Clear the auth cache
+<div class="example">
+예제 7.16. 인증 캐시 삭제
+<div class="example-contents">
 
-Use Neo4j Browser or Neo4j Cypher Shell to execute this statement.
-
-```
+이 문장을 실행하려면 Neo4j Browser 또는 Neo4j Cypher Shell을 사용하십시오.
+<p>
+<code>
 CALL dbms.security.clearAuthCache()
-```
+</code>
+</div>
+</div>
 
 #### 7.1.5.4. Available methods of encryption                     
 
