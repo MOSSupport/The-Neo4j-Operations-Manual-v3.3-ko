@@ -260,7 +260,7 @@ dbms.security.ldap.host=ldaps://myactivedirectory.example.com:636
 예제 7.17. LDAP 서버에서 자체 서명 된 인증서에 대한 세부 정보 지정
 <div class="example-contents">
 
-이 예는 LDAP 서버의 자체 서명 인증서에 대한 세부 사항을 지정하는 방법을 보여줍니다. 인증서 파일인 `MyCert.jks`에 대한 경로는 Neo4j 서버의 절대 경로입니다.
+이 예는 LDAP 서버의 자체 서명 인증서에 대한 세부 사항을 지정하는 방법을 보여줍니다. 인증서 파일인 <code>MyCert.jks</code>에 대한 경로는 Neo4j 서버의 절대 경로입니다.
 
 <p>
 <pre>

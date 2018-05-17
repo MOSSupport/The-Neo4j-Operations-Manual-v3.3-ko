@@ -26,6 +26,6 @@
 5.  Neo4j 파일에 대한 올바른 파일 사용 권한을 확인하십시오. Neo4j가 실행되는 운영체제 사용자만 해당 파일에 대한 사용 권한을 가져야 합니다. 권한 수준에 대한 지침은 [3.1.3절, "권한"](/configuration/file-locations.md/#313-권한)을 참조하십시오. 특히 권한이 없는 읽기 액세스로부터 데이터파일, 트랜잭션 로그 및 데이터베이스 덤프를 보호하십시오. *bin*, *lib* 및 *plugins* 디렉토리에 대한 액세스를 제한하여 허가되지 않은 확장의 실행으로부터 보호하십시오. 
 6.  `LOAD CSV`가 활성화 된 경우 권한이 없는 사용자가 데이터를 가져올 수 없도록 하십시오. `LOAD CSV` 설정 방법은 [개발자 메뉴얼 →`LOAD CSV`](https://neo4j.com/docs/developer-manual/current/cypher/clauses/load-csv/)을 참조하십시오.               
 7.  Neo4j 인증을 비활성화하지 마십시오. [7.1.3절, "인증과 권한 부여 활성화"](/security/authentication-authorization/enabling-authentication-and-authorization.md) 에 자세한 내용이 있습니다.               
-8.  Survey your *neo4j.conf* file (see [Section 3.1, “File locations”](https://neo4j.com/docs/operations-manual/current/configuration/file-locations/)) for ports relating to deprecated functions (such as neo4j-shell, controlled by the parameter `dbms.shell.port`) and remote JMX (controlled by the parameter setting `dbms.jvm.additional=-Dcom.sun.management.jmxremote.port=3637`).               
+8.  *neo4j.conf* 파일(참조 [3.1절, "파일 위치"](/configuration/file-locations.md))에서 deprecated 함수 (예: neo4j-shell, 매개 변수 `dbms.shell.port`에 의해 제어 됨) 및 원격 JMX (매개변수 설정 `dbms.jvm.additional=-Dcom.sun.management.jmxremote.port=3637`에 의해 제어 됨)와 관련된 포트를 조사하십시오.
 9.  Neo4j Browser의 기본 인증 정보 처리가 보안 규정을 준수하는지 확인하려면 [7.4절, "브라우저에서 인증 정보 처리"](/security/browser.md)를 검토하십시오. 필요한 경우 지침에 따라 구성하십시오.               
 10.  Neo4j의 최신 패치 버전을 사용하십시오.
