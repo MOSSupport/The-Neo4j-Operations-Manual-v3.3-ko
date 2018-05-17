@@ -19,7 +19,7 @@
     2.  신뢰할 수있는 인증 기관에서 발급 한 SSL 인증서를 사용하십시오.
         1.  암호화 된 통신을 사용하도록 Neo4j 설치를 구성하려면 [7.3절, "통합 SSL 프레임워크"](/security/ssl-framework.md)을 참조하십시오.
         2.  Bolt 및 HTTPS 커넥터 구성에 대해서는 [3.6절, "Neo4j 커넥터 환경 설정"](/configuration/connectors.md)을 참조하십시오.
-        3.  LDAP를 사용하는 경우 StartTLS를 통해 LDAP 시스템을 암호화로 구성하십시오. [StartTLS를 통한 암호화가 있는 LDAP 사용] 절을 참조하십시오.(/security/authentication-authorization/ldap-integration.md/#starttls를-통한-암호화가-있는-ldap-사용).                                 
+        3.  LDAP를 사용하는 경우 StartTLS를 통해 LDAP 시스템을 암호화로 구성하십시오. [StartTLS를 통한 암호화와 LDAP 사용](/security/authentication-authorization/ldap-integration.md/#starttls를-통한-암호화와-ldap-사용) 절을 참조하십시오.          
 4.  맞춤 확장 기능의 보안 강화:
     1.  배포하는 사용자 지정 코드 (프로시저 및 관리되지 않는 확장)를 확인하고 실수로 제품이나 데이터 일부를 노출하지 않도록 하십시오.                        
     2.  `dbms.security.procedures.unrestricted` 및 `dbms.security.procedures.whitelist` 설정을 조사하여 의도적으로 노출 된 확장을 독점적으로 포함하는지 확인하십시오.                        
