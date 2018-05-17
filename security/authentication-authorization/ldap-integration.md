@@ -149,27 +149,27 @@ dbms.security.ldap.authorization.group_to_role_mapping=\
 | [dbms.security.ldap.authorization.group_membership_attributes](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.security.ldap.authorization.group_membership_attributes) | `[memberOf]`                         | Lists attribute names on a user object that contains groups to be used for mapping to roles. |
 | [dbms.security.ldap.authorization.group_to_role_mapping](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.security.ldap.authorization.group_to_role_mapping) |                                      | Lists an authorization mapping from groups to the pre-defined built-in roles `admin`, `architect`, `publisher` and `reader`, or to any other custom-defined roles. |
 
-#### 7.1.5.2. Use 'ldapsearch' to verify the configuration                     
+#### 7.1.5.2. 'ldapsearch'를 사용하여 구성 확인                    
 
-We can use the LDAP command-line tool `ldapsearch` to verify that the configuration is correct, and that the LDAP server is actually responding.               We do this by issuing a search command that includes LDAP configuration setting values.            
+LDAP 명령 행 도구 `ldapsearch`를 사용하여 구성이 올바른지 그리고 LDAP 서버가 실제로 응답하는지 확인할 수 있습니다. LDAP 구성 설정 값을 포함하는 검색 명령을 수행합니다.
 
-These example searches verify both the authentication (using the `simple` mechanism) and authorization of user 'john'.               See the `ldapsearch` documentation for more advanced usage and how to use SASL authentication mechanisms.            
+예제 검색은 인증(`간단한` 메커니즘 사용)과 사용자 'john'의 인증을 모두 확인합니다. 보다 진보 된 사용법과 SASL 인증 메커니즘을 사용하는 방법에 대해서는 `ldapsearch` 문서를 보십시오.
 
-With `dbms.security.ldap.authorization.use_system_account=false` (default):            
+`dbms.security.ldap.authorization.use_system_account=false` (기본값):            
 
 ```
 #ldapsearch -v -H ldap://<dbms.security.ldap.host> -x -D <dbms.security.ldap.authentication.user_dn_template : replace {0}> -W -b <dbms.security.ldap.authorization.user_search_base> "<dbms.security.ldap.authorization.user_search_filter : replace {0}>" <dbms.security.ldap.authorization.group_membership_attributes>
 ldapsearch -v -H ldap://myactivedirectory.example.com:389 -x -D cn=john,cn=Users,dc=example,dc=com -W -b cn=Users,dc=example,dc=com "(&(objectClass=*)(cn=john))" memberOf
 ```
 
-With `dbms.security.ldap.authorization.use_system_account=true`:            
+`dbms.security.ldap.authorization.use_system_account=true`:            
 
 ```
 #ldapsearch -v -H ldap://<dbms.security.ldap.host> -x -D <dbms.security.ldap.authorization.system_username> -w <dbms.security.ldap.authorization.system_password> -b <dbms.security.ldap.authorization.user_search_base> "<dbms.security.ldap.authorization.user_search_filter>" <dbms.security.ldap.authorization.group_membership_attributes>
 ldapsearch -v -H ldap://myactivedirectory.example.com:389 -x -D cn=search-account,cn=Users,dc=example,dc=com -w secret -b cn=Users,dc=example,dc=com "(&(objectClass=*)(cn=john))" memberOf
 ```
 
-Then verify that we get a successful response, and that the value of the returned membership attribute is a group that is               mapped to a role in `dbms.security.ldap.authorization.group_to_role_mapping`.            
+그런 다음 성공적인 응답을 받았는지와 반환 된 멤버십 속성의 값이 `dbms.security.ldap.authorization.group_to_role_mapping`의 롤에 매핑 된 그룹인지 확인하십시오.
 
 ```
 # extended LDIF
