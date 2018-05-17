@@ -221,9 +221,9 @@ CALL dbms.security.clearAuthCache()
 </div>
 </div>
 
-#### 7.1.5.4. Available methods of encryption                     
-
-All the following ways of specifying the `dbms.security.ldap.host` parameter are valid.               Doing so will configure using LDAP without encryption.               Not specifying the protocol or port will result in `ldap` being used over the default port `389`.            
+#### 7.1.5.4. 사용 가능한 암호화 방법
+                   
+`dbms.security.ldap.host` 매개 변수를 지정하는 다음의 모든 방법이 유효합니다. 이렇게하면 암호화없이 LDAP를 사용하여 구성됩니다. 프로토콜이나 포트를 지정하지 않으면 디폴트 포트 `389` 보다 `ldap`이 사용됩니다.
 
 ```
 dbms.security.ldap.host=myactivedirectory.example.com
@@ -232,37 +232,44 @@ dbms.security.ldap.host=ldap://myactivedirectory.example.com
 dbms.security.ldap.host=ldap://myactivedirectory.example.com:389
 ```
 
-##### Use LDAP with encryption via StartTLS                        
+##### StartTLS를 통한 암호화와 LDAP 사용                        
 
-To configure Active Directory with encryption via StartTLS, set the following parameters:
+StartTLS를 통한 암호화로 Active Directory를 구성하려면 다음 매개 변수를 설정하십시오.
 
 ```
 dbms.security.ldap.use_starttls=true
 dbms.security.ldap.host=ldap://myactivedirectory.example.com
 ```
 
-##### Use LDAP with encrypted LDAPS                        
+##### 암호화 LDAPS와 LDAP 사용                       
 
-To configure Active Directory with encrypted LDAPS, set `dbms.security.ldap.host` to one of the following.                  Not specifying the port will result in `ldaps` being used over the default port `636`.               
+암호화 된 LDAPS로 Active Directory를 구성하려면 `dbms.security.ldap.host`를 다음 중 하나로 설정하십시오. 포트를 지정하지 않으면 기본 포트 인 `636` 보다 `ldaps`가 사용됩니다.
 
 ```
 dbms.security.ldap.host=ldaps://myactivedirectory.example.com
 dbms.security.ldap.host=ldaps://myactivedirectory.example.com:636
 ```
 
-This method of securing Active Directory is being deprecated and is therefore not recommended.                  Instead, use Active Directory with encryption via [StartTLS](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/ldap-integration/#ldap-encrypted-starttls).               
+이 Active Directory 보안 방법은 더 이상 사용되지 않으므로 권장하지 않습니다. 대신 Active Directory를 [StartTLS](/security/authentication-authorization/ldap-integration.md/#starttls를-통한-암호화와-ldap-사용)를 통한 암호화와 함께 사용하십시오.
 
-#### 7.1.5.5. Use a self-signed certificate in a test environment                     
+#### 7.1.5.5. 테스트 환경에서 자체 서명 된 인증서 사용                     
 
-Production environments should always use an SSL certificate issued by a Certificate Authority for secure access to the LDAP               server.               However, there are scenarios, for example in test environments, where you may wish to use a self-signed certificate on the               LDAP server.               In these scenarios you will have to tell Neo4j about the local certificate.               This is done by entering the details of the certificate using `dbms.jvm.additional` in *neo4j.conf*.            
+운영환경에서는 항상 LDAP 서버에 대한 보안 액세스를 위해 인증 기관에서 발행 한 SSL 인증서를 사용해야합니다. 그러나 테스트 환경과 같이 LDAP 서버에서 자체 서명 된 인증서를 사용하려는 시나리오가 있습니다. 이 시나리오에서는 Neo4j에 로컬 인증서를 알려주어야 합니다. *neo4j.conf*에 `dbms.jvm.additional`을 사용하여 인증서의 세부 사항을 입력하면 됩니다.
 
-Example 7.17. Specify details for self-signed certificate on LDAP server
+<div class="example">
+예제 7.17. LDAP 서버에서 자체 서명 된 인증서에 대한 세부 정보 지정
+<div class="example-contents">
 
-This example shows how to specify details for a self-signed certificate on an LDAP server.                     The path to the certificate file `MyCert.jks` is an absolute path on the Neo4j server.                  
+이 예는 LDAP 서버의 자체 서명 인증서에 대한 세부 사항을 지정하는 방법을 보여줍니다. 인증서 파일인 `MyCert.jks`에 대한 경로는 Neo4j 서버의 절대 경로입니다.
 
-```
+<p>
+<pre>
+<code>
 dbms.jvm.additional=-Djavax.net.ssl.keyStore=/path/to/MyCert.jks
 dbms.jvm.additional=-Djavax.net.ssl.keyStorePassword=secret
 dbms.jvm.additional=-Djavax.net.ssl.trustStore=/path/to/MyCert.jks
 dbms.jvm.additional=-Djavax.net.ssl.trustStorePassword=secret
-```
+</code>
+</pre>
+</div>
+</div>
