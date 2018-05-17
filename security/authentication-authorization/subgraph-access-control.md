@@ -1,26 +1,44 @@
-### 7.1.6. Subgraph access control                  
+### 7.1.6. 하위 그래프 엑세스 제어                  
 
-This section describes how to configure subgraph access control in Neo4j.
+<div class="abstract">
+	<p>이 절에서는 Neo4j에서 하위 그래프 액세스 제어를 구성하는 방법에 대해 설명합니다.
+	</p>
+</div>
 
-It is possible to restrict a user’s access to, and subsequent actions on, specified portions of the graph.            For example, a user can be allowed to read, but not write, nodes with specific labels and relationships with certain types.         
 
-To implement subgraph access control, you must complete the following steps:
+그래프의 지정된 부분에 대한 사용자 액세스 및 후속 조치를 제한 할 수 있습니다. 예를 들어 사용자는 특정 레이블 및 특정 유형의 관계가있는 노드를 읽을 수는 있지만 작성할 수는 없습니다.
 
-1.  Put a procedure or function in place that performs the reads from, and/or writes to, the portion of the graph that you wish                  to control.                  This can either be developed in-house, or be made available as a third-party library.                  Please refer to [Neo4j Developer Manual → Extending Neo4j](https://neo4j.com/docs/developer-manual/3.1/extending-neo4j/) for a description on creating and using user-defined procedures and functions.               
-2.  Create one, or several, custom roles, with which to run the procedure described above.                  These roles can subsequently be assigned the relevant privileges.               
-3.  Configure the procedure so that it can be executed by users with the custom roles.
+하위 그래프 액세스 제어를 구현하려면 다음 단계를 완료해야합니다.
 
-The steps below assume that the procedure or function is already developed and installed.
+1. 제어하려는 그래프 부분에서 읽기 및 쓰기를 수행하는 프로 시저 또는 함수를 배치하십시오. 이는 사내에서 개발되거나 타사 라이브러리로 제공 될 수 있습니다. 사용자 정의 프로 시저 및 함수 생성 및 사용에 대한 설명은 [Neo4j 개발자 설명서 → Neo4j 확장](https://neo4j.com/docs/developer-manual/current/extending-neo4j/)을 참조하십시오.
+2. 위에서 설명한 절차를 실행할 사용자 역할을 하나 이상 만듭니다. 이러한 역할에는 나중에 관련 권한을 할당 할 수 있습니다.
+3. 사용자 정의 역할을 가진 사용자가 실행할 수 있도록 프로시저를 구성하십시오.
 
-#### 7.1.6.1. Create a custom role                     
+아래 단계에서는 프로 시저 또는 함수가 이미 개발되어 설치되어 있다고 가정합니다.
 
-Create a custom role and manage it either through native user management or through federated user management with LDAP.
+#### 7.1.6.1. 사용자 지정 역할 만들기                     
 
--   **Native users scenario**
+기본 사용자 관리나 LDAP을 이용한 패터레이션 사용자 관리를 통해 사용자 정의 역할 및 관리를 생성합니다.
 
-                         In the native users scenario, a custom role is created and assigned to the relevant user(s).                                             Example 7.18. Native users scenario                                                   In this example, we will use Cypher to create a custom `accounting` role and assign it to a pre-existing user, `billsmith`.                           `CALL dbms.security.createRole('accounting')CALL dbms.security.addRoleToUser('accounting', 'billsmith')`                                       
+##### **기본 사용자 시나리오**
 
--   **Federated users scenario (LDAP)**
+In the native users scenario, a custom role is created and assigned to the relevant user(s).                                             
+
+<div class="example">
+Example 7.18. Native users scenario                                                   
+<div class="example-contents">
+In this example, we will use Cypher to create a custom `accounting` role and assign it to a pre-existing user, `billsmith`.                     
+
+<pre> 
+<code>
+`CALL dbms.security.createRole('accounting')
+CALL dbms.security.addRoleToUser('accounting', 'billsmith')`                                       
+</code>
+</pre>
+</div>
+</div>
+
+##### **Federated users scenario (LDAP)**
 
                          In the LDAP scenario, the LDAP user group is mapped to a custom role in Neo4j.                                             Example 7.19. Federated users scenario (LDAP)                                                   In this example, we will use Cypher to create a custom `accounting` role.                           `CALL dbms.security.createRole('accounting')`We will then map the `accounting` role to the LDAP group with groupID `101`.                           `dbms.security.realms.ldap.authorization.group_to_role_mapping=101=accounting`                                       
 
