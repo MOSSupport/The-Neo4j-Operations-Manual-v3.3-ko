@@ -50,7 +50,7 @@
   * [Credentials handling in Neo4j Browser](security/browser.md)
   * [Security checklist](security/checklist.md)
 * [Monitoring](monitoring.md)
-  * [Metrics(Metrics)](/monitoring/metrics.md)
+  * [Metrics](/monitoring/metrics.md)
   * [Logging](/monitoring/logging.md)
   * [Query management](/monitoring/query-management.md)
   * [Monitoring of a Causal Cluster](/monitoring/causal-cluster.md)
