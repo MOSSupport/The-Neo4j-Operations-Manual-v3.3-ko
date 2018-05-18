@@ -1,4 +1,4 @@
-### 7.1.6. 하위 그래프 엑세스 제어                  
+### 7.1.6. 하위 그래프 엑세스 제어  <code>Enterprise Edition</code>                
 
 <div class="abstract">
 	<p>이 절에서는 Neo4j에서 하위 그래프 액세스 제어를 구성하는 방법에 대해 설명합니다.
@@ -20,14 +20,14 @@
 
 기본 사용자 관리나 LDAP을 이용한 패터레이션 사용자 관리를 통해 사용자 정의 역할 및 관리를 생성합니다.
 
-##### **기본 사용자 시나리오**
+##### 기본 사용자 시나리오
 
-In the native users scenario, a custom role is created and assigned to the relevant user(s).                                             
+기본 사용자 시나리오에서는 사용자 지정 역할이 만들어져 관련 사용자에게 할당됩니다.  
 
 <div class="example">
-Example 7.18. Native users scenario                                                   
+예제 7.18. 기본 사용자 시나리오
 <div class="example-contents">
-In this example, we will use Cypher to create a custom `accounting` role and assign it to a pre-existing user, `billsmith`.                     
+이 예에서는 Cypher를 사용하여 사용자 정의 <code>accounting</code> 역할을 생성하고 기존 사용자인 <code>billsmith</code>에게 할당합니다.
 
 <pre> 
 <code>

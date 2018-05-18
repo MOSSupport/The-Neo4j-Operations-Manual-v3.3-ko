@@ -1,4 +1,4 @@
-#### 7.1.4.4. 기본 사용자 및 역할 관리 절차 
+#### 7.1.4.4. 기본 사용자 및 역할 관리 절차 <code>Enterprise Edition</code>
 
 <div class="abstract">
 	<p>이 절에서는 Neo4j Cluster의 기본 사용자 및 역할 관리하는 절차에 대해서 설명합니다. 

@@ -1,4 +1,4 @@
-#### 7.1.4.1. 기본 역할 
+#### 7.1.4.1. 기본 역할 <code>Enterprise Edition</code>
 
 <div class="abstract">
 	<p>이 절에서는 Neo4j의 기본 역할에 대해서 설명합니다. 
