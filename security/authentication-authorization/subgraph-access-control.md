@@ -38,24 +38,71 @@ CALL dbms.security.addRoleToUser('accounting', 'billsmith')`
 </div>
 </div>
 
-##### **Federated users scenario (LDAP)**
+##### 패터레이션 사용자 시나리오(LDAP)
 
-                         In the LDAP scenario, the LDAP user group is mapped to a custom role in Neo4j.                                             Example 7.19. Federated users scenario (LDAP)                                                   In this example, we will use Cypher to create a custom `accounting` role.                           `CALL dbms.security.createRole('accounting')`We will then map the `accounting` role to the LDAP group with groupID `101`.                           `dbms.security.realms.ldap.authorization.group_to_role_mapping=101=accounting`                                       
+LDAP 시나리오에서 LDAP 사용자 그룹은 Neo4j의 사용자 지정 역할에 매핑됩니다.
 
-#### 7.1.6.2. Manage procedure permissions                     
+<div class="example">
+예제 7.19. 패터레이션 사용자 시나리오(LDAP)
+<div class="example-contents">
+이 예에서는 Cypher를 사용하여 사용자 정의 'accounting'역할을 만듭니다.
+<p>
+<code>CALL dbms.security.createRole('accounting')</code>
 
-In standard use, procedures and functions are executed according to the same security rules as regular Cypher statements,               as described in [Section 7.1.4.1, “Native roles”](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/native-roles/).               For example, users assigned any one of the native roles `publisher`, `architect` and `admin` will be able to execute a procedure with `mode=WRITE`, whereas a user assigned only the `reader` role will not be allowed to execute the procedure.            
+우리는 <code>accounting</code> 역할을 groupID가 <code>101</code> 인 LDAP 그룹에 매핑 할 것입니다.
 
-For the purpose of subgraph access control, we allow specific roles to execute procedures that they would otherwise be prevented               from accessing through their assigned native roles.               The user is given the privilege that comes with the mode of the procedure, during the execution of the procedure only.               The following two parameters are used to configure the desired behavior:            
+<code>dbms.security.realms.ldap.authorization.group_to_role_mapping=101=accounting</code>
 
--   **dbms.security.procedures.default_allowed**
+</div>
+</div>
 
-                         The setting `dbms.security.procedures.default_allowed` defines a single role that is allowed to execute any procedure or function that is not matched by the `dbms.security.procedures.roles` configuration.                                                                  Example 7.20. Configure a default role that can execute procedures and functions                                                   Assume that we have the following configuration:`dbms.security.procedures.default_allowed=superAdmin`This will have the following effects:                                                                                          If the setting `dbms.security.procedures.roles` is left unconfigured, the role `superAdmin` will be able to execute all custom procedures and functions.                                                                  If the setting `dbms.security.procedures.roles` has some roles and functions defined, the role `superAdmin` will be able to execute all custom procedures and functions that are *not* configured by `dbms.security.procedures.roles`.                                                                                                                                                         
+#### 7.1.6.2. 프로시저 권한 관리                     
 
--   **dbms.security.procedures.roles**
+표준 사용에서 [7.1.4.1 절 "기본 역할"](/security/native-user-and-role-management/native-roles.md)에서 설명한대로 표준 Cypher 문과 동일한 보안 규칙에 따라 프로시저와 함수가 실행됩니다. 예를 들어 `publisher`, `architect` 및 `admin` 기본 역할 중 하나가 할당 된 사용자는 `mode=WRITE`로 프로시저를 실행할 수 있지만 `reader` 역할만 할당 된 사용자는 프로시저를 실행할 수 없습니다.
 
-                         The `dbms.security.procedures.roles` setting provides fine-grained control over procedures.                                                                  Example 7.21. Configure roles for the execution of specific procedures                                                   Assume that we have the following configuration:`dbms.security.procedures.roles=apoc.convert.*:Converter;apoc.load.json.*:Converter,DataSource;apoc.trigger.add:TriggerHappy`This will have the following effects:                                                                                          All users with the role `Converter` will be able to execute all procedures in the `apoc.convert` namespace.                                                                  All users with the roles `Converter` and `DataSource` will be able to execute procedures in the `apoc.load.json` namespace.                                                                  All users with the role `TriggerHappy` will be able to execute the specific procedure `apoc.trigger.add`.                                                                                                                                                         
+하위 그래프 액세스 제어를 위해 특정 역할이 할당 된 기본 역할을 통해 액세스 할 수 없는 절차를 실행하도록 허용합니다. 프로시저의 실행 중에만 프로시저 모드와 함께 제공되는 권한이 사용자에게 부여됩니다. 다음 두 매개 변수는 원하는 동작을 구성하는데 사용됩니다.
 
-| **   | A procedure will fail if it attempts to execute database operations that violates its mode.                              For example, a procedure assigned the mode of `READ` will fail if it is programmed to do write actions.                              This will happen regardless of user or role configuration. |
+
+- [**dbms.security.procedures.default_allowed**](https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/#config_dbms.security.procedures.default_allowed)
+
+`dbms.security.procedures.default_allowed` 설정은 `dbms.security.procedures.roles` 구성과 일치하지 않는 모든 프로 시저 또는 함수를 실행할 수있는 단일 역할을 정의합니다.
+
+
+<div class="example">
+예제 7.20. 프로시저 및 함수를 실행할 수있는 기본 역할 구성
+<div class="example-contents">
+다음과 같은 구성을 가지고 있다고 가정합니다.
+
+<code>dbms.security.procedures.default_allowed=superAdmin</code>
+
+다음과 같은 효과가 있습니다.
+
+- <code>dbms.security.procedures.roles</code> 설정하지 않음으로 두면, <code>superAdmin</code> 역할은 모든 커스텀 프로시저와 함수를 실행할 수 있습니다.
+- <code>dbms.security.procedures.roles</code>에 몇 가지 역할과 함수가 정의되어 있다면, <code>superAdmin</code> 롤은 <code>dbms.security.procedures.roles</code>에 의해 설정되지 않은 모든 커스텀 프로 시저와 함수를 실행할 수 있습니다.                            
+</div>
+</div>                                                                                                                 
+
+- [**dbms.security.procedures.roles**](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_dbms.security.procedures.roles)
+
+`db.security.procedures.roles`설정으로 절차를 세밀하게 제어할 수 있습니다.
+
+<div class="example">
+예제 7.21. 특정 절차의 실행을 위한 역할 구성                                                   
+<div class="example-contents">
+다음과 같은 구성이 있다고 가정합니다.
+<p>
+<code>dbms.security.procedures.roles=apoc.convert.*:Converter;apoc.load.json.*:Converter,DataSource;apoc.trigger.add:TriggerHappy</code>
+<p>
+이 경우 다음과 같은 효과가 있습니다.
+<p>
+<ul>
+<li> <code>Converter</code> 역할을 가진 모든 사용자는 <code>apoc.convert</code> 네임 스페이스의 모든 프로시저를 실행할 수 있습니다. </li>
+<li> <code>Converter</code> 와 <code>DataSource</code> 역할을 가진 모든 사용자는 <code>apoc.load.json</code> 네임 스페이스에서 프로 시저를 실행할 수 있습니다.</li>
+<li> <code>TriggerHappy</code> 역할을 가진 모든 사용자는 특정 프로 시저 <code>apoc.trigger.add</code>를 실행할 수 있습니다.
+</ul>
+</div>
+</div>                                                                                                        
+
+| **   | 모드를 위반하는 데이터베이스 작업을 실행하려고 하면 절차가 실패합니다. 예를 들어, `READ` 모드를 할당한 절차가 쓰기 작업을 수행하도록 설정된 경우 실패합니다. 이 문제는 사용자 또는 역할 구성에 관계 없이 발생합니다. |
 | ---- | ---------------------------------------- |
 |      |                                          |
