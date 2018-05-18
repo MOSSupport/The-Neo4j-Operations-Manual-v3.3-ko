@@ -1,4 +1,4 @@
-#### 7.1.4.3. 사용자와 역할 전파
+#### 7.1.4.3. 사용자와 역할 전파 <code>Enterprise Edition</code>
 
 <div class="abstract">
 	<p>이 절에서는 Neo4j Cluster의 기본 사용자와 역할 및 역할 할당을 전파하는 방법에 대해서 설명합니다. 

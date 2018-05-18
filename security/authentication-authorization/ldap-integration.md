@@ -1,4 +1,4 @@
-### 7.1.5. LDAP 통합                  
+### 7.1.5. LDAP 통합  <code>Enterprise Edition</code>                
 
 <div class="abstract">
 	<p>이 절에서는 LDAP 시스템과의 통합을 위한 Neo4j 지원에 대해 설명합니다.
