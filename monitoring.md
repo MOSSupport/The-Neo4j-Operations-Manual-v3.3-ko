@@ -5,19 +5,19 @@
 	</p>
 </div>
 
-Neo4j provides mechanisms for continuous analysis through the output of metrics as well as the inspection and management of currently-executing queries.
+Neo4j는 현재 실행중인 쿼리의 검사 및 관리는 물론 메트릭 출력을 통해 지속적인 분석 메커니즘을 제공합니다.
 
-Logs can be harvested for continuous analysis, or for specific investigations. Facilities are available for producing security event logs as well as query logs. The query management functionality is provided for specific investigations into query performance. Monitoring features are also provided for ad-hoc analysis of a Causal Cluster.
+로그는 지속적인 분석 또는 특정 조사를 위해 수집할 수 있습니다. 보안 이벤트 로그와 쿼리 로그를 생성하는 데 사용할 수 있는 기능이 있습니다. 쿼리 관리 기능은 쿼리 성능에 대한 특정 조사를 위해 제공됩니다. 원인 클러스터의 임시 분석을 위해 모니터링 기능도 제공됩니다.
 
-This chapter describes the following:
+이 장에서는 다음 사항에 대해 설명합니다.
 
-- [Metrics](/monitoring/metrics.md)
-  - [Enable metrics logging](/monitoring/metrics.md/#metrics-enable)
-  - [Metrics reference](/monitoring/metrics/reference.md)
-- [Logging](/monitoring/logging.md)
-  - [Security events logging](/monitoring/logging/security-events-logging.md)
-  - [Query logging](/monitoring/logging/query-logging.md)
-- [Query management](/monitoring/query-management.md)
-  - [Query management procedures](/monitoring/query-management/procedures.md)
-  - [Transaction timeout](/monitoring/query-management.md/#transaction-timeout)
-- [Monitoring of a Causal Cluster](/monitoring/causal-cluster.md)
+- [메트릭스(Metrics)](/monitoring/metrics.md)
+  - [메트릭스 로깅 활성화](/monitoring/metrics.md/#811-메트릭스-로깅-활성화)
+  - [매트릭스 참조](/monitoring/metrics/reference.md)
+- [로깅(Logging)](/monitoring/logging.md)
+  - [보안 이벤트 로깅(Logging)](/monitoring/logging/security-events-logging.md)
+  - [쿼리 로깅(Query Logging)](/monitoring/logging/query-logging.md)
+- [쿼리 관리](/monitoring/query-management.md)
+  - [쿼리 관리 절차](/monitoring/query-management/procedures.md)
+  - [트랜잭션 시간 초과](/monitoring/query-management.md/#831-트랜잭션-시간-초과)
+- [인과 관계 클러스터 모니터링](/monitoring/causal-cluster.md)
