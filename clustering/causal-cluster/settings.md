@@ -3,7 +3,6 @@
 
 #### 4.2.14.1. 공통 설정
 
-
 | 매개 변수 이름 | 설명 |
 |---------------|------|
 | [`dbms.mode`](https://neo4j.com/docs/operations-manual/3.4/reference/configuration-settings/#config_dbms.mode) | 이 설정은 데이터베이스의 작동 모드를 구성합니다. Causal 클러스터링에는 두가지 모드가 있습니다: `CORE` 또는 `READ_REPLICA`.<br><br>예: `dbms.mode=READ_REPLICA`는 이 서버를 Read Replica로 정의합니다.|
@@ -19,3 +18,15 @@
 |[`causal_clustering.refuse_to_be_leader`](https://neo4j.com/docs/operations-manual/3.4/reference/configuration-settings/#config_causal_clustering.refuse_to_be_leader)|`true`로 설정된 경우, 현재 인스턴스가 Raft 리더가 되는 것을 방지합니다. 기본값은 `false`이며, 예외적인 상황에서만 전문가 사용자가 사용하거나, Neo4j Professional Services가 권고한 경우에만 사용해야 합니다.<br><br>예: `causal_clustering.refuse_to_be_leader=false`|
 |[`causal_clustering.cluster_allow_reads_on_followers`](https://neo4j.com/docs/operations-manual/3.4/reference/configuration-settings/#config_causal_clustering.cluster_allow_reads_on_followers)|일반 이기종의 설정에서 읽기 전용 쿼리에 대해 팔로워를 사용할 수 있도록 기본값은 `true`입니다. 참고: 클러스터에 read replica가 없으면, 팔로워는 이 설정의 값에 관계없이 읽기를 위해 사용 가능하게 됩니다.<br><br>예: `causal_clustering.cluster_allow_reads_on_followers=true`|
 |[`causal_clustering.store_copy_max_retry_time_per_request`](https://neo4j.com/docs/operations-manual/3.4/reference/configuration-settings/#config_causal_clustering.store_copy_max_retry_time_per_request)|저장소 복사가 결국 실패하는 조건. 구성된 시간이 충족되지 않는 한 요청을 다시 시도할 수 있습니다. 매우 큰 저장소나 파일 전송 속도를 늦출 수 있는 다른 이유로 인해 이것이 증가할 수 있습니다.<br><br>예: `causal_clustering.store_copy_max_retry_time_per_request=60min`|
+
+#### 4.2.14.2. 다중 데이터 센터 설정
+
+| 매개 변수 이름 | 설명 |
+|---------------|------|
+|[`causal_clustering.multi_dc_license`](https://neo4j.com/docs/operations-manual/3.4/reference/configuration-settings/#config_causal_clustering.multi_dc_license)|
+다중 데이터 센터 기능을 활성화합니다. 적절한 라이센스가 필요합니다.<br><br>예: `causal_clustering.multi_dc_license=true`는 다중 데이터 센터 기능을 활성화합니다.|
+|[`causal_clustering.server_groups`](https://neo4j.com/docs/operations-manual/3.4/reference/configuration-settings/#config_causal_clustering.server_groups)|로드 밸런싱 및 복제 정책을 구성할 때 사용되는 서버의 그룹 이름 목록.<br><br>예: `causal_clustering.server_groups=us,us-east`는 `us`와 `us-east` 그룹에 현재 인스턴스를 추가할 것입니다.|
+|[`causal_clustering.upstream_selection_strategy`](https://neo4j.com/docs/operations-manual/3.4/reference/configuration-settings/#config_causal_clustering.upstream_selection_strategy)|트랜잭션 업데이트를 가져올 업스트림 데이터베이스 서버를 선택하기 위해 read replica가 사용하는 전략의 내림차순 우선순위 목록입니다.<br><br>예: `causal_clustering.upstream_selection_strategy=connect-randomly-within-server-group,typically-connect-to-random-read-replica`는 Read Replica가 `causal_clustering.server_groups`에 지정된 그룹의 다른 인스턴스에 먼저 연결을 시도하도록 동작을 구성합니다. 해당 그룹에서 라이브 인스턴스를 찾지 못하면 임의의 Read Replica에 연결합니다. `user_defined`의 값은 `causal_clustering.user_defined_upstream_strategy` 설정을 사용하여 사용자 지정 전략 정의를 활성화합니다.|
+|[`causal_clustering.user_defined_upstream_strategy`](https://neo4j.com/docs/operations-manual/3.4/reference/configuration-settings/#config_causal_clustering.user_defined_upstream_strategy)|업스트림 종속성의 구성을 정의. `causal_clustering.upstream_selection_strategy`가 `user_defined`로 설정된 경우에만 사용할 수 있습니다.<br><br>예: `causal_clustering.user_defined_upstream_strategy=groups(north2); groups(north); halt()`는 `north2`에 있는 서버를 검색합니다. 만약 사용할 수 있는 서버가 없는 경우, `north`서버 그룹을 검색할 것입니다. 마지막으로, 이전 그룹의 어디에서도 서버를 확인할 수 없는 경우 `halt()`를 통해 규칙 체인이 중지됩니다.|
+|[`causal_clustering.load_balancing.plugin`](https://neo4j.com/docs/operations-manual/3.4/reference/configuration-settings/#config_causal_clustering.load_balancing.plugin)|사용할 로드 밸런싱 플러그인. `server_policies`라는 하나의 사전 정의된 플러그인을 기본적으로 사용할 수 있습니다.<br><br>예: `causal_clustering.load_balancing.plugin=server_policies`는 사용자 지정 정책 정의를 활성화합니다.|
+|`causal_clustering.load_balancing.config.server_policies.<policy-name>`|<policy-name> 이름으로 사용자 지정 정책을 정의. 로드 밸런싱 정책은 클러스터 전역 구성이므로 모든 코어 시스템에서 정확히 동일한 방법으로 정의되어야 합니다.<br><br>예: `causal_clustering.load_balancing.config.server_policies.north1_only=groups(north1)→min(2); halt();`은 `north1_only`라는 이름의 로드 밸런싱 정책을 정의합니다. 사용 가능한 서버가 두개 있다면 쿼리는 오직 `north1`서버 그룹에 있는 서버로 전송됩니다. `north1`에 서버가 두개 미만이라면 체인이 중지됩니다.|
