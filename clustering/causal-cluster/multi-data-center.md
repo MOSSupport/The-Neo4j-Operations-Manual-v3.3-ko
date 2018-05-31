@@ -7,7 +7,7 @@
 
 다음 주제들이 자세히 설명됩니다:
 * [다중 데이터 센터 설계](./multi-data-center/design.md) - 다중 데이터 센터 배포를 위한 패턴
-* [다중 데이터 센터 작업 구성](./multi-data-center/configuration.md) - 다중 데이터 센터 배치를 위한 Neo4j 구성 옵션
+* [다중 데이터 센터 운영 구성](./multi-data-center/configuration.md) - 다중 데이터 센터 배치를 위한 Neo4j 구성 옵션
 * [다중 데이터 센터 시스템을 위한 로드 밸런싱](./multi-data-center/load-balancing.md) - 클라이언트 애플리케이션이 다중 데이터 센터 토폴로지를 인식할 수있게 해주는 Neo4j 구성 옵션
 * [데이터 센터 복구](./multi-data-center/disaster-recovery.md) - 데이터 센터 손실 후 클러스터를 완전 가동 상태로 복구하는 방법
 
