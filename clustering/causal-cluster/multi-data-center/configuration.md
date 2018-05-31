@@ -14,10 +14,10 @@
 서버 그룹은 Causal 클러스터의 서버 세트에 매핑되는 키로 정의됩니다. 서버 그룹 멤버십은 *neo4j.conf*의 [`causal_clustering.server_groups`](https://neo4j.com/docs/operations-manual/3.4/reference/configuration-settings/#config_causal_clustering.server_groups) 매개 변수를 사용하여 각 서버에 정의됩니다. Causal 클러스터의 각 서버는 0개 또는 여러 개의 서버 그룹에 속할 수 있습니다.
 
 **예제 4.12. 서버 그룹 멤버십 정의**
-`````````````````
+-----------------------------
 서버 그룹의 멤버십은 다음 예제와 같이 *neo4j.conf*에서 설정할 수 있습니다:
 `````````````````
 # Add the current instance to the groups `us` and `us-east`
 causal_clustering.server_groups=us,us-east
 `````````````````
-````````````````````````
+-----------------------
