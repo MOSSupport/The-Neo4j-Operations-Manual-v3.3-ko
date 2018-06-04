@@ -35,4 +35,33 @@ causal_clustering.server_groups=eu
 서버 그룹은 필수는 아니지만, 존재하지 않으면 서버에 대한 특정 업스트림 트랜잭션 종속성을 설정할 수 없습니다. 지정된 서버 그룹이 없는 경우, 클러스터는 기본적으로 가장 비관적인 대체 동작을 수행합니다: 각 Read Replica는 임의의 코어 서버로부터 작동할 것입니다.
 
 #### 4.2.9.3. 전략 플러그인
-*전략 플러그인*은 트랜잭션 로그를 동기화하기 위해 클러스터의 Read Replica가 서버에 접속하는 방법을 정의하는 일련의 규칙입니다.
+*전략 플러그인*은 트랜잭션 로그를 동기화하기 위해 클러스터의 Read Replica가 서버에 접속하는 방법을 정의하는 일련의 규칙입니다. Neo4j는 사전 정의된 전략 세트와 함께 제공되며, 설계 특정 언어, DSL을 제공하여 사용자 정의 전략을 유연하게 생성할 수 있습니다. 마지막으로, Neo4j는 고급 사용자가 업스트림 권장 사항을 향상시키는 데 사용할 수있는 API를 지원합니다.
+
+일단 전략 플러그인이 만족스러운 업스트림 서버를 확인하면 트랜잭션을 가져 와서 로컬 Read Replica를 업데이트하여 단일 동기화를 수행하는 데 사용됩니다. 이후 업데이트의 경우, 이 절차가 반복되어 항상 가장 선호되는 사용 가능한 업스트림 서버가 확인됩니다.
+
+#### 사전 정의된 전략을 사용하여 업스트림 선택 전략 구성하기
+Neo4j에는 다음과 같은 사전 정의된 전략 플러그인이 포함되어 있습니다:
+| 플러그인 이름 | 결과 동작 |
+|--------------|----------|
+|`connect-to-random-core-server`|현재 사용 가능한 것들 중에서 임의로 선택하여 **코어 서버**에 연결.|
+|`typically-connect-to-random-read-replica`|사용 가능한 **Read Replica**에 연결하나, 시간의 약 10%는 임이의 코어 서버에 연결.|
+|`connect-randomly-within-server-group`|`causal_clustering.server_groups`에 지정된 서버 그룹에서 사용 가능한 아무 인스턴스(코어 서버 *및* Read Replica)에 임의로 연결.|
+
+사전 정의된 전략은 [`causal_clustering.upstream_selection_strategy`](https://neo4j.com/docs/operations-manual/3.4/reference/configuration-settings/#config_causal_clustering.upstream_selection_strategy) 옵션을 구성하여 사용됩니다. 이렇게 함으로써 우리는 트랜잭션 데이터의 업스트림 제공자를 확인하기 위한 전략의 순서 선호도를 지정할 수 있습니다. 우리는 목록의 앞부분에 선호하는 전략과 함께 쉼표로 구분된 전략 플러그인 이름의 목록을 제공합니다. 업스트림 전략은 목록 순서의 각 전략에 트랜잭션을 추출할 수 있는 업스트림 서버를 제공할 수 있는지 여부를 질문하여 선택되어 집니다.
+
+##### 예제 4.13. 업스트림 선택 전략 정의
+-------------------------------------------
+다음 구성 예제를 고려하십시오:
+````
+causal_clustering.upstream_selection_strategy=connect-randomly-within-server-group,typically-connect-to-random-read-replica
+```
+
+이 구성을 사용하면 인스턴스는 먼저 `causal_clustering.server_groups`에 지정된 그룹의 다른 인스턴스에 연결을 시도합니다. 해당 그룹에서 라이브 인스턴스를 찾지 못하면 임의의 Read Replica에 연결합니다.
+
+**그림 4.16. 전략의 첫 번째 만족스러운 응답이 사용됩니다.**
+ ![pipeline-of-strategies](./pipeline-of-strategies.png)
+
+ 다운 스트림 서버가 업 스트림 장애가 발생한 경우에도 여전히 라이브 데이터에 액세스 할 수 있도록 하기 위해, 모든 인스턴스의 최후의 수단은 항상 임의의 코어 서버에 연결하는 것입니다. 이는 `causal_clustering.upstream_selection_strategy` 구성을 `connect-to-random-core-server`를 사용하여 종료하는 것과 동일합니다.
+ ----------------------------------------------
+
+#### 사용자 정의된 전략 구성하기
