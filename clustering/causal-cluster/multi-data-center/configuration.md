@@ -62,7 +62,7 @@ causal_clustering.upstream_selection_strategy=connect-randomly-within-server-gro
 
 이 구성을 사용하면 인스턴스는 먼저 `causal_clustering.server_groups`에 지정된 그룹의 다른 인스턴스에 연결을 시도합니다. 해당 그룹에서 라이브 인스턴스를 찾지 못하면 임의의 Read Replica에 연결합니다.
 
-**그림 4.16. 전략의 첫 번째 만족스러운 응답이 사용됩니다.**
+**그림 4.16. 전략에서 첫 번째 만족스러운 응답이 사용됩니다.**
  ![pipeline-of-strategies](./pipeline-of-strategies.png)
 
  다운 스트림 서버가 업 스트림 장애가 발생한 경우에도 여전히 라이브 데이터에 액세스 할 수 있도록 하기 위해, 모든 인스턴스의 최후의 수단은 항상 임의의 코어 서버에 연결하는 것입니다. 이는 `causal_clustering.upstream_selection_strategy` 구성을 `connect-to-random-core-server`를 사용하여 종료하는 것과 동일합니다.
@@ -70,3 +70,23 @@ causal_clustering.upstream_selection_strategy=connect-randomly-within-server-gro
  ----------------------------------------------
 
 #### 사용자 정의된 전략 구성하기
+Neo4j Causal 클러스터는 [클라이언트-클러스터 로드 밸런싱](./load-balancing.md)을 구성하기 위해 소규모 DSL을 지원합니다. 이것은 ["정책 정의" 장](./load-balancing.md#정책-정의)과 ["필터" 장](./load-balancing.md#필터)에서 자세히 설명합니다. 동일한 DSL은 트랜잭션 업데이트를 요청하기 위해 인스턴스가 또다른 인스턴스에 바인딩하는 방법에 대한 선호도를 설명하는 데 사용됩니다.
+
+DSL은 다음과 같이 `user-defined` 전략을 선택하여 사용할 수 있습니다:
+
+```
+causal_clustering.upstream_selection_strategy=user-defined
+```
+
+사용자 정의 전략이 지정되면, 클러스터에 대해 설정된 서버 그룹을 기반으로 [`causal_clustering.user_defined_upstream_strategy`](https://neo4j.com/docs/operations-manual/3.4/reference/configuration-settings/#config_causal_clustering.user_defined_upstream_strategy) 설정에 구성을 추가할 수 있습니다.
+
+이 기능에 대해 두 가지 예를 들어 설명하겠습니다:
+
+##### 예제 4.14. 사용자 정의 전략 정의하기
+
+---------------------------------------
+
+설명을 위해 4개의 지역을 제안합니다: `north`, `south`, `east` 및 `west`. 그리고 각 지역 내에 `north1`이나 `west2`와 같은 많은 데이터 센터가 있습니다. 우리는 각 데이터 센터가 자체 서버 그룹에 매핑되도록 서버 그룹을 구성합니다. 또한 각 데이터 센터는 다른 데이터 센터와 독립적으로 장애를 일으키고 지역이 구성 데이터 센터의 상위 그룹 역할을 할 수 있다고 가정합니다. 따라서 `north` 지역의 인스턴스는 `causal_clustering.server_groups=north2,north`와 같은 구성을 가질 수 있으며, 아래 다이어그램에서 보여지는 것 처럼 우리의 물리적 토폴로지와 일치하는 두 그룹 안에 놓여집니다.
+
+**그림 4.17. 지역 및 데이터 센터를 서버 그룹에 매핑**
+![nesw-regions-and-dcs](./nesw-regions-and-dcs.png)
