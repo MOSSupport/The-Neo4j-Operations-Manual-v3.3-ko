@@ -29,6 +29,7 @@ causal_clustering.server_groups=london
 # Add the current instance into the group `eu`
 causal_clustering.server_groups=eu
 ```````````````````
+
 각 서버 그룹의 멤버십은 명시적이어야 합니다. 예를 들어, `gb-london` 그룹의 서버는 그 서버가 명시적으로 해당 그룹에 추가되지 않는 한 자동적으로 일부 `gb` 또는 `eu` 그룹의 일부가 아닙니다. 즉, 그룹 간의 (암시적인) 모든 관계는 해당 그룹이 업스트림 시스템에서 데이터를 요청하기 위한 기초로 사용될 때만 구체화됩니다.
 -----------------------
 
