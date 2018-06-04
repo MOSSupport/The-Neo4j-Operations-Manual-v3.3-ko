@@ -43,6 +43,7 @@ causal_clustering.server_groups=eu
 
 #### 사전 정의된 전략을 사용하여 업스트림 선택 전략 구성하기
 Neo4j에는 다음과 같은 사전 정의된 전략 플러그인이 포함되어 있습니다:
+
 | 플러그인 이름 | 결과 동작 |
 |--------------|----------|
 |`connect-to-random-core-server`|현재 사용 가능한 것들 중에서 임의로 선택하여 **코어 서버**에 연결.|
@@ -54,9 +55,10 @@ Neo4j에는 다음과 같은 사전 정의된 전략 플러그인이 포함되�
 ##### 예제 4.13. 업스트림 선택 전략 정의
 -------------------------------------------
 다음 구성 예제를 고려하십시오:
+
 ````
 causal_clustering.upstream_selection_strategy=connect-randomly-within-server-group,typically-connect-to-random-read-replica
-```
+````
 
 이 구성을 사용하면 인스턴스는 먼저 `causal_clustering.server_groups`에 지정된 그룹의 다른 인스턴스에 연결을 시도합니다. 해당 그룹에서 라이브 인스턴스를 찾지 못하면 임의의 Read Replica에 연결합니다.
 
@@ -64,6 +66,7 @@ causal_clustering.upstream_selection_strategy=connect-randomly-within-server-gro
  ![pipeline-of-strategies](./pipeline-of-strategies.png)
 
  다운 스트림 서버가 업 스트림 장애가 발생한 경우에도 여전히 라이브 데이터에 액세스 할 수 있도록 하기 위해, 모든 인스턴스의 최후의 수단은 항상 임의의 코어 서버에 연결하는 것입니다. 이는 `causal_clustering.upstream_selection_strategy` 구성을 `connect-to-random-core-server`를 사용하여 종료하는 것과 동일합니다.
+
  ----------------------------------------------
 
 #### 사용자 정의된 전략 구성하기
