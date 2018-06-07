@@ -108,6 +108,7 @@ causal_clustering.user_defined_upstream_strategy=groups(north2); groups(north); 
 ##### 예제 4.15. 조건이 있는 사용자 정의 전략
 
 ------------------------
+
 이 예에서 우리는 후속 조치를 취할 위치를 선택하기 전에 클러스터 건강 상태를 대략적으로 검증하고자 합니다. 이를 위해 다음과 같이 `min()` 필터를 사용합니다.
 ````
 causal_clustering.user_defined_upstream_strategy=groups(north2)->min(3), groups(north)->min(3); all();
@@ -126,4 +127,8 @@ Neo4j는 고급 사용자가 로드, 서브넷, 시스템 크기 또는 JVM에�
 
 | 리소스 | 설명 |
 |--------|-----|
-|`org.neo4j.causalclustering.discovery.TopologyService`|
+|`org.neo4j.causalclustering.discovery.TopologyService`|이것은 클러스터에 있는 모든 서버 및 서버 그룹의 주소에 액세스 할 수 있는 디렉토리 서비스입니다.|
+|`org.neo4j.kernel.configuration.Config`|이것은 로컬 인스턴스에 대한 *neo4j.conf*의 구성을 제공합니다. 자체 플러그인에 대한 구성이 여기에 있을 수 있습니다.|
+|`org.neo4j.causalclustering.identity.MemberId`|이것은 현재 인스턴스의 고유한 클러스터 `MemberId`를 제공합니다.|
+
+코드 작성 및 테스트가 끝나면 배포 준비를 해야합니다. `UpstreamDatabaseSelectionStrategy` 플러그인은 자바 서비스 로더를 통해 로드됩니다. 즉, 코드를 jar 파일로 패키징 할 때,
