@@ -31,3 +31,9 @@ causal_clustering.cluster_allow_reads_on_followers=true
 ````
 
 #### 4.2.10.3. 로드 밸런싱 프레임 워크
+로드 밸런싱 시스템은 향후 확장성 및 사용자 정의를 허용하는 플러그인 아키텍처를 기반으로 합니다. 현재 버전에는 *서버 정책* 플러그인이라고 하는 하나의 통조림 플러그인이 제공됩니다.
+
+서버 정책 플러그인은 다음 속성을 설정하여 선택합니다:
+```
+causal_clustering.load_balancing.plugin=server_policies
+```
