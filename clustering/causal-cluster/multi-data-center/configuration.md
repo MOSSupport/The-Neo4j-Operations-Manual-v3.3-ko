@@ -110,6 +110,7 @@ causal_clustering.user_defined_upstream_strategy=groups(north2); groups(north); 
 ------------------------
 
 이 예에서 우리는 후속 조치를 취할 위치를 선택하기 전에 클러스터 건강 상태를 대략적으로 검증하고자 합니다. 이를 위해 다음과 같이 `min()` 필터를 사용합니다.
+
 ````
 causal_clustering.user_defined_upstream_strategy=groups(north2)->min(3), groups(north)->min(3); all();
 ```
