@@ -108,12 +108,11 @@ causal_clustering.user_defined_upstream_strategy=groups(north2); groups(north); 
 ##### 예제 4.15. 조건이 있는 사용자 정의 전략
 
 ------------------------
-
 이 예에서 우리는 후속 조치를 취할 위치를 선택하기 전에 클러스터 건강 상태를 대략적으로 검증하고자 합니다. 이를 위해 다음과 같이 `min()` 필터를 사용합니다.
 
 ````
 causal_clustering.user_defined_upstream_strategy=groups(north2)->min(3), groups(north)->min(3); all();
-```
+````
 
 `groups(north2)->min(3)`은 `north2` 서버 그룹에 3개의 사용 가능한 시스템이 있는 경우 해당 서버 그룹에서 따라잡기를 원한다는 것을 나타내며, 우리는 여기서 이것을 양호한 상태의 지표로서 다룹니다. 만일 `north2`가 그 요구 사항을 충족시킬 수 없다면 (충분히 건강하지 않은 경우) `groups(north)->min(3)`에 따라 최소 3개 이상의 시스템을 사용할 수 있는 경우 `north` 지역의 모든 서버를 따라잡으려고 시도합니다. 마지막으로 우리가 충분히 건강한 `north` 지역을 따라잡을 수 없다면, 우리는 `all()`을 사용하여 전체 클러스터로 (명쾌하게) 돌아갈 것입니다.
 
