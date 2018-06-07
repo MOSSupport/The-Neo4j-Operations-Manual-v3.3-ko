@@ -130,4 +130,13 @@ Neo4j는 고급 사용자가 로드, 서브넷, 시스템 크기 또는 JVM에�
 |`org.neo4j.kernel.configuration.Config`|이것은 로컬 인스턴스에 대한 *neo4j.conf*의 구성을 제공합니다. 자체 플러그인에 대한 구성이 여기에 있을 수 있습니다.|
 |`org.neo4j.causalclustering.identity.MemberId`|이것은 현재 인스턴스의 고유한 클러스터 `MemberId`를 제공합니다.|
 
-코드 작성 및 테스트가 끝나면 배포 준비를 해야합니다. `UpstreamDatabaseSelectionStrategy` 플러그인은 자바 서비스 로더를 통해 로드됩니다. 즉, 코드를 jar 파일로 패키징 할 때,
+코드 작성 및 테스트가 끝나면 배포 준비를 해야합니다. `UpstreamDatabaseSelectionStrategy` 플러그인은 자바 서비스 로더를 통해 로드됩니다. 이것은 코드를 jar 파일로 패키징 할 때, 우리는 플러그인의 완전히 정규화된 클래스 이름을 작성하는 *META-INF.services/org.neo4j.causalclustering.readreplica.UpstreamDatabaseSelectionStrategy* 파일을 생성해야 한다는 것을 의미합니다.(예: `org.example.myplugins.PreferServersWithHighIOPS`)
+
+이 jar 파일을 Neo4j 서버에 배포하려면, 단순하게 그것을 [*plugins*](../../../configuration/file-locations.md) 디렉토리에 복사하고 인스턴스를 다시 시작하면 됩니다.
+
+#### 데이터 센터 선호
+[4.2.3.5장. "팔로워 전용 인스턴스의 바이어스 클러스터 리더십"](../create-a-new-causal-cluster.md#4235-팔로워-전용-인스턴스의-바이어스-클러스터-리더십)에서 우리는 클러스터에서 인스턴스의 리더십 자격 증명을 편향시킬 수 있는 방법을 살펴보았습니다. 일반적으로 이는 단일 데이터 센터 내의 동종의 클러스터에서 드문 경우입니다.
+
+다중 DC 시나리오에서는, 그것이 드물게 발생하지만, 그것은 숙련된 운영자들이 Raft 리더들을 호스팅 하는 데 어떤 데이터 센터가 사용되는지(그에 따라 쓰기가 지시되는 곳) 편향할 수 있게 해 줍니다. 리더를 구현하기 원하지 않는 데이터 센터에서는 [`causal_clustering.refuse_to_be_leader=true`](https://neo4j.com/docs/operations-manual/3.3/reference/configuration-settings/#config_causal_clustering.refuse_to_be_leader)를 적용합니다. 그렇게함으로써 우리는 해당 설정을 적용하지 **않은** 인스턴스를 암묵적으로 선호합니다.
+
+이는 고도로 분산된 다중 데이터 센터 배포를 계획할 때 유용할 수 있습니다. 그러나 장애 시나리오에서는 클러스터의 가용성을 제한하기 때문에 이를 매우 신중하게 고려해야 합니다. 적합하게 탄력적인 토폴로지를 설계하는 데 도움이 되도록 Neo4j 전문 서비스를 활용하는 것을 권합니다.
