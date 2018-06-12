@@ -69,7 +69,7 @@ causal_clustering.upstream_selection_strategy=connect-randomly-within-server-gro
 
  ----------------------------------------------
 
-#### 사용자 정의된 전략 구성하기
+#### 사용자 정의 전략 구성하기
 Neo4j Causal 클러스터는 [클라이언트-클러스터 로드 밸런싱](./load-balancing.md)을 구성하기 위해 소규모 DSL을 지원합니다. 이것은 ["정책 정의" 장](./load-balancing.md#정책-정의)과 ["필터" 장](./load-balancing.md#필터)에서 자세히 설명합니다. 동일한 DSL은 트랜잭션 업데이트를 요청하기 위해 인스턴스가 또다른 인스턴스에 바인딩하는 방법에 대한 선호도를 설명하는 데 사용됩니다.
 
 DSL은 다음과 같이 `user-defined` 전략을 선택하여 사용할 수 있습니다:
